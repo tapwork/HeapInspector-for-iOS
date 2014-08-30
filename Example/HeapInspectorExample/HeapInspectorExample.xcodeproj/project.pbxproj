@@ -1,0 +1,552 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA1CC57819A7B939007F11F1 /* RMHeapStackInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1CC57719A7B939007F11F1 /* RMHeapStackInspector.m */; };
+		DA1CC57919A7B939007F11F1 /* RMHeapStackInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1CC57719A7B939007F11F1 /* RMHeapStackInspector.m */; };
+		DA29C53E19A530C400FFF7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C53D19A530C400FFF7D5 /* Foundation.framework */; };
+		DA29C54019A530C400FFF7D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C53F19A530C400FFF7D5 /* CoreGraphics.framework */; };
+		DA29C54219A530C400FFF7D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C54119A530C400FFF7D5 /* UIKit.framework */; };
+		DA29C54819A530C400FFF7D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA29C54619A530C400FFF7D5 /* InfoPlist.strings */; };
+		DA29C54A19A530C400FFF7D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA29C54919A530C400FFF7D5 /* main.m */; };
+		DA29C54E19A530C400FFF7D5 /* RMOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA29C54D19A530C400FFF7D5 /* RMOAppDelegate.m */; };
+		DA29C55019A530C400FFF7D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA29C54F19A530C400FFF7D5 /* Images.xcassets */; };
+		DA29C55719A530C400FFF7D5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C55619A530C400FFF7D5 /* XCTest.framework */; };
+		DA29C55819A530C400FFF7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C53D19A530C400FFF7D5 /* Foundation.framework */; };
+		DA29C55919A530C400FFF7D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C54119A530C400FFF7D5 /* UIKit.framework */; };
+		DA29C56119A530C400FFF7D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA29C55F19A530C400FFF7D5 /* InfoPlist.strings */; };
+		DA29C56319A530C400FFF7D5 /* HeapInspectorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */; };
+		DAA1DD6819B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */; };
+		DAA1DD6919B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */; };
+		DAA1DD6C19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */; };
+		DAA1DD6D19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */; };
+		DAA1DD7219B12FA600BC5DAD /* RMShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */; };
+		DAA1DD7319B12FA600BC5DAD /* RMShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */; };
+		DABCA50B19A531E200331B1B /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */; };
+		DABCA50C19A531E200331B1B /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */; };
+		DABCA50D19A531E200331B1B /* RMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50419A531E200331B1B /* RMDebug.m */; };
+		DABCA50E19A531E200331B1B /* RMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50419A531E200331B1B /* RMDebug.m */; };
+		DABCA50F19A531E200331B1B /* RMDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50619A531E200331B1B /* RMDebugWindow.m */; };
+		DABCA51019A531E200331B1B /* RMDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50619A531E200331B1B /* RMDebugWindow.m */; };
+		DABCA51319A531E200331B1B /* RMRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50A19A531E200331B1B /* RMRecordButton.m */; };
+		DABCA51419A531E200331B1B /* RMRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50A19A531E200331B1B /* RMRecordButton.m */; };
+		DABCA51719A5339300331B1B /* RMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51619A5339300331B1B /* RMRootViewController.m */; };
+		DABCA51819A5339300331B1B /* RMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51619A5339300331B1B /* RMRootViewController.m */; };
+		DABCA51B19A533B400331B1B /* RMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51A19A533B400331B1B /* RMDetailViewController.m */; };
+		DABCA51C19A533B400331B1B /* RMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51A19A533B400331B1B /* RMDetailViewController.m */; };
+		DAF2557919A910ED00CCDD6A /* RMHeapStackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2557819A910ED00CCDD6A /* RMHeapStackTableViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DA29C55A19A530C400FFF7D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA29C53219A530C400FFF7D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA29C53919A530C400FFF7D5;
+			remoteInfo = HeapInspectorExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DA1CC57619A7B939007F11F1 /* RMHeapStackInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHeapStackInspector.h; sourceTree = "<group>"; };
+		DA1CC57719A7B939007F11F1 /* RMHeapStackInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHeapStackInspector.m; sourceTree = "<group>"; };
+		DA29C53A19A530C400FFF7D5 /* HeapInspectorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeapInspectorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA29C53D19A530C400FFF7D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DA29C53F19A530C400FFF7D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DA29C54119A530C400FFF7D5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DA29C54519A530C400FFF7D5 /* HeapInspectorExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HeapInspectorExample-Info.plist"; sourceTree = "<group>"; };
+		DA29C54719A530C400FFF7D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DA29C54919A530C400FFF7D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DA29C54B19A530C400FFF7D5 /* HeapInspectorExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HeapInspectorExample-Prefix.pch"; sourceTree = "<group>"; };
+		DA29C54C19A530C400FFF7D5 /* RMOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMOAppDelegate.h; sourceTree = "<group>"; };
+		DA29C54D19A530C400FFF7D5 /* RMOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMOAppDelegate.m; sourceTree = "<group>"; };
+		DA29C54F19A530C400FFF7D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DA29C55519A530C400FFF7D5 /* HeapInspectorExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeapInspectorExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA29C55619A530C400FFF7D5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DA29C55E19A530C400FFF7D5 /* HeapInspectorExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HeapInspectorExampleTests-Info.plist"; sourceTree = "<group>"; };
+		DA29C56019A530C400FFF7D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeapInspectorExampleTests.m; sourceTree = "<group>"; };
+		DAA1DD6619B1281800BC5DAD /* RMHeapStackDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHeapStackDetailTableViewController.h; sourceTree = "<group>"; };
+		DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHeapStackDetailTableViewController.m; sourceTree = "<group>"; };
+		DAA1DD6A19B12BD900BC5DAD /* RMResponderChainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMResponderChainViewController.h; sourceTree = "<group>"; };
+		DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMResponderChainViewController.m; sourceTree = "<group>"; };
+		DAA1DD7019B12FA600BC5DAD /* RMShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMShowViewController.h; sourceTree = "<group>"; };
+		DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMShowViewController.m; sourceTree = "<group>"; };
+		DABCA50119A531E200331B1B /* NSObject+HeapInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+HeapInspector.h"; sourceTree = "<group>"; };
+		DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HeapInspector.m"; sourceTree = "<group>"; };
+		DABCA50319A531E200331B1B /* RMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDebug.h; sourceTree = "<group>"; };
+		DABCA50419A531E200331B1B /* RMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDebug.m; sourceTree = "<group>"; };
+		DABCA50519A531E200331B1B /* RMDebugWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDebugWindow.h; sourceTree = "<group>"; };
+		DABCA50619A531E200331B1B /* RMDebugWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDebugWindow.m; sourceTree = "<group>"; };
+		DABCA50919A531E200331B1B /* RMRecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRecordButton.h; sourceTree = "<group>"; };
+		DABCA50A19A531E200331B1B /* RMRecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRecordButton.m; sourceTree = "<group>"; };
+		DABCA51519A5339300331B1B /* RMRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRootViewController.h; sourceTree = "<group>"; };
+		DABCA51619A5339300331B1B /* RMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRootViewController.m; sourceTree = "<group>"; };
+		DABCA51919A533B400331B1B /* RMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDetailViewController.h; sourceTree = "<group>"; };
+		DABCA51A19A533B400331B1B /* RMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDetailViewController.m; sourceTree = "<group>"; };
+		DAF2557719A910ED00CCDD6A /* RMHeapStackTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHeapStackTableViewController.h; sourceTree = "<group>"; };
+		DAF2557819A910ED00CCDD6A /* RMHeapStackTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHeapStackTableViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA29C53719A530C400FFF7D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA29C54019A530C400FFF7D5 /* CoreGraphics.framework in Frameworks */,
+				DA29C54219A530C400FFF7D5 /* UIKit.framework in Frameworks */,
+				DA29C53E19A530C400FFF7D5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA29C55219A530C400FFF7D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA29C55719A530C400FFF7D5 /* XCTest.framework in Frameworks */,
+				DA29C55919A530C400FFF7D5 /* UIKit.framework in Frameworks */,
+				DA29C55819A530C400FFF7D5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA29C53119A530C400FFF7D5 = {
+			isa = PBXGroup;
+			children = (
+				DABCA50019A531E200331B1B /* HeapInspector */,
+				DA29C54319A530C400FFF7D5 /* HeapInspectorExample */,
+				DA29C55C19A530C400FFF7D5 /* HeapInspectorExampleTests */,
+				DA29C53C19A530C400FFF7D5 /* Frameworks */,
+				DA29C53B19A530C400FFF7D5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DA29C53B19A530C400FFF7D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA29C53A19A530C400FFF7D5 /* HeapInspectorExample.app */,
+				DA29C55519A530C400FFF7D5 /* HeapInspectorExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA29C53C19A530C400FFF7D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA29C53D19A530C400FFF7D5 /* Foundation.framework */,
+				DA29C53F19A530C400FFF7D5 /* CoreGraphics.framework */,
+				DA29C54119A530C400FFF7D5 /* UIKit.framework */,
+				DA29C55619A530C400FFF7D5 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA29C54319A530C400FFF7D5 /* HeapInspectorExample */ = {
+			isa = PBXGroup;
+			children = (
+				DA29C54C19A530C400FFF7D5 /* RMOAppDelegate.h */,
+				DA29C54D19A530C400FFF7D5 /* RMOAppDelegate.m */,
+				DA29C54F19A530C400FFF7D5 /* Images.xcassets */,
+				DA29C54419A530C400FFF7D5 /* Supporting Files */,
+				DABCA51519A5339300331B1B /* RMRootViewController.h */,
+				DABCA51619A5339300331B1B /* RMRootViewController.m */,
+				DABCA51919A533B400331B1B /* RMDetailViewController.h */,
+				DABCA51A19A533B400331B1B /* RMDetailViewController.m */,
+			);
+			path = HeapInspectorExample;
+			sourceTree = "<group>";
+		};
+		DA29C54419A530C400FFF7D5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA29C54519A530C400FFF7D5 /* HeapInspectorExample-Info.plist */,
+				DA29C54619A530C400FFF7D5 /* InfoPlist.strings */,
+				DA29C54919A530C400FFF7D5 /* main.m */,
+				DA29C54B19A530C400FFF7D5 /* HeapInspectorExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA29C55C19A530C400FFF7D5 /* HeapInspectorExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */,
+				DA29C55D19A530C400FFF7D5 /* Supporting Files */,
+			);
+			path = HeapInspectorExampleTests;
+			sourceTree = "<group>";
+		};
+		DA29C55D19A530C400FFF7D5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA29C55E19A530C400FFF7D5 /* HeapInspectorExampleTests-Info.plist */,
+				DA29C55F19A530C400FFF7D5 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DABCA50019A531E200331B1B /* HeapInspector */ = {
+			isa = PBXGroup;
+			children = (
+				DABCA50119A531E200331B1B /* NSObject+HeapInspector.h */,
+				DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */,
+				DABCA50319A531E200331B1B /* RMDebug.h */,
+				DABCA50419A531E200331B1B /* RMDebug.m */,
+				DABCA50519A531E200331B1B /* RMDebugWindow.h */,
+				DABCA50619A531E200331B1B /* RMDebugWindow.m */,
+				DABCA50919A531E200331B1B /* RMRecordButton.h */,
+				DABCA50A19A531E200331B1B /* RMRecordButton.m */,
+				DA1CC57619A7B939007F11F1 /* RMHeapStackInspector.h */,
+				DA1CC57719A7B939007F11F1 /* RMHeapStackInspector.m */,
+				DAF2557719A910ED00CCDD6A /* RMHeapStackTableViewController.h */,
+				DAF2557819A910ED00CCDD6A /* RMHeapStackTableViewController.m */,
+				DAA1DD6619B1281800BC5DAD /* RMHeapStackDetailTableViewController.h */,
+				DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */,
+				DAA1DD6A19B12BD900BC5DAD /* RMResponderChainViewController.h */,
+				DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */,
+				DAA1DD7019B12FA600BC5DAD /* RMShowViewController.h */,
+				DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */,
+			);
+			name = HeapInspector;
+			path = ../../HeapInspector;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA29C53919A530C400FFF7D5 /* HeapInspectorExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA29C56619A530C400FFF7D5 /* Build configuration list for PBXNativeTarget "HeapInspectorExample" */;
+			buildPhases = (
+				DA29C53619A530C400FFF7D5 /* Sources */,
+				DA29C53719A530C400FFF7D5 /* Frameworks */,
+				DA29C53819A530C400FFF7D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeapInspectorExample;
+			productName = HeapInspectorExample;
+			productReference = DA29C53A19A530C400FFF7D5 /* HeapInspectorExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DA29C55419A530C400FFF7D5 /* HeapInspectorExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA29C56919A530C400FFF7D5 /* Build configuration list for PBXNativeTarget "HeapInspectorExampleTests" */;
+			buildPhases = (
+				DA29C55119A530C400FFF7D5 /* Sources */,
+				DA29C55219A530C400FFF7D5 /* Frameworks */,
+				DA29C55319A530C400FFF7D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA29C55B19A530C400FFF7D5 /* PBXTargetDependency */,
+			);
+			name = HeapInspectorExampleTests;
+			productName = HeapInspectorExampleTests;
+			productReference = DA29C55519A530C400FFF7D5 /* HeapInspectorExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA29C53219A530C400FFF7D5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RMO;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = tapwork;
+				TargetAttributes = {
+					DA29C55419A530C400FFF7D5 = {
+						TestTargetID = DA29C53919A530C400FFF7D5;
+					};
+				};
+			};
+			buildConfigurationList = DA29C53519A530C400FFF7D5 /* Build configuration list for PBXProject "HeapInspectorExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DA29C53119A530C400FFF7D5;
+			productRefGroup = DA29C53B19A530C400FFF7D5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA29C53919A530C400FFF7D5 /* HeapInspectorExample */,
+				DA29C55419A530C400FFF7D5 /* HeapInspectorExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA29C53819A530C400FFF7D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA29C54819A530C400FFF7D5 /* InfoPlist.strings in Resources */,
+				DA29C55019A530C400FFF7D5 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA29C55319A530C400FFF7D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA29C56119A530C400FFF7D5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA29C53619A530C400FFF7D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DABCA50F19A531E200331B1B /* RMDebugWindow.m in Sources */,
+				DAA1DD6819B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */,
+				DABCA51719A5339300331B1B /* RMRootViewController.m in Sources */,
+				DA29C54A19A530C400FFF7D5 /* main.m in Sources */,
+				DAA1DD6C19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */,
+				DABCA50B19A531E200331B1B /* NSObject+HeapInspector.m in Sources */,
+				DAA1DD7219B12FA600BC5DAD /* RMShowViewController.m in Sources */,
+				DABCA51B19A533B400331B1B /* RMDetailViewController.m in Sources */,
+				DA1CC57819A7B939007F11F1 /* RMHeapStackInspector.m in Sources */,
+				DABCA50D19A531E200331B1B /* RMDebug.m in Sources */,
+				DA29C54E19A530C400FFF7D5 /* RMOAppDelegate.m in Sources */,
+				DAF2557919A910ED00CCDD6A /* RMHeapStackTableViewController.m in Sources */,
+				DABCA51319A531E200331B1B /* RMRecordButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA29C55119A530C400FFF7D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DABCA51019A531E200331B1B /* RMDebugWindow.m in Sources */,
+				DABCA51819A5339300331B1B /* RMRootViewController.m in Sources */,
+				DAA1DD6919B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */,
+				DABCA51419A531E200331B1B /* RMRecordButton.m in Sources */,
+				DAA1DD7319B12FA600BC5DAD /* RMShowViewController.m in Sources */,
+				DAA1DD6D19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */,
+				DA1CC57919A7B939007F11F1 /* RMHeapStackInspector.m in Sources */,
+				DA29C56319A530C400FFF7D5 /* HeapInspectorExampleTests.m in Sources */,
+				DABCA50E19A531E200331B1B /* RMDebug.m in Sources */,
+				DABCA51C19A533B400331B1B /* RMDetailViewController.m in Sources */,
+				DABCA50C19A531E200331B1B /* NSObject+HeapInspector.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA29C55B19A530C400FFF7D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA29C53919A530C400FFF7D5 /* HeapInspectorExample */;
+			targetProxy = DA29C55A19A530C400FFF7D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DA29C54619A530C400FFF7D5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA29C54719A530C400FFF7D5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DA29C55F19A530C400FFF7D5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA29C56019A530C400FFF7D5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DA29C56419A530C400FFF7D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DA29C56519A530C400FFF7D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA29C56719A530C400FFF7D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HeapInspectorExample/HeapInspectorExample-Prefix.pch";
+				INFOPLIST_FILE = "HeapInspectorExample/HeapInspectorExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DA29C56819A530C400FFF7D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HeapInspectorExample/HeapInspectorExample-Prefix.pch";
+				INFOPLIST_FILE = "HeapInspectorExample/HeapInspectorExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DA29C56A19A530C400FFF7D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HeapInspectorExample.app/HeapInspectorExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HeapInspectorExample/HeapInspectorExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "HeapInspectorExampleTests/HeapInspectorExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		DA29C56B19A530C400FFF7D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HeapInspectorExample.app/HeapInspectorExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HeapInspectorExample/HeapInspectorExample-Prefix.pch";
+				INFOPLIST_FILE = "HeapInspectorExampleTests/HeapInspectorExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA29C53519A530C400FFF7D5 /* Build configuration list for PBXProject "HeapInspectorExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA29C56419A530C400FFF7D5 /* Debug */,
+				DA29C56519A530C400FFF7D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA29C56619A530C400FFF7D5 /* Build configuration list for PBXNativeTarget "HeapInspectorExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA29C56719A530C400FFF7D5 /* Debug */,
+				DA29C56819A530C400FFF7D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA29C56919A530C400FFF7D5 /* Build configuration list for PBXNativeTarget "HeapInspectorExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA29C56A19A530C400FFF7D5 /* Debug */,
+				DA29C56B19A530C400FFF7D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA29C53219A530C400FFF7D5 /* Project object */;
+}
