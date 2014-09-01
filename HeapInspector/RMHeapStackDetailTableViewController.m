@@ -19,14 +19,16 @@ static NSString *const kCellTitleIvars = @"iVars";
 static NSString *const kCellTitleProperties = @"Properties";
 static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
 
-static const CGFloat kHeaderViewHeight = 80.0f;
+static const CGFloat kHeaderViewHeight = 100.0f;
 
 @interface RMHeapStackDetailTableViewController ()
 
 @end
 
 @implementation RMHeapStackDetailTableViewController
-
+{
+    UITextView *_headerTextView;
+}
 
 #pragma mark - View Life Cycle
 
@@ -42,12 +44,68 @@ static const CGFloat kHeaderViewHeight = 80.0f;
 
 - (void)setupHeaderView
 {
-    UITextView *headerView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, kHeaderViewHeight)];
-    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    headerView.editable = NO;
-    headerView.text = [self.inspectingObject description];
+    CGRect headerViewFrame = CGRectMake(0.0, 0.0,
+                                        self.tableView.bounds.size.width,
+                                        kHeaderViewHeight);
+    UIView *headerView = [[UIView alloc] initWithFrame:headerViewFrame];
     headerView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+    
+    CGRect titleLabelFrame = CGRectMake(5.0, 5.0,
+                                        headerView.bounds.size.width - 10.0,
+                                        15.0);
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleLabelFrame];
+
+    CGRect textViewFrame = CGRectMake(0.0, CGRectGetMaxY(titleLabel.frame),
+                                      headerView.bounds.size.width,
+                                      headerView.bounds.size.height - CGRectGetMaxY(titleLabel.frame));
+    UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
+
+    titleLabel.text = [NSString stringWithFormat:@"%s: %p",
+                       object_getClassName(self.inspectingObject),
+                       self.inspectingObject];
+    titleLabel.font = [UIFont boldSystemFontOfSize:12];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    [headerView addSubview:titleLabel];
+    
+    // Add a switch if the object is of bool type
+    if ([self.inspectingObject respondsToSelector:@selector(boolValue)] &&
+        [NSStringFromClass([self.inspectingObject class]) isEqualToString:@"__NSCFBoolean"]) {
+        UISwitch *boolSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+        CGRect switchFrame = boolSwitch.frame;
+        switchFrame.origin.x = headerViewFrame.size.width - switchFrame.size.width - 10.0;
+        switchFrame.origin.y = 5.0;
+        boolSwitch.frame = switchFrame;
+        [boolSwitch addTarget:self action:@selector(boolSwitchToggle:) forControlEvents:UIControlEventValueChanged];
+        boolSwitch.on = [self.inspectingObject boolValue];
+        [headerView addSubview:boolSwitch];
+    }
+    
+    textView.editable = NO;
+    textView.backgroundColor = [UIColor clearColor];
+    _headerTextView = textView;
+    [headerView addSubview:textView];
+    
+    textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
     self.tableView.tableHeaderView = headerView;
+    [self updateHeaderView];
+}
+
+- (void)updateHeaderView
+{
+    if ([self.inspectingObject respondsToSelector:@selector(description)]) {
+        _headerTextView.text = [self.inspectingObject description];
+    }
+}
+
+#pragma mark - Actions
+
+- (void)boolSwitchToggle:(UISwitch *)boolSwitch
+{
+    self.inspectingObject = @(boolSwitch.on);
+    [self updateHeaderView];
 }
 
 #pragma mark - DataSource
@@ -94,6 +152,7 @@ static const CGFloat kHeaderViewHeight = 80.0f;
     
     NSString *item = self.dataSource[indexPath.row];
     cell.textLabel.text = item;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
