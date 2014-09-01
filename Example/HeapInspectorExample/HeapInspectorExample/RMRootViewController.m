@@ -20,30 +20,44 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"Open Details" forState:UIControlStateNormal];
     CGSize buttonSize = CGSizeMake(200, 50);
-    button.frame = CGRectMake(floorf((self.view.bounds.size.width - buttonSize.width)/2),
+    
+    UIButton *s_button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [s_button addTarget:self action:@selector(buttonStrongTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [s_button setTitle:@"Open Details (strong)" forState:UIControlStateNormal];
+   
+    s_button.frame = CGRectMake(floorf((self.view.bounds.size.width - buttonSize.width)/2),
                               floorf((self.view.bounds.size.height - buttonSize.height)/2),
                               buttonSize.width,
                               buttonSize.height);
-    button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.view addSubview:button];
+    
+    UIButton *w_button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [w_button addTarget:self action:@selector(buttonWeakTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [w_button setTitle:@"Open Details (weak)" forState:UIControlStateNormal];
+    w_button.frame = CGRectMake(floorf((self.view.bounds.size.width - buttonSize.width)/2),
+                                CGRectGetMaxY(s_button.frame) + 5.0,
+                                buttonSize.width,
+                                buttonSize.height);
+    
+    s_button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    w_button.autoresizingMask = s_button.autoresizingMask;
+    [self.view addSubview:s_button];
+    [self.view addSubview:w_button];
 }
 
-- (void)buttonTapped:(id)sender
+- (void)buttonStrongTapped:(id)sender
 {
     RMDetailViewController *details = [[RMDetailViewController alloc] init];
+    details.isStrongRetained = YES;
     self.strongDetailViewController = details;
-    //self.weakDetailViewController = details;
     [self.navigationController pushViewController:details animated:YES];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)buttonWeakTapped:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    RMDetailViewController *details = [[RMDetailViewController alloc] init];
+    self.weakDetailViewController = details;
+    [self.navigationController pushViewController:details animated:YES];
 }
 
 

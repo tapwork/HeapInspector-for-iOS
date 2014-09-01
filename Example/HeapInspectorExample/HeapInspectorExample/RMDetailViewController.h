@@ -10,4 +10,6 @@
 
 @interface RMDetailViewController : UIViewController
 
+@property (nonatomic) BOOL isStrongRetained;
+
 @end
