@@ -15,9 +15,10 @@
 
 static NSString *const kCellTitleShow = @"Show";
 static NSString *const kCellTitleResponderChain = @"Responder Chain";
-static NSString *const kCellTitlMethods = @"Methods";
-static NSString *const kCellTitlIvars = @"iVars";
-static NSString *const kCellTitlProperties = @"Properties";
+static NSString *const kCellTitleMethods = @"Methods";
+static NSString *const kCellTitleIvars = @"iVars";
+static NSString *const kCellTitleProperties = @"Properties";
+static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
 
 @interface RMHeapStackDetailTableViewController ()
 
@@ -67,10 +68,14 @@ static NSString *const kCellTitlProperties = @"Properties";
     if ([_inspectingObject isKindOfClass:[UIView class]] ||
         [_inspectingObject isKindOfClass:[UIViewController class]]) {
         [dataSource addObject:kCellTitleShow];
+        if ([_inspectingObject isKindOfClass:[UIView class]]) {
+             [dataSource addObject:kCellTitleRecursiveDesc];
+        }
     }
-    [dataSource addObject:kCellTitlMethods];
-    [dataSource addObject:@"properties & iVars"];
-    [dataSource addObject:@"Class hierarchy"];
+    [dataSource addObject:kCellTitleMethods];
+    [dataSource addObject:kCellTitleProperties];
+    [dataSource addObject:kCellTitleIvars];
+   
     
     _dataSource = dataSource;
     [self.tableView reloadData];
@@ -108,9 +113,15 @@ static NSString *const kCellTitlProperties = @"Properties";
         targetController = [[RMResponderChainViewController alloc] initWithObject:_inspectingObject];
     } else if ([item isEqualToString:kCellTitleShow]) {
         targetController = [[RMShowViewController alloc] initWithObject:_inspectingObject];
-    } else if ([item isEqualToString:kCellTitlMethods]) {
+    } else if ([item isEqualToString:kCellTitleMethods]) {
         targetController = [[RMClassDumpTableViewController alloc] initWithObject:_inspectingObject type:RMClassDumpMethods];
+    } else if ([item isEqualToString:kCellTitleRecursiveDesc]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+        NSString *recursiveDesc = [_inspectingObject performSelector:@selector(recursiveDescription)];
+        targetController = [[RMShowViewController alloc] initWithObject:recursiveDesc];
     }
+#pragma clang diagnostic pop
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:targetController animated:YES];
 }
