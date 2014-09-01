@@ -95,7 +95,8 @@ static const CGFloat kHeaderViewHeight = 100.0f;
 
 - (void)updateHeaderView
 {
-    if ([self.inspectingObject respondsToSelector:@selector(description)]) {
+    if ([self.inspectingObject conformsToProtocol:@protocol(NSObject)] &&
+         [self.inspectingObject respondsToSelector:@selector(description)]) {
         _headerTextView.text = [self.inspectingObject description];
     }
 }
