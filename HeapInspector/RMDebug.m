@@ -61,7 +61,7 @@
 - (void)showInfoLabel
 {
     NSUInteger count = [[RMHeapStackInspector recordedHeapStack] count];
-    NSString *text = [NSString stringWithFormat:@"Recorded objects: %lu",
+    NSString *text = [NSString stringWithFormat:@"Objects recorded: %lu",
                       (unsigned long)count];
     _window.infoLabel.text = text;
     if (count > 0) {
