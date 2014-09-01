@@ -33,8 +33,8 @@
         CGRect rect = [UIScreen mainScreen].bounds;
         RMDebugWindow *window = [[RMDebugWindow alloc] initWithFrame:rect];
         [window setHidden:NO];
-        window.windowLevel = UIWindowLevelAlert - 1; // Show appear under any alerts
-      //  window.windowLevel = UIWindowLevelStatusBar + 50;
+      //  window.windowLevel = UIWindowLevelAlert - 1; // Show appear under any alerts
+        window.windowLevel = UIWindowLevelStatusBar + 50;
         [window.recordButton addTarget:self
                                 action:@selector(recordButtonTapped:)
                       forControlEvents:UIControlEventTouchUpInside];
