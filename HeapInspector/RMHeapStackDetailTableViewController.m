@@ -46,6 +46,7 @@ static const CGFloat kHeaderViewHeight = 80.0f;
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     headerView.editable = NO;
     headerView.text = [self.inspectingObject description];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     self.tableView.tableHeaderView = headerView;
 }
 
