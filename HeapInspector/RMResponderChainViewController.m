@@ -15,13 +15,12 @@
 @end
 
 @implementation RMResponderChainViewController
-{
-    NSArray *_responderChain;
-}
+
+#pragma mark - Init
 
 - (instancetype)initWithObject:(id)object
 {
-    self = [super initWithStyle:UITableViewStylePlain];
+    self = [super initWithObject:object];
     if (self) {
         
         self.title = @"Responder Chain";
@@ -34,10 +33,12 @@
             tryResponder = [tryResponder nextResponder];
         }
         
-        _responderChain = responders;
+        self.dataSource = responders;
     }
     return self;
 }
+
+#pragma mark - View Life Cycle
 
 - (void)viewDidLoad
 {
@@ -46,7 +47,7 @@
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - UITableView dataSource & Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -55,16 +56,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_responderChain count];
+    return [self.dataSource count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent
                                                             forIndexPath:indexPath];
     
-    id object = _responderChain[indexPath.row];
+    id object = self.dataSource[indexPath.row];
     NSString *content = [NSString stringWithFormat:@"%s: %p",
                          object_getClassName(object),
                          object];
@@ -75,7 +75,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id object = _responderChain[indexPath.row];
+    id object = self.dataSource[indexPath.row];
     RMHeapStackDetailTableViewController *detailVC = [[RMHeapStackDetailTableViewController alloc]
                                                       initWithObject:object];
     [self.navigationController pushViewController:detailVC animated:YES];

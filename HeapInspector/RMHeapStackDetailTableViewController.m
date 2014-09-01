@@ -7,7 +7,6 @@
 //
 
 #import "RMHeapStackDetailTableViewController.h"
-#import "RMHeapStackInspector.h"
 #import "RMResponderChainViewController.h"
 #import "RMShowViewController.h"
 #import "RMTableViewCell.h"
@@ -20,55 +19,49 @@ static NSString *const kCellTitleIvars = @"iVars";
 static NSString *const kCellTitleProperties = @"Properties";
 static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
 
+static const CGFloat kHeaderViewHeight = 80.0f;
+
 @interface RMHeapStackDetailTableViewController ()
 
 @end
 
 @implementation RMHeapStackDetailTableViewController
-{
-    id _inspectingObject;
-    NSArray *_dataSource;
-}
 
-- (instancetype)initWithPointerString:(NSString *)pointer
-{
-    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-         // Retrieve a real object from the pointer
-        _inspectingObject = [RMHeapStackInspector objectForPointer:pointer];
-    }
-    return self;
-}
 
-- (instancetype)initWithObject:(id)object
-{
-    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        // Retrieve a real object from the pointer
-        _inspectingObject = object;
-    }
-    return self;
-}
+#pragma mark - View Life Cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.title = @"Object Inspector";
     
-    [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
+    [self setupHeaderView];
     [self prepareDataSource];
 }
+
+- (void)setupHeaderView
+{
+    UITextView *headerView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, kHeaderViewHeight)];
+    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    headerView.editable = NO;
+    headerView.text = [self.inspectingObject description];
+    self.tableView.tableHeaderView = headerView;
+}
+
+#pragma mark - DataSource
 
 - (void)prepareDataSource
 {
     NSMutableArray *dataSource = [@[] mutableCopy];
     
-    if ([_inspectingObject isKindOfClass:[UIResponder class]]) {
+    if ([self.inspectingObject isKindOfClass:[UIResponder class]]) {
         [dataSource addObject:kCellTitleResponderChain];
     }
-    if ([_inspectingObject isKindOfClass:[UIView class]] ||
-        [_inspectingObject isKindOfClass:[UIViewController class]]) {
+    if ([self.inspectingObject isKindOfClass:[UIView class]] ||
+        [self.inspectingObject isKindOfClass:[UIViewController class]]) {
         [dataSource addObject:kCellTitleShow];
-        if ([_inspectingObject isKindOfClass:[UIView class]]) {
+        if ([self.inspectingObject isKindOfClass:[UIView class]]) {
              [dataSource addObject:kCellTitleRecursiveDesc];
         }
     }
@@ -77,11 +70,11 @@ static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
     [dataSource addObject:kCellTitleIvars];
    
     
-    _dataSource = dataSource;
+    self.dataSource = dataSource;
     [self.tableView reloadData];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableview dataSource & Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -90,16 +83,15 @@ static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_dataSource count];
+    return [self.dataSource count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent
                                                             forIndexPath:indexPath];
     
-    NSString *item = _dataSource[indexPath.row];
+    NSString *item = self.dataSource[indexPath.row];
     cell.textLabel.text = item;
     
     return cell;
@@ -108,18 +100,19 @@ static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIViewController *targetController = nil;
-    NSString *item = _dataSource[indexPath.row];
+    NSString *item = self.dataSource[indexPath.row];
     if ([item isEqualToString:kCellTitleResponderChain]) {
-        targetController = [[RMResponderChainViewController alloc] initWithObject:_inspectingObject];
+        targetController = [[RMResponderChainViewController alloc] initWithObject:self.inspectingObject];
     } else if ([item isEqualToString:kCellTitleShow]) {
-        targetController = [[RMShowViewController alloc] initWithObject:_inspectingObject];
+        targetController = [[RMShowViewController alloc] initWithObject:self.inspectingObject];
     } else if ([item isEqualToString:kCellTitleMethods]) {
-        targetController = [[RMClassDumpTableViewController alloc] initWithObject:_inspectingObject type:RMClassDumpMethods];
+        targetController = [[RMClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpMethods];
     } else if ([item isEqualToString:kCellTitleRecursiveDesc]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-        NSString *recursiveDesc = [_inspectingObject performSelector:@selector(recursiveDescription)];
+        NSString *recursiveDesc = [self.inspectingObject performSelector:@selector(recursiveDescription)];
         targetController = [[RMShowViewController alloc] initWithObject:recursiveDesc];
+        ((RMShowViewController *)targetController).showEditButton = NO;
     }
 #pragma clang diagnostic pop
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -20,6 +20,8 @@
     
 }
 
+#pragma mark - Init
+
 - (instancetype)initWithObject:(id)object
 {
     self = [super init];
@@ -27,9 +29,12 @@
         self.title = @"Showing View";
         self.edgesForExtendedLayout = UIRectEdgeNone;
         _objectToInspect = object;
+        self.showEditButton = YES;
     }
     return self;
 }
+
+#pragma mark - View Life Cycle
 
 - (void)viewDidLoad
 {
@@ -40,8 +45,10 @@
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:_scrollView];
     
-    [self setEditButton];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    if (self.showEditButton) {
+        [self setEditButton];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
     
     [self handleClassType];
 }

@@ -8,7 +8,6 @@
 
 #import "RMClassDumpTableViewController.h"
 #import "RMHeapStackDetailTableViewController.h"
-#import "RMTableViewCell.h"
 #import <objc/runtime.h>
 
 @interface RMClassDumpTableViewController ()
@@ -17,19 +16,17 @@
 
 @implementation RMClassDumpTableViewController
 {
-    id _objectToInspect;
     RMClassDumpType _type;
-    NSArray *_dataSource;
 }
+
+#pragma mark - Init
 
 - (instancetype)initWithObject:(id)object type:(RMClassDumpType)type
 {
-    self = [super initWithStyle:UITableViewStylePlain];
+    self = [super initWithObject:object];
     if (self) {
-        _objectToInspect = object;
         _type = type;
         self.title = @"";
-
     }
     return self;
 }
@@ -39,8 +36,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
     
+    self.tableView.allowsSelection = NO;
+    [self prepareDataSource];
+}
+
+#pragma mark - DataSources
+
+- (void)prepareDataSource
+{
     switch (_type) {
         case RMClassDumpMethods:
             [self retrieveMethods];
@@ -51,15 +55,13 @@
     }
 }
 
-#pragma mark - DataSources
-
 - (void)retrieveMethods
 {
     NSMutableArray *dataSource = [@[] mutableCopy];
     NSMutableOrderedSet *superMethods = [[NSMutableOrderedSet alloc] init];
     NSMutableOrderedSet *selfMethods = [[NSMutableOrderedSet alloc] init];
     unsigned int mc = 0;
-    Method *selflist = class_copyMethodList([_objectToInspect class], &mc);
+    Method *selflist = class_copyMethodList([self.inspectingObject class], &mc);
     // Retrieve self's methods
     for(int i = 0; i < mc; i++) {
         NSString *signature = [NSString stringWithUTF8String:sel_getName(method_getName(selflist[i]))];
@@ -69,7 +71,7 @@
     }
     
     // Retrieve super's methods
-    Method *superList = class_copyMethodList([_objectToInspect superclass], &mc);
+    Method *superList = class_copyMethodList([self.inspectingObject superclass], &mc);
     for(int i = 0; i < mc; i++) {
         NSString *signature = [NSString stringWithUTF8String:sel_getName(method_getName(superList[i]))];
         if (signature) {
@@ -86,7 +88,7 @@
     [dataSource addObject:section2];
     
     // sorting now
-    _dataSource = dataSource;
+    self.dataSource = dataSource;
     [self.tableView reloadData];
     free(superList);
     free(selflist);
@@ -102,16 +104,16 @@
     
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableView dataSource & delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_dataSource count];
+    return [self.dataSource count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *sectionDataSource = _dataSource[section];
+    NSArray *sectionDataSource = self.dataSource[section];
     return [sectionDataSource count];
 }
 
@@ -138,7 +140,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent
                                                             forIndexPath:indexPath];
     
-    NSString* methodName = _dataSource[indexPath.section][indexPath.row];
+    NSString* methodName = self.dataSource[indexPath.section][indexPath.row];
     cell.textLabel.text = methodName;
 
     return cell;

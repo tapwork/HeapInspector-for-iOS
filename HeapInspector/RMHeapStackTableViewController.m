@@ -16,14 +16,7 @@
 
 @implementation RMHeapStackTableViewController
 
-- (instancetype)init
-{
-    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+#pragma mark - View Life Cycle
 
 - (void)viewDidLoad
 {
@@ -33,27 +26,16 @@
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(closeButton:)];
-    [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Actions
 
 - (void)closeButton:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Table view data source
-
-- (void)setDataSource:(NSArray *)dataSource
-{
-    _dataSource = dataSource;
-    [self.tableView reloadData];
-}
+#pragma mark - UITableView DataSource & Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -64,7 +46,6 @@
 {
     return [self.dataSource count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

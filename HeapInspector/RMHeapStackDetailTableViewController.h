@@ -6,11 +6,9 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RMTableViewController.h"
 
-@interface RMHeapStackDetailTableViewController : UITableViewController
+@interface RMHeapStackDetailTableViewController : RMTableViewController
 
-- (instancetype)initWithPointerString:(NSString *)pointer;
-- (instancetype)initWithObject:(id)object;
 
 @end

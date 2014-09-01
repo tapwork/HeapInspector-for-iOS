@@ -10,6 +10,8 @@
 
 @interface RMShowViewController : UIViewController
 
+@property (nonatomic) BOOL showEditButton; // Default is YES
+
 - (instancetype)initWithObject:(id)object;
 
 @end

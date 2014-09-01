@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RMTableViewController.h"
 
-@interface RMHeapStackTableViewController : UITableViewController
+@interface RMHeapStackTableViewController : RMTableViewController
 
-@property (nonatomic, strong) NSArray *dataSource;
 
 @end
