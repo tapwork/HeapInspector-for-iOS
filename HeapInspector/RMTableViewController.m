@@ -9,7 +9,7 @@
 #import "RMTableViewController.h"
 #import "RMHeapStackInspector.h"
 
-@interface RMTableViewController ()
+@interface RMTableViewController () <UISearchBarDelegate>
 
 @end
 
@@ -52,13 +52,20 @@
 {
     [super viewDidLoad];
     
+    [self setupSearchBar];
     [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)setupSearchBar
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
+    CGRect frame = searchBar.frame;
+    frame.size.width = self.view.bounds.size.width;
+    frame.size.height = 44.0f;
+    searchBar.frame = frame;
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    searchBar.delegate = self;
+    self.tableView.tableHeaderView = searchBar;
 }
 
 #pragma mark - Table view data source
@@ -82,5 +89,7 @@
     
     return cell;
 }
+
+#pragma mark - SeachBarDelegate
 
 @end
