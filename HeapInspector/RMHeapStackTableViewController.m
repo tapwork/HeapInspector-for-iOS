@@ -54,7 +54,8 @@
     
     NSString *string = self.dataSource[indexPath.row];
     cell.textLabel.text = string;
-
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
