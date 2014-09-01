@@ -176,7 +176,7 @@ static const CGFloat kHeaderViewHeight = 100.0f;
 #pragma clang diagnostic ignored "-Wundeclared-selector"
         NSString *recursiveDesc = [self.inspectingObject performSelector:@selector(recursiveDescription)];
         targetController = [[RMShowViewController alloc] initWithObject:recursiveDesc];
-        ((RMShowViewController *)targetController).showEditButton = NO;
+        ((RMShowViewController *)targetController).shouldShowEditButton = NO;
     }
 #pragma clang diagnostic pop
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

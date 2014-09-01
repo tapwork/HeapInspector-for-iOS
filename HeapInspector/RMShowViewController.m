@@ -29,7 +29,7 @@
         self.title = @"Showing View";
         self.edgesForExtendedLayout = UIRectEdgeNone;
         _objectToInspect = object;
-        self.showEditButton = YES;
+        self.shouldShowEditButton = YES;
     }
     return self;
 }
@@ -45,32 +45,29 @@
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:_scrollView];
     
-    if (self.showEditButton) {
-        [self setEditButton];
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-    }
-    
     [self handleClassType];
 }
 
 - (void)setEditButton
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Edit"
-                                              style:UIBarButtonItemStylePlain
-                                              target:self
-                                              action:@selector(editButtonTapped:)];
-
+    if (self.shouldShowEditButton) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                                  initWithTitle:@"Edit"
+                                                  style:UIBarButtonItemStylePlain
+                                                  target:self
+                                                  action:@selector(editButtonTapped:)];
+    }
 }
 
 - (void)setSaveButton
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Save"
-                                              style:UIBarButtonItemStylePlain
-                                              target:self
-                                              action:@selector(saveButtonTapped:)];
-    
+    if (self.shouldShowEditButton) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                                  initWithTitle:@"Save"
+                                                  style:UIBarButtonItemStylePlain
+                                                  target:self
+                                                  action:@selector(saveButtonTapped:)];
+    }
 }
 
 #pragma mark - Actions
@@ -106,7 +103,7 @@
         UITextView *textView = [[UITextView alloc] initWithFrame:self.view.bounds];
         textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _textView = textView;
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        [self setEditButton];
         [self.view addSubview:textView];
         
         if ([_objectToInspect isKindOfClass:[NSString class]]) {
