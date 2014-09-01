@@ -9,6 +9,7 @@
 #import "RMClassDumpTableViewController.h"
 #import "RMHeapStackDetailTableViewController.h"
 #import <objc/runtime.h>
+#import "RMHeapStackDetailTableViewController.h"
 
 @interface RMClassDumpTableViewController ()
 
@@ -36,7 +37,9 @@
 {
     [super viewDidLoad];
     
-    self.tableView.allowsSelection = NO;
+    if (_type == RMClassDumpMethods) {
+        self.tableView.allowsSelection = NO;
+    }
     [self prepareDataSource];
 }
 
@@ -154,6 +157,7 @@
         NSString *signature = [NSString stringWithUTF8String:property_getName(selflist[i])];
         if (signature) {
             [selProperties addObject:signature];
+            //  printf("%s property_getAttributes %s\n",property_getName(selflist[i]), getPropertyType(selflist[i]));
         }
     }
     
@@ -180,7 +184,6 @@
     return dataSource;
 }
 
-
 #pragma mark - UITableView dataSource & delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -200,10 +203,25 @@
     switch (_type) {
         case RMClassDumpMethods:
             if (section == 0) {
-                title = @"Self's methods";
+                title = @"Self's Methods";
             } else if (section == 1) {
-                title = @"Super's methods";
+                title = @"Super's Methods";
             }
+            break;
+        case RMClassDumpIvar:
+            if (section == 0) {
+                title = @"Self's iVars";
+            } else if (section == 1) {
+                title = @"Super's iVars";
+            }
+            break;
+        case RMClassDumpProperties:
+            if (section == 0) {
+                title = @"Self's Properties";
+            } else if (section == 1) {
+                title = @"Super's Properties";
+            }
+            break;
         default:
             break;
     }
@@ -217,15 +235,71 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent
                                                             forIndexPath:indexPath];
     
-    NSString* methodName = self.dataSource[indexPath.section][indexPath.row];
-    cell.textLabel.text = methodName;
+    NSString *item = self.dataSource[indexPath.section][indexPath.row];
+    cell.textLabel.text = item;
 
+    if ([self canPerformKVO:item forObject:self.inspectingObject]) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *item = self.dataSource[indexPath.section][indexPath.row];
+    id newInspectingObject = nil;
+    if ([self canPerformKVO:item forObject:self.inspectingObject]) {
+        newInspectingObject = [self performKVO:item
+                                     forObject:self.inspectingObject];
+    }
+    if (newInspectingObject) {
+        RMHeapStackDetailTableViewController *detailVC = nil;
+        detailVC = [[RMHeapStackDetailTableViewController alloc] initWithObject:newInspectingObject];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    } else {
+        NSString *typeString = (_type == RMClassDumpProperties) ? @"Property" : @"iVar";
+        NSString *message = [NSString stringWithFormat:@"%@ is nil",typeString];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"nil"
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:indexPath];
 }
 
+#pragma mark - Helper
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+- (BOOL)canPerformKVO:(NSString *)selectorStr forObject:(id)object
+{
+    BOOL canPerform = NO;
+    if ((_type == RMClassDumpProperties ||
+        _type == RMClassDumpIvar) &&
+        [object conformsToProtocol:@protocol(NSObject)]) {
+        id result = [object valueForKeyPath:selectorStr];
+        canPerform = (result != nil);
+    }
+    return canPerform;
+}
+
+- (id)performKVO:(NSString *)selectorStr forObject:(id)object
+{
+    if ((_type == RMClassDumpProperties ||
+         _type == RMClassDumpIvar) &&
+        [object conformsToProtocol:@protocol(NSObject)]) {
+        return [object valueForKeyPath:selectorStr];
+    }
+    
+    return nil;
+}
+#pragma clang diagnostic pop
 
 @end
