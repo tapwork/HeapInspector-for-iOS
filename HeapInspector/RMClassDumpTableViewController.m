@@ -285,10 +285,20 @@
 - (BOOL)canPerformKVO:(NSString *)selectorStr forObject:(id)object
 {
     BOOL canPerform = NO;
-    if (_type == RMClassDumpProperties) {
-        id result = [object valueForKeyPath:selectorStr];
-        canPerform = (result != nil && [result conformsToProtocol:@protocol(NSObject)]);
+    @try {
+        if (_type == RMClassDumpProperties) {
+            id result = [object valueForKeyPath:selectorStr];
+            canPerform = (result != nil && [result conformsToProtocol:@protocol(NSObject)]);
+        }
     }
+    @catch (NSException *exception) {
+        canPerform = NO;
+    }
+    @finally {
+        
+    }
+    
+    
     return canPerform;
 }
 
