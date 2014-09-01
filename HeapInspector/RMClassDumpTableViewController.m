@@ -26,7 +26,6 @@
     self = [super initWithObject:object];
     if (self) {
         _type = type;
-        self.title = @"";
     }
     return self;
 }
@@ -45,18 +44,28 @@
 
 - (void)prepareDataSource
 {
+    NSArray *dataSource = nil;
     switch (_type) {
         case RMClassDumpMethods:
-            [self retrieveMethods];
+            dataSource = [self retrieveMethods];
+            break;
+        case RMClassDumpIvar:
+            dataSource = [self retrieveIvars];
+            break;
+        case RMClassDumpProperties:
+            dataSource = [self retrieveProperties];
             break;
             
         default:
             break;
     }
+    self.dataSource = dataSource;
+    [self.tableView reloadData];
 }
 
-- (void)retrieveMethods
+- (NSArray *)retrieveMethods
 {
+    self.title = @"Methods";
     NSMutableArray *dataSource = [@[] mutableCopy];
     NSMutableOrderedSet *superMethods = [[NSMutableOrderedSet alloc] init];
     NSMutableOrderedSet *selfMethods = [[NSMutableOrderedSet alloc] init];
@@ -87,22 +96,90 @@
     [dataSource addObject:section1];
     [dataSource addObject:section2];
     
-    // sorting now
-    self.dataSource = dataSource;
-    [self.tableView reloadData];
     free(superList);
     free(selflist);
+    
+    return dataSource;
 }
 
-- (void)retrieveIvars
+- (NSArray *)retrieveIvars
 {
+    self.title = @"iVars";
+    NSMutableArray *dataSource = [@[] mutableCopy];
+    NSMutableOrderedSet *superIvars = [[NSMutableOrderedSet alloc] init];
+    NSMutableOrderedSet *selfIvars = [[NSMutableOrderedSet alloc] init];
+    unsigned int mc = 0;
+    Ivar *selflist = class_copyIvarList([self.inspectingObject class], &mc);
+    // Retrieve self's methods
+    for(int i = 0; i < mc; i++) {
+        NSString *signature = [NSString stringWithUTF8String:ivar_getName(selflist[i])];
+        if (signature) {
+            [selfIvars addObject:signature];
+        }
+    }
     
+    // Retrieve super's methods
+    Ivar *superlist = class_copyIvarList([self.inspectingObject superclass], &mc);
+    for(int i = 0; i < mc; i++) {
+        NSString *signature = [NSString stringWithUTF8String:ivar_getName(superlist[i])];
+        if (signature) {
+            [superIvars addObject:signature];
+        }
+    }
+    
+    // remove the super's iVars from self's collection
+    [selfIvars minusOrderedSet:superIvars];
+    
+    NSArray *section1 = [[selfIvars array] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    NSArray *section2 = [[superIvars array] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    [dataSource addObject:section1];
+    [dataSource addObject:section2];
+    
+    free(superlist);
+    free(selflist);
+    
+    return dataSource;
 }
 
-- (void)retrieveProperties
+- (NSArray *)retrieveProperties
 {
+    self.title = @"Properties";
+    NSMutableArray *dataSource = [@[] mutableCopy];
+    NSMutableOrderedSet *superProperties = [[NSMutableOrderedSet alloc] init];
+    NSMutableOrderedSet *selProperties = [[NSMutableOrderedSet alloc] init];
+    unsigned int mc = 0;
+    objc_property_t *selflist = class_copyPropertyList([self.inspectingObject class], &mc);
+    // Retrieve self's methods
+    for(int i = 0; i < mc; i++) {
+        NSString *signature = [NSString stringWithUTF8String:property_getName(selflist[i])];
+        if (signature) {
+            [selProperties addObject:signature];
+        }
+    }
     
+    // Retrieve super's methods
+    objc_property_t *superlist = class_copyPropertyList([self.inspectingObject superclass], &mc);
+    for(int i = 0; i < mc; i++) {
+        NSString *signature = [NSString stringWithUTF8String:property_getName(superlist[i])];
+        if (signature) {
+            [superProperties addObject:signature];
+        }
+    }
+    
+    // remove the super's properties from self's collection
+    [selProperties minusOrderedSet:superProperties];
+    
+    NSArray *section1 = [[selProperties array] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    NSArray *section2 = [[superProperties array] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    [dataSource addObject:section1];
+    [dataSource addObject:section2];
+    
+    free(superlist);
+    free(selflist);
+    
+    return dataSource;
 }
+
 
 #pragma mark - UITableView dataSource & delegate
 

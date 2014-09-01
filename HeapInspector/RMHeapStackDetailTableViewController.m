@@ -108,6 +108,10 @@ static const CGFloat kHeaderViewHeight = 80.0f;
         targetController = [[RMShowViewController alloc] initWithObject:self.inspectingObject];
     } else if ([item isEqualToString:kCellTitleMethods]) {
         targetController = [[RMClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpMethods];
+    } else if ([item isEqualToString:kCellTitleIvars]) {
+        targetController = [[RMClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpIvar];
+    } else if ([item isEqualToString:kCellTitleProperties]) {
+        targetController = [[RMClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpProperties];
     } else if ([item isEqualToString:kCellTitleRecursiveDesc]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
