@@ -314,4 +314,23 @@
 }
 #pragma clang diagnostic pop
 
+#pragma mark - Search
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSArray *dataSource = [self.dataSourceUnfiltered mutableCopy];
+    NSMutableArray *serps_1 = [dataSource[0] mutableCopy];
+    NSMutableArray *serps_2 = [dataSource[1] mutableCopy];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",
+                                  searchText];
+        [serps_1 filterUsingPredicate:predicate];
+        [serps_2 filterUsingPredicate:predicate];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.dataSource = @[serps_1,serps_2];
+            [self.tableView reloadData];
+        });
+    });
+}
+
 @end

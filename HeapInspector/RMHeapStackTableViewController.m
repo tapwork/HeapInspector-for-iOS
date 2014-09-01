@@ -68,6 +68,7 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
+
 #pragma mark - Helper
 
 - (NSString *)pointerStringFromCellText:(NSString *)cellText

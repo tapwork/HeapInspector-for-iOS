@@ -14,7 +14,9 @@
 @end
 
 @implementation RMTableViewController
-
+{
+    NSArray *_originalDataSource;
+}
 - (id)init
 {
     self = [super initWithStyle:UITableViewStylePlain];
@@ -91,5 +93,44 @@
 }
 
 #pragma mark - SeachBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:YES animated:YES];
+     _dataSourceUnfiltered = self.dataSource;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:NO animated:YES];
+    
+    self.dataSource = _dataSourceUnfiltered;
+    [self.tableView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    [searchBar resignFirstResponder];
+    searchBar.text = nil;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSMutableArray *serps = [self.dataSourceUnfiltered mutableCopy];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",
+                                  searchText];
+        [serps filterUsingPredicate:predicate];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.dataSource = serps;
+            [self.tableView reloadData];
+        });
+    });
+}
 
 @end

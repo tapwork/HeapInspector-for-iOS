@@ -44,6 +44,7 @@
 {
     [super viewDidLoad];
     [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
+    self.tableView.tableHeaderView = nil;
 }
 
 
