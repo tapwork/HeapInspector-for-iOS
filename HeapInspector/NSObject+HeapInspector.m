@@ -20,12 +20,12 @@ static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
     method_exchangeImplementations(origMethod, newMethod);
 }
 
-static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
-{
-    Method origMethod = class_getClassMethod(c, orig);
-    Method newMethod = class_getClassMethod(c, new);
-    method_exchangeImplementations(origMethod, newMethod);
-}
+//static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
+//{
+//    Method origMethod = class_getClassMethod(c, orig);
+//    Method newMethod = class_getClassMethod(c, new);
+//    method_exchangeImplementations(origMethod, newMethod);
+//}
 
 
 // THANKS: https://github.com/mikeash/refcounting/blob/master/refcounting.m
