@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
-
 #import "RMHeapStackTableViewController.h"
 #import "RMHeapStackDetailTableViewController.h"
+#import "RMTableViewCell.h"
 
 @interface RMHeapStackTableViewController ()
 
@@ -34,7 +33,7 @@ static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(closeButton:)];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
+    [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,8 +73,7 @@ static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
     
     NSString *string = self.dataSource[indexPath.row];
     cell.textLabel.text = string;
-    // TODO: use a custom cell later
-    cell.textLabel.font = [UIFont systemFontOfSize:11];
+
     return cell;
 }
 

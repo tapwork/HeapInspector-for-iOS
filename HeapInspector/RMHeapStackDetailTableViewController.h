@@ -11,5 +11,6 @@
 @interface RMHeapStackDetailTableViewController : UITableViewController
 
 - (instancetype)initWithPointerString:(NSString *)pointer;
+- (instancetype)initWithObject:(id)object;
 
 @end

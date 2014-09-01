@@ -7,8 +7,8 @@
 //
 
 #import "RMResponderChainViewController.h"
-
-static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
+#import "RMHeapStackDetailTableViewController.h"
+#import "RMTableViewCell.h"
 
 @interface RMResponderChainViewController ()
 
@@ -42,7 +42,7 @@ static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
+    [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
 }
 
 
@@ -75,6 +75,10 @@ static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    id object = _responderChain[indexPath.row];
+    RMHeapStackDetailTableViewController *detailVC = [[RMHeapStackDetailTableViewController alloc]
+                                                      initWithObject:object];
+    [self.navigationController pushViewController:detailVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

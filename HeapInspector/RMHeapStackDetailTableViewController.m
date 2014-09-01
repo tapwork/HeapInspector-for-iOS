@@ -10,8 +10,14 @@
 #import "RMHeapStackInspector.h"
 #import "RMResponderChainViewController.h"
 #import "RMShowViewController.h"
+#import "RMTableViewCell.h"
+#import "RMClassDumpTableViewController.h"
 
-static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
+static NSString *const kCellTitleShow = @"Show";
+static NSString *const kCellTitleResponderChain = @"Responder Chain";
+static NSString *const kCellTitlMethods = @"Methods";
+static NSString *const kCellTitlIvars = @"iVars";
+static NSString *const kCellTitlProperties = @"Properties";
 
 @interface RMHeapStackDetailTableViewController ()
 
@@ -22,6 +28,7 @@ static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
     id _inspectingObject;
     NSArray *_dataSource;
 }
+
 - (instancetype)initWithPointerString:(NSString *)pointer
 {
     self = [super initWithStyle:UITableViewStylePlain];
@@ -32,11 +39,21 @@ static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
     return self;
 }
 
+- (instancetype)initWithObject:(id)object
+{
+    self = [super initWithStyle:UITableViewStylePlain];
+    if (self) {
+        // Retrieve a real object from the pointer
+        _inspectingObject = object;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
+    [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
     [self prepareDataSource];
 }
 
@@ -45,13 +62,13 @@ static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
     NSMutableArray *dataSource = [@[] mutableCopy];
     
     if ([_inspectingObject isKindOfClass:[UIResponder class]]) {
-        [dataSource addObject:@"Responder Chain"];
+        [dataSource addObject:kCellTitleResponderChain];
     }
     if ([_inspectingObject isKindOfClass:[UIView class]] ||
         [_inspectingObject isKindOfClass:[UIViewController class]]) {
-        [dataSource addObject:@"Show"];
+        [dataSource addObject:kCellTitleShow];
     }
-    [dataSource addObject:@"Methods"];
+    [dataSource addObject:kCellTitlMethods];
     [dataSource addObject:@"properties & iVars"];
     [dataSource addObject:@"Class hierarchy"];
     
@@ -87,13 +104,16 @@ static NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
 {
     UIViewController *targetController = nil;
     NSString *item = _dataSource[indexPath.row];
-    if ([item isEqualToString:@"Responder Chain"]) {
+    if ([item isEqualToString:kCellTitleResponderChain]) {
         targetController = [[RMResponderChainViewController alloc] initWithObject:_inspectingObject];
-    } else if ([item isEqualToString:@"Show"]) {
+    } else if ([item isEqualToString:kCellTitleShow]) {
         targetController = [[RMShowViewController alloc] initWithObject:_inspectingObject];
+    } else if ([item isEqualToString:kCellTitlMethods]) {
+        targetController = [[RMClassDumpTableViewController alloc] initWithObject:_inspectingObject type:RMClassDumpMethods];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:targetController animated:YES];
 }
+
 
 @end

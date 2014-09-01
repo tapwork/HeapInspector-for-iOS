@@ -5,11 +5,15 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>5CA14FF2-D4E0-4000-AE2C-7E196E283373</string>
+	<string>6F7F1C24-8B77-44A6-9E23-FC193B713692</string>
 	<key>IDESourceControlProjectName</key>
 	<string>HeapInspectorExample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>7FD38DA2-E734-4A4A-B0EB-56AAEF8EE17C</key>
+		<string>ssh://git.tapwork.de/root/heapinspector.git</string>
+		<key>9BFFFEDB-6BCF-40EA-84A1-ECDFBB1C345C</key>
+		<string>ssh://git.tapwork.de/root/heapinspector.git</string>
 		<key>F915A611-7CFE-4D78-9738-0B89D4248660</key>
 		<string>ssh://source.xing.com/ios/XNGRainforest.git</string>
 	</dict>
@@ -17,17 +21,37 @@
 	<string>HeapInspector/Example/HeapInspectorExample/HeapInspectorExample.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>7FD38DA2-E734-4A4A-B0EB-56AAEF8EE17C</key>
+		<string>../../../../HeapInspector</string>
+		<key>9BFFFEDB-6BCF-40EA-84A1-ECDFBB1C345C</key>
+		<string>../../../..</string>
 		<key>F915A611-7CFE-4D78-9738-0B89D4248660</key>
 		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://source.xing.com/ios/XNGRainforest.git</string>
+	<string>ssh://git.tapwork.de/root/heapinspector.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
 	<string>F915A611-7CFE-4D78-9738-0B89D4248660</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9BFFFEDB-6BCF-40EA-84A1-ECDFBB1C345C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HeapInspector</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7FD38DA2-E734-4A4A-B0EB-56AAEF8EE17C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HeapInspector</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

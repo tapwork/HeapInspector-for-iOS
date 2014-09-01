@@ -83,7 +83,7 @@
     if ([[RMHeapStackInspector heapStack] count] > 0) {
         NSArray *stack = [[RMHeapStackInspector heapStack] allObjects];
         RMHeapStackTableViewController *controller = [self heapStackControllerWithHeapStack:stack];
-        controller.title = @"Active Heap";
+        controller.title = @"Heap";
     }
 }
 

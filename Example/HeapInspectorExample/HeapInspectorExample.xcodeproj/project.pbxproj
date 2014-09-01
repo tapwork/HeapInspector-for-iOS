@@ -21,6 +21,7 @@
 		DA29C55919A530C400FFF7D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C54119A530C400FFF7D5 /* UIKit.framework */; };
 		DA29C56119A530C400FFF7D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA29C55F19A530C400FFF7D5 /* InfoPlist.strings */; };
 		DA29C56319A530C400FFF7D5 /* HeapInspectorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */; };
+		DA8EB00D19B449AC005B1455 /* RMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8EB00C19B449AC005B1455 /* RMTableViewCell.m */; };
 		DAA1DD6819B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */; };
 		DAA1DD6919B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */; };
 		DAA1DD6C19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */; };
@@ -40,6 +41,7 @@
 		DABCA51B19A533B400331B1B /* RMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51A19A533B400331B1B /* RMDetailViewController.m */; };
 		DABCA51C19A533B400331B1B /* RMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51A19A533B400331B1B /* RMDetailViewController.m */; };
 		DAF2557919A910ED00CCDD6A /* RMHeapStackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2557819A910ED00CCDD6A /* RMHeapStackTableViewController.m */; };
+		DAFD8F9419B4556B0050E722 /* RMClassDumpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFD8F9319B4556B0050E722 /* RMClassDumpTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		DA29C55E19A530C400FFF7D5 /* HeapInspectorExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HeapInspectorExampleTests-Info.plist"; sourceTree = "<group>"; };
 		DA29C56019A530C400FFF7D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeapInspectorExampleTests.m; sourceTree = "<group>"; };
+		DA8EB00B19B449AC005B1455 /* RMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTableViewCell.h; sourceTree = "<group>"; };
+		DA8EB00C19B449AC005B1455 /* RMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTableViewCell.m; sourceTree = "<group>"; };
 		DAA1DD6619B1281800BC5DAD /* RMHeapStackDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHeapStackDetailTableViewController.h; sourceTree = "<group>"; };
 		DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHeapStackDetailTableViewController.m; sourceTree = "<group>"; };
 		DAA1DD6A19B12BD900BC5DAD /* RMResponderChainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMResponderChainViewController.h; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 		DABCA51A19A533B400331B1B /* RMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDetailViewController.m; sourceTree = "<group>"; };
 		DAF2557719A910ED00CCDD6A /* RMHeapStackTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHeapStackTableViewController.h; sourceTree = "<group>"; };
 		DAF2557819A910ED00CCDD6A /* RMHeapStackTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHeapStackTableViewController.m; sourceTree = "<group>"; };
+		DAFD8F9219B4556B0050E722 /* RMClassDumpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMClassDumpTableViewController.h; sourceTree = "<group>"; };
+		DAFD8F9319B4556B0050E722 /* RMClassDumpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMClassDumpTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,8 +217,12 @@
 				DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */,
 				DAA1DD6A19B12BD900BC5DAD /* RMResponderChainViewController.h */,
 				DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */,
+				DAFD8F9219B4556B0050E722 /* RMClassDumpTableViewController.h */,
+				DAFD8F9319B4556B0050E722 /* RMClassDumpTableViewController.m */,
 				DAA1DD7019B12FA600BC5DAD /* RMShowViewController.h */,
 				DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */,
+				DA8EB00B19B449AC005B1455 /* RMTableViewCell.h */,
+				DA8EB00C19B449AC005B1455 /* RMTableViewCell.m */,
 			);
 			name = HeapInspector;
 			path = ../../HeapInspector;
@@ -262,7 +272,7 @@
 		DA29C53219A530C400FFF7D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = RMO;
+				CLASSPREFIX = RM;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = tapwork;
 				TargetAttributes = {
@@ -314,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAFD8F9419B4556B0050E722 /* RMClassDumpTableViewController.m in Sources */,
 				DABCA50F19A531E200331B1B /* RMDebugWindow.m in Sources */,
 				DAA1DD6819B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */,
 				DABCA51719A5339300331B1B /* RMRootViewController.m in Sources */,
@@ -322,6 +333,7 @@
 				DABCA50B19A531E200331B1B /* NSObject+HeapInspector.m in Sources */,
 				DAA1DD7219B12FA600BC5DAD /* RMShowViewController.m in Sources */,
 				DABCA51B19A533B400331B1B /* RMDetailViewController.m in Sources */,
+				DA8EB00D19B449AC005B1455 /* RMTableViewCell.m in Sources */,
 				DA1CC57819A7B939007F11F1 /* RMHeapStackInspector.m in Sources */,
 				DABCA50D19A531E200331B1B /* RMDebug.m in Sources */,
 				DA29C54E19A530C400FFF7D5 /* RMOAppDelegate.m in Sources */,

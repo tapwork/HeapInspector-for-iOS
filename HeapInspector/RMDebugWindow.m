@@ -48,7 +48,7 @@
         [_contentView addSubview:_recordedButton];
         
         _activeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_activeButton setTitle:@"Active Heap" forState:UIControlStateNormal];
+        [_activeButton setTitle:@"Heap" forState:UIControlStateNormal];
         [_contentView addSubview:_activeButton];
     }
     return self;
