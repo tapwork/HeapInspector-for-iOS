@@ -27,6 +27,10 @@
     self = [super initWithObject:object];
     if (self) {
         _type = type;
+        
+        self.title = [NSString stringWithFormat:@"%s: %p",
+                      object_getClassName(self.inspectingObject),
+                      self.inspectingObject];
     }
     return self;
 }
@@ -68,7 +72,7 @@
 
 - (NSArray *)retrieveMethods
 {
-    self.title = @"Methods";
+   // self.title = @"Methods";
     NSMutableArray *dataSource = [@[] mutableCopy];
     NSMutableOrderedSet *superMethods = [[NSMutableOrderedSet alloc] init];
     NSMutableOrderedSet *selfMethods = [[NSMutableOrderedSet alloc] init];
@@ -107,7 +111,7 @@
 
 - (NSArray *)retrieveIvars
 {
-    self.title = @"iVars";
+  //  self.title = @"iVars";
     NSMutableArray *dataSource = [@[] mutableCopy];
     NSMutableOrderedSet *superIvars = [[NSMutableOrderedSet alloc] init];
     NSMutableOrderedSet *selfIvars = [[NSMutableOrderedSet alloc] init];
@@ -146,7 +150,7 @@
 
 - (NSArray *)retrieveProperties
 {
-    self.title = @"Properties";
+  //  self.title = @"Properties";
     NSMutableArray *dataSource = [@[] mutableCopy];
     NSMutableOrderedSet *superProperties = [[NSMutableOrderedSet alloc] init];
     NSMutableOrderedSet *selProperties = [[NSMutableOrderedSet alloc] init];
