@@ -9,12 +9,10 @@
 
 @interface NSObject (HeapInspector)
 
-
 + (void)beginSnapshot;
 + (void)beginSnapshotWithClassPrefix:(NSString*)prefix;
 + (void)endSnapshot;
 + (void)resumeSnapshot;
-
-+ (void)printLivingReferences;
++ (NSArray *)allocBacktraceForObject:(id)obj;
 
 @end

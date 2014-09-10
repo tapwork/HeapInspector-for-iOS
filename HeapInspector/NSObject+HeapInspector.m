@@ -1,6 +1,5 @@
 //
 //  NSObject+HeapInspector.m
-//  TT
 //
 //  Created by Christian Menschel on 06.08.14.
 //  Copyright (c) 2014 tapwork. All rights reserved.
@@ -20,75 +19,59 @@ static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
     method_exchangeImplementations(origMethod, newMethod);
 }
 
-//static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
-//{
-//    Method origMethod = class_getClassMethod(c, orig);
-//    Method newMethod = class_getClassMethod(c, new);
-//    method_exchangeImplementations(origMethod, newMethod);
-//}
+static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
+{
+    Method origMethod = class_getClassMethod(c, orig);
+    Method newMethod = class_getClassMethod(c, new);
+    method_exchangeImplementations(origMethod, newMethod);
+}
+
+static CFStringRef getCFString(char *charValue) {
+    return CFStringCreateWithCString(NULL, charValue, kCFStringEncodingUTF8);
+}
+
+static CFStringRef cleanStackValue(char *stack) {
+    CFStringRef cString = getCFString(stack);
+  
+    CFStringRef sep = getCFString("+[");
+    CFArrayRef parts = CFStringCreateArrayBySeparatingStrings(NULL, cString, sep);
+    if (CFArrayGetCount(parts) <= 1) {
+        // If "+" class method didnt work. try "-" instance method
+        sep = getCFString("-[");
+        parts = CFStringCreateArrayBySeparatingStrings(NULL, cString, sep);
+    }
+    
+    if (CFArrayGetCount(parts) > 1) {
+        CFStringRef stack = (CFStringRef)CFArrayGetValueAtIndex(parts, 1);
+        CFMutableStringRef val = CFStringCreateMutableCopy(NULL, 255, sep);
+        CFStringAppend(val, stack);
+        CFStringFindAndReplace(val,
+                               getCFString("tw_alloc"),
+                               getCFString("alloc"),
+                               CFRangeMake(0, CFStringGetLength(val)),
+                               kCFCompareNonliteral);
+        return val;
+    }
+    
+    return NULL;
+}
 
 
 // THANKS: https://github.com/mikeash/refcounting/blob/master/refcounting.m
 
-static CFMutableDictionaryRef refcountDict;
-static OSSpinLock refcountDictLock;
-//static void *getCallerObject();
+static CFMutableDictionaryRef backtraceDict;
+static OSSpinLock backtraceDictLock;
 static bool isRecording;
 static bool swizzleActive;
 static const char *recordClassPrefix;
-static BOOL shouldPrintLivingReferences;
-static inline void printLivingReferences();
 
 static inline void cleanup()
 {
-    if (refcountDict) {
-        OSSpinLockLock(&refcountDictLock);
-        CFDictionaryRemoveAllValues(refcountDict);
-        OSSpinLockUnlock(&refcountDictLock);
+    if (backtraceDict) {
+        OSSpinLockLock(&backtraceDictLock);
+        CFDictionaryRemoveAllValues(backtraceDict);
+        OSSpinLockUnlock(&backtraceDictLock);
     }
-}
-
-static uintptr_t GetRefcount(void *key)
-{
-    const void *value;
-    if (!CFDictionaryGetValueIfPresent(refcountDict, key, &value)) {
-        // initial reference count value is ONE - we assume that malloc ran before
-        return 1;
-    }
-    
-    return (uintptr_t)value;
-}
-
-static void SetRefcount(void *key, uintptr_t count)
-{
-    if (count < 1) {
-        CFDictionaryRemoveValue(refcountDict, key);
-    } else {
-        CFDictionarySetValue(refcountDict, key, (void*)count);
-    }
-}
-
-static void IncrementRefcount(void *key)
-{
-    OSSpinLockLock(&refcountDictLock);
-    if (key) {
-        uintptr_t count = GetRefcount(key);
-        SetRefcount(key, count + 1);
-    }
-    OSSpinLockUnlock(&refcountDictLock);
-}
-
-static void DecrementRefcount(void *key)
-{
-    OSSpinLockLock(&refcountDictLock);
-    if (key) {
-        uintptr_t count = GetRefcount(key);
-        if (count > 0) {
-            uintptr_t newCount = count - 1;
-            SetRefcount(key, newCount);
-        }
-    }
-    OSSpinLockUnlock(&refcountDictLock);
 }
 
 static inline bool canRecordObject(Class cls)
@@ -109,29 +92,6 @@ static inline bool canRecordObject(Class cls)
 
 static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
     if (activity & kCFRunLoopExit) {
-        if (shouldPrintLivingReferences) {
-            shouldPrintLivingReferences = NO;
-            printLivingReferences();
-        }
-    }
-}
-
-static inline void printLivingReferences() {
-    if (refcountDict) {
-        CFIndex size = CFDictionaryGetCount(refcountDict);
-        CFTypeRef *keysTypeRef = (CFTypeRef *) malloc( size * sizeof(CFTypeRef) );
-        CFDictionaryGetKeysAndValues(refcountDict, (const void **) keysTypeRef, NULL);
-        void **keys = (void **)keysTypeRef;
-        for (int i = 0; i < size; i++) {
-            void *key = keys[i];
-            uintptr_t number = GetRefcount(key);
-            id obj = (__bridge id)(key);
-            const char *className = class_getName(object_getClass(obj));
-            printf("=================================\nReferences since begin of record:\n");
-            printf("%s <%p> refCount: %lu\n",className,key,number);
-        }
-        
-        free(keysTypeRef);
     }
 }
 
@@ -141,11 +101,7 @@ static inline void printLivingReferences() {
 + (void)swizzle
 {
     swizzleActive = true;
-    
-    if (!refcountDict) {
-        refcountDict = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
-    }
-//    SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
+    SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
     SwizzleInstanceMethod(self, NSSelectorFromString(@"retain"), @selector(tw_retain));
 //    SwizzleInstanceMethod(self, NSSelectorFromString(@"release"), @selector(tw_release));
 //    SwizzleInstanceMethod(self, NSSelectorFromString(@"autorelease"), @selector(tw_autorelease));
@@ -167,22 +123,44 @@ static inline void printLivingReferences() {
     objc_msgSendSuper(&mySuper, NSSelectorFromString(@"tw_dealloc"));
 }
 
-// TODO: sometimes alloc swizzle does lead to crashes with autoreleasepools
 + (id)tw_alloc
 {
-    if (canRecordObject([self class])) {
+    bool canRec = canRecordObject([self class]);
+    if (canRec) {
         const char *className = class_getName(self);
         printf("malloc %s\n",className);
     }
-    
-    return [[self class] tw_alloc];
+    id obj = [[self class] tw_alloc];
+    if (canRec) {
+        CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, NULL);
+        void *bt[1024];
+        int bt_size;
+        char **bt_syms;
+        bt_size = backtrace(bt, 1024);
+        bt_syms = backtrace_symbols(bt, bt_size);
+        for (int i = 0; i < bt_size; i++) {
+            CFStringRef cString = cleanStackValue(bt_syms[i]);
+            CFArrayAppendValue(stack, cString);
+        }
+        OSSpinLockLock(&backtraceDictLock);
+        void *key = (__bridge void *)obj;
+        if (key && stack) {
+            if (!backtraceDict) {
+                backtraceDict = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
+            }
+            CFDictionarySetValue(backtraceDict, key, stack);
+        }
+        OSSpinLockUnlock(&backtraceDictLock);
+        free(bt_syms);
+    }
+
+    return obj;
 }
 
 - (id)tw_retain
 {
     [self addRunLoopObserver];
     if (canRecordObject([self class])) {
-        IncrementRefcount((__bridge void *)(self));
         const char *className = class_getName(object_getClass(self));
         printf("retain +1 %s <%p>\n",className, self);
     }
@@ -192,7 +170,6 @@ static inline void printLivingReferences() {
 - (oneway void)tw_release
 {
     if (canRecordObject([self class])) {
-        DecrementRefcount((__bridge void *)(self));
         const char *className = class_getName(object_getClass(self));
         printf("released %s <%p>\n",className, self);
     }
@@ -202,16 +179,10 @@ static inline void printLivingReferences() {
 - (oneway void)tw_autorelease
 {
     if (canRecordObject([self class])) {
- //       DecrementRefcount((__bridge void *)(self));
         const char *className = class_getName(object_getClass(self));
         printf("autorelease %s <%p>\n",className, self);
     }
     objc_msgSend(self, NSSelectorFromString(@"tw_autorelease"));
-}
-
-- (NSUInteger)tw_retainCount
-{
-    return GetRefcount((__bridge void *)(self));
 }
 
 - (void)addRunLoopObserver
@@ -226,7 +197,6 @@ static inline void printLivingReferences() {
                                                              {
                                                                  runLoopActivity(observer, activity);
                                                              });
-        //CFStringRef currentMode = CFRunLoopCopyCurrentMode(CFRunLoopGetMain());
         CFRunLoopAddObserver(CFRunLoopGetMain(), runLoopObserver, kCFRunLoopDefaultMode);
     }
 }
@@ -243,7 +213,7 @@ static inline void printLivingReferences() {
     cleanup();
     
     if (prefix) {
-        recordClassPrefix = [prefix UTF8String];;
+        recordClassPrefix = [prefix UTF8String];
     }
     
     if (!swizzleActive) {
@@ -254,7 +224,6 @@ static inline void printLivingReferences() {
 + (void)endSnapshot
 {
     isRecording = false;
-    [self shouldPrintLivingReferences];
 }
 
 + (void)resumeSnapshot
@@ -262,34 +231,13 @@ static inline void printLivingReferences() {
     isRecording = true;
 }
 
-+ (void)printLivingReferences
++ (NSArray *)allocBacktraceForObject:(id)obj
 {
-    [self shouldPrintLivingReferences];
+    CFArrayRef cfBacktraces = CFDictionaryGetValue(backtraceDict, (__bridge const void *)(obj));
+    NSArray *backtraces = [(NSArray *)cfBacktraces copy];
+    
+    return backtraces;
 }
 
-+ (void)shouldPrintLivingReferences
-{
-    shouldPrintLivingReferences = YES;
-    CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.1, true);
-}
 
 @end
-
-//@implementation UIViewController (HeapInspector)
-//
-//+ (void)initialize
-//{
-////    SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
-//    SwizzleInstanceMethod(self, NSSelectorFromString(@"retain"), @selector(tw_retain));
-//}
-//
-//- (id)tw_retain
-//{
-//    if (canRecordObject([self class])) {
-//        IncrementRefcount((__bridge void *)(self));
-//        const char *className = class_getName(object_getClass(self));
-//        printf("retain +1 %s <%p>\n",className, self);
-//    }
-//    return objc_msgSend(self, sel_getUid("tw_retain"));
-//}
-//@end
