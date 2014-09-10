@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-NSString *const kTableViewCellIdent;
+extern NSString *const kTableViewCellIdent;
 
 @interface RMTableViewCell : UITableViewCell
 
