@@ -11,10 +11,12 @@
 #import "RMShowViewController.h"
 #import "RMTableViewCell.h"
 #import "RMClassDumpTableViewController.h"
+#import "NSObject+HeapInspector.h"
 
 static NSString *const kCellTitleShow = @"Show";
 static NSString *const kCellTitleResponderChain = @"Responder Chain";
 static NSString *const kCellTitleMethods = @"Methods";
+static NSString *const kCellTitleAllocBacktrace = @"Alloc Backtrace";
 static NSString *const kCellTitleIvars = @"iVars";
 static NSString *const kCellTitleProperties = @"Properties";
 static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
@@ -125,6 +127,7 @@ static const CGFloat kHeaderViewHeight = 100.0f;
              [dataSource addObject:kCellTitleRecursiveDesc];
         }
     }
+    [dataSource addObject:kCellTitleAllocBacktrace];
     [dataSource addObject:kCellTitleMethods];
     [dataSource addObject:kCellTitleProperties];
     [dataSource addObject:kCellTitleIvars];
@@ -177,6 +180,10 @@ static const CGFloat kHeaderViewHeight = 100.0f;
 #pragma clang diagnostic ignored "-Wundeclared-selector"
         NSString *recursiveDesc = [self.inspectingObject performSelector:@selector(recursiveDescription)];
         targetController = [[RMShowViewController alloc] initWithObject:recursiveDesc];
+        ((RMShowViewController *)targetController).shouldShowEditButton = NO;
+    } else if ([item isEqualToString:kCellTitleAllocBacktrace]) {
+        NSArray *backtrace = [NSObject allocBacktraceForObject:self.inspectingObject];
+        targetController = [[RMShowViewController alloc] initWithBacktrace:backtrace];
         ((RMShowViewController *)targetController).shouldShowEditButton = NO;
     }
 #pragma clang diagnostic pop

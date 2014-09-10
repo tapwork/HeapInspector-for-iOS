@@ -7,17 +7,20 @@
 //
 
 #import "RMShowViewController.h"
+#import "RMTableViewCell.h"
 
-@interface RMShowViewController ()
+@interface RMShowViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
+
 
 @implementation RMShowViewController
 {
     id _objectToInspect;
     UITextView *_textView;
     UIScrollView *_scrollView;
-    
+    UITableView *_tableView;
+    NSArray *_stack;
 }
 
 #pragma mark - Init
@@ -34,6 +37,25 @@
     return self;
 }
 
+- (instancetype)initWithBacktrace:(NSArray *)backtrace
+{
+    self = [self initWithObject:backtrace];
+    if (self) {
+        self.title = @"Backtrace";
+        _stack = backtrace;
+    }
+    return self;
+}
+
+- (instancetype)initWithDescription:(NSString *)string
+{
+    self = [self initWithObject:string];
+    if (self) {
+        self.title = @"Description";
+    }
+    return self;
+}
+
 #pragma mark - View Life Cycle
 
 - (void)viewDidLoad
@@ -41,11 +63,51 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:_scrollView];
-    
     [self handleClassType];
+}
+
+- (void)handleClassType {
+    UIImage *screenshot = nil;
+    if ([_objectToInspect isKindOfClass:[UIView class]]) {
+        screenshot = [self screenshotOfView:_objectToInspect];
+    } else if ([_objectToInspect isKindOfClass:[UIViewController class]] &&
+               [_objectToInspect isViewLoaded]) {
+        screenshot = [self screenshotOfView:[_objectToInspect view]];
+    } else if ([_objectToInspect isKindOfClass:[NSString class]] ||
+               [_objectToInspect isKindOfClass:[NSAttributedString class]]) {
+        UITextView *textView = [[UITextView alloc] initWithFrame:self.view.bounds];
+        textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _textView = textView;
+        [self setEditButton];
+        [self.view addSubview:textView];
+        
+        if ([_objectToInspect isKindOfClass:[NSString class]]) {
+            textView.text = _objectToInspect;
+        } else if ([_objectToInspect isKindOfClass:[NSAttributedString class]]) {
+            textView.attributedText = _objectToInspect;
+        }
+    } else if ([_objectToInspect isKindOfClass:[NSArray class]]) {
+        UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+        tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [self.view addSubview:tableView];
+        _tableView = tableView;
+    }
+    
+    if (screenshot) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:_scrollView];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:screenshot];
+        CGSize size = screenshot.size;
+        imageView.bounds = CGRectMake(0.0,0.0,size.width,size.height);
+        imageView.center = _scrollView.center;
+        [_scrollView addSubview:imageView];
+        _scrollView.contentSize = CGSizeMake(screenshot.size.width, screenshot.size.height);
+    }
 }
 
 - (void)setEditButton
@@ -89,39 +151,23 @@
     [self setEditButton];
 }
 
-#pragma mark - Helper
+#pragma mark - UITableView
 
-- (void)handleClassType {
-    UIImage *screenshot = nil;
-    if ([_objectToInspect isKindOfClass:[UIView class]]) {
-        screenshot = [self screenshotOfView:_objectToInspect];
-    } else if ([_objectToInspect isKindOfClass:[UIViewController class]] &&
-               [_objectToInspect isViewLoaded]) {
-        screenshot = [self screenshotOfView:[_objectToInspect view]];
-    } else if ([_objectToInspect isKindOfClass:[NSString class]] ||
-               [_objectToInspect isKindOfClass:[NSAttributedString class]]) {
-        UITextView *textView = [[UITextView alloc] initWithFrame:self.view.bounds];
-        textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _textView = textView;
-        [self setEditButton];
-        [self.view addSubview:textView];
-        
-        if ([_objectToInspect isKindOfClass:[NSString class]]) {
-            textView.text = _objectToInspect;
-        } else if ([_objectToInspect isKindOfClass:[NSAttributedString class]]) {
-            textView.attributedText = _objectToInspect;
-        }
-    }
-    
-    if (screenshot) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:screenshot];
-        CGSize size = screenshot.size;
-        imageView.bounds = CGRectMake(0.0,0.0,size.width,size.height);
-        imageView.center = _scrollView.center;
-        [_scrollView addSubview:imageView];
-        _scrollView.contentSize = CGSizeMake(screenshot.size.width, screenshot.size.height);
-    }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_stack count];
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent];
+    
+    cell.textLabel.text = _stack[indexPath.row];
+    
+    return cell;
+}
+
+#pragma mark - Helper
 
 - (UIImage *)screenshotOfView:(UIView *)view
 {
@@ -132,9 +178,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSaveGState(context);
-    {
-        [layer renderInContext:context];
-    }
+    [layer renderInContext:context];
     CGContextRestoreGState(context);
     
     UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();

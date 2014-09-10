@@ -13,5 +13,7 @@
 @property (nonatomic) BOOL shouldShowEditButton; // Default is YES
 
 - (instancetype)initWithObject:(id)object;
+- (instancetype)initWithBacktrace:(NSArray *)backtrace;
+- (instancetype)initWithDescription:(NSString *)string;
 
 @end
