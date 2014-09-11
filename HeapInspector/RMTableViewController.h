@@ -17,7 +17,7 @@
 
 - (instancetype)initWithObject:(id)object;
 - (instancetype)initWithPointerString:(NSString *)pointer;
-
+- (instancetype)initWithDataSource:(NSArray *)dataSource;
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar;

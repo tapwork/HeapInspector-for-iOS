@@ -46,7 +46,15 @@
     return self;
 }
 
-
+- (instancetype)initWithDataSource:(NSArray *)dataSource
+{
+    self = [self init];
+    if (self) {
+        // Retrieve a real object from the pointer
+        self.dataSource = dataSource;
+    }
+    return self;
+}
 
 #pragma mark - View Life Cycle
 
@@ -74,20 +82,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [self.dataSource count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent forIndexPath:indexPath];
+    RMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent forIndexPath:indexPath];
     
     // Configure the cell...
+    NSString *value = self.dataSource[indexPath.row];
+    cell.textLabel.text = value;
     
     return cell;
 }
