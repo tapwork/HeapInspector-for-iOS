@@ -12,12 +12,20 @@
 #import <objc/message.h>
 #include <execinfo.h>
 
-static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
-{
-    Method origMethod = class_getInstanceMethod(c, orig);
-    Method newMethod = class_getInstanceMethod(c, new);
-    method_exchangeImplementations(origMethod, newMethod);
-}
+static CFMutableDictionaryRef backtraceDict;
+static OSSpinLock backtraceDictLock;
+static bool isRecording;
+static bool swizzleActive;
+static const char *recordClassPrefix;
+
+static inline bool canRecordObject(Class cls);
+
+//static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
+//{
+//    Method origMethod = class_getInstanceMethod(c, orig);
+//    Method newMethod = class_getInstanceMethod(c, new);
+//    method_exchangeImplementations(origMethod, newMethod);
+//}
 
 static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
 {
@@ -56,14 +64,68 @@ static CFStringRef cleanStackValue(char *stack) {
     return NULL;
 }
 
+static CFArrayRef getBacktrace() {
+    CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, NULL);
+    void *bt[1024];
+    int bt_size;
+    char **bt_syms;
+    bt_size = backtrace(bt, 1024);
+    bt_syms = backtrace_symbols(bt, bt_size);
+    for (int i = 0; i < bt_size; i++) {
+        CFStringRef cString = cleanStackValue(bt_syms[i]);
+        if (cString) {
+            CFArrayAppendValue(stack, cString);
+        }
+    }
+    free(bt_syms);
+    
+    return stack;
+}
 
-// THANKS: https://github.com/mikeash/refcounting/blob/master/refcounting.m
+static void registerBacktraceForObject(void *obj) {
+    CFArrayRef stack = getBacktrace();
+    OSSpinLockLock(&backtraceDictLock);
+    void *key = (__bridge void *)obj;
+    if (key && stack) {
+        if (!backtraceDict) {
+            backtraceDict = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
+        }
+        CFDictionarySetValue(backtraceDict, key, stack);
+    }
+    OSSpinLockUnlock(&backtraceDictLock);
+}
 
-static CFMutableDictionaryRef backtraceDict;
-static OSSpinLock backtraceDictLock;
-static bool isRecording;
-static bool swizzleActive;
-static const char *recordClassPrefix;
+id objc_retain(id value) {
+    
+    if (value) {
+        const char *className = object_getClassName(value);
+        printf("retain %s <%p>\n",className, value);
+        
+        bool canRec = canRecordObject(object_getClass(value));
+        if (canRec) {
+            registerBacktraceForObject(value);
+        }
+    }
+   
+    SEL sel = sel_getUid("retain");
+    objc_msgSend(value, sel);
+   
+    return value;
+}
+
+id objc_release(id value) {
+    
+    if (value) {
+        const char *className = object_getClassName(value);
+        printf("release %s <%p>\n",className, value);
+    }
+    
+    SEL sel = sel_getUid("release");
+    objc_msgSend(value, sel);
+    // we could could even nil out (like weak) if retaincount is zero
+   
+    return value;
+}
 
 static inline void cleanup()
 {
@@ -102,10 +164,6 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 {
     swizzleActive = true;
     SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
-    SwizzleInstanceMethod(self, NSSelectorFromString(@"retain"), @selector(tw_retain));
-//    SwizzleInstanceMethod(self, NSSelectorFromString(@"release"), @selector(tw_release));
-//    SwizzleInstanceMethod(self, NSSelectorFromString(@"autorelease"), @selector(tw_autorelease));
-//    SwizzleInstanceMethod(self, NSSelectorFromString(@"retainCount"), @selector(tw_retainCount));
 }
 
 - (void)tw_dealloc
@@ -128,61 +186,14 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     bool canRec = canRecordObject([self class]);
     if (canRec) {
         const char *className = class_getName(self);
-        printf("malloc %s\n",className);
+        printf("alloc %s\n",className);
     }
     id obj = [[self class] tw_alloc];
     if (canRec) {
-        CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, NULL);
-        void *bt[1024];
-        int bt_size;
-        char **bt_syms;
-        bt_size = backtrace(bt, 1024);
-        bt_syms = backtrace_symbols(bt, bt_size);
-        for (int i = 0; i < bt_size; i++) {
-            CFStringRef cString = cleanStackValue(bt_syms[i]);
-            CFArrayAppendValue(stack, cString);
-        }
-        OSSpinLockLock(&backtraceDictLock);
-        void *key = (__bridge void *)obj;
-        if (key && stack) {
-            if (!backtraceDict) {
-                backtraceDict = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
-            }
-            CFDictionarySetValue(backtraceDict, key, stack);
-        }
-        OSSpinLockUnlock(&backtraceDictLock);
-        free(bt_syms);
+      //  registerBacktraceForObject(obj);
     }
 
     return obj;
-}
-
-- (id)tw_retain
-{
-    [self addRunLoopObserver];
-    if (canRecordObject([self class])) {
-        const char *className = class_getName(object_getClass(self));
-        printf("retain +1 %s <%p>\n",className, self);
-    }
-    return objc_msgSend(self, NSSelectorFromString(@"tw_retain"));
-}
-
-- (oneway void)tw_release
-{
-    if (canRecordObject([self class])) {
-        const char *className = class_getName(object_getClass(self));
-        printf("released %s <%p>\n",className, self);
-    }
-    objc_msgSend(self, NSSelectorFromString(@"tw_release"));
-}
-
-- (oneway void)tw_autorelease
-{
-    if (canRecordObject([self class])) {
-        const char *className = class_getName(object_getClass(self));
-        printf("autorelease %s <%p>\n",className, self);
-    }
-    objc_msgSend(self, NSSelectorFromString(@"tw_autorelease"));
 }
 
 - (void)addRunLoopObserver
