@@ -7,9 +7,9 @@
 //
 
 #import "RMShowViewController.h"
-#import "RMTableViewCell.h"
 
-@interface RMShowViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@interface RMShowViewController ()
 
 @end
 
@@ -19,8 +19,6 @@
     id _objectToInspect;
     UITextView *_textView;
     UIScrollView *_scrollView;
-    UITableView *_tableView;
-    NSArray *_stack;
 }
 
 #pragma mark - Init
@@ -33,16 +31,6 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         _objectToInspect = object;
         self.shouldShowEditButton = YES;
-    }
-    return self;
-}
-
-- (instancetype)initWithBacktrace:(NSArray *)backtrace
-{
-    self = [self initWithObject:backtrace];
-    if (self) {
-        self.title = @"Backtrace";
-        _stack = backtrace;
     }
     return self;
 }
@@ -86,15 +74,7 @@
         } else if ([_objectToInspect isKindOfClass:[NSAttributedString class]]) {
             textView.attributedText = _objectToInspect;
         }
-    } else if ([_objectToInspect isKindOfClass:[NSArray class]]) {
-        UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
-        tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        [self.view addSubview:tableView];
-        _tableView = tableView;
-    }
+    } 
     
     if (screenshot) {
         _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -151,21 +131,6 @@
     [self setEditButton];
 }
 
-#pragma mark - UITableView
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_stack count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    RMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent];
-    
-    cell.textLabel.text = _stack[indexPath.row];
-    
-    return cell;
-}
 
 #pragma mark - Helper
 
