@@ -14,10 +14,11 @@ NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.textLabel.font = [UIFont systemFontOfSize:11];
+        self.textLabel.font = [UIFont systemFontOfSize:12];
+        self.detailTextLabel.font = [UIFont systemFontOfSize:10];
     }
     return self;
 }
