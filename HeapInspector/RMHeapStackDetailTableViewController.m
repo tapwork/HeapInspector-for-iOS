@@ -11,12 +11,12 @@
 #import "RMShowViewController.h"
 #import "RMTableViewCell.h"
 #import "RMClassDumpTableViewController.h"
-#import "NSObject+HeapInspector.h"
+#import "RMRefHistoryTableViewController.h"
 
 static NSString *const kCellTitleShow = @"Show";
 static NSString *const kCellTitleResponderChain = @"Responder Chain";
 static NSString *const kCellTitleMethods = @"Methods";
-static NSString *const kCellTitleAllocBacktrace = @"Alloc Backtrace";
+static NSString *const kCellTitleReferenceHistory = @"Reference History";
 static NSString *const kCellTitleIvars = @"iVars";
 static NSString *const kCellTitleProperties = @"Properties";
 static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
@@ -127,7 +127,7 @@ static const CGFloat kHeaderViewHeight = 100.0f;
              [dataSource addObject:kCellTitleRecursiveDesc];
         }
     }
-    [dataSource addObject:kCellTitleAllocBacktrace];
+    [dataSource addObject:kCellTitleReferenceHistory];
     [dataSource addObject:kCellTitleMethods];
     [dataSource addObject:kCellTitleProperties];
     [dataSource addObject:kCellTitleIvars];
@@ -138,16 +138,6 @@ static const CGFloat kHeaderViewHeight = 100.0f;
 }
 
 #pragma mark - UITableview dataSource & Delegate
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.dataSource count];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -181,10 +171,8 @@ static const CGFloat kHeaderViewHeight = 100.0f;
         NSString *recursiveDesc = [self.inspectingObject performSelector:@selector(recursiveDescription)];
         targetController = [[RMShowViewController alloc] initWithObject:recursiveDesc];
         ((RMShowViewController *)targetController).shouldShowEditButton = NO;
-    } else if ([item isEqualToString:kCellTitleAllocBacktrace]) {
-        NSArray *backtrace = [NSObject allocBacktraceForObject:self.inspectingObject];
-        targetController = [[RMShowViewController alloc] initWithBacktrace:backtrace];
-        ((RMShowViewController *)targetController).shouldShowEditButton = NO;
+    } else if ([item isEqualToString:kCellTitleReferenceHistory]) {
+        targetController = [[RMRefHistoryTableViewController alloc] initWithObject:self.inspectingObject];
     }
 #pragma clang diagnostic pop
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
