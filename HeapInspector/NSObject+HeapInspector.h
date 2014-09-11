@@ -13,6 +13,6 @@
 + (void)beginSnapshotWithClassPrefix:(NSString*)prefix;
 + (void)endSnapshot;
 + (void)resumeSnapshot;
-+ (NSArray *)allocBacktraceForObject:(id)obj;
++ (NSArray *)referenceHistoryForObject:(id)obj;
 
 @end

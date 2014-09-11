@@ -65,7 +65,7 @@ static CFStringRef cleanStackValue(char *stack) {
 }
 
 static CFArrayRef getBacktrace() {
-    CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, NULL);
+    CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
     void *bt[1024];
     int bt_size;
     char **bt_syms;
@@ -82,15 +82,30 @@ static CFArrayRef getBacktrace() {
     return stack;
 }
 
-static void registerBacktraceForObject(void *obj) {
+static void registerBacktraceForObject(void *obj, char *type) {
     CFArrayRef stack = getBacktrace();
     OSSpinLockLock(&backtraceDictLock);
     void *key = (__bridge void *)obj;
-    if (key && stack) {
+    if (key && stack && CFArrayGetCount(stack) > 0) {
         if (!backtraceDict) {
-            backtraceDict = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
+            backtraceDict = CFDictionaryCreateMutable(NULL,
+                                                      0,
+                                                      &kCFTypeDictionaryKeyCallBacks,
+                                                      &kCFTypeDictionaryValueCallBacks);
         }
-        CFDictionarySetValue(backtraceDict, key, stack);
+        CFMutableArrayRef history = (CFMutableArrayRef)CFDictionaryGetValue(backtraceDict, key);
+        if (!history) {
+            history = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
+        }
+        CFMutableDictionaryRef item = CFDictionaryCreateMutable(NULL,
+                                                                0,
+                                                                &kCFTypeDictionaryKeyCallBacks,
+                                                                &kCFTypeDictionaryValueCallBacks);
+        CFDictionarySetValue(item, getCFString("type"), getCFString(type));
+        CFDictionarySetValue(item, getCFString("last_trace"), CFArrayGetValueAtIndex(stack, 0));
+        CFDictionarySetValue(item, getCFString("all_traces"), stack);
+        CFArrayAppendValue(history, item);
+        CFDictionarySetValue(backtraceDict, key, history);
     }
     OSSpinLockUnlock(&backtraceDictLock);
 }
@@ -100,11 +115,10 @@ id objc_retain(id value) {
     
     if (value) {
         const char *className = object_getClassName(value);
-        printf("retain %s <%p>\n",className, value);
-        
         bool canRec = canRecordObject(object_getClass(value));
         if (canRec) {
-            registerBacktraceForObject(value);
+            printf("retain %s <%p>\n",className, value);
+            registerBacktraceForObject(value, "retain");
         }
     }
    
@@ -118,7 +132,11 @@ id objc_release(id value) {
     
     if (value) {
         const char *className = object_getClassName(value);
-        printf("release %s <%p>\n",className, value);
+        bool canRec = canRecordObject(object_getClass(value));
+        if (canRec) {
+            printf("release %s <%p>\n",className, value);
+            registerBacktraceForObject(value, "release");
+        }
     }
     
     SEL sel = sel_getUid("release");
@@ -176,7 +194,7 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     }
     id obj = [[self class] tw_alloc];
     if (canRec) {
-      //  registerBacktraceForObject(obj);
+        registerBacktraceForObject(obj, "alloc");
     }
 
     return obj;
@@ -228,12 +246,12 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     isRecording = true;
 }
 
-+ (NSArray *)allocBacktraceForObject:(id)obj
++ (NSArray *)referenceHistoryForObject:(id)obj
 {
-    CFArrayRef cfBacktraces = CFDictionaryGetValue(backtraceDict, (__bridge const void *)(obj));
-    NSArray *backtraces = [(NSArray *)cfBacktraces copy];
+    CFArrayRef cfHistory = CFDictionaryGetValue(backtraceDict, (__bridge const void *)(obj));
+    NSArray *history = [(NSArray *)cfHistory copy];
     
-    return backtraces;
+    return history;
 }
 
 
