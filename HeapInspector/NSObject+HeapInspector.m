@@ -95,6 +95,7 @@ static void registerBacktraceForObject(void *obj) {
     OSSpinLockUnlock(&backtraceDictLock);
 }
 
+// SEE more http://clang.llvm.org/docs/AutomaticReferenceCounting.html
 id objc_retain(id value) {
     
     if (value) {
@@ -164,21 +165,6 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 {
     swizzleActive = true;
     SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
-}
-
-- (void)tw_dealloc
-{
-    // THANKS: http://stackoverflow.com/questions/14635024/using-objc-msgsendsuper-to-invoke-a-class-method
-    Class class = [self superclass];
-    struct objc_super mySuper = {
-        .receiver = self,
-        .super_class = class_isMetaClass(object_getClass(self)) //check if we are an instance or Class
-        ? object_getClass(class)                //if we are a Class, we need to send our metaclass (our Class's Class)
-        : class                                 //if we are an instance, we need to send our Class (which we already have)
-    };
-    
-    
-    objc_msgSendSuper(&mySuper, NSSelectorFromString(@"tw_dealloc"));
 }
 
 + (id)tw_alloc
