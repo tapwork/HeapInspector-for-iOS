@@ -318,7 +318,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSArray *dataSource = [self.dataSourceUnfiltered mutableCopy];
+    NSMutableArray *dataSource = [self.dataSourceUnfiltered mutableCopy];
     NSMutableArray *serps_1 = [dataSource[0] mutableCopy];
     NSMutableArray *serps_2 = [dataSource[1] mutableCopy];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
