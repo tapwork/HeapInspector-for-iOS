@@ -275,7 +275,7 @@
     }
     
     
-    [tableView deselectRowAtIndexPath:indexPath animated:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - Helper
