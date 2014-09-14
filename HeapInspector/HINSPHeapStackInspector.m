@@ -174,9 +174,7 @@ static inline bool canRecordObject(const char* className)
         }
     }];
     
-    id __weak returnVal = foundObject;
-    
-    return returnVal;
+    return foundObject;
 }
 
 
