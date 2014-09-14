@@ -111,8 +111,8 @@ static void registerBacktraceForObject(void *obj, char *type) {
 }
 
 // SEE more http://clang.llvm.org/docs/AutomaticReferenceCounting.html
+// or http://clang.llvm.org/doxygen/structclang_1_1CodeGen_1_1ARCEntrypoints.html
 id objc_retain(id value) {
-    
     if (value) {
         const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
@@ -128,8 +128,23 @@ id objc_retain(id value) {
     return value;
 }
 
+id objc_storeStrong(id *object, id value) {
+    if (value) {
+        const char *className = object_getClassName(value);
+        bool canRec = canRecordObject(object_getClass(value));
+        if (canRec) {
+            printf("storeStrong %s <%p>\n",className, value);
+            registerBacktraceForObject(value, "storeStrong");
+        }
+    }
+    value = [value retain];
+    id oldValue = *object;
+    *object = value;
+    [oldValue release];
+    return value;
+}
+
 id objc_release(id value) {
-    
     if (value) {
         const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
@@ -142,9 +157,61 @@ id objc_release(id value) {
     SEL sel = sel_getUid("release");
     objc_msgSend(value, sel);
     // we could could even nil out (like weak) if retaincount is zero
-   
+    
     return value;
 }
+
+id objc_retainAutorelease(id value) {
+    if (value) {
+        const char *className = object_getClassName(value);
+        bool canRec = canRecordObject(object_getClass(value));
+        if (canRec) {
+            printf("retainAutorelease %s <%p>\n",className, value);
+            registerBacktraceForObject(value, "retainAutorelease");
+        }
+    }
+    
+    SEL selRetain = sel_getUid("retain");
+    objc_msgSend(value, selRetain);
+    SEL selAutorelease = sel_getUid("autorelease");
+    objc_msgSend(value, selAutorelease);
+    
+    return value;
+}
+
+id objc_autorelease(id value) {
+    if (value) {
+        const char *className = object_getClassName(value);
+        bool canRec = canRecordObject(object_getClass(value));
+        if (canRec) {
+            printf("autorelease %s <%p>\n",className, value);
+            registerBacktraceForObject(value, "autorelease");
+        }
+    }
+    
+    SEL selAutorelease = sel_getUid("autorelease");
+    objc_msgSend(value, selAutorelease);
+    
+    return value;
+}
+
+id objc_autoreleaseReturnValue(id value) {
+    if (value) {
+        const char *className = object_getClassName(value);
+        bool canRec = canRecordObject(object_getClass(value));
+        if (canRec) {
+            printf("autoreleaseReturnValue %s <%p>\n",className, value);
+            registerBacktraceForObject(value, "autoreleaseReturnValue");
+        }
+    }
+    
+    SEL selAutorelease = sel_getUid("autorelease");
+    objc_msgSend(value, selAutorelease);
+    
+    return value;
+}
+
+
 
 static inline void cleanup()
 {
