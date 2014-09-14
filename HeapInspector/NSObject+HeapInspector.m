@@ -58,10 +58,23 @@ static CFStringRef cleanStackValue(char *stack) {
                                getCFString("alloc"),
                                CFRangeMake(0, CFStringGetLength(val)),
                                kCFCompareNonliteral);
+        
         return val;
     }
     
     return NULL;
+}
+
+static bool canRegisterBacktrace(char *stack) {
+    CFStringRef cString = getCFString(stack);
+    
+    // Exclude the HINSP Class Prefix (that's ourself)
+    CFRange range = CFStringFind(cString, getCFString("HINSP"), kCFCompareCaseInsensitive);
+    if (range.location != kCFNotFound) {
+        return false;
+    }
+    
+    return true;
 }
 
 static CFArrayRef getBacktrace() {
@@ -74,9 +87,15 @@ static CFArrayRef getBacktrace() {
     for (int i = 0; i < bt_size; i++) {
         CFStringRef cString = cleanStackValue(bt_syms[i]);
         if (cString) {
-            CFArrayAppendValue(stack, cString);
+            if (canRegisterBacktrace(bt_syms[i]) == true) {
+                CFArrayAppendValue(stack, cString);
+            } else {
+                stack = NULL;
+                break;
+            }
         }
     }
+
     free(bt_syms);
     
     return stack;
@@ -85,8 +104,11 @@ static CFArrayRef getBacktrace() {
 static void registerBacktraceForObject(void *obj, char *type) {
     CFArrayRef stack = getBacktrace();
     OSSpinLockLock(&backtraceDictLock);
+    
     void *key = (__bridge void *)obj;
-    if (key && stack && CFArrayGetCount(stack) > 0) {
+    if (key &&
+        stack &&
+        CFArrayGetCount(stack) > 0) {
         if (!backtraceDict) {
             backtraceDict = CFDictionaryCreateMutable(NULL,
                                                       0,
