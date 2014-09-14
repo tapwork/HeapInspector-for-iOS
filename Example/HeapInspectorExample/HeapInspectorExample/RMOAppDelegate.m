@@ -8,13 +8,13 @@
 
 #import "RMOAppDelegate.h"
 #import "RMRootViewController.h"
-#import "RMDebug.h"
+#import "HINSPDebug.h"
 
 @implementation RMOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [RMDebug startWithClassPrefix:@"RM"];
+    [HINSPDebug startWithClassPrefix:@"RM"];
     
     RMRootViewController *rootViewController = [[RMRootViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc]

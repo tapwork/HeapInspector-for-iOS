@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMClassDumpTableViewController.h"
-#import "RMHeapStackDetailTableViewController.h"
+#import "HINSPClassDumpTableViewController.h"
+#import "HINSPHeapStackDetailTableViewController.h"
 #import <objc/runtime.h>
-#import "RMHeapStackDetailTableViewController.h"
+#import "HINSPHeapStackDetailTableViewController.h"
 
-@interface RMClassDumpTableViewController ()
+@interface HINSPClassDumpTableViewController ()
 
 @end
 
-@implementation RMClassDumpTableViewController
+@implementation HINSPClassDumpTableViewController
 {
     RMClassDumpType _type;
 }
@@ -260,8 +260,8 @@
                                      forObject:self.inspectingObject];
     }
     if (newInspectingObject) {
-        RMHeapStackDetailTableViewController *detailVC = nil;
-        detailVC = [[RMHeapStackDetailTableViewController alloc] initWithObject:newInspectingObject];
+        HINSPHeapStackDetailTableViewController *detailVC = nil;
+        detailVC = [[HINSPHeapStackDetailTableViewController alloc] initWithObject:newInspectingObject];
         [self.navigationController pushViewController:detailVC animated:YES];
     } else {
         NSString *typeString = (_type == RMClassDumpProperties) ? @"Property" : @"iVar";

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMRecordButton : UIControl
+@interface HINSPRecordButton : UIControl
 
 @property (nonatomic, readonly) BOOL isRecording;
 

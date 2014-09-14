@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMDebugWindow.h"
+#import "HINSPDebugWindow.h"
 #import "NSObject+HeapInspector.h"
 
-@implementation RMDebugWindow
+@implementation HINSPDebugWindow
 {
     UIView *_contentView;
     UIView *_dragView;
@@ -24,7 +24,7 @@
         _contentView.backgroundColor = [UIColor colorWithWhite:0.94 alpha:0.94];
         [self addSubview:_contentView];
         
-        _recordButton = [[RMRecordButton alloc] init];
+        _recordButton = [[HINSPRecordButton alloc] init];
         [_contentView addSubview:_recordButton];
         
         UIPanGestureRecognizer *pangesture = [[UIPanGestureRecognizer alloc]

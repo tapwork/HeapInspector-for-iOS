@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface RMDebug : NSObject
+@interface HINSPDebug : NSObject
 
 + (void)startWithClassPrefix:(NSString*)classPrefix;
 

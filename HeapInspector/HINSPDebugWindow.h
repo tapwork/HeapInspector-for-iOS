@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RMRecordButton.h"
+#import "HINSPRecordButton.h"
 
-@interface RMDebugWindow : UIWindow
+@interface HINSPDebugWindow : UIWindow
 
-@property (nonatomic, readonly) RMRecordButton *recordButton;
+@property (nonatomic, readonly) HINSPRecordButton *recordButton;
 @property (nonatomic, readonly) UILabel *infoLabel;
 @property (nonatomic, readonly) UIButton *recordedButton;
 @property (nonatomic, readonly) UIButton *activeButton;

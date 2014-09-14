@@ -10,6 +10,6 @@
 
 extern NSString *const kTableViewCellIdent;
 
-@interface RMTableViewCell : UITableViewCell
+@interface HINSPTableViewCell : UITableViewCell
 
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RMTableViewCell.h"
+#import "HINSPTableViewCell.h"
 
-@interface RMTableViewController : UITableViewController
+@interface HINSPTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, readonly) NSArray *dataSourceUnfiltered;

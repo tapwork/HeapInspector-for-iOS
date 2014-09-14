@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMTableViewController.h"
+#import "HINSPTableViewController.h"
 
 typedef NS_ENUM(NSUInteger, RMClassDumpType) {
     RMClassDumpMethods,
@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger, RMClassDumpType) {
     RMClassDumpClasses
 };
 
-@interface RMClassDumpTableViewController : RMTableViewController
+@interface HINSPClassDumpTableViewController : HINSPTableViewController
 
 - (instancetype)initWithObject:(id)object type:(RMClassDumpType)type;
 

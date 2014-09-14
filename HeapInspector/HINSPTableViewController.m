@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMTableViewController.h"
-#import "RMHeapStackInspector.h"
+#import "HINSPTableViewController.h"
+#import "HINSPHeapStackInspector.h"
 
-@interface RMTableViewController () <UISearchBarDelegate>
+@interface HINSPTableViewController () <UISearchBarDelegate>
 
 @end
 
-@implementation RMTableViewController
+@implementation HINSPTableViewController
 {
     NSArray *_originalDataSource;
 }
@@ -31,7 +31,7 @@
     self = [self init];
     if (self) {
         // Retrieve a real object from the pointer
-        self.inspectingObject = [RMHeapStackInspector objectForPointer:pointer];
+        self.inspectingObject = [HINSPHeapStackInspector objectForPointer:pointer];
     }
     return self;
 }
@@ -63,7 +63,7 @@
     [super viewDidLoad];
     
     [self setupSearchBar];
-    [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
+    [self.tableView registerClass:[HINSPTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
 }
 
 - (void)setupSearchBar
@@ -92,7 +92,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent forIndexPath:indexPath];
+    HINSPTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent forIndexPath:indexPath];
     
     // Configure the cell...
     NSString *value = self.dataSource[indexPath.row];

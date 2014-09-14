@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMRecordButton.h"
+#import "HINSPRecordButton.h"
 
 
-@interface RMRecordButton ()
+@interface HINSPRecordButton ()
 
 @property (nonatomic) BOOL isRecording;
 
 @end
 
-@implementation RMRecordButton
+@implementation HINSPRecordButton
 {
     CAShapeLayer *__weak _shapeLayer;
 }

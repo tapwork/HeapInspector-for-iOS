@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMHeapStackTableViewController.h"
-#import "RMHeapStackDetailTableViewController.h"
-#import "RMTableViewCell.h"
+#import "HINSPHeapStackTableViewController.h"
+#import "HINSPHeapStackDetailTableViewController.h"
+#import "HINSPTableViewCell.h"
 
-@interface RMHeapStackTableViewController ()
+@interface HINSPHeapStackTableViewController ()
 
 @end
 
-@implementation RMHeapStackTableViewController
+@implementation HINSPHeapStackTableViewController
 
 #pragma mark - View Life Cycle
 
@@ -53,8 +53,8 @@
 {
     NSString *cellValue = self.dataSource[indexPath.row];
     NSString *pointerValue = [self pointerStringFromCellText:cellValue];
-    RMHeapStackDetailTableViewController *detailVC = nil;
-    detailVC = [[RMHeapStackDetailTableViewController alloc] initWithPointerString:pointerValue];
+    HINSPHeapStackDetailTableViewController *detailVC = nil;
+    detailVC = [[HINSPHeapStackDetailTableViewController alloc] initWithPointerString:pointerValue];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

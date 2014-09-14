@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMTableViewCell.h"
+#import "HINSPTableViewCell.h"
 
 NSString *const kTableViewCellIdent = @"kTableViewCellIdent";
 
-@implementation RMTableViewCell
+@implementation HINSPTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

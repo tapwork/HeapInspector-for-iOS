@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMRefHistoryTableViewController.h"
+#import "HINSPRefHistoryTableViewController.h"
 #import "NSObject+HeapInspector.h"
-#import "RMTableViewCell.h"
-#import "RMTableViewController.h"
+#import "HINSPTableViewCell.h"
+#import "HINSPTableViewController.h"
 
-@interface RMRefHistoryTableViewController ()
+@interface HINSPRefHistoryTableViewController ()
 
 @end
 
-@implementation RMRefHistoryTableViewController
+@implementation HINSPRefHistoryTableViewController
 
 
 #pragma mark - Init
@@ -39,7 +39,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent
+    HINSPTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellIdent
                                                             forIndexPath:indexPath];
     
     NSDictionary *item = self.dataSource[indexPath.row];
@@ -52,7 +52,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *item = self.dataSource[indexPath.row];
-    RMTableViewController *detailVC = [[RMTableViewController alloc] initWithDataSource:item[@"all_traces"]];
+    HINSPTableViewController *detailVC = [[HINSPTableViewController alloc] initWithDataSource:item[@"all_traces"]];
     detailVC.title = [NSString stringWithFormat:@"%@'s backtrace",item[@"type"]];
     [self.navigationController pushViewController:detailVC animated:YES];
     

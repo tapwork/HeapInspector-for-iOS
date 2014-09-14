@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMTableViewController.h"
+#import "HINSPTableViewController.h"
 
-@interface RMResponderChainViewController : RMTableViewController
+@interface HINSPResponderChainViewController : HINSPTableViewController
 
 
 @end

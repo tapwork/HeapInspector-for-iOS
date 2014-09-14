@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMHeapStackDetailTableViewController.h"
-#import "RMResponderChainViewController.h"
-#import "RMShowViewController.h"
-#import "RMTableViewCell.h"
-#import "RMClassDumpTableViewController.h"
-#import "RMRefHistoryTableViewController.h"
+#import "HINSPHeapStackDetailTableViewController.h"
+#import "HINSPResponderChainViewController.h"
+#import "HINSPShowViewController.h"
+#import "HINSPTableViewCell.h"
+#import "HINSPClassDumpTableViewController.h"
+#import "HINSPRefHistoryTableViewController.h"
 
 static NSString *const kCellTitleShow = @"Show";
 static NSString *const kCellTitleResponderChain = @"Responder Chain";
@@ -23,11 +23,11 @@ static NSString *const kCellTitleRecursiveDesc = @"Recursive Description";
 
 static const CGFloat kHeaderViewHeight = 100.0f;
 
-@interface RMHeapStackDetailTableViewController ()
+@interface HINSPHeapStackDetailTableViewController ()
 
 @end
 
-@implementation RMHeapStackDetailTableViewController
+@implementation HINSPHeapStackDetailTableViewController
 {
     UITextView *_headerTextView;
 }
@@ -156,23 +156,23 @@ static const CGFloat kHeaderViewHeight = 100.0f;
     UIViewController *targetController = nil;
     NSString *item = self.dataSource[indexPath.row];
     if ([item isEqualToString:kCellTitleResponderChain]) {
-        targetController = [[RMResponderChainViewController alloc] initWithObject:self.inspectingObject];
+        targetController = [[HINSPResponderChainViewController alloc] initWithObject:self.inspectingObject];
     } else if ([item isEqualToString:kCellTitleShow]) {
-        targetController = [[RMShowViewController alloc] initWithObject:self.inspectingObject];
+        targetController = [[HINSPShowViewController alloc] initWithObject:self.inspectingObject];
     } else if ([item isEqualToString:kCellTitleMethods]) {
-        targetController = [[RMClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpMethods];
+        targetController = [[HINSPClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpMethods];
     } else if ([item isEqualToString:kCellTitleIvars]) {
-        targetController = [[RMClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpIvar];
+        targetController = [[HINSPClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpIvar];
     } else if ([item isEqualToString:kCellTitleProperties]) {
-        targetController = [[RMClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpProperties];
+        targetController = [[HINSPClassDumpTableViewController alloc] initWithObject:self.inspectingObject type:RMClassDumpProperties];
     } else if ([item isEqualToString:kCellTitleRecursiveDesc]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
         NSString *recursiveDesc = [self.inspectingObject performSelector:@selector(recursiveDescription)];
-        targetController = [[RMShowViewController alloc] initWithObject:recursiveDesc];
-        ((RMShowViewController *)targetController).shouldShowEditButton = NO;
+        targetController = [[HINSPShowViewController alloc] initWithObject:recursiveDesc];
+        ((HINSPShowViewController *)targetController).shouldShowEditButton = NO;
     } else if ([item isEqualToString:kCellTitleReferenceHistory]) {
-        targetController = [[RMRefHistoryTableViewController alloc] initWithObject:self.inspectingObject];
+        targetController = [[HINSPRefHistoryTableViewController alloc] initWithObject:self.inspectingObject];
     }
 #pragma clang diagnostic pop
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

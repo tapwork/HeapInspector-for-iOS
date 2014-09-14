@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA1CC57819A7B939007F11F1 /* RMHeapStackInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1CC57719A7B939007F11F1 /* RMHeapStackInspector.m */; };
-		DA1CC57919A7B939007F11F1 /* RMHeapStackInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1CC57719A7B939007F11F1 /* RMHeapStackInspector.m */; };
+		DA1CC57819A7B939007F11F1 /* HINSPHeapStackInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1CC57719A7B939007F11F1 /* HINSPHeapStackInspector.m */; };
+		DA1CC57919A7B939007F11F1 /* HINSPHeapStackInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1CC57719A7B939007F11F1 /* HINSPHeapStackInspector.m */; };
 		DA29C53E19A530C400FFF7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C53D19A530C400FFF7D5 /* Foundation.framework */; };
 		DA29C54019A530C400FFF7D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C53F19A530C400FFF7D5 /* CoreGraphics.framework */; };
 		DA29C54219A530C400FFF7D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C54119A530C400FFF7D5 /* UIKit.framework */; };
@@ -21,30 +21,30 @@
 		DA29C55919A530C400FFF7D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C54119A530C400FFF7D5 /* UIKit.framework */; };
 		DA29C56119A530C400FFF7D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA29C55F19A530C400FFF7D5 /* InfoPlist.strings */; };
 		DA29C56319A530C400FFF7D5 /* HeapInspectorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */; };
-		DA43ABF819B4DC1600C9F2DC /* RMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43ABF719B4DC1600C9F2DC /* RMTableViewController.m */; };
-		DA43ABF919B4DC1600C9F2DC /* RMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43ABF719B4DC1600C9F2DC /* RMTableViewController.m */; };
-		DA8EB00D19B449AC005B1455 /* RMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8EB00C19B449AC005B1455 /* RMTableViewCell.m */; };
-		DAA1DD6819B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */; };
-		DAA1DD6919B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */; };
-		DAA1DD6C19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */; };
-		DAA1DD6D19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */; };
-		DAA1DD7219B12FA600BC5DAD /* RMShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */; };
-		DAA1DD7319B12FA600BC5DAD /* RMShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */; };
+		DA43ABF819B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */; };
+		DA43ABF919B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */; };
+		DA8EB00D19B449AC005B1455 /* HINSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8EB00C19B449AC005B1455 /* HINSPTableViewCell.m */; };
+		DAA1DD6819B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */; };
+		DAA1DD6919B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */; };
+		DAA1DD6C19B12BD900BC5DAD /* HINSPResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* HINSPResponderChainViewController.m */; };
+		DAA1DD6D19B12BD900BC5DAD /* HINSPResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* HINSPResponderChainViewController.m */; };
+		DAA1DD7219B12FA600BC5DAD /* HINSPShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD7119B12FA600BC5DAD /* HINSPShowViewController.m */; };
+		DAA1DD7319B12FA600BC5DAD /* HINSPShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD7119B12FA600BC5DAD /* HINSPShowViewController.m */; };
 		DABCA50B19A531E200331B1B /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DABCA50C19A531E200331B1B /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */; };
-		DABCA50D19A531E200331B1B /* RMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50419A531E200331B1B /* RMDebug.m */; };
-		DABCA50E19A531E200331B1B /* RMDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50419A531E200331B1B /* RMDebug.m */; };
-		DABCA50F19A531E200331B1B /* RMDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50619A531E200331B1B /* RMDebugWindow.m */; };
-		DABCA51019A531E200331B1B /* RMDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50619A531E200331B1B /* RMDebugWindow.m */; };
-		DABCA51319A531E200331B1B /* RMRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50A19A531E200331B1B /* RMRecordButton.m */; };
-		DABCA51419A531E200331B1B /* RMRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50A19A531E200331B1B /* RMRecordButton.m */; };
+		DABCA50D19A531E200331B1B /* HINSPDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50419A531E200331B1B /* HINSPDebug.m */; };
+		DABCA50E19A531E200331B1B /* HINSPDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50419A531E200331B1B /* HINSPDebug.m */; };
+		DABCA50F19A531E200331B1B /* HINSPDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50619A531E200331B1B /* HINSPDebugWindow.m */; };
+		DABCA51019A531E200331B1B /* HINSPDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50619A531E200331B1B /* HINSPDebugWindow.m */; };
+		DABCA51319A531E200331B1B /* HINSPRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50A19A531E200331B1B /* HINSPRecordButton.m */; };
+		DABCA51419A531E200331B1B /* HINSPRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50A19A531E200331B1B /* HINSPRecordButton.m */; };
 		DABCA51719A5339300331B1B /* RMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51619A5339300331B1B /* RMRootViewController.m */; };
 		DABCA51819A5339300331B1B /* RMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51619A5339300331B1B /* RMRootViewController.m */; };
 		DABCA51B19A533B400331B1B /* RMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51A19A533B400331B1B /* RMDetailViewController.m */; };
 		DABCA51C19A533B400331B1B /* RMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51A19A533B400331B1B /* RMDetailViewController.m */; };
-		DAEE61AC19C22F4500502267 /* RMRefHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEE61AB19C22F4500502267 /* RMRefHistoryTableViewController.m */; };
-		DAF2557919A910ED00CCDD6A /* RMHeapStackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2557819A910ED00CCDD6A /* RMHeapStackTableViewController.m */; };
-		DAFD8F9419B4556B0050E722 /* RMClassDumpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFD8F9319B4556B0050E722 /* RMClassDumpTableViewController.m */; };
+		DAEE61AC19C22F4500502267 /* HINSPRefHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEE61AB19C22F4500502267 /* HINSPRefHistoryTableViewController.m */; };
+		DAF2557919A910ED00CCDD6A /* HINSPHeapStackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2557819A910ED00CCDD6A /* HINSPHeapStackTableViewController.m */; };
+		DAFD8F9419B4556B0050E722 /* HINSPClassDumpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFD8F9319B4556B0050E722 /* HINSPClassDumpTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA1CC57619A7B939007F11F1 /* RMHeapStackInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHeapStackInspector.h; sourceTree = "<group>"; };
-		DA1CC57719A7B939007F11F1 /* RMHeapStackInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHeapStackInspector.m; sourceTree = "<group>"; };
+		DA1CC57619A7B939007F11F1 /* HINSPHeapStackInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackInspector.h; sourceTree = "<group>"; };
+		DA1CC57719A7B939007F11F1 /* HINSPHeapStackInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackInspector.m; sourceTree = "<group>"; };
 		DA29C53A19A530C400FFF7D5 /* HeapInspectorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeapInspectorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA29C53D19A530C400FFF7D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA29C53F19A530C400FFF7D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -76,34 +76,34 @@
 		DA29C55E19A530C400FFF7D5 /* HeapInspectorExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HeapInspectorExampleTests-Info.plist"; sourceTree = "<group>"; };
 		DA29C56019A530C400FFF7D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeapInspectorExampleTests.m; sourceTree = "<group>"; };
-		DA43ABF619B4DC1600C9F2DC /* RMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTableViewController.h; sourceTree = "<group>"; };
-		DA43ABF719B4DC1600C9F2DC /* RMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTableViewController.m; sourceTree = "<group>"; };
-		DA8EB00B19B449AC005B1455 /* RMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTableViewCell.h; sourceTree = "<group>"; };
-		DA8EB00C19B449AC005B1455 /* RMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTableViewCell.m; sourceTree = "<group>"; };
-		DAA1DD6619B1281800BC5DAD /* RMHeapStackDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHeapStackDetailTableViewController.h; sourceTree = "<group>"; };
-		DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHeapStackDetailTableViewController.m; sourceTree = "<group>"; };
-		DAA1DD6A19B12BD900BC5DAD /* RMResponderChainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMResponderChainViewController.h; sourceTree = "<group>"; };
-		DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMResponderChainViewController.m; sourceTree = "<group>"; };
-		DAA1DD7019B12FA600BC5DAD /* RMShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMShowViewController.h; sourceTree = "<group>"; };
-		DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMShowViewController.m; sourceTree = "<group>"; };
+		DA43ABF619B4DC1600C9F2DC /* HINSPTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPTableViewController.h; sourceTree = "<group>"; };
+		DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewController.m; sourceTree = "<group>"; };
+		DA8EB00B19B449AC005B1455 /* HINSPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPTableViewCell.h; sourceTree = "<group>"; };
+		DA8EB00C19B449AC005B1455 /* HINSPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewCell.m; sourceTree = "<group>"; };
+		DAA1DD6619B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackDetailTableViewController.h; sourceTree = "<group>"; };
+		DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackDetailTableViewController.m; sourceTree = "<group>"; };
+		DAA1DD6A19B12BD900BC5DAD /* HINSPResponderChainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPResponderChainViewController.h; sourceTree = "<group>"; };
+		DAA1DD6B19B12BD900BC5DAD /* HINSPResponderChainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPResponderChainViewController.m; sourceTree = "<group>"; };
+		DAA1DD7019B12FA600BC5DAD /* HINSPShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPShowViewController.h; sourceTree = "<group>"; };
+		DAA1DD7119B12FA600BC5DAD /* HINSPShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPShowViewController.m; sourceTree = "<group>"; };
 		DABCA50119A531E200331B1B /* NSObject+HeapInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+HeapInspector.h"; sourceTree = "<group>"; };
 		DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HeapInspector.m"; sourceTree = "<group>"; };
-		DABCA50319A531E200331B1B /* RMDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDebug.h; sourceTree = "<group>"; };
-		DABCA50419A531E200331B1B /* RMDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDebug.m; sourceTree = "<group>"; };
-		DABCA50519A531E200331B1B /* RMDebugWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDebugWindow.h; sourceTree = "<group>"; };
-		DABCA50619A531E200331B1B /* RMDebugWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDebugWindow.m; sourceTree = "<group>"; };
-		DABCA50919A531E200331B1B /* RMRecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRecordButton.h; sourceTree = "<group>"; };
-		DABCA50A19A531E200331B1B /* RMRecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRecordButton.m; sourceTree = "<group>"; };
+		DABCA50319A531E200331B1B /* HINSPDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPDebug.h; sourceTree = "<group>"; };
+		DABCA50419A531E200331B1B /* HINSPDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPDebug.m; sourceTree = "<group>"; };
+		DABCA50519A531E200331B1B /* HINSPDebugWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPDebugWindow.h; sourceTree = "<group>"; };
+		DABCA50619A531E200331B1B /* HINSPDebugWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPDebugWindow.m; sourceTree = "<group>"; };
+		DABCA50919A531E200331B1B /* HINSPRecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPRecordButton.h; sourceTree = "<group>"; };
+		DABCA50A19A531E200331B1B /* HINSPRecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPRecordButton.m; sourceTree = "<group>"; };
 		DABCA51519A5339300331B1B /* RMRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRootViewController.h; sourceTree = "<group>"; };
 		DABCA51619A5339300331B1B /* RMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRootViewController.m; sourceTree = "<group>"; };
 		DABCA51919A533B400331B1B /* RMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDetailViewController.h; sourceTree = "<group>"; };
 		DABCA51A19A533B400331B1B /* RMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDetailViewController.m; sourceTree = "<group>"; };
-		DAEE61AA19C22F4500502267 /* RMRefHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRefHistoryTableViewController.h; sourceTree = "<group>"; };
-		DAEE61AB19C22F4500502267 /* RMRefHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRefHistoryTableViewController.m; sourceTree = "<group>"; };
-		DAF2557719A910ED00CCDD6A /* RMHeapStackTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHeapStackTableViewController.h; sourceTree = "<group>"; };
-		DAF2557819A910ED00CCDD6A /* RMHeapStackTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHeapStackTableViewController.m; sourceTree = "<group>"; };
-		DAFD8F9219B4556B0050E722 /* RMClassDumpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMClassDumpTableViewController.h; sourceTree = "<group>"; };
-		DAFD8F9319B4556B0050E722 /* RMClassDumpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMClassDumpTableViewController.m; sourceTree = "<group>"; };
+		DAEE61AA19C22F4500502267 /* HINSPRefHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPRefHistoryTableViewController.h; sourceTree = "<group>"; };
+		DAEE61AB19C22F4500502267 /* HINSPRefHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPRefHistoryTableViewController.m; sourceTree = "<group>"; };
+		DAF2557719A910ED00CCDD6A /* HINSPHeapStackTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackTableViewController.h; sourceTree = "<group>"; };
+		DAF2557819A910ED00CCDD6A /* HINSPHeapStackTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackTableViewController.m; sourceTree = "<group>"; };
+		DAFD8F9219B4556B0050E722 /* HINSPClassDumpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPClassDumpTableViewController.h; sourceTree = "<group>"; };
+		DAFD8F9319B4556B0050E722 /* HINSPClassDumpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPClassDumpTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,30 +210,30 @@
 			children = (
 				DABCA50119A531E200331B1B /* NSObject+HeapInspector.h */,
 				DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */,
-				DABCA50319A531E200331B1B /* RMDebug.h */,
-				DABCA50419A531E200331B1B /* RMDebug.m */,
-				DABCA50519A531E200331B1B /* RMDebugWindow.h */,
-				DABCA50619A531E200331B1B /* RMDebugWindow.m */,
-				DABCA50919A531E200331B1B /* RMRecordButton.h */,
-				DABCA50A19A531E200331B1B /* RMRecordButton.m */,
-				DA1CC57619A7B939007F11F1 /* RMHeapStackInspector.h */,
-				DA1CC57719A7B939007F11F1 /* RMHeapStackInspector.m */,
-				DAF2557719A910ED00CCDD6A /* RMHeapStackTableViewController.h */,
-				DAF2557819A910ED00CCDD6A /* RMHeapStackTableViewController.m */,
-				DAA1DD6619B1281800BC5DAD /* RMHeapStackDetailTableViewController.h */,
-				DAA1DD6719B1281800BC5DAD /* RMHeapStackDetailTableViewController.m */,
-				DAA1DD6A19B12BD900BC5DAD /* RMResponderChainViewController.h */,
-				DAA1DD6B19B12BD900BC5DAD /* RMResponderChainViewController.m */,
-				DAFD8F9219B4556B0050E722 /* RMClassDumpTableViewController.h */,
-				DAFD8F9319B4556B0050E722 /* RMClassDumpTableViewController.m */,
-				DAA1DD7019B12FA600BC5DAD /* RMShowViewController.h */,
-				DAA1DD7119B12FA600BC5DAD /* RMShowViewController.m */,
-				DAEE61AA19C22F4500502267 /* RMRefHistoryTableViewController.h */,
-				DAEE61AB19C22F4500502267 /* RMRefHistoryTableViewController.m */,
-				DA43ABF619B4DC1600C9F2DC /* RMTableViewController.h */,
-				DA43ABF719B4DC1600C9F2DC /* RMTableViewController.m */,
-				DA8EB00B19B449AC005B1455 /* RMTableViewCell.h */,
-				DA8EB00C19B449AC005B1455 /* RMTableViewCell.m */,
+				DABCA50319A531E200331B1B /* HINSPDebug.h */,
+				DABCA50419A531E200331B1B /* HINSPDebug.m */,
+				DABCA50519A531E200331B1B /* HINSPDebugWindow.h */,
+				DABCA50619A531E200331B1B /* HINSPDebugWindow.m */,
+				DABCA50919A531E200331B1B /* HINSPRecordButton.h */,
+				DABCA50A19A531E200331B1B /* HINSPRecordButton.m */,
+				DA1CC57619A7B939007F11F1 /* HINSPHeapStackInspector.h */,
+				DA1CC57719A7B939007F11F1 /* HINSPHeapStackInspector.m */,
+				DAF2557719A910ED00CCDD6A /* HINSPHeapStackTableViewController.h */,
+				DAF2557819A910ED00CCDD6A /* HINSPHeapStackTableViewController.m */,
+				DAA1DD6619B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.h */,
+				DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */,
+				DAA1DD6A19B12BD900BC5DAD /* HINSPResponderChainViewController.h */,
+				DAA1DD6B19B12BD900BC5DAD /* HINSPResponderChainViewController.m */,
+				DAFD8F9219B4556B0050E722 /* HINSPClassDumpTableViewController.h */,
+				DAFD8F9319B4556B0050E722 /* HINSPClassDumpTableViewController.m */,
+				DAA1DD7019B12FA600BC5DAD /* HINSPShowViewController.h */,
+				DAA1DD7119B12FA600BC5DAD /* HINSPShowViewController.m */,
+				DAEE61AA19C22F4500502267 /* HINSPRefHistoryTableViewController.h */,
+				DAEE61AB19C22F4500502267 /* HINSPRefHistoryTableViewController.m */,
+				DA43ABF619B4DC1600C9F2DC /* HINSPTableViewController.h */,
+				DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */,
+				DA8EB00B19B449AC005B1455 /* HINSPTableViewCell.h */,
+				DA8EB00C19B449AC005B1455 /* HINSPTableViewCell.m */,
 			);
 			name = HeapInspector;
 			path = ../../HeapInspector;
@@ -335,23 +335,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAFD8F9419B4556B0050E722 /* RMClassDumpTableViewController.m in Sources */,
-				DABCA50F19A531E200331B1B /* RMDebugWindow.m in Sources */,
-				DAA1DD6819B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */,
+				DAFD8F9419B4556B0050E722 /* HINSPClassDumpTableViewController.m in Sources */,
+				DABCA50F19A531E200331B1B /* HINSPDebugWindow.m in Sources */,
+				DAA1DD6819B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */,
 				DABCA51719A5339300331B1B /* RMRootViewController.m in Sources */,
 				DA29C54A19A530C400FFF7D5 /* main.m in Sources */,
-				DAA1DD6C19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */,
-				DAEE61AC19C22F4500502267 /* RMRefHistoryTableViewController.m in Sources */,
+				DAA1DD6C19B12BD900BC5DAD /* HINSPResponderChainViewController.m in Sources */,
+				DAEE61AC19C22F4500502267 /* HINSPRefHistoryTableViewController.m in Sources */,
 				DABCA50B19A531E200331B1B /* NSObject+HeapInspector.m in Sources */,
-				DAA1DD7219B12FA600BC5DAD /* RMShowViewController.m in Sources */,
-				DA43ABF819B4DC1600C9F2DC /* RMTableViewController.m in Sources */,
+				DAA1DD7219B12FA600BC5DAD /* HINSPShowViewController.m in Sources */,
+				DA43ABF819B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */,
 				DABCA51B19A533B400331B1B /* RMDetailViewController.m in Sources */,
-				DA8EB00D19B449AC005B1455 /* RMTableViewCell.m in Sources */,
-				DA1CC57819A7B939007F11F1 /* RMHeapStackInspector.m in Sources */,
-				DABCA50D19A531E200331B1B /* RMDebug.m in Sources */,
+				DA8EB00D19B449AC005B1455 /* HINSPTableViewCell.m in Sources */,
+				DA1CC57819A7B939007F11F1 /* HINSPHeapStackInspector.m in Sources */,
+				DABCA50D19A531E200331B1B /* HINSPDebug.m in Sources */,
 				DA29C54E19A530C400FFF7D5 /* RMOAppDelegate.m in Sources */,
-				DAF2557919A910ED00CCDD6A /* RMHeapStackTableViewController.m in Sources */,
-				DABCA51319A531E200331B1B /* RMRecordButton.m in Sources */,
+				DAF2557919A910ED00CCDD6A /* HINSPHeapStackTableViewController.m in Sources */,
+				DABCA51319A531E200331B1B /* HINSPRecordButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,16 +359,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DABCA51019A531E200331B1B /* RMDebugWindow.m in Sources */,
+				DABCA51019A531E200331B1B /* HINSPDebugWindow.m in Sources */,
 				DABCA51819A5339300331B1B /* RMRootViewController.m in Sources */,
-				DAA1DD6919B1281800BC5DAD /* RMHeapStackDetailTableViewController.m in Sources */,
-				DABCA51419A531E200331B1B /* RMRecordButton.m in Sources */,
-				DA43ABF919B4DC1600C9F2DC /* RMTableViewController.m in Sources */,
-				DAA1DD7319B12FA600BC5DAD /* RMShowViewController.m in Sources */,
-				DAA1DD6D19B12BD900BC5DAD /* RMResponderChainViewController.m in Sources */,
-				DA1CC57919A7B939007F11F1 /* RMHeapStackInspector.m in Sources */,
+				DAA1DD6919B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */,
+				DABCA51419A531E200331B1B /* HINSPRecordButton.m in Sources */,
+				DA43ABF919B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */,
+				DAA1DD7319B12FA600BC5DAD /* HINSPShowViewController.m in Sources */,
+				DAA1DD6D19B12BD900BC5DAD /* HINSPResponderChainViewController.m in Sources */,
+				DA1CC57919A7B939007F11F1 /* HINSPHeapStackInspector.m in Sources */,
 				DA29C56319A530C400FFF7D5 /* HeapInspectorExampleTests.m in Sources */,
-				DABCA50E19A531E200331B1B /* RMDebug.m in Sources */,
+				DABCA50E19A531E200331B1B /* HINSPDebug.m in Sources */,
 				DABCA51C19A533B400331B1B /* RMDetailViewController.m in Sources */,
 				DABCA50C19A531E200331B1B /* NSObject+HeapInspector.m in Sources */,
 			);

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMShowViewController : UIViewController
+@interface HINSPShowViewController : UIViewController
 
 @property (nonatomic) BOOL shouldShowEditButton; // Default is YES
 

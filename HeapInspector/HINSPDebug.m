@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMDebug.h"
-#import "RMDebugWindow.h"
+#import "HINSPDebug.h"
+#import "HINSPDebugWindow.h"
 #import "NSObject+HeapInspector.h"
 #import <objc/objc.h>
 #import <objc/runtime.h>
-#import "RMHeapStackInspector.h"
-#import "RMHeapStackTableViewController.h"
+#import "HINSPHeapStackInspector.h"
+#import "HINSPHeapStackTableViewController.h"
 
 
-@implementation RMDebug
+@implementation HINSPDebug
 {
-    RMDebugWindow *_window;
+    HINSPDebugWindow *_window;
     NSString *_classPrefix;
     UIViewController *_rootViewController;
 }
@@ -29,9 +29,9 @@
     self = [super init];
     if (self) {
         _classPrefix = classPrefix;
-        [RMHeapStackInspector setClassPrefix:classPrefix];
+        [HINSPHeapStackInspector setClassPrefix:classPrefix];
         CGRect rect = [UIScreen mainScreen].bounds;
-        RMDebugWindow *window = [[RMDebugWindow alloc] initWithFrame:rect];
+        HINSPDebugWindow *window = [[HINSPDebugWindow alloc] initWithFrame:rect];
         [window setHidden:NO];
       //  window.windowLevel = UIWindowLevelAlert - 1; // Show appear under any alerts
         window.windowLevel = UIWindowLevelStatusBar + 50;
@@ -60,7 +60,7 @@
 
 - (void)showInfoLabel
 {
-    NSUInteger count = [[RMHeapStackInspector recordedHeapStack] count];
+    NSUInteger count = [[HINSPHeapStackInspector recordedHeapStack] count];
     NSString *text = [NSString stringWithFormat:@"Objects alive: %lu",
                       (unsigned long)count];
     _window.infoLabel.text = text;
@@ -80,25 +80,25 @@
 
 - (void)tappedActiveHeapButton:(id)sender
 {
-    if ([[RMHeapStackInspector heapStack] count] > 0) {
-        NSArray *stack = [[RMHeapStackInspector heapStack] allObjects];
-        RMHeapStackTableViewController *controller = [self heapStackControllerWithHeapStack:stack];
+    if ([[HINSPHeapStackInspector heapStack] count] > 0) {
+        NSArray *stack = [[HINSPHeapStackInspector heapStack] allObjects];
+        HINSPHeapStackTableViewController *controller = [self heapStackControllerWithHeapStack:stack];
         controller.title = @"Heap";
     }
 }
 
 - (void)tappedRecordedHeapButton:(id)sender
 {
-    if ([[RMHeapStackInspector recordedHeapStack] count] > 0) {
-        NSArray *stack = [[RMHeapStackInspector recordedHeapStack] allObjects];
-        RMHeapStackTableViewController *controller = [self heapStackControllerWithHeapStack:stack];
+    if ([[HINSPHeapStackInspector recordedHeapStack] count] > 0) {
+        NSArray *stack = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
+        HINSPHeapStackTableViewController *controller = [self heapStackControllerWithHeapStack:stack];
         controller.title = @"Recorded Heap";
     }
 }
 
-- (RMHeapStackTableViewController *)heapStackControllerWithHeapStack:(NSArray *)stack
+- (HINSPHeapStackTableViewController *)heapStackControllerWithHeapStack:(NSArray *)stack
 {
-    RMHeapStackTableViewController *tv = [[RMHeapStackTableViewController alloc] init];
+    HINSPHeapStackTableViewController *tv = [[HINSPHeapStackTableViewController alloc] init];
     tv.dataSource = stack;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tv];
     [_rootViewController presentViewController:navController animated:YES completion:nil];
@@ -113,15 +113,15 @@
     } else {
         [self resetInfoLabel];
         [NSObject beginSnapshotWithClassPrefix:_classPrefix];
-        [RMHeapStackInspector performHeapShot];
+        [HINSPHeapStackInspector performHeapShot];
     }
 }
 
 + (void)startWithClassPrefix:(NSString*)classPrefix {
     static dispatch_once_t onceToken;
-    static RMDebug *twDebug = nil;
+    static HINSPDebug *twDebug = nil;
     dispatch_once(&onceToken, ^{
-        twDebug = [[RMDebug alloc] initWithClassPrefix:classPrefix];
+        twDebug = [[HINSPDebug alloc] initWithClassPrefix:classPrefix];
     });
 }
 

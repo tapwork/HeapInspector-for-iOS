@@ -12,7 +12,7 @@
 
 typedef void (^RMHeapEnumeratorBlock)(__unsafe_unretained id object, __unsafe_unretained Class actualClass);
 
-@interface RMHeapStackInspector : NSObject
+@interface HINSPHeapStackInspector : NSObject
 
 + (void)performHeapShot;
 + (void)setClassPrefix:(NSString *)classPrefix;

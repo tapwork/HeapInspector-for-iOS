@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMShowViewController.h"
+#import "HINSPShowViewController.h"
 
 
-@interface RMShowViewController ()
+@interface HINSPShowViewController ()
 
 @end
 
 
-@implementation RMShowViewController
+@implementation HINSPShowViewController
 {
     id _objectToInspect;
     UITextView *_textView;

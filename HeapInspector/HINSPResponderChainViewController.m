@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMResponderChainViewController.h"
-#import "RMHeapStackDetailTableViewController.h"
-#import "RMTableViewCell.h"
+#import "HINSPResponderChainViewController.h"
+#import "HINSPHeapStackDetailTableViewController.h"
+#import "HINSPTableViewCell.h"
 
-@interface RMResponderChainViewController ()
+@interface HINSPResponderChainViewController ()
 
 @end
 
-@implementation RMResponderChainViewController
+@implementation HINSPResponderChainViewController
 
 #pragma mark - Init
 
@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[RMTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
+    [self.tableView registerClass:[HINSPTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
     self.tableView.tableHeaderView = nil;
 }
 
@@ -67,7 +67,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id object = self.dataSource[indexPath.row];
-    RMHeapStackDetailTableViewController *detailVC = [[RMHeapStackDetailTableViewController alloc]
+    HINSPHeapStackDetailTableViewController *detailVC = [[HINSPHeapStackDetailTableViewController alloc]
                                                       initWithObject:object];
     [self.navigationController pushViewController:detailVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

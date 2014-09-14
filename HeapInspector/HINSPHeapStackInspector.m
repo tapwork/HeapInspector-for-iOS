@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMHeapStackInspector.h"
+#import "HINSPHeapStackInspector.h"
 #import <malloc/malloc.h>
 #import <mach/mach.h>
 #import <objc/runtime.h>
@@ -20,7 +20,7 @@ typedef struct {
     Class isa;
 } rm_maybe_object_t;
 
-@implementation RMHeapStackInspector
+@implementation HINSPHeapStackInspector
 
 static kern_return_t memory_reader(task_t task, vm_address_t remote_address, vm_size_t size, void **local_memory)
 {
@@ -139,7 +139,7 @@ static inline bool canRecordObject(const char* className)
  //   CFMutableSetRef livingObjects = CFSetCreateMutable(NULL, 0, NULL);
     NSMutableSet *objects = [NSMutableSet set];
     // Enumerate all objects on the heap to build the counts of instances for each class.
-    [RMHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object,
+    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object,
                                                            __unsafe_unretained Class actualClass) {
         // We cannot store the object itself - when bridging afterwards we would call
         // retain later on the objects. We want to avoid any retain calls.
@@ -166,7 +166,7 @@ static inline bool canRecordObject(const char* className)
 + (id)objectForPointer:(NSString *)pointer
 {
     id __block foundObject = nil;
-    [RMHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object,
+    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object,
                                                            __unsafe_unretained Class actualClass) {
        
         if ([pointer isEqualToString:[NSString stringWithFormat:@"%p",object]]) {
