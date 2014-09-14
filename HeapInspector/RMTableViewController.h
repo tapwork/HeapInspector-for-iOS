@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, readonly) NSArray *dataSourceUnfiltered;
-@property (nonatomic, strong) id inspectingObject;
+@property (nonatomic, weak) id inspectingObject; // don't want to retain it again ;-)
 
 - (instancetype)initWithObject:(id)object;
 - (instancetype)initWithPointerString:(NSString *)pointer;
