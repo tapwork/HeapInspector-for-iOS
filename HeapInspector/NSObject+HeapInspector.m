@@ -20,12 +20,12 @@ static const char *recordClassPrefix;
 
 static inline bool canRecordObject(Class cls);
 
-//static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
-//{
-//    Method origMethod = class_getInstanceMethod(c, orig);
-//    Method newMethod = class_getInstanceMethod(c, new);
-//    method_exchangeImplementations(origMethod, newMethod);
-//}
+static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
+{
+    Method origMethod = class_getInstanceMethod(c, orig);
+    Method newMethod = class_getInstanceMethod(c, new);
+    method_exchangeImplementations(origMethod, newMethod);
+}
 
 static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
 {
@@ -288,6 +288,7 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 {
     swizzleActive = true;
     SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
+    SwizzleInstanceMethod([self class], NSSelectorFromString(@"dealloc"), @selector(tw_dealloc));
 }
 
 + (id)tw_alloc
@@ -303,6 +304,17 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     }
 
     return obj;
+}
+
+- (void)tw_dealloc
+{
+    bool canRec = canRecordObject([self class]);
+    if (canRec) {
+        if (registerBacktraceForObject(self, "dealloc")) {
+            printf("dealloc %s\n",object_getClassName(self));
+        }
+    }
+    [self tw_dealloc];
 }
 
 - (void)addRunLoopObserver
