@@ -59,11 +59,9 @@ static void range_callback(task_t task, void *context, unsigned type, vm_range_t
 
 static inline bool canRecordObject(const char* className)
 {
-    const char *prefix = recordClassPrefix;
     bool canRecord = true;
-    size_t prefixSize = sizeof(prefix);
-    if (prefix && sizeof(className) >= prefixSize) {
-        canRecord = (strncmp(className, prefix, prefixSize > 0) == 0);
+    if (recordClassPrefix && className) {
+        canRecord = (strncmp(className, recordClassPrefix, strlen(recordClassPrefix)) == 0);
     }
     
     if (strcasecmp(className, "NSAutoreleasePool") == 0) {

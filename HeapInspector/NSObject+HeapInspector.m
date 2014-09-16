@@ -265,9 +265,8 @@ static inline bool canRecordObject(Class cls)
 {
     bool canRecord = true;
     const char *name = class_getName(cls);
-    size_t prefixSize = sizeof(recordClassPrefix);
-    if (recordClassPrefix && sizeof(name) >= prefixSize) {
-        canRecord = (strncmp(name, recordClassPrefix, prefixSize > 0) == 0);
+    if (recordClassPrefix && name) {
+        canRecord = (strncmp(name, recordClassPrefix, strlen(recordClassPrefix)) == 0);
     }
     
     if (isRecording == false) {
