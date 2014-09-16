@@ -43,7 +43,7 @@
                                                             forIndexPath:indexPath];
     
     NSDictionary *item = self.dataSource[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%d %@",indexPath.row, item[@"type"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld %@",(long)indexPath.row, item[@"type"]];
     cell.detailTextLabel.text = item[@"last_trace"];
     
     return cell;
