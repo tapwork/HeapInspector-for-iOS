@@ -12,6 +12,7 @@
 #import "HINSPTableViewCell.h"
 #import "HINSPClassDumpTableViewController.h"
 #import "HINSPRefHistoryTableViewController.h"
+#import "NSObject+HeapInspector.h"
 
 static NSString *const kCellTitleShow = @"Show";
 static NSString *const kCellTitleResponderChain = @"Responder Chain";
@@ -127,11 +128,15 @@ static const CGFloat kHeaderViewHeight = 100.0f;
              [dataSource addObject:kCellTitleRecursiveDesc];
         }
     }
-    [dataSource addObject:kCellTitleReferenceHistory];
+
+    NSArray *refHistory = [NSObject referenceHistoryForObject:self.inspectingObject];
+    if ([refHistory count]) {
+       [dataSource addObject:kCellTitleReferenceHistory];
+    }
+    
     [dataSource addObject:kCellTitleMethods];
     [dataSource addObject:kCellTitleProperties];
     [dataSource addObject:kCellTitleIvars];
-   
     
     self.dataSource = dataSource;
     [self.tableView reloadData];
