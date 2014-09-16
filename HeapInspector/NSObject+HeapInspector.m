@@ -168,6 +168,21 @@ id objc_storeStrong(id *object, id value) {
     return value;
 }
 
+id objc_retainBlock(id value) {
+    if (value) {
+        const char *className = object_getClassName(value);
+        bool canRec = canRecordObject(object_getClass(value));
+        if (canRec) {
+            printf("retainBlock %s <%p>\n",className, value);
+            registerBacktraceForObject(value, "retainBlock");
+        }
+    }
+    SEL sel = sel_getUid("copy");
+    objc_msgSend(value, sel);
+    
+    return value;
+}
+
 id objc_release(id value) {
     if (value) {
         const char *className = object_getClassName(value);
