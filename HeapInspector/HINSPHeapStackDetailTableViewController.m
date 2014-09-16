@@ -31,6 +31,8 @@ static const CGFloat kHeaderViewHeight = 100.0f;
 @implementation HINSPHeapStackDetailTableViewController
 {
     UITextView *_headerTextView;
+    UIFont *_boldFont;
+    UIFont *_regFont;
 }
 
 #pragma mark - View Life Cycle
@@ -40,6 +42,8 @@ static const CGFloat kHeaderViewHeight = 100.0f;
     [super viewDidLoad];
 
     self.title = @"Object Inspector";
+    _boldFont = [UIFont boldSystemFontOfSize:12];
+    _regFont = [UIFont systemFontOfSize:12];
     
     [self setupHeaderView];
     [self prepareDataSource];
@@ -152,6 +156,11 @@ static const CGFloat kHeaderViewHeight = 100.0f;
     NSString *item = self.dataSource[indexPath.row];
     cell.textLabel.text = item;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if ([item isEqualToString:kCellTitleReferenceHistory]) {
+        cell.textLabel.font = _boldFont;
+    } else {
+        cell.textLabel.font = _regFont;
+    }
     
     return cell;
 }
