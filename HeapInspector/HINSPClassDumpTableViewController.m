@@ -302,7 +302,7 @@
     return canPerform;
 }
 
-- (id)performKVO:(NSString *)selectorStr forObject:(id)object
+- (instancetype)performKVO:(NSString *)selectorStr forObject:(id)object
 {
     if ((_type == RMClassDumpProperties ||
          _type == RMClassDumpIvar) &&
