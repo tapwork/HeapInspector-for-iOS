@@ -102,20 +102,22 @@ static CFArrayRef getBacktrace() {
 }
 
 static void registerBacktraceForObject(void *obj, char *type) {
-    CFArrayRef stack = getBacktrace();
+    CFArrayRef backtrace = getBacktrace();
     OSSpinLockLock(&backtraceDictLock);
     
-    void *key = (__bridge void *)obj;
-    if (key &&
-        stack &&
-        CFArrayGetCount(stack) > 0) {
+    char key[255];
+    sprintf(key,"%p",obj);
+    CFStringRef cfKey = getCFString(key);
+    if (cfKey &&
+        backtrace &&
+        CFArrayGetCount(backtrace) > 0) {
         if (!backtraceDict) {
             backtraceDict = CFDictionaryCreateMutable(NULL,
                                                       0,
                                                       &kCFTypeDictionaryKeyCallBacks,
                                                       &kCFTypeDictionaryValueCallBacks);
         }
-        CFMutableArrayRef history = (CFMutableArrayRef)CFDictionaryGetValue(backtraceDict, key);
+        CFMutableArrayRef history = (CFMutableArrayRef)CFDictionaryGetValue(backtraceDict, cfKey);
         if (!history) {
             history = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
         }
@@ -124,10 +126,10 @@ static void registerBacktraceForObject(void *obj, char *type) {
                                                                 &kCFTypeDictionaryKeyCallBacks,
                                                                 &kCFTypeDictionaryValueCallBacks);
         CFDictionarySetValue(item, getCFString("type"), getCFString(type));
-        CFDictionarySetValue(item, getCFString("last_trace"), CFArrayGetValueAtIndex(stack, 0));
-        CFDictionarySetValue(item, getCFString("all_traces"), stack);
+        CFDictionarySetValue(item, getCFString("last_trace"), CFArrayGetValueAtIndex(backtrace, 0));
+        CFDictionarySetValue(item, getCFString("all_traces"), backtrace);
         CFArrayAppendValue(history, item);
-        CFDictionarySetValue(backtraceDict, key, history);
+        CFDictionarySetValue(backtraceDict, cfKey, history);
     }
     OSSpinLockUnlock(&backtraceDictLock);
 }
