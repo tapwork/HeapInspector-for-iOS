@@ -19,7 +19,7 @@
 {
     CAShapeLayer *__weak _shapeLayer;
 }
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
