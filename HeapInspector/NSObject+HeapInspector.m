@@ -50,16 +50,20 @@ static CFStringRef cleanStackValue(char *stack) {
     }
     
     if (CFArrayGetCount(parts) > 1) {
-        CFStringRef stack = (CFStringRef)CFArrayGetValueAtIndex(parts, 1);
-        CFMutableStringRef val = CFStringCreateMutableCopy(NULL, 255, sep);
-        CFStringAppend(val, stack);
-        CFStringFindAndReplace(val,
-                               getCFString("tw_alloc"),
-                               getCFString("alloc"),
-                               CFRangeMake(0, CFStringGetLength(val)),
-                               kCFCompareNonliteral);
-        
-        return val;
+        CFStringRef preVal = (CFStringRef)CFArrayGetValueAtIndex(parts, 1);
+        CFArrayRef parts2 = CFStringCreateArrayBySeparatingStrings(NULL, preVal, getCFString(" + "));
+        if (CFArrayGetCount(parts2) > 0) {
+            CFStringRef stackVal = (CFStringRef)CFArrayGetValueAtIndex(parts2, 0);
+            CFMutableStringRef val = CFStringCreateMutableCopy(NULL, 255, sep);
+            CFStringAppend(val, stackVal);
+            CFStringFindAndReplace(val,
+                                   getCFString("tw_alloc"),
+                                   getCFString("alloc"),
+                                   CFRangeMake(0, CFStringGetLength(val)),
+                                   kCFCompareNonliteral);
+            
+            return val;
+        }
     }
     
     return NULL;
@@ -85,6 +89,7 @@ static CFArrayRef getBacktrace() {
     bt_size = backtrace(bt, 1024);
     bt_syms = backtrace_symbols(bt, bt_size);
     for (int i = 0; i < bt_size; i++) {
+        // TODO: would be cool to have the line number here
         CFStringRef cString = cleanStackValue(bt_syms[i]);
         if (cString) {
             if (canRegisterBacktrace(bt_syms[i]) == true) {
