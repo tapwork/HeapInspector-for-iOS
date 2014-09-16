@@ -353,7 +353,10 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 + (NSArray *)referenceHistoryForObject:(id)obj
 {
-    CFArrayRef cfHistory = CFDictionaryGetValue(backtraceDict, (__bridge const void *)(obj));
+    char key[255];
+    sprintf(key,"%p",(void *)obj);
+    CFStringRef cfKey = getCFString(key);
+    CFArrayRef cfHistory = CFDictionaryGetValue(backtraceDict, cfKey);
     NSArray *history = [(NSArray *)cfHistory copy];
     
     return history;
