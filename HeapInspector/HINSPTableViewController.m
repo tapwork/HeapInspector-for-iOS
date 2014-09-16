@@ -17,7 +17,8 @@
 {
     NSArray *_originalDataSource;
 }
-- (id)init
+
+- (instancetype)init
 {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
