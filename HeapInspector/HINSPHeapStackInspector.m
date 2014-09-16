@@ -134,24 +134,16 @@ static inline bool canRecordObject(const char* className)
 
 + (NSSet *)heapStack
 {
- //   CFMutableSetRef livingObjects = CFSetCreateMutable(NULL, 0, NULL);
     NSMutableSet *objects = [NSMutableSet set];
-    // Enumerate all objects on the heap to build the counts of instances for each class.
     [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object,
                                                            __unsafe_unretained Class actualClass) {
-        // We cannot store the object itself - when bridging afterwards we would call
-        // retain later on the objects. We want to avoid any retain calls.
+        // We cannot store the object itself -  We want to avoid any retain calls.
         // We store the class name + pointer
-//        CFStringRef newName = CFStringCreateWithFormat(NULL, NULL, CFSTR("%s: %p"),
-//                                           object_getClassName(object),
-//                                           object);
-//        CFSetAddValue(livingObjects, newName);
         NSString *string = [NSString stringWithFormat:@"%s: %p",
                             object_getClassName(object),
                             object];
         [objects addObject:string];
     }];
- //   NSSet *objects = (__bridge NSSet *)(livingObjects);
     
     return objects;
 }
