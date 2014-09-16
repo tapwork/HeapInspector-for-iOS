@@ -101,9 +101,10 @@ static CFArrayRef getBacktrace() {
     return stack;
 }
 
-static void registerBacktraceForObject(void *obj, char *type) {
+static bool registerBacktraceForObject(void *obj, char *type) {
     CFArrayRef backtrace = getBacktrace();
     OSSpinLockLock(&backtraceDictLock);
+    bool success = false;
     
     char key[255];
     sprintf(key,"%p",obj);
@@ -130,19 +131,22 @@ static void registerBacktraceForObject(void *obj, char *type) {
         CFDictionarySetValue(item, getCFString("all_traces"), backtrace);
         CFArrayAppendValue(history, item);
         CFDictionarySetValue(backtraceDict, cfKey, history);
+        success = true;
     }
     OSSpinLockUnlock(&backtraceDictLock);
+    
+    return success;
 }
 
 // SEE more http://clang.llvm.org/docs/AutomaticReferenceCounting.html
 // or http://clang.llvm.org/doxygen/structclang_1_1CodeGen_1_1ARCEntrypoints.html
 id objc_retain(id value) {
     if (value) {
-        const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
         if (canRec) {
-            printf("retain %s <%p>\n",className, value);
-            registerBacktraceForObject(value, "retain");
+            if (registerBacktraceForObject(value, "retain")) {
+                printf("retain %s <%p>\n",object_getClassName(value), value);
+            }
         }
     }
    
@@ -154,11 +158,11 @@ id objc_retain(id value) {
 
 id objc_storeStrong(id *object, id value) {
     if (value) {
-        const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
         if (canRec) {
-            printf("storeStrong %s <%p>\n",className, value);
-            registerBacktraceForObject(value, "storeStrong");
+            if (registerBacktraceForObject(value, "storeStrong")) {
+                printf("storeStrong %s <%p>\n",object_getClassName(value), value);
+            }
         }
     }
     value = [value retain];
@@ -170,11 +174,11 @@ id objc_storeStrong(id *object, id value) {
 
 id objc_retainBlock(id value) {
     if (value) {
-        const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
         if (canRec) {
-            printf("retainBlock %s <%p>\n",className, value);
-            registerBacktraceForObject(value, "retainBlock");
+            if (registerBacktraceForObject(value, "retainBlock")) {
+                printf("retainBlock %s <%p>\n",object_getClassName(value), value);
+            }
         }
     }
     SEL sel = sel_getUid("copy");
@@ -185,11 +189,11 @@ id objc_retainBlock(id value) {
 
 id objc_release(id value) {
     if (value) {
-        const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
         if (canRec) {
-            printf("release %s <%p>\n",className, value);
-            registerBacktraceForObject(value, "release");
+            if (registerBacktraceForObject(value, "release")) {
+                printf("release %s <%p>\n",object_getClassName(value), value);
+            }
         }
     }
     
@@ -202,11 +206,11 @@ id objc_release(id value) {
 
 id objc_retainAutorelease(id value) {
     if (value) {
-        const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
         if (canRec) {
-            printf("retainAutorelease %s <%p>\n",className, value);
-            registerBacktraceForObject(value, "retainAutorelease");
+            if (registerBacktraceForObject(value, "retainAutorelease")) {
+                printf("retainAutorelease %s <%p>\n",object_getClassName(value), value);
+            }
         }
     }
     
@@ -220,11 +224,11 @@ id objc_retainAutorelease(id value) {
 
 id objc_autorelease(id value) {
     if (value) {
-        const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
         if (canRec) {
-            printf("autorelease %s <%p>\n",className, value);
-            registerBacktraceForObject(value, "autorelease");
+            if (registerBacktraceForObject(value, "autorelease")) {
+                printf("autorelease %s <%p>\n",object_getClassName(value), value);
+            }
         }
     }
     
@@ -236,11 +240,11 @@ id objc_autorelease(id value) {
 
 id objc_autoreleaseReturnValue(id value) {
     if (value) {
-        const char *className = object_getClassName(value);
         bool canRec = canRecordObject(object_getClass(value));
         if (canRec) {
-            printf("autoreleaseReturnValue %s <%p>\n",className, value);
-            registerBacktraceForObject(value, "autoreleaseReturnValue");
+            if (registerBacktraceForObject(value, "autoreleaseReturnValue")) {
+                printf("autoreleaseReturnValue %s <%p>\n",object_getClassName(value), value);
+            }
         }
     }
     
@@ -249,8 +253,6 @@ id objc_autoreleaseReturnValue(id value) {
     
     return value;
 }
-
-
 
 static inline void cleanup()
 {
@@ -294,13 +296,11 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 + (id)tw_alloc
 {
     bool canRec = canRecordObject([self class]);
-    if (canRec) {
-        const char *className = class_getName(self);
-        printf("alloc %s\n",className);
-    }
     id obj = [[self class] tw_alloc];
     if (canRec) {
-        registerBacktraceForObject(obj, "alloc");
+        if (registerBacktraceForObject(obj, "alloc")) {
+            printf("alloc %s\n",class_getName(self));
+        }
     }
 
     return obj;
