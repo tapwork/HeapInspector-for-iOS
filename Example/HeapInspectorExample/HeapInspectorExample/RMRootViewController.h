@@ -14,8 +14,5 @@
 // so the ViewController won't be deallocated after popping back
 @property (nonatomic) UIViewController *strongDetailViewController;
 
-// The weak reference will NOT retain the detailViewController,
-// in that case the ViewController will be deallocated after popping back
-@property (nonatomic, weak) UIViewController *weakDetailViewController;
 
 @end

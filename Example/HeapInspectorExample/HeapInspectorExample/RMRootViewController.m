@@ -15,14 +15,15 @@
 
 @implementation RMRootViewController
 {
-    NSMutableArray *_leakingObjectsContainer;
+    NSMutableArray *_pseudoLeakingObjectsContainer;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _leakingObjectsContainer = [@[] mutableCopy];
+    _pseudoLeakingObjectsContainer = [@[] mutableCopy];
     
     CGSize buttonSize = CGSizeMake(200, 50);
     
@@ -70,7 +71,6 @@
 - (void)buttonWeakTapped:(id)sender
 {
     RMDetailViewController *details = [[RMDetailViewController alloc] init];
-    self.weakDetailViewController = details;
     [self.navigationController pushViewController:details animated:YES];
 }
 
@@ -78,7 +78,7 @@
 {
     RMDetailViewController *details = [[RMDetailViewController alloc] init];
     details.isStrongRetained = YES;
-    [_leakingObjectsContainer addObject:details];
+    [_pseudoLeakingObjectsContainer addObject:details];
     [self.navigationController pushViewController:details animated:YES];
 }
 
