@@ -97,7 +97,7 @@
     
     // Configure the cell...
     NSString *value = self.dataSource[indexPath.row];
-    cell.textLabel.text = value;
+    cell.detailTextLabel.text = value;
     
     return cell;
 }
