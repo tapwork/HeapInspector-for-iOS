@@ -33,7 +33,6 @@
         CGRect rect = [UIScreen mainScreen].bounds;
         HINSPDebugWindow *window = [[HINSPDebugWindow alloc] initWithFrame:rect];
         [window setHidden:NO];
-      //  window.windowLevel = UIWindowLevelAlert - 1; // Show appear under any alerts
         window.windowLevel = UIWindowLevelStatusBar + 50;
         [window.recordButton addTarget:self
                                 action:@selector(recordButtonTapped:)
@@ -109,7 +108,7 @@
 
 - (void)recordButtonTapped:(id)sender
 {
-    if ([NSObject isSnapshotRecording]) {
+    if (!_window.recordButton.isRecording) {
         [self showInfoLabel];
         [NSObject endSnapshot];
     } else {
