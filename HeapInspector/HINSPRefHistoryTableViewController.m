@@ -48,7 +48,7 @@
 
     NSPredicate *predicate0 = [NSPredicate predicateWithFormat:@"SELF == 'alloc'"];
     NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == 'retain'"];
-    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF == 'strong'"];
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF == 'storeStrong'"];
     NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"SELF == 'release'"];
     NSArray *allocs = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate0];
     NSArray *retains = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate1];
@@ -60,7 +60,9 @@
     label.font = [UIFont systemFontOfSize:10];
     label.numberOfLines = 1;
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = [NSString stringWithFormat:@"Alloc: %lu  Retain: %lu  Strong: %lu  Release: %lu",
+    NSInteger count = [allocs count] + [retains count] + [strongs count] - [releases count];
+    label.text = [NSString stringWithFormat:@"Retain Count: %ld   Alloc: %lu  Retain: %lu  Strong: %lu  Release: %lu",
+                  (long)count,
                   (unsigned long)[allocs count],
                   (unsigned long)[retains count],
                   (unsigned long)[strongs count],
