@@ -31,7 +31,7 @@
                                               initWithTarget:self
                                               action:@selector(panGestureAction:)];
         _dragView = [[UIView alloc] init];
-        _dragView.backgroundColor = [UIColor darkTextColor];
+        _dragView.backgroundColor = [UIColor darkGrayColor];
         [_dragView addGestureRecognizer:pangesture];
         [_contentView addSubview:_dragView];
         
