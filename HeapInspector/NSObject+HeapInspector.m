@@ -224,7 +224,9 @@ static inline void recordAndRegisterIfPossible(id obj, char *name)
 {
     if (canRecordObject([obj class])) {
         if (registerBacktraceForObject(obj, name)) {
+#if TARGET_IPHONE_SIMULATOR
             printf("%s %s\n",name, object_getClassName(obj));
+#endif
         }
     }
 }
