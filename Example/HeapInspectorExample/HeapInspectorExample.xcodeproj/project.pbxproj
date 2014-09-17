@@ -31,7 +31,7 @@
 		DAA1DD7219B12FA600BC5DAD /* HINSPShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD7119B12FA600BC5DAD /* HINSPShowViewController.m */; };
 		DAA1DD7319B12FA600BC5DAD /* HINSPShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD7119B12FA600BC5DAD /* HINSPShowViewController.m */; };
 		DABCA50B19A531E200331B1B /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DABCA50C19A531E200331B1B /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */; };
+		DABCA50C19A531E200331B1B /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50219A531E200331B1B /* NSObject+HeapInspector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DABCA50D19A531E200331B1B /* HINSPDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50419A531E200331B1B /* HINSPDebug.m */; };
 		DABCA50E19A531E200331B1B /* HINSPDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50419A531E200331B1B /* HINSPDebug.m */; };
 		DABCA50F19A531E200331B1B /* HINSPDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50619A531E200331B1B /* HINSPDebugWindow.m */; };
