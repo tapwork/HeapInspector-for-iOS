@@ -372,6 +372,11 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     isRecording = false;
 }
 
++ (BOOL)isSnapshotRecording
+{
+    return isRecording;
+}
+
 + (void)resumeSnapshot
 {
     isRecording = true;

@@ -12,6 +12,7 @@
 + (void)beginSnapshot;
 + (void)beginSnapshotWithClassPrefix:(NSString*)prefix;
 + (void)endSnapshot;
++ (BOOL)isSnapshotRecording;
 + (void)resumeSnapshot;
 + (NSArray *)referenceHistoryForObject:(id)obj;
 

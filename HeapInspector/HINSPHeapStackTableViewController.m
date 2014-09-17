@@ -9,12 +9,16 @@
 #import "HINSPHeapStackTableViewController.h"
 #import "HINSPHeapStackDetailTableViewController.h"
 #import "HINSPTableViewCell.h"
+#import "NSObject+HeapInspector.h"
 
 @interface HINSPHeapStackTableViewController ()
 
 @end
 
 @implementation HINSPHeapStackTableViewController
+{
+     BOOL _wasRecording;
+}
 
 #pragma mark - View Life Cycle
 
@@ -26,6 +30,25 @@
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(closeButton:)];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if ([NSObject isSnapshotRecording]) {
+        _wasRecording = YES;
+        [NSObject endSnapshot];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    if (_wasRecording) {
+        [NSObject resumeSnapshot];
+    }
 }
 
 #pragma mark - Actions
