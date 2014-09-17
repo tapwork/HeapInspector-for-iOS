@@ -108,7 +108,7 @@
 
 - (void)recordButtonTapped:(id)sender
 {
-    if (!_window.recordButton.isRecording) {
+    if ([NSObject isSnapshotRecording]) {
         [self showInfoLabel];
         [NSObject endSnapshot];
     } else {
