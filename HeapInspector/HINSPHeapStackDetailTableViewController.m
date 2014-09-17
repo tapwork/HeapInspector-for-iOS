@@ -122,6 +122,11 @@ static const CGFloat kHeaderViewHeight = 100.0f;
 {
     NSMutableArray *dataSource = [@[] mutableCopy];
     
+    NSArray *refHistory = [NSObject referenceHistoryForObject:self.inspectingObject];
+    if ([refHistory count]) {
+        [dataSource addObject:kCellTitleReferenceHistory];
+    }
+    
     if ([self.inspectingObject isKindOfClass:[UIResponder class]]) {
         [dataSource addObject:kCellTitleResponderChain];
     }
@@ -131,11 +136,6 @@ static const CGFloat kHeaderViewHeight = 100.0f;
         if ([self.inspectingObject isKindOfClass:[UIView class]]) {
              [dataSource addObject:kCellTitleRecursiveDesc];
         }
-    }
-
-    NSArray *refHistory = [NSObject referenceHistoryForObject:self.inspectingObject];
-    if ([refHistory count]) {
-       [dataSource addObject:kCellTitleReferenceHistory];
     }
     
     [dataSource addObject:kCellTitleMethods];
