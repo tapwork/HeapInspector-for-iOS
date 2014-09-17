@@ -17,7 +17,7 @@ static OSSpinLock backtraceDictLock;
 static bool isRecording;
 static bool swizzleActive;
 static const char *recordClassPrefix;
-
+static inline void recordAndRegisterIfPossible(id obj, char *name);
 static inline bool canRecordObject(Class cls);
 
 static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
@@ -156,12 +156,7 @@ id objc_retain(id value) {
 
 id objc_storeStrong(id *object, id value) {
     if (value) {
-        bool canRec = canRecordObject(object_getClass(value));
-        if (canRec) {
-            if (registerBacktraceForObject(value, "storeStrong")) {
-                printf("storeStrong %s <%p>\n",object_getClassName(value), value);
-            }
-        }
+        recordAndRegisterIfPossible(value,"storeStrong");
     }
     value = [value retain];
     id oldValue = *object;
@@ -172,12 +167,7 @@ id objc_storeStrong(id *object, id value) {
 
 id objc_retainBlock(id value) {
     if (value) {
-        bool canRec = canRecordObject(object_getClass(value));
-        if (canRec) {
-            if (registerBacktraceForObject(value, "retainBlock")) {
-                printf("retainBlock %s <%p>\n",object_getClassName(value), value);
-            }
-        }
+        recordAndRegisterIfPossible(value,"retainBlock");
     }
     SEL sel = sel_getUid("copy");
     objc_msgSend(value, sel);
@@ -189,55 +179,17 @@ id objc_release(id value) {
     
     SEL sel = sel_getUid("release");
     objc_msgSend(value, sel);
-    // we could could even nil out (like weak) if retaincount is zero
-    
+ 
     return value;
 }
 
 id objc_retainAutorelease(id value) {
     if (value) {
-        bool canRec = canRecordObject(object_getClass(value));
-        if (canRec) {
-            if (registerBacktraceForObject(value, "retainAutorelease")) {
-                printf("retainAutorelease %s <%p>\n",object_getClassName(value), value);
-            }
-        }
+        recordAndRegisterIfPossible(value,"retainAutorelease");
     }
     
     SEL selRetain = sel_getUid("retain");
     objc_msgSend(value, selRetain);
-    SEL selAutorelease = sel_getUid("autorelease");
-    objc_msgSend(value, selAutorelease);
-    
-    return value;
-}
-
-id objc_autorelease(id value) {
-    if (value) {
-        bool canRec = canRecordObject(object_getClass(value));
-        if (canRec) {
-            if (registerBacktraceForObject(value, "autorelease")) {
-                printf("autorelease %s <%p>\n",object_getClassName(value), value);
-            }
-        }
-    }
-    
-    SEL selAutorelease = sel_getUid("autorelease");
-    objc_msgSend(value, selAutorelease);
-    
-    return value;
-}
-
-id objc_autoreleaseReturnValue(id value) {
-    if (value) {
-        bool canRec = canRecordObject(object_getClass(value));
-        if (canRec) {
-            if (registerBacktraceForObject(value, "autoreleaseReturnValue")) {
-                printf("autoreleaseReturnValue %s <%p>\n",object_getClassName(value), value);
-            }
-        }
-    }
-    
     SEL selAutorelease = sel_getUid("autorelease");
     objc_msgSend(value, selAutorelease);
     
@@ -266,6 +218,15 @@ static inline bool canRecordObject(Class cls)
     }
     
     return canRecord;
+}
+
+static inline void recordAndRegisterIfPossible(id obj, char *name)
+{
+    if (canRecordObject([obj class])) {
+        if (registerBacktraceForObject(obj, name)) {
+            printf("%s %s\n",name, object_getClassName(obj));
+        }
+    }
 }
 
 static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
@@ -306,34 +267,19 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 - (void)tw_dealloc
 {
-    bool canRec = canRecordObject([self class]);
-    if (canRec) {
-        if (registerBacktraceForObject(self, "dealloc")) {
-            printf("dealloc %s\n",object_getClassName(self));
-        }
-    }
+    recordAndRegisterIfPossible(self,"dealloc");
     [self tw_dealloc];
 }
 
 - (id)tw_retain
 {
-    bool canRec = canRecordObject([self class]);
-    if (canRec) {
-        if (registerBacktraceForObject(self, "retain")) {
-            printf("retain %s\n",object_getClassName(self));
-        }
-    }
+    recordAndRegisterIfPossible(self,"retain");
     return [self tw_retain];
 }
 
 - (oneway void)tw_release
 {
-    bool canRec = canRecordObject([self class]);
-    if (canRec) {
-        if (registerBacktraceForObject(self, "release")) {
-            printf("release %s\n",object_getClassName(self));
-        }
-    }
+    recordAndRegisterIfPossible(self,"release");
     [self tw_release];
 }
 
@@ -402,7 +348,6 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     return history;
 }
 
-
 @end
 
 
@@ -414,11 +359,13 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 - (id)tw_retain
 {
-    return [super retain];
+    recordAndRegisterIfPossible(self,"retain");
+    return [self tw_retain];
 }
 - (oneway void)tw_release
 {
-    [super release];
+    recordAndRegisterIfPossible(self,"release");
+    [self tw_release];
 }
 @end
 
@@ -426,11 +373,13 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 - (id)tw_retain
 {
-    return [super retain];
+    recordAndRegisterIfPossible(self,"retain");
+    return [self tw_retain];
 }
 - (oneway void)tw_release
 {
-    [super release];
+    recordAndRegisterIfPossible(self,"release");
+    [self tw_release];
 }
 @end
 
