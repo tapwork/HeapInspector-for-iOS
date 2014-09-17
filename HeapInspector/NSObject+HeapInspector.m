@@ -51,6 +51,7 @@ static CFStringRef cleanStackValue(char *stack) {
     
     if (CFArrayGetCount(parts) > 1) {
         CFStringRef preVal = (CFStringRef)CFArrayGetValueAtIndex(parts, 1);
+        // Removes the line number (which does not fit to the source file
         CFArrayRef parts2 = CFStringCreateArrayBySeparatingStrings(NULL, preVal, getCFString(" + "));
         if (CFArrayGetCount(parts2) > 0) {
             CFStringRef stackVal = (CFStringRef)CFArrayGetValueAtIndex(parts2, 0);
