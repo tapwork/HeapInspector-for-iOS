@@ -276,6 +276,7 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 @implementation NSObject (HeapInspector)
 
+
 + (void)swizzle
 {
     swizzleActive = true;
@@ -283,6 +284,11 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     SwizzleInstanceMethod([self class], NSSelectorFromString(@"dealloc"), @selector(tw_dealloc));
     SwizzleInstanceMethod([self class], NSSelectorFromString(@"retain"), @selector(tw_retain));
     SwizzleInstanceMethod([self class], NSSelectorFromString(@"release"), @selector(tw_release));
+    
+    SwizzleInstanceMethod([UIView class], NSSelectorFromString(@"retain"), @selector(tw_retain));
+    SwizzleInstanceMethod([UIView class], NSSelectorFromString(@"release"), @selector(tw_release));
+    SwizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"retain"), @selector(tw_retain));
+    SwizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"release"), @selector(tw_release));
 }
 
 + (id)tw_alloc
@@ -398,3 +404,30 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 
 @end
+
+
+
+@implementation UIView (HeapInspector)
+
+- (id)tw_retain
+{
+    return [super retain];
+}
+- (oneway void)tw_release
+{
+    [super release];
+}
+@end
+
+@implementation UIViewController (HeapInspector)
+
+- (id)tw_retain
+{
+    return [super retain];
+}
+- (oneway void)tw_release
+{
+    [super release];
+}
+@end
+
