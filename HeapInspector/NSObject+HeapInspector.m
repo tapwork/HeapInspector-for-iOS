@@ -147,15 +147,7 @@ static bool registerBacktraceForObject(void *obj, char *type) {
 // SEE more http://clang.llvm.org/docs/AutomaticReferenceCounting.html
 // or http://clang.llvm.org/doxygen/structclang_1_1CodeGen_1_1ARCEntrypoints.html
 id objc_retain(id value) {
-    if (value) {
-        bool canRec = canRecordObject(object_getClass(value));
-        if (canRec) {
-            if (registerBacktraceForObject(value, "retain")) {
-                printf("retain %s <%p>\n",object_getClassName(value), value);
-            }
-        }
-    }
-   
+    
     SEL sel = sel_getUid("retain");
     objc_msgSend(value, sel);
    
@@ -194,14 +186,6 @@ id objc_retainBlock(id value) {
 }
 
 id objc_release(id value) {
-    if (value) {
-        bool canRec = canRecordObject(object_getClass(value));
-        if (canRec) {
-            if (registerBacktraceForObject(value, "release")) {
-                printf("release %s <%p>\n",object_getClassName(value), value);
-            }
-        }
-    }
     
     SEL sel = sel_getUid("release");
     objc_msgSend(value, sel);
@@ -297,6 +281,8 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     swizzleActive = true;
     SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
     SwizzleInstanceMethod([self class], NSSelectorFromString(@"dealloc"), @selector(tw_dealloc));
+    SwizzleInstanceMethod([self class], NSSelectorFromString(@"retain"), @selector(tw_retain));
+    SwizzleInstanceMethod([self class], NSSelectorFromString(@"release"), @selector(tw_release));
 }
 
 + (id)tw_alloc
@@ -321,6 +307,28 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
         }
     }
     [self tw_dealloc];
+}
+
+- (id)tw_retain
+{
+    bool canRec = canRecordObject([self class]);
+    if (canRec) {
+        if (registerBacktraceForObject(self, "retain")) {
+            printf("retain %s\n",object_getClassName(self));
+        }
+    }
+    return [self tw_retain];
+}
+
+- (oneway void)tw_release
+{
+    bool canRec = canRecordObject([self class]);
+    if (canRec) {
+        if (registerBacktraceForObject(self, "release")) {
+            printf("release %s\n",object_getClassName(self));
+        }
+    }
+    [self tw_release];
 }
 
 - (void)addRunLoopObserver
