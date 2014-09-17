@@ -90,6 +90,7 @@
 - (void)tappedRecordedHeapButton:(id)sender
 {
     if ([[HINSPHeapStackInspector recordedHeapStack] count] > 0) {
+        [NSObject endSnapshot];
         NSArray *stack = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
         HINSPHeapStackTableViewController *controller = [self heapStackControllerWithHeapStack:stack];
         controller.title = @"Recorded Heap";
