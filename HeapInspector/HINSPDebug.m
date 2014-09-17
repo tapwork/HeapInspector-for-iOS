@@ -110,6 +110,7 @@
 {
     if (!_window.recordButton.isRecording) {
         [self showInfoLabel];
+        [NSObject endSnapshot];
     } else {
         [self resetInfoLabel];
         [NSObject beginSnapshotWithClassPrefix:_classPrefix];
