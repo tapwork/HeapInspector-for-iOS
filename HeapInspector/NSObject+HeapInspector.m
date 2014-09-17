@@ -406,7 +406,10 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 @end
 
 
-
+//
+// Weird that we have to swizzle UIView and UIViewController explictly
+// UIResponder runs without any special handling
+//
 @implementation UIView (HeapInspector)
 
 - (id)tw_retain
