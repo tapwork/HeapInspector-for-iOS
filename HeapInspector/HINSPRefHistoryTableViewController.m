@@ -35,6 +35,41 @@
     return self;
 }
 
+#pragma mark - View Life Cycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    UIView *headerView = [[UIView alloc] init];
+    headerView.frame = CGRectMake(0, 0, self.view.bounds.size.width,30.0);
+    headerView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+    NSPredicate *predicate0 = [NSPredicate predicateWithFormat:@"SELF == 'alloc'"];
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == 'retain'"];
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF == 'strong'"];
+    NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"SELF == 'release'"];
+    NSArray *allocs = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate0];
+    NSArray *retains = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate1];
+    NSArray *strongs = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate2];
+    NSArray *releases = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate3];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,8,headerView.bounds.size.width,20.0)];
+    label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    label.font = [UIFont systemFontOfSize:10];
+    label.numberOfLines = 1;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = [NSString stringWithFormat:@"Alloc: %lu  Retain: %lu  Strong: %lu  Release: %lu",
+                  (unsigned long)[allocs count],
+                  (unsigned long)[retains count],
+                  (unsigned long)[strongs count],
+                  (unsigned long)[releases count]];
+    [headerView addSubview:label];
+    self.tableView.tableHeaderView = headerView;
+}
+
+
 #pragma mark - TableView
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
