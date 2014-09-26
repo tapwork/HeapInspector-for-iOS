@@ -260,7 +260,9 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     id obj = [[self class] tw_alloc];
     if (canRec) {
         if (registerBacktraceForObject(obj, "alloc")) {
+#if TARGET_IPHONE_SIMULATOR
             printf("alloc %s\n",class_getName(self));
+#endif
         }
     }
 
