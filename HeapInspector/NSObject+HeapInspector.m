@@ -12,6 +12,8 @@
 #import <objc/message.h>
 #include <execinfo.h>
 
+#define BACKTRACE_REC_ON 0
+
 static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
 static bool isRecording;
@@ -83,6 +85,9 @@ static bool canRegisterBacktrace(char *stack) {
 }
 
 static CFArrayRef getBacktrace() {
+#ifndef BACKTRACE_REC_ON
+    return NULL
+#endif
     CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
     void *bt[1024];
     int bt_size;
@@ -108,16 +113,16 @@ static CFArrayRef getBacktrace() {
 }
 
 static bool registerBacktraceForObject(void *obj, char *type) {
-    CFArrayRef backtrace = getBacktrace();
+
     OSSpinLockLock(&backtraceDictLock);
+    
+    CFArrayRef backtrace = getBacktrace();
     bool success = false;
     
     char key[255];
     sprintf(key,"%p",obj);
     CFStringRef cfKey = getCFString(key);
-    if (cfKey &&
-        backtrace &&
-        CFArrayGetCount(backtrace) > 0) {
+    if (cfKey) {
         if (!backtraceDict) {
             backtraceDict = CFDictionaryCreateMutable(NULL,
                                                       0,
@@ -133,8 +138,10 @@ static bool registerBacktraceForObject(void *obj, char *type) {
                                                                 &kCFTypeDictionaryKeyCallBacks,
                                                                 &kCFTypeDictionaryValueCallBacks);
         CFDictionarySetValue(item, getCFString("type"), getCFString(type));
-        CFDictionarySetValue(item, getCFString("last_trace"), CFArrayGetValueAtIndex(backtrace, 0));
-        CFDictionarySetValue(item, getCFString("all_traces"), backtrace);
+        if (backtrace && CFArrayGetCount(backtrace) > 0) {
+            CFDictionarySetValue(item, getCFString("last_trace"), CFArrayGetValueAtIndex(backtrace, 0));
+            CFDictionarySetValue(item, getCFString("all_traces"), backtrace);
+        }
         CFArrayAppendValue(history, item);
         CFDictionarySetValue(backtraceDict, cfKey, history);
         success = true;
