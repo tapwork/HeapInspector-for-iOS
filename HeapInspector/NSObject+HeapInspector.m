@@ -12,7 +12,8 @@
 #import <objc/message.h>
 #include <execinfo.h>
 
-#define BACKTRACE_REC_ON 0
+static bool BACKTRACE_REC_ON = false;
+
 
 static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
@@ -85,9 +86,9 @@ static bool canRegisterBacktrace(char *stack) {
 }
 
 static CFArrayRef getBacktrace() {
-#ifndef BACKTRACE_REC_ON
-    return NULL
-#endif
+    if (!BACKTRACE_REC_ON) {
+        return NULL;
+    }
     CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
     void *bt[1024];
     int bt_size;
