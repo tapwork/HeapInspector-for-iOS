@@ -24,6 +24,13 @@
 		DA43ABF819B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */; };
 		DA43ABF919B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */; };
 		DA8EB00D19B449AC005B1455 /* HINSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8EB00C19B449AC005B1455 /* HINSPTableViewCell.m */; };
+		DA9FCA541A13CF1A009E8326 /* RMGaleryViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FCA531A13CF1A009E8326 /* RMGaleryViewCotroller.m */; };
+		DA9FCA5B1A13D0A4009E8326 /* IMG_0573.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA561A13D0A4009E8326 /* IMG_0573.JPG */; };
+		DA9FCA5C1A13D0A4009E8326 /* IMG_0594.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA571A13D0A4009E8326 /* IMG_0594.JPG */; };
+		DA9FCA5D1A13D0A4009E8326 /* IMG_0601.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA581A13D0A4009E8326 /* IMG_0601.JPG */; };
+		DA9FCA5E1A13D0A4009E8326 /* IMG_0635.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA591A13D0A4009E8326 /* IMG_0635.JPG */; };
+		DA9FCA5F1A13D0A4009E8326 /* IMG_0656.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA5A1A13D0A4009E8326 /* IMG_0656.JPG */; };
+		DA9FCA621A13D106009E8326 /* RMGaleryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FCA611A13D106009E8326 /* RMGaleryCollectionViewCell.m */; };
 		DAA1DD6819B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */; };
 		DAA1DD6919B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */; };
 		DAA1DD6C19B12BD900BC5DAD /* HINSPResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* HINSPResponderChainViewController.m */; };
@@ -40,8 +47,6 @@
 		DABCA51419A531E200331B1B /* HINSPRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA50A19A531E200331B1B /* HINSPRecordButton.m */; };
 		DABCA51719A5339300331B1B /* RMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51619A5339300331B1B /* RMRootViewController.m */; };
 		DABCA51819A5339300331B1B /* RMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51619A5339300331B1B /* RMRootViewController.m */; };
-		DABCA51B19A533B400331B1B /* RMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51A19A533B400331B1B /* RMDetailViewController.m */; };
-		DABCA51C19A533B400331B1B /* RMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABCA51A19A533B400331B1B /* RMDetailViewController.m */; };
 		DAEE61AC19C22F4500502267 /* HINSPRefHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEE61AB19C22F4500502267 /* HINSPRefHistoryTableViewController.m */; };
 		DAF2557919A910ED00CCDD6A /* HINSPHeapStackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2557819A910ED00CCDD6A /* HINSPHeapStackTableViewController.m */; };
 		DAFD8F9419B4556B0050E722 /* HINSPClassDumpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFD8F9319B4556B0050E722 /* HINSPClassDumpTableViewController.m */; };
@@ -80,6 +85,15 @@
 		DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewController.m; sourceTree = "<group>"; };
 		DA8EB00B19B449AC005B1455 /* HINSPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPTableViewCell.h; sourceTree = "<group>"; };
 		DA8EB00C19B449AC005B1455 /* HINSPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewCell.m; sourceTree = "<group>"; };
+		DA9FCA521A13CF1A009E8326 /* RMGaleryViewCotroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGaleryViewCotroller.h; sourceTree = "<group>"; };
+		DA9FCA531A13CF1A009E8326 /* RMGaleryViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGaleryViewCotroller.m; sourceTree = "<group>"; };
+		DA9FCA561A13D0A4009E8326 /* IMG_0573.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0573.JPG; sourceTree = "<group>"; };
+		DA9FCA571A13D0A4009E8326 /* IMG_0594.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0594.JPG; sourceTree = "<group>"; };
+		DA9FCA581A13D0A4009E8326 /* IMG_0601.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0601.JPG; sourceTree = "<group>"; };
+		DA9FCA591A13D0A4009E8326 /* IMG_0635.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0635.JPG; sourceTree = "<group>"; };
+		DA9FCA5A1A13D0A4009E8326 /* IMG_0656.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0656.JPG; sourceTree = "<group>"; };
+		DA9FCA601A13D106009E8326 /* RMGaleryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGaleryCollectionViewCell.h; sourceTree = "<group>"; };
+		DA9FCA611A13D106009E8326 /* RMGaleryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGaleryCollectionViewCell.m; sourceTree = "<group>"; };
 		DAA1DD6619B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackDetailTableViewController.h; sourceTree = "<group>"; };
 		DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackDetailTableViewController.m; sourceTree = "<group>"; };
 		DAA1DD6A19B12BD900BC5DAD /* HINSPResponderChainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPResponderChainViewController.h; sourceTree = "<group>"; };
@@ -96,8 +110,6 @@
 		DABCA50A19A531E200331B1B /* HINSPRecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPRecordButton.m; sourceTree = "<group>"; };
 		DABCA51519A5339300331B1B /* RMRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRootViewController.h; sourceTree = "<group>"; };
 		DABCA51619A5339300331B1B /* RMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRootViewController.m; sourceTree = "<group>"; };
-		DABCA51919A533B400331B1B /* RMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDetailViewController.h; sourceTree = "<group>"; };
-		DABCA51A19A533B400331B1B /* RMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDetailViewController.m; sourceTree = "<group>"; };
 		DAEE61AA19C22F4500502267 /* HINSPRefHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPRefHistoryTableViewController.h; sourceTree = "<group>"; };
 		DAEE61AB19C22F4500502267 /* HINSPRefHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPRefHistoryTableViewController.m; sourceTree = "<group>"; };
 		DAF2557719A910ED00CCDD6A /* HINSPHeapStackTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackTableViewController.h; sourceTree = "<group>"; };
@@ -170,8 +182,10 @@
 				DA29C54419A530C400FFF7D5 /* Supporting Files */,
 				DABCA51519A5339300331B1B /* RMRootViewController.h */,
 				DABCA51619A5339300331B1B /* RMRootViewController.m */,
-				DABCA51919A533B400331B1B /* RMDetailViewController.h */,
-				DABCA51A19A533B400331B1B /* RMDetailViewController.m */,
+				DA9FCA521A13CF1A009E8326 /* RMGaleryViewCotroller.h */,
+				DA9FCA531A13CF1A009E8326 /* RMGaleryViewCotroller.m */,
+				DA9FCA601A13D106009E8326 /* RMGaleryCollectionViewCell.h */,
+				DA9FCA611A13D106009E8326 /* RMGaleryCollectionViewCell.m */,
 			);
 			path = HeapInspectorExample;
 			sourceTree = "<group>";
@@ -179,6 +193,7 @@
 		DA29C54419A530C400FFF7D5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DA9FCA551A13D0A4009E8326 /* Images */,
 				DA29C54519A530C400FFF7D5 /* HeapInspectorExample-Info.plist */,
 				DA29C54619A530C400FFF7D5 /* InfoPlist.strings */,
 				DA29C54919A530C400FFF7D5 /* main.m */,
@@ -203,6 +218,18 @@
 				DA29C55F19A530C400FFF7D5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA9FCA551A13D0A4009E8326 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DA9FCA561A13D0A4009E8326 /* IMG_0573.JPG */,
+				DA9FCA571A13D0A4009E8326 /* IMG_0594.JPG */,
+				DA9FCA581A13D0A4009E8326 /* IMG_0601.JPG */,
+				DA9FCA591A13D0A4009E8326 /* IMG_0635.JPG */,
+				DA9FCA5A1A13D0A4009E8326 /* IMG_0656.JPG */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		DABCA50019A531E200331B1B /* HeapInspector */ = {
@@ -315,7 +342,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA9FCA5B1A13D0A4009E8326 /* IMG_0573.JPG in Resources */,
+				DA9FCA5F1A13D0A4009E8326 /* IMG_0656.JPG in Resources */,
+				DA9FCA5C1A13D0A4009E8326 /* IMG_0594.JPG in Resources */,
 				DA29C54819A530C400FFF7D5 /* InfoPlist.strings in Resources */,
+				DA9FCA5E1A13D0A4009E8326 /* IMG_0635.JPG in Resources */,
+				DA9FCA5D1A13D0A4009E8326 /* IMG_0601.JPG in Resources */,
 				DA29C55019A530C400FFF7D5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,17 +367,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA9FCA541A13CF1A009E8326 /* RMGaleryViewCotroller.m in Sources */,
 				DAFD8F9419B4556B0050E722 /* HINSPClassDumpTableViewController.m in Sources */,
 				DABCA50F19A531E200331B1B /* HINSPDebugWindow.m in Sources */,
 				DAA1DD6819B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */,
 				DABCA51719A5339300331B1B /* RMRootViewController.m in Sources */,
 				DA29C54A19A530C400FFF7D5 /* main.m in Sources */,
+				DA9FCA621A13D106009E8326 /* RMGaleryCollectionViewCell.m in Sources */,
 				DAA1DD6C19B12BD900BC5DAD /* HINSPResponderChainViewController.m in Sources */,
 				DAEE61AC19C22F4500502267 /* HINSPRefHistoryTableViewController.m in Sources */,
 				DABCA50B19A531E200331B1B /* NSObject+HeapInspector.m in Sources */,
 				DAA1DD7219B12FA600BC5DAD /* HINSPShowViewController.m in Sources */,
 				DA43ABF819B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */,
-				DABCA51B19A533B400331B1B /* RMDetailViewController.m in Sources */,
 				DA8EB00D19B449AC005B1455 /* HINSPTableViewCell.m in Sources */,
 				DA1CC57819A7B939007F11F1 /* HINSPHeapStackInspector.m in Sources */,
 				DABCA50D19A531E200331B1B /* HINSPDebug.m in Sources */,
@@ -369,7 +402,6 @@
 				DA1CC57919A7B939007F11F1 /* HINSPHeapStackInspector.m in Sources */,
 				DA29C56319A530C400FFF7D5 /* HeapInspectorExampleTests.m in Sources */,
 				DABCA50E19A531E200331B1B /* HINSPDebug.m in Sources */,
-				DABCA51C19A533B400331B1B /* RMDetailViewController.m in Sources */,
 				DABCA50C19A531E200331B1B /* NSObject+HeapInspector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
