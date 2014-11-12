@@ -83,15 +83,27 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%ld %@",(long)indexPath.row, item[@"type"]];
     cell.detailTextLabel.text = item[@"last_trace"];
     
+    NSArray *backtrace = item[@"all_traces"];
+    if ([backtrace count] > 0) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.userInteractionEnabled = YES;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.userInteractionEnabled = NO;
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *item = self.dataSource[indexPath.row];
-    HINSPTableViewController *detailVC = [[HINSPTableViewController alloc] initWithDataSource:item[@"all_traces"]];
-    detailVC.title = [NSString stringWithFormat:@"%@'s backtrace",item[@"type"]];
-    [self.navigationController pushViewController:detailVC animated:YES];
+    NSArray *backtrace = item[@"all_traces"];
+    if ([backtrace count] > 0) {
+        HINSPTableViewController *detailVC = [[HINSPTableViewController alloc] initWithDataSource:backtrace];
+        detailVC.title = [NSString stringWithFormat:@"%@'s backtrace",item[@"type"]];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
