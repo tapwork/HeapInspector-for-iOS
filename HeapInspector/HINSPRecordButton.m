@@ -19,6 +19,7 @@
 {
     CAShapeLayer *__weak _shapeLayer;
 }
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

@@ -15,6 +15,7 @@
 static bool BACKTRACE_REC_ON = false;
 
 
+
 static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
 static bool isRecording;
@@ -37,11 +38,13 @@ static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
     method_exchangeImplementations(origMethod, newMethod);
 }
 
-static CFStringRef getCFString(char *charValue) {
+static CFStringRef getCFString(char *charValue)
+{
     return CFStringCreateWithCString(NULL, charValue, kCFStringEncodingUTF8);
 }
 
-static CFStringRef cleanStackValue(char *stack) {
+static CFStringRef cleanStackValue(char *stack)
+{
     CFStringRef cString = getCFString(stack);
   
     CFStringRef sep = getCFString("+[");
@@ -73,7 +76,8 @@ static CFStringRef cleanStackValue(char *stack) {
     return NULL;
 }
 
-static bool canRegisterBacktrace(char *stack) {
+static bool canRegisterBacktrace(char *stack)
+{
     CFStringRef cString = getCFString(stack);
     
     // Exclude the HINSP Class Prefix (that's ourself)
@@ -85,7 +89,8 @@ static bool canRegisterBacktrace(char *stack) {
     return true;
 }
 
-static CFArrayRef getBacktrace() {
+static CFArrayRef getBacktrace()
+{
     if (!BACKTRACE_REC_ON) {
         return NULL;
     }
@@ -113,8 +118,8 @@ static CFArrayRef getBacktrace() {
     return stack;
 }
 
-static bool registerBacktraceForObject(void *obj, char *type) {
-
+static bool registerBacktraceForObject(void *obj, char *type)
+{
     OSSpinLockLock(&backtraceDictLock);
     
     CFArrayRef backtrace = getBacktrace();
@@ -154,7 +159,8 @@ static bool registerBacktraceForObject(void *obj, char *type) {
 
 // SEE more http://clang.llvm.org/docs/AutomaticReferenceCounting.html
 // or http://clang.llvm.org/doxygen/structclang_1_1CodeGen_1_1ARCEntrypoints.html
-id objc_retain(id value) {
+id objc_retain(id value)
+{
     
     SEL sel = sel_getUid("retain");
     objc_msgSend(value, sel);
@@ -162,7 +168,8 @@ id objc_retain(id value) {
     return value;
 }
 
-id objc_storeStrong(id *object, id value) {
+id objc_storeStrong(id *object, id value)
+{
     if (value) {
         recordAndRegisterIfPossible(value,"storeStrong");
     }
@@ -173,7 +180,8 @@ id objc_storeStrong(id *object, id value) {
     return value;
 }
 
-id objc_retainBlock(id value) {
+id objc_retainBlock(id value)
+{
     if (value) {
         recordAndRegisterIfPossible(value,"retainBlock");
     }
@@ -183,7 +191,8 @@ id objc_retainBlock(id value) {
     return value;
 }
 
-id objc_release(id value) {
+id objc_release(id value)
+{
     
     SEL sel = sel_getUid("release");
     objc_msgSend(value, sel);
@@ -191,7 +200,8 @@ id objc_release(id value) {
     return value;
 }
 
-id objc_retainAutorelease(id value) {
+id objc_retainAutorelease(id value)
+{
     if (value) {
         recordAndRegisterIfPossible(value,"retainAutorelease");
     }
@@ -239,14 +249,15 @@ static inline void recordAndRegisterIfPossible(id obj, char *name)
     }
 }
 
-static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActivity activity)
+{
     if (activity & kCFRunLoopExit) {
+        // nothing yet
     }
 }
 
 
 @implementation NSObject (HeapInspector)
-
 
 + (void)swizzle
 {
@@ -374,11 +385,13 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     recordAndRegisterIfPossible(self,"retain");
     return [self tw_retain];
 }
+
 - (oneway void)tw_release
 {
     recordAndRegisterIfPossible(self,"release");
     [self tw_release];
 }
+
 @end
 
 @implementation UIViewController (HeapInspector)
@@ -388,10 +401,11 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     recordAndRegisterIfPossible(self,"retain");
     return [self tw_retain];
 }
+
 - (oneway void)tw_release
 {
     recordAndRegisterIfPossible(self,"release");
     [self tw_release];
 }
-@end
 
+@end

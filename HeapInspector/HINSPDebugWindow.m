@@ -14,6 +14,7 @@
     UIView *_contentView;
     UIView *_dragView;
 }
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

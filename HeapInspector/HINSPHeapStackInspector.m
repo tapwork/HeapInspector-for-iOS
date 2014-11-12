@@ -167,5 +167,4 @@ static inline bool canRecordObject(const char* className)
     return foundObject;
 }
 
-
 @end
