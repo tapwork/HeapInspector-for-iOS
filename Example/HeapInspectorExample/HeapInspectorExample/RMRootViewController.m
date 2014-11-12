@@ -7,7 +7,7 @@
 //
 
 #import "RMRootViewController.h"
-#import "RMGaleryViewCotroller.h"
+#import "RMGalleryWrongViewCotroller.h"
 
 @interface RMRootViewController ()
 
@@ -34,7 +34,7 @@
 
 - (void)buttonLeakTapped:(id)sender
 {
-    RMGaleryViewCotroller *galeryVC = [[RMGaleryViewCotroller alloc] init];
+    RMGalleryWrongViewCotroller *galeryVC = [[RMGalleryWrongViewCotroller alloc] init];
     [self.navigationController pushViewController:galeryVC animated:YES];
 }
 

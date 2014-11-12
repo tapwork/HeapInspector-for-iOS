@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
 
-#import "RMGaleryCollectionViewCell.h"
+#import "RMGalleryCollectionViewCell.h"
 
-@interface RMGaleryCollectionViewCell ()
+@interface RMGalleryCollectionViewCell ()
 
 @property (nonatomic) UIImageView *imageView;
 
 @end
 
-@implementation RMGaleryCollectionViewCell
+@implementation RMGalleryCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

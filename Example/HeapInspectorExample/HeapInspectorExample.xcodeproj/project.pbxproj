@@ -24,13 +24,13 @@
 		DA43ABF819B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */; };
 		DA43ABF919B4DC1600C9F2DC /* HINSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */; };
 		DA8EB00D19B449AC005B1455 /* HINSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8EB00C19B449AC005B1455 /* HINSPTableViewCell.m */; };
-		DA9FCA541A13CF1A009E8326 /* RMGaleryViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FCA531A13CF1A009E8326 /* RMGaleryViewCotroller.m */; };
+		DA9FCA541A13CF1A009E8326 /* RMGalleryWrongViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FCA531A13CF1A009E8326 /* RMGalleryWrongViewCotroller.m */; };
 		DA9FCA5B1A13D0A4009E8326 /* IMG_0573.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA561A13D0A4009E8326 /* IMG_0573.JPG */; };
 		DA9FCA5C1A13D0A4009E8326 /* IMG_0594.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA571A13D0A4009E8326 /* IMG_0594.JPG */; };
 		DA9FCA5D1A13D0A4009E8326 /* IMG_0601.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA581A13D0A4009E8326 /* IMG_0601.JPG */; };
 		DA9FCA5E1A13D0A4009E8326 /* IMG_0635.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA591A13D0A4009E8326 /* IMG_0635.JPG */; };
 		DA9FCA5F1A13D0A4009E8326 /* IMG_0656.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA5A1A13D0A4009E8326 /* IMG_0656.JPG */; };
-		DA9FCA621A13D106009E8326 /* RMGaleryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FCA611A13D106009E8326 /* RMGaleryCollectionViewCell.m */; };
+		DA9FCA621A13D106009E8326 /* RMGalleryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FCA611A13D106009E8326 /* RMGalleryCollectionViewCell.m */; };
 		DAA1DD6819B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */; };
 		DAA1DD6919B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */; };
 		DAA1DD6C19B12BD900BC5DAD /* HINSPResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1DD6B19B12BD900BC5DAD /* HINSPResponderChainViewController.m */; };
@@ -85,15 +85,15 @@
 		DA43ABF719B4DC1600C9F2DC /* HINSPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewController.m; sourceTree = "<group>"; };
 		DA8EB00B19B449AC005B1455 /* HINSPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPTableViewCell.h; sourceTree = "<group>"; };
 		DA8EB00C19B449AC005B1455 /* HINSPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewCell.m; sourceTree = "<group>"; };
-		DA9FCA521A13CF1A009E8326 /* RMGaleryViewCotroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGaleryViewCotroller.h; sourceTree = "<group>"; };
-		DA9FCA531A13CF1A009E8326 /* RMGaleryViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGaleryViewCotroller.m; sourceTree = "<group>"; };
+		DA9FCA521A13CF1A009E8326 /* RMGalleryWrongViewCotroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGalleryWrongViewCotroller.h; sourceTree = "<group>"; };
+		DA9FCA531A13CF1A009E8326 /* RMGalleryWrongViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGalleryWrongViewCotroller.m; sourceTree = "<group>"; };
 		DA9FCA561A13D0A4009E8326 /* IMG_0573.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0573.JPG; sourceTree = "<group>"; };
 		DA9FCA571A13D0A4009E8326 /* IMG_0594.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0594.JPG; sourceTree = "<group>"; };
 		DA9FCA581A13D0A4009E8326 /* IMG_0601.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0601.JPG; sourceTree = "<group>"; };
 		DA9FCA591A13D0A4009E8326 /* IMG_0635.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0635.JPG; sourceTree = "<group>"; };
 		DA9FCA5A1A13D0A4009E8326 /* IMG_0656.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0656.JPG; sourceTree = "<group>"; };
-		DA9FCA601A13D106009E8326 /* RMGaleryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGaleryCollectionViewCell.h; sourceTree = "<group>"; };
-		DA9FCA611A13D106009E8326 /* RMGaleryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGaleryCollectionViewCell.m; sourceTree = "<group>"; };
+		DA9FCA601A13D106009E8326 /* RMGalleryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGalleryCollectionViewCell.h; sourceTree = "<group>"; };
+		DA9FCA611A13D106009E8326 /* RMGalleryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGalleryCollectionViewCell.m; sourceTree = "<group>"; };
 		DAA1DD6619B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackDetailTableViewController.h; sourceTree = "<group>"; };
 		DAA1DD6719B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackDetailTableViewController.m; sourceTree = "<group>"; };
 		DAA1DD6A19B12BD900BC5DAD /* HINSPResponderChainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HINSPResponderChainViewController.h; sourceTree = "<group>"; };
@@ -182,10 +182,10 @@
 				DA29C54419A530C400FFF7D5 /* Supporting Files */,
 				DABCA51519A5339300331B1B /* RMRootViewController.h */,
 				DABCA51619A5339300331B1B /* RMRootViewController.m */,
-				DA9FCA521A13CF1A009E8326 /* RMGaleryViewCotroller.h */,
-				DA9FCA531A13CF1A009E8326 /* RMGaleryViewCotroller.m */,
-				DA9FCA601A13D106009E8326 /* RMGaleryCollectionViewCell.h */,
-				DA9FCA611A13D106009E8326 /* RMGaleryCollectionViewCell.m */,
+				DA9FCA521A13CF1A009E8326 /* RMGalleryWrongViewCotroller.h */,
+				DA9FCA531A13CF1A009E8326 /* RMGalleryWrongViewCotroller.m */,
+				DA9FCA601A13D106009E8326 /* RMGalleryCollectionViewCell.h */,
+				DA9FCA611A13D106009E8326 /* RMGalleryCollectionViewCell.m */,
 			);
 			path = HeapInspectorExample;
 			sourceTree = "<group>";
@@ -367,13 +367,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA9FCA541A13CF1A009E8326 /* RMGaleryViewCotroller.m in Sources */,
+				DA9FCA541A13CF1A009E8326 /* RMGalleryWrongViewCotroller.m in Sources */,
 				DAFD8F9419B4556B0050E722 /* HINSPClassDumpTableViewController.m in Sources */,
 				DABCA50F19A531E200331B1B /* HINSPDebugWindow.m in Sources */,
 				DAA1DD6819B1281800BC5DAD /* HINSPHeapStackDetailTableViewController.m in Sources */,
 				DABCA51719A5339300331B1B /* RMRootViewController.m in Sources */,
 				DA29C54A19A530C400FFF7D5 /* main.m in Sources */,
-				DA9FCA621A13D106009E8326 /* RMGaleryCollectionViewCell.m in Sources */,
+				DA9FCA621A13D106009E8326 /* RMGalleryCollectionViewCell.m in Sources */,
 				DAA1DD6C19B12BD900BC5DAD /* HINSPResponderChainViewController.m in Sources */,
 				DAEE61AC19C22F4500502267 /* HINSPRefHistoryTableViewController.m in Sources */,
 				DABCA50B19A531E200331B1B /* NSObject+HeapInspector.m in Sources */,

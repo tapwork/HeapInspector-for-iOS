@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMGaleryViewCotroller : UIViewController
+@interface RMGalleryWrongViewCotroller : UIViewController
 
 @end

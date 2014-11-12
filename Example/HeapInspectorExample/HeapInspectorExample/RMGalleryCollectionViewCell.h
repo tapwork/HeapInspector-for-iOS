@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMGaleryCollectionViewCell : UICollectionViewCell
+@interface RMGalleryCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, readonly) UIImageView *imageView;
 
