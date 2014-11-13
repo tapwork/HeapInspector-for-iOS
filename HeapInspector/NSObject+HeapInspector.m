@@ -241,7 +241,7 @@ static inline void recordAndRegisterIfPossible(id obj, char *name)
     if (canRecordObject([obj class])) {
         if (registerBacktraceForObject(obj, name)) {
 #if TARGET_IPHONE_SIMULATOR
-            printf("%s %s\n",name, object_getClassName(obj));
+//            printf("%s %s\n",name, object_getClassName(obj));
 #endif
         }
     }
@@ -278,7 +278,7 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     if (canRec) {
         if (registerBacktraceForObject(obj, "alloc")) {
 #if TARGET_IPHONE_SIMULATOR
-            printf("alloc %s\n",class_getName(self));
+//            printf("alloc %s\n",class_getName(self));
 #endif
         }
     }
