@@ -37,12 +37,14 @@
 
 #pragma mark - View Life Cycle
 
+static const CGFloat kHeaderViewHeight = 70;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     UIView *headerView = [[UIView alloc] init];
-    headerView.frame = CGRectMake(0, 0, self.view.bounds.size.width,30.0);
+    headerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, kHeaderViewHeight);
     headerView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
@@ -68,6 +70,13 @@
                   (unsigned long)[strongs count],
                   (unsigned long)[releases count]];
     [headerView addSubview:label];
+    
+    UIView *superTableHeaderView = self.tableView.tableHeaderView;
+    self.tableView.tableHeaderView = nil;
+    CGRect tableHeaderViewFrame = superTableHeaderView.frame;
+    tableHeaderViewFrame.origin.y = CGRectGetMaxY(label.frame);
+    superTableHeaderView.frame = tableHeaderViewFrame;
+    [headerView addSubview:superTableHeaderView];
     self.tableView.tableHeaderView = headerView;
 }
 
