@@ -15,6 +15,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [HINSPDebug startWithClassPrefix:@"RM"];
+    [HINSPDebug recordBacktraces:YES];
     
     RMRootViewController *rootViewController = [[RMRootViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc]
