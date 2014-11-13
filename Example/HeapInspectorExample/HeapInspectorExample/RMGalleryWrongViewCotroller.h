@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RMGalleryWrongViewCotrollerDelegate;
+
 @interface RMGalleryWrongViewCotroller : UIViewController
+
+@property (nonatomic) id <RMGalleryWrongViewCotrollerDelegate> delegate;
+
+@end
+
+@protocol RMGalleryWrongViewCotrollerDelegate <NSObject>
+@optional
+- (void)galleryWrongViewCotrollerTimerDidFire:(RMGalleryWrongViewCotroller *)galleryWrongViewCotroller;
 
 @end

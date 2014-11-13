@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class RMGalleryWrongViewCotroller;
+
 @interface RMRootViewController : UIViewController
 
 // The strong reference will retain the detailViewController,
 // so the ViewController won't be deallocated after popping back
-@property (nonatomic) UIViewController *strongDetailViewController;
-
+@property (nonatomic) RMGalleryWrongViewCotroller *detailViewController;
 
 @end

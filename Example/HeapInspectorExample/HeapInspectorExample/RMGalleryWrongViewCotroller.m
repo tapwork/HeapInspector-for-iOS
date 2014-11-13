@@ -41,11 +41,18 @@ static NSString *const kRMGaleryCollectionViewCellID = @"RMGaleryCollectionViewC
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
     [self.timer fire];
+    
+    // This will create a retain cycle
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidEnterBackgroundNotification
+                                                      object:nil queue:[NSOperationQueue mainQueue]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self.timer invalidate];
+                                                  }];
 }
 
 - (void)dealloc
 {
-    // this dealloc will never get fired, because the timer created an retain cycle
+    // this is wrong and dealloc will never get fired, because the timer created an retain cycle
     [self.timer invalidate];
 }
 
