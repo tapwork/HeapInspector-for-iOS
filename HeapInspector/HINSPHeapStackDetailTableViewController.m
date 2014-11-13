@@ -131,6 +131,7 @@ static const CGFloat kHeaderViewHeight = 100.0f;
         [dataSource addObject:kCellTitleResponderChain];
     }
     if ([self.inspectingObject isKindOfClass:[UIView class]] ||
+        [self.inspectingObject isKindOfClass:[UIImage class]] ||
         [self.inspectingObject isKindOfClass:[UIViewController class]]) {
         [dataSource addObject:kCellTitleShow];
         if ([self.inspectingObject isKindOfClass:[UIView class]]) {

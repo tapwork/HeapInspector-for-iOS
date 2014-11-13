@@ -56,7 +56,9 @@
 
 - (void)handleClassType {
     UIImage *screenshot = nil;
-    if ([_objectToInspect isKindOfClass:[UIView class]]) {
+    if ([_objectToInspect isKindOfClass:[UIImage class]]) {
+        screenshot = _objectToInspect;
+    } else if ([_objectToInspect isKindOfClass:[UIView class]]) {
         screenshot = [self screenshotOfView:_objectToInspect];
     } else if ([_objectToInspect isKindOfClass:[UIViewController class]] &&
                [_objectToInspect isViewLoaded]) {
