@@ -16,6 +16,7 @@
 @implementation HINSPTableViewController
 {
     NSArray *_originalDataSource;
+    UIActivityIndicatorView *_loadingSpinner;
 }
 
 - (instancetype)init
@@ -77,6 +78,11 @@
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     searchBar.delegate = self;
     self.tableView.tableHeaderView = searchBar;
+    
+    _loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [_loadingSpinner hidesWhenStopped];
+    _loadingSpinner.frame = CGRectMake(11, 11, 20, 20);
+    [self.tableView.tableHeaderView addSubview:_loadingSpinner];
 }
 
 #pragma mark - Table view data source
@@ -136,6 +142,8 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    [self.tableView.tableHeaderView bringSubviewToFront:_loadingSpinner];
+    [_loadingSpinner startAnimating];
     NSMutableArray *serps = [self.dataSourceUnfiltered mutableCopy];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",
@@ -144,6 +152,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.dataSource = serps;
             [self.tableView reloadData];
+            [_loadingSpinner stopAnimating];
         });
     });
 }
