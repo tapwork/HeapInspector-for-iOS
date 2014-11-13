@@ -9,7 +9,7 @@
 #import "HINSPShowViewController.h"
 
 
-@interface HINSPShowViewController ()
+@interface HINSPShowViewController () <UIScrollViewDelegate>
 
 @end
 
@@ -19,6 +19,7 @@
     id _objectToInspect;
     UITextView *_textView;
     UIScrollView *_scrollView;
+    UIImageView *__weak _imageView;
 }
 
 #pragma mark - Init
@@ -81,14 +82,40 @@
     if (screenshot) {
         _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _scrollView.delegate = self;
         [self.view addSubview:_scrollView];
         
         UIImageView *imageView = [[UIImageView alloc] initWithImage:screenshot];
         CGSize size = screenshot.size;
         imageView.bounds = CGRectMake(0.0,0.0,size.width,size.height);
-        imageView.center = _scrollView.center;
         [_scrollView addSubview:imageView];
         _scrollView.contentSize = CGSizeMake(screenshot.size.width, screenshot.size.height);
+        _imageView = imageView;
+        
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomInOrOut:)];
+        gesture.numberOfTapsRequired = 2;
+        [imageView addGestureRecognizer:gesture];
+        imageView.userInteractionEnabled = YES;
+        [self setZoomScaleAnimated:NO];
+    }
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    [self setZoomScaleAnimated:YES];
+}
+
+- (void)setZoomScaleAnimated:(BOOL)animated
+{
+    if (!_scrollView.isZooming) {
+        CGFloat scale = 1.0;
+        if (_imageView.image.size.width > _scrollView.bounds.size.width) {
+            scale = _scrollView.bounds.size.width / _imageView.image.size.width;
+            _scrollView.minimumZoomScale = scale;
+            [_scrollView setZoomScale:scale animated:animated];
+        }
     }
 }
 
@@ -133,6 +160,23 @@
     [self setEditButton];
 }
 
+#pragma mark - Zoom
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return _imageView;
+}
+
+- (void)zoomInOrOut:(UIGestureRecognizer *)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        if (_scrollView.zoomScale == _scrollView.minimumZoomScale) {
+             [_scrollView setZoomScale:1.0 animated:YES];
+        } else {
+            [_scrollView setZoomScale:_scrollView.minimumZoomScale animated:YES];
+        }
+    }
+}
 
 #pragma mark - Helper
 
