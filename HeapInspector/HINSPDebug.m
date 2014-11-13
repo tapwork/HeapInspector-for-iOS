@@ -14,7 +14,6 @@
 #import "HINSPHeapStackInspector.h"
 #import "HINSPHeapStackTableViewController.h"
 
-
 @implementation HINSPDebug
 {
     HINSPDebugWindow *_window;
@@ -124,6 +123,11 @@
     dispatch_once(&onceToken, ^{
         twDebug = [[HINSPDebug alloc] initWithClassPrefix:classPrefix];
     });
+}
+
++ (void)recordBacktraces:(BOOL)recordBacktraces
+{
+    [NSObject setRecordBacktrace:recordBacktraces];
 }
 
 @end

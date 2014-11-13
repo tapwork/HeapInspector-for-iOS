@@ -16,4 +16,7 @@
 + (void)resumeSnapshot;
 + (NSArray *)referenceHistoryForObject:(id)obj;
 
+// Default is NO, because it is a large performance impact recording the backtrace for each retain/release
++ (void)setRecordBacktrace:(BOOL)recordBacktrace;
+
 @end

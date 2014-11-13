@@ -12,10 +12,7 @@
 #import <objc/message.h>
 #include <execinfo.h>
 
-static bool BACKTRACE_REC_ON = false;
-
-
-
+static bool kRecordBacktrace = false;
 static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
 static bool isRecording;
@@ -91,9 +88,10 @@ static bool canRegisterBacktrace(char *stack)
 
 static CFArrayRef getBacktrace()
 {
-    if (!BACKTRACE_REC_ON) {
+    if (!kRecordBacktrace) {
         return NULL;
     }
+
     CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
     void *bt[1024];
     int bt_size;
@@ -326,6 +324,11 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 + (void)beginSnapshot
 {
     [[self class] beginSnapshotWithClassPrefix:nil];
+}
+
++ (void)setRecordBacktrace:(BOOL)recordBacktrace
+{
+    kRecordBacktrace = recordBacktrace;
 }
 
 + (void)beginSnapshotWithClassPrefix:(NSString*)prefix
