@@ -20,16 +20,16 @@
     [super viewDidLoad];
     
     CGSize buttonSize = CGSizeMake(200, 50);
-    UIButton *galerybutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [galerybutton addTarget:self action:@selector(buttonLeakTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [galerybutton setTitle:@"Galery" forState:UIControlStateNormal];
-    galerybutton.frame = CGRectMake(floorf((self.view.bounds.size.width - buttonSize.width)/2),
+    UIButton *gallerybutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [gallerybutton addTarget:self action:@selector(buttonLeakTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [gallerybutton setTitle:@"Gallery" forState:UIControlStateNormal];
+    gallerybutton.frame = CGRectMake(floorf((self.view.bounds.size.width - buttonSize.width)/2),
                                 floorf((self.view.bounds.size.height - buttonSize.height)/2),
                                 buttonSize.width,
                                 buttonSize.height);
     
-    galerybutton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.view addSubview:galerybutton];
+    gallerybutton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [self.view addSubview:gallerybutton];
 }
 
 - (void)buttonLeakTapped:(id)sender

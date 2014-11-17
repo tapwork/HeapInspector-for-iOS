@@ -1,5 +1,5 @@
 //
-//  RMGaleryViewCotroller.m
+//  RMGalleryViewCotroller.m
 //  HeapInspectorExample
 //
 //  Created by Christian Menschel on 12/11/14.
@@ -9,7 +9,7 @@
 #import "RMGalleryWrongViewCotroller.h"
 #import "RMGalleryCollectionViewCell.h"
 
-static NSString *const kRMGaleryCollectionViewCellID = @"RMGaleryCollectionViewCellID";
+static NSString *const kRMGalleryCollectionViewCellID = @"RMGalleryCollectionViewCellID";
 
 @interface RMGalleryWrongViewCotroller () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -32,7 +32,7 @@ static NSString *const kRMGaleryCollectionViewCellID = @"RMGaleryCollectionViewC
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    [self.collectionView registerClass:[RMGalleryCollectionViewCell class] forCellWithReuseIdentifier:kRMGaleryCollectionViewCellID];
+    [self.collectionView registerClass:[RMGalleryCollectionViewCell class] forCellWithReuseIdentifier:kRMGalleryCollectionViewCellID];
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -84,7 +84,7 @@ static NSString *const kRMGaleryCollectionViewCellID = @"RMGaleryCollectionViewC
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RMGalleryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kRMGaleryCollectionViewCellID forIndexPath:indexPath];
+    RMGalleryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kRMGalleryCollectionViewCellID forIndexPath:indexPath];
     UIImage *image = [UIImage imageNamed:self.dataSource[indexPath.row]];
     cell.imageView.image = image;
     

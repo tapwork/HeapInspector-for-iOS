@@ -17,7 +17,7 @@
     [HINSPDebug startWithClassPrefix:@"RM"];
     [HINSPDebug recordBacktraces:YES];
     
-    RMRootViewController *rootViewController = [[RMRootViewController alloc] init];
+     RMRootViewController *rootViewController = [[RMRootViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:rootViewController];
     

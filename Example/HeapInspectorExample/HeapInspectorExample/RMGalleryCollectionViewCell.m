@@ -1,5 +1,5 @@
 //
-//  RMGaleryCollectionViewCell.m
+//  RMGalleryCollectionViewCell.m
 //  HeapInspectorExample
 //
 //  Created by Christian Menschel on 12/11/14.
