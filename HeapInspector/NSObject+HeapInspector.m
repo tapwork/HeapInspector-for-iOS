@@ -4,12 +4,12 @@
 //  Created by Christian Menschel on 06.08.14.
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
+#import <UIKit/UIKit.h>
 #import <libkern/OSAtomic.h>
 #import <pthread.h>
 #import <Foundation/Foundation.h>
 #import "NSObject+HeapInspector.h"
 #import <objc/runtime.h>
-#import <objc/message.h>
 #include <execinfo.h>
 
 static bool kRecordBacktrace = false;
@@ -159,10 +159,8 @@ static bool registerBacktraceForObject(void *obj, char *type)
 // or http://clang.llvm.org/doxygen/structclang_1_1CodeGen_1_1ARCEntrypoints.html
 id objc_retain(id value)
 {
+    [value retain];
     
-    SEL sel = sel_getUid("retain");
-    objc_msgSend(value, sel);
-   
     return value;
 }
 
@@ -183,18 +181,15 @@ id objc_retainBlock(id value)
     if (value) {
         recordAndRegisterIfPossible(value,"retainBlock");
     }
-    SEL sel = sel_getUid("copy");
-    objc_msgSend(value, sel);
+    [value copy];
     
     return value;
 }
 
 id objc_release(id value)
 {
+    [value release];
     
-    SEL sel = sel_getUid("release");
-    objc_msgSend(value, sel);
- 
     return value;
 }
 
@@ -203,11 +198,8 @@ id objc_retainAutorelease(id value)
     if (value) {
         recordAndRegisterIfPossible(value,"retainAutorelease");
     }
-    
-    SEL selRetain = sel_getUid("retain");
-    objc_msgSend(value, selRetain);
-    SEL selAutorelease = sel_getUid("autorelease");
-    objc_msgSend(value, selAutorelease);
+    [value retain];
+    [value autorelease];
     
     return value;
 }
