@@ -21,6 +21,10 @@ Also you can inspect the recorded object and get detailed information like:
 * Screenshots the inspected UIView, UIViewController, UIImage
 * Detailed information about the object (Description, frame, properties, iVars, methods)
 
+# In Action
+
+![HeapInspector](README_Xtras/screencast.gif)
+
 
 # Why
 Since ARC has been introduced we don't need to manage the `retai`n & `release` anymore. ARC is very powerful and made Objective C more stable. ARC decreased the number of crashes and improves the memory footprint.<br> ARC is technically doing a powerful job. It knows when to `retain`, `autorelease` and `release`.
@@ -28,7 +32,6 @@ Since ARC has been introduced we don't need to manage the `retai`n & `release` a
 * You can still create Retain Cycles => Link
 * The `strong` property lifetime qualifier can be misused
 * ...
-
 
 # Installation
 ### Cocoapods
