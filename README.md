@@ -1,24 +1,23 @@
 # HeapInspector
+## Find memory issues & leaks in your iOS app
 
-HeapInspector runs in your iOS app as a debug tool that **monitors the memory heap**, watch and inspect living objects.<br>
-
-This helps you to identify memory issues directly in your app on your device without ever starting Instruments.
+HeapInspector is an iOS debug tool that **monitors the memory heap** in your app. You can discover memory leaks, no longer needed living objects and more issues directly on your device without ever starting Instruments.
 
 #### Memory heap snapshots
 Basically you can inspect the entire heap and see all living objects of your iOS app. <br>
-To be more precise you can record the heap for a specific part of the app. Like in Apple's Instruments the snapshot compares the heap before you started recording.
-This helps you to find:
-* Find retain cycles
-* Find objects that are alive in memory but should be released
-* Identify misused `static` objects like singletons or cached `UIImage`
+To be more precise you can record the heap for a specific part of the app. For instance when navigating through the menu. Like in Apple's Instruments the snapshot compares the heap before you started recording. For instance you can start the snapshot before you push a new `UIViewController` onto your `UINavigationController` stack and stop after popping the `UIViewController`.
+With HeapInspector and heap snapshots you can identify:
+* Leaking objects
+* Retain cycles
+* Living objects that are no longer needed
+* static objects like singletons or cached `UIImage`
+* Dirty memory and your objects on the heap
 
-For instance you can start the snapshot before you push a new `UIViewController` onto your `UINavigationController` stack and stop after popping the `UIViewController`.
-<br><br>
-Also you can inspect the recorded object and get detailed information like:
+HeapInspector gives you detailed information for the living objects:
 
-* Reference history (retain, strong, release) for NSObject subclasses
+* Reference history (see who called retain, strong, release) for NSObject subclasses
 * Responder chain for recorded objects
-* Screenshots the inspected UIView, UIViewController, UIImage
+* Screenshots of the inspected UIView, UIViewController, UIImage
 * Detailed information about the object (Description, frame, properties, iVars, methods)
 
 # In Action
@@ -27,14 +26,17 @@ Also you can inspect the recorded object and get detailed information like:
 
 
 # Why
-Since ARC has been introduced we don't need to manage the `retai`n & `release` anymore. ARC is very powerful and made Objective C more stable. ARC decreased the number of crashes and improves the memory footprint.<br> ARC is technically doing a powerful job. It knows when to `retain`, `autorelease` and `release`.
-<br>But ARC doesn't think about the overall architecture in order to design for a low memory footprint. You should be aware that you can still do a lot of things wrong. You can still get a memory pressure with ARC (even you don't need to release anymore).
-* You can still create Retain Cycles => Link
-* The `strong` property lifetime qualifier can be misused
-* ...
+Since ARC has been introduced we don't need to manage the `retain` & `release` anymore. ARC is very powerful and makes Objective C more stable. ARC decreased the number of crashes and improves the memory footprint.<br> ARC is technically doing a powerful job. It knows when to `retain`, `autorelease` and `release`.
+<br>But ARC doesn't think about the overall architecture how to design for low memory usage. You should be aware that you can still do a lot of things wrong with your memory (even with ARC). You can still get memory pressures or peaks with ARC.
+* You can still create Retain Cycles
+* The `strong` property lifetime qualifier can be misused (i.e. holding an object twice and longer than needed.)
+* Memory peaks through loops (if you're not using a proper `@autoreleasepool`)
+* Wrong caching with `static`
+
+And that's why we introduced HeapInspector to find those issues.
 
 # Installation
-### Cocoapods
+### CocoaPods
 
 Just add the HeapInspector to your `Podfile`.
 ```objc
@@ -46,7 +48,7 @@ and run `pod install` afterwards.
 Download the repository into your project via git or just as zip.
 Drag it the `HeapInspector` folder into your Xcode project. See following image.
 
-Disable ARC for `NSObject+HeapInspector.m` by adding `-fno-objc-arc` to XCode's Build Phases -> Compile Source. See following image.
+Disable ARC for `NSObject+HeapInspector.m` by adding `-fno-objc-arc` to XCode's Build Phases -> Compile Source. See example images here: [Drag](README_Xtras/drag.png) and [disable ARC](README_Xtras/no_arc.png)
 
 # How to use it
 
@@ -57,33 +59,32 @@ Make sure to import the heder file
 
 
 ### Start
-This starts HeapInspector in a separated debug window. The tool can be moved on our screen in order to reach your elements.  
+Just run the following to start HeapInspector in a separated debug window. The window can be moved on your screen in order to reach all your UI elements.  
 ```objc
 [HINSPDebug startWithClassPrefix:@"RM"];
 ```
-The prefix can be `nil`. In that case HeapInspector will record all `NSObject` subclasses. We recommend to use a specfic class prefix or even better real class like `UIImageView`.
+The prefix can be `nil`. No prefix will record all `NSObject` subclasses. We recommend to use a specific class prefix or even better a real class like `UIImageView`.
 
 ### Stop
-Stopping and removing the inspector's view goes with
+Stopping and removing the inspector's window goes with
 ```objc
 [HINSPDebug stop];
 ```
 
-Just call the start/stop methods at app launch or via your custom button .
+Just call the start/stop methods at app launch or via your custom button.
 
 ### Backtrace record
 HeapInspector can also record the backtrace for each object that received an alloc, retain, release or dealloc.
 **Notice**: This has a large performance impact. Use this only with very specific recorded classes or small apps.
 
 # Example project
-HeapInspector comes with an example project. There you will see a lot of mistakes with the memory design.  
+HeapInspector comes with an example project. There you will see a lot of mistakes made with the memory design.  
 * `strong` delegate properties
-* `NSTimer` that is not being invalivated properly
-* `strong` property lifetime qualifier for `UIViewController` that is pushed onto the `UINavigationController` stack
-
-This helps to demonstrate the use of the memory heap snapshots.
+* `NSTimer` that is not being invalidated properly
+*  Holding objects longer than needed. `strong` property for the `UIViewController` that is pushed onto the `UINavigationController` stack
 
 # Todo
 - Test with Swift
 
-# Thanks
+# License
+[MIT](LICENSE.md)
