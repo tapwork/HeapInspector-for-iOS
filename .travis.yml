@@ -2,4 +2,4 @@ language: objective-c
 before:
   - bundle
   - cd Example/HeapInspectorExample && bundle exec pod install
-script: xctool -workspace Example/HeapInspectorExample/HeapInspectorExample.xcworkspace -scheme HeapInspectorExample
+script: xctool -workspace HeapInspectorExample.xcworkspace -scheme HeapInspectorExample
