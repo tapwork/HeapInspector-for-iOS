@@ -8,7 +8,7 @@
 
 #import "RMOAppDelegate.h"
 #import "RMRootViewController.h"
-#import "HINSPDebug.h"
+#import <HeapInspector/HINSPDebug.h>
 
 @implementation RMOAppDelegate
 
