@@ -1,5 +1,3 @@
 language: objective-c
-before:
-  - bundle
-  - cd Example/HeapInspectorExample && bundle exec pod install
-script: xctool -workspace HeapInspectorExample.xcworkspace -scheme HeapInspectorExample
+before_install: rake bootstrap
+script: rake spec
