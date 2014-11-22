@@ -6,5 +6,5 @@ end
 
 desc "Runs the specs"
 task :spec do
-  sh 'xcodebuild -workspace Example/HeapInspectorExample/HeapInspectorExample.xcworkspace -scheme 'HeapInspectorExample' | xcpretty -tc'
+  sh 'xcodebuild -workspace Example/HeapInspectorExample/HeapInspectorExample.xcworkspace -scheme \'HeapInspectorExample\''
 end
