@@ -1,7 +1,6 @@
 # HeapInspector
 ## Find memory issues & leaks in your iOS app
 
-[![Build Status](http://img.shields.io/travis/tapwork/HeapInspector/master.svg?style=flat)](https://travis-ci.org/tapwork/HeapInspector)
 [![Cocoapods Version](http://img.shields.io/cocoapods/v/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector/blob/master/HeapInspector.podspec)
 [![](http://img.shields.io/cocoapods/l/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector/blob/master/LICENSE.md)
 [![CocoaPods Platform](http://img.shields.io/cocoapods/p/HeapInspector.svg?style=flat)]()
