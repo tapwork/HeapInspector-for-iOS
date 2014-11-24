@@ -1,8 +1,8 @@
 # HeapInspector
 ## Find memory issues & leaks in your iOS app
-[![Build Status](https://api.travis-ci.org/tapwork/HeapInspector-for-iOS.svg?style=flat)](https://travis-ci.org/tapwork/HeapInspector)
-[![Cocoapods Version](http://img.shields.io/cocoapods/v/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector/blob/master/HeapInspector.podspec)
-[![](http://img.shields.io/cocoapods/l/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector/blob/master/LICENSE.md)
+[![Build Status](https://api.travis-ci.org/tapwork/HeapInspector-for-iOS.svg?style=flat)](https://travis-ci.org/tapwork/HeapInspector-for-iOS)
+[![Cocoapods Version](http://img.shields.io/cocoapods/v/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector-for-iOS/blob/master/HeapInspector.podspec)
+[![](http://img.shields.io/cocoapods/l/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector-for-iOS/blob/master/LICENSE.md)
 [![CocoaPods Platform](http://img.shields.io/cocoapods/p/HeapInspector.svg?style=flat)]()
 
 HeapInspector is an iOS debug tool that **monitors the memory heap** in your app. You can discover memory leaks, no longer needed living objects and more issues directly on your device without ever starting Instruments.
