@@ -21,7 +21,6 @@
 		DA29C56119A530C400FFF7D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA29C55F19A530C400FFF7D5 /* InfoPlist.strings */; };
 		DA29C56319A530C400FFF7D5 /* HeapInspectorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */; };
 		DA9FCA541A13CF1A009E8326 /* RMGalleryWrongViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FCA531A13CF1A009E8326 /* RMGalleryWrongViewCotroller.m */; };
-		DA9FCA5B1A13D0A4009E8326 /* IMG_0573.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA561A13D0A4009E8326 /* IMG_0573.JPG */; };
 		DA9FCA5C1A13D0A4009E8326 /* IMG_0594.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA571A13D0A4009E8326 /* IMG_0594.JPG */; };
 		DA9FCA5D1A13D0A4009E8326 /* IMG_0601.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA581A13D0A4009E8326 /* IMG_0601.JPG */; };
 		DA9FCA5E1A13D0A4009E8326 /* IMG_0635.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DA9FCA591A13D0A4009E8326 /* IMG_0635.JPG */; };
@@ -63,7 +62,6 @@
 		DA29C56219A530C400FFF7D5 /* HeapInspectorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeapInspectorExampleTests.m; sourceTree = "<group>"; };
 		DA9FCA521A13CF1A009E8326 /* RMGalleryWrongViewCotroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGalleryWrongViewCotroller.h; sourceTree = "<group>"; };
 		DA9FCA531A13CF1A009E8326 /* RMGalleryWrongViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGalleryWrongViewCotroller.m; sourceTree = "<group>"; };
-		DA9FCA561A13D0A4009E8326 /* IMG_0573.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0573.JPG; sourceTree = "<group>"; };
 		DA9FCA571A13D0A4009E8326 /* IMG_0594.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0594.JPG; sourceTree = "<group>"; };
 		DA9FCA581A13D0A4009E8326 /* IMG_0601.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0601.JPG; sourceTree = "<group>"; };
 		DA9FCA591A13D0A4009E8326 /* IMG_0635.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0635.JPG; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 		DA9FCA551A13D0A4009E8326 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				DA9FCA561A13D0A4009E8326 /* IMG_0573.JPG */,
 				DA9FCA571A13D0A4009E8326 /* IMG_0594.JPG */,
 				DA9FCA581A13D0A4009E8326 /* IMG_0601.JPG */,
 				DA9FCA591A13D0A4009E8326 /* IMG_0635.JPG */,
@@ -277,7 +274,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA9FCA5B1A13D0A4009E8326 /* IMG_0573.JPG in Resources */,
 				DA9FCA5F1A13D0A4009E8326 /* IMG_0656.JPG in Resources */,
 				DA9FCA5C1A13D0A4009E8326 /* IMG_0594.JPG in Resources */,
 				DA29C54819A530C400FFF7D5 /* InfoPlist.strings in Resources */,

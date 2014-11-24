@@ -25,7 +25,7 @@ static NSString *const kRMGalleryCollectionViewCellID = @"RMGalleryCollectionVie
 {
     [super viewDidLoad];
     
-    self.dataSource = @[@"IMG_0573.JPG", @"IMG_0594.JPG", @"IMG_0601.JPG", @"IMG_0635.JPG", @"IMG_0656.JPG"];
+    self.dataSource = @[@"IMG_0594.JPG", @"IMG_0601.JPG", @"IMG_0635.JPG", @"IMG_0656.JPG"];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
