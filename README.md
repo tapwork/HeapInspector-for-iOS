@@ -80,6 +80,10 @@ Just call the start/stop methods at app launch or via your custom button.
 ### Backtrace record
 HeapInspector can also record the backtrace for each object that received an alloc, retain, release or dealloc.
 **Notice**: This has a large performance impact. Use this only with very specific recorded classes or small apps.
+Start the backtrace with
+```objc
+[HINSPDebug recordBacktraces:YES]; 
+```
 
 # Example project
 HeapInspector comes with an example project. There you will see a lot of mistakes made with the memory design.  
