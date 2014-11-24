@@ -63,7 +63,7 @@ Make sure to import the heder file
 
 
 ### Start
-Just run the following to start HeapInspector in a separated debug window. The window can be moved on your screen in order to reach all your UI elements.  
+Just run the following to start HeapInspector in a separated debug window. The window can be moved on your screen in order to reach all your UI elements. The left circle button starts / stops the memory heap snapshot. See demo above.
 ```objc
 [HINSPDebug startWithClassPrefix:@"RM"];
 ```
