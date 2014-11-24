@@ -1,1 +1,5 @@
 pod "HeapInspector", :path => "../../HeapInspector.podspec"
+
+target "HeapInspectorExampleTests" do
+  pod 'HeapInspector', :path => "../../HeapInspector.podspec"
+end

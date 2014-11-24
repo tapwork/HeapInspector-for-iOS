@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-HeapInspectorExampleTests-HeapInspector.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HeapInspectorExampleTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>14A4792E346CECECFB802D16</key>
+		<key>66723BC5166B1915534979F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F7D7A30C96FBA7E6C8E98CF9</key>
+		<key>7227E8EDF779518D33FEDCAE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF1A6FC39571667A9B0FE9CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FFBC2B7A4374B3E80FBF23EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
