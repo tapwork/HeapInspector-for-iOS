@@ -181,9 +181,7 @@ id objc_retainBlock(id value)
     if (value) {
         recordAndRegisterIfPossible(value,"retainBlock");
     }
-    [value copy];
-    
-    return value;
+    return [value copy];
 }
 
 id objc_release(id value)
