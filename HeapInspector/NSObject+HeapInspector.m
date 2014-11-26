@@ -228,6 +228,10 @@ static inline bool canRecordObject(Class cls)
 
 static inline void recordAndRegisterIfPossible(id obj, char *name)
 {
+    if ([obj isProxy]) {
+        // NSProxy sub classes will cause crash when calling class_getName on its class
+        return;
+    }
     if (canRecordObject([obj class])) {
         if (registerBacktraceForObject(obj, name)) {
 #if TARGET_IPHONE_SIMULATOR
