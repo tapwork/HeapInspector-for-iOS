@@ -19,7 +19,7 @@ static bool isRecording;
 static bool swizzleActive;
 static const char *recordClassPrefix;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
-static inline bool canRecordObject(Class cls);
+static inline bool canRecordObject(id obj);
 
 static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
 {
@@ -211,8 +211,13 @@ static inline void cleanup()
     }
 }
 
-static inline bool canRecordObject(Class cls)
+static inline bool canRecordObject(id obj)
 {
+    if ([obj isProxy]) {
+        // NSProxy sub classes will cause crash when calling class_getName on its class
+        return false;
+    }
+    Class cls = [obj class];
     bool canRecord = true;
     const char *name = class_getName(cls);
     if (recordClassPrefix && name) {
@@ -228,11 +233,7 @@ static inline bool canRecordObject(Class cls)
 
 static inline void recordAndRegisterIfPossible(id obj, char *name)
 {
-    if ([obj isProxy]) {
-        // NSProxy sub classes will cause crash when calling class_getName on its class
-        return;
-    }
-    if (canRecordObject([obj class])) {
+    if (canRecordObject(obj)) {
         if (registerBacktraceForObject(obj, name)) {
 #if TARGET_IPHONE_SIMULATOR
 //            printf("%s %s\n",name, object_getClassName(obj));
@@ -267,7 +268,7 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 + (id)tw_alloc
 {
-    bool canRec = canRecordObject([self class]);
+    bool canRec = canRecordObject(self);
     id obj = [[self class] tw_alloc];
     if (canRec) {
         if (registerBacktraceForObject(obj, "alloc")) {
