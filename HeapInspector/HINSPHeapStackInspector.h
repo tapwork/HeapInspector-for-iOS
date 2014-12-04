@@ -15,11 +15,11 @@ typedef void (^RMHeapEnumeratorBlock)(__unsafe_unretained id object, __unsafe_un
 @interface HINSPHeapStackInspector : NSObject
 
 + (void)performHeapShot;
-+ (void)setClassPrefix:(NSString *)classPrefix;
++ (void)setClassPrefixes:(NSSet *)classPrefixes;
 + (void)enumerateLiveObjectsUsingBlock:(RMHeapEnumeratorBlock)block;
 + (NSSet *)heapStack;
 + (NSSet *)recordedHeapStack;
-+ (NSString *)classPrefix;
++ (NSSet *)classPrefixes;
 + (id)objectForPointer:(NSString *)pointer;
 
 @end

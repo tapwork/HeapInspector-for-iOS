@@ -13,7 +13,7 @@
 
 static CFMutableSetRef registeredClasses;
 static NSSet *heapShotLiveObjects;
-const char *recordClassPrefix;
+static NSSet *recordClassPrefixes;
 
 // Mimics the objective-c object stucture for checking if a range of memory is an object.
 typedef struct {
@@ -59,16 +59,26 @@ static void range_callback(task_t task, void *context, unsigned type, vm_range_t
 
 static inline bool canRecordObject(const char* className)
 {
-    bool canRecord = true;
-    if (recordClassPrefix && className) {
-        canRecord = (strncmp(className, recordClassPrefix, strlen(recordClassPrefix)) == 0);
+    if (strcasecmp(className, "NSAutoreleasePool") == 0)
+    {
+        return false;
     }
-    
-    if (strcasecmp(className, "NSAutoreleasePool") == 0) {
-        canRecord = NO;
+    else
+    {
+        bool canRecord = false;
+
+        for (NSString *classPrefix in recordClassPrefixes)
+        {
+            const char *recordClassPrefix = [classPrefix UTF8String];
+            
+            if (recordClassPrefix && className) {
+                canRecord = (strncmp(className, recordClassPrefix, strlen(recordClassPrefix)) == 0);
+                
+                if (canRecord == true)  break;
+            }
+        }
+        return canRecord;
     }
-    
-    return canRecord;
 }
 
 + (void)enumerateLiveObjectsUsingBlock:(RMHeapEnumeratorBlock)block
@@ -113,9 +123,9 @@ static inline bool canRecordObject(const char* className)
 
 #pragma mark - Public
 
-+ (void)setClassPrefix:(NSString *)classPrefix
++ (void)setClassPrefixes:(NSSet *)classPrefixes
 {
-    recordClassPrefix = [classPrefix UTF8String];
+    recordClassPrefixes = classPrefixes;
 }
 
 + (void)performHeapShot
@@ -148,9 +158,9 @@ static inline bool canRecordObject(const char* className)
     return objects;
 }
 
-+ (NSString *)classPrefix
++(NSSet *)classPrefixes
 {
-    return [NSString stringWithUTF8String:recordClassPrefix];
+    return recordClassPrefixes;
 }
 
 + (id)objectForPointer:(NSString *)pointer

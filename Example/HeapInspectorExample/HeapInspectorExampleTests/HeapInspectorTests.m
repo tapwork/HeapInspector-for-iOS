@@ -21,7 +21,7 @@
 
 - (void)testRecordAll
 {
-    [HINSPDebug startWithClassPrefix:nil];
+    [HINSPDebug startWithClassPrefixes:nil];
     self.controller = [[UIViewController alloc] init];
     [HINSPDebug stop];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
@@ -30,7 +30,7 @@
 
 - (void)testRecordSpecificClass
 {
-    [HINSPDebug startWithClassPrefix:@"RM"];
+    [HINSPDebug startWithClassPrefixes:[NSSet setWithObject:@"RM"]];
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
     [HINSPDebug stop];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
