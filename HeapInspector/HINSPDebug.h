@@ -10,8 +10,8 @@
 
 @interface HINSPDebug : NSObject
 
-// Start the HeapInspector with a specific class prefix. Nil records all classes and not just yours.
-+ (void)startWithClassPrefix:(NSString*)classPrefix;
+// Start the HeapInspector with a set of specific class prefixes. Nil records all classes and not just yours.
++ (void)startWithClassPrefixes:(NSSet*)classPrefixes;
 
 // Stops the HeapInspector and removes the inspector's view
 + (void)stop;

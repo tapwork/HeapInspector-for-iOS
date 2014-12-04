@@ -17,7 +17,7 @@ static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
 static bool isRecording;
 static bool swizzleActive;
-static const char *recordClassPrefix;
+static NSSet *recordClassPrefixes;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
 static inline bool canRecordObject(id obj);
 
@@ -213,22 +213,34 @@ static inline void cleanup()
 
 static inline bool canRecordObject(id obj)
 {
-    if ([obj isProxy]) {
+    if (isRecording == false)
+    {
+        return false;
+    }
+    else if ([obj isProxy]) {
         // NSProxy sub classes will cause crash when calling class_getName on its class
         return false;
     }
-    Class cls = [obj class];
-    bool canRecord = true;
-    const char *name = class_getName(cls);
-    if (recordClassPrefix && name) {
-        canRecord = (strncmp(name, recordClassPrefix, strlen(recordClassPrefix)) == 0);
+    else
+    {
+        Class cls = [obj class];
+        bool canRecord = false;
+        const char *name = class_getName(cls);
+        
+        for (NSString *classPrefix in recordClassPrefixes)
+        {
+            const char *recordClassPrefix = [classPrefix UTF8String];
+            
+            if (recordClassPrefix && name) {
+                canRecord = (strncmp(name, recordClassPrefix, strlen(recordClassPrefix)) == 0);
+                
+                if (canRecord == true)
+                    break;
+            }
+        }
+        
+        return canRecord;
     }
-    
-    if (isRecording == false) {
-        canRecord = false;
-    }
-    
-    return canRecord;
 }
 
 static inline void recordAndRegisterIfPossible(id obj, char *name)
@@ -318,7 +330,7 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 #pragma mark - Public methods
 + (void)beginSnapshot
 {
-    [[self class] beginSnapshotWithClassPrefix:nil];
+    [[self class] beginSnapshotWithClassPrefixes:nil];
 }
 
 + (void)setRecordBacktrace:(BOOL)recordBacktrace
@@ -326,13 +338,13 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     kRecordBacktrace = recordBacktrace;
 }
 
-+ (void)beginSnapshotWithClassPrefix:(NSString*)prefix
++ (void)beginSnapshotWithClassPrefixes:(NSSet*)prefixes
 {
     isRecording = true;
     cleanup();
     
-    if (prefix) {
-        recordClassPrefix = [prefix UTF8String];
+    if (prefixes) {
+        recordClassPrefixes = prefixes;
     }
     
     if (!swizzleActive) {

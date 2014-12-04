@@ -10,7 +10,7 @@
 @interface NSObject (HeapInspector)
 
 + (void)beginSnapshot;
-+ (void)beginSnapshotWithClassPrefix:(NSString*)prefix;
++ (void)beginSnapshotWithClassPrefixes:(NSSet*)prefixes;
 + (void)endSnapshot;
 + (BOOL)isSnapshotRecording;
 + (void)resumeSnapshot;
