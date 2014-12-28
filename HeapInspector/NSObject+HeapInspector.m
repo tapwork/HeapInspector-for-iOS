@@ -217,7 +217,7 @@ static inline bool canRecordObject(id obj)
         // NSProxy sub classes will cause crash when calling class_getName on its class
         return false;
     }
-    Class cls = [obj class];
+    Class cls = object_getClass(obj);
     bool canRecord = true;
     const char *name = class_getName(cls);
     if (recordClassPrefix && name) {
