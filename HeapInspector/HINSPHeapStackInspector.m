@@ -5,6 +5,9 @@
 //  Created by Christian Menschel on 22.08.14.
 //  Copyright (c) 2014 tapwork. All rights reserved.
 //
+//  Inspired by Flipboard's FLEX and HeapEnumerator
+//  See more: https://github.com/Flipboard/FLEX/blob/master/Classes/Utility/FLEXHeapEnumerator.m
+//
 
 #import "HINSPHeapStackInspector.h"
 #import <malloc/malloc.h>
