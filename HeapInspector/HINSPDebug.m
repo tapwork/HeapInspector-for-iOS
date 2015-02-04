@@ -119,6 +119,11 @@ static HINSPDebug *twDebug = nil;
     }
 }
 
++ (void)start
+{
+    [[self class] startWithClassPrefix:nil];
+}
+
 + (void)startWithClassPrefix:(NSString*)classPrefix {
     twDebug = [[HINSPDebug alloc] initWithClassPrefix:classPrefix];;
 }
