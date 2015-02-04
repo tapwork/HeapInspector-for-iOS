@@ -14,8 +14,8 @@
 #import <mach/mach.h>
 #import <objc/runtime.h>
 
-static CFMutableSetRef registeredClasses;
-static NSSet *heapShotLiveObjects;
+static CFMutableSetRef classesLoadedInRuntime;
+static NSSet *heapShotOfLivingObjects;
 const char *recordClassPrefix;
 
 // Mimics the objective-c object stucture for checking if a range of memory is an object.
@@ -50,7 +50,7 @@ static void range_callback(task_t task, void *context, unsigned type, vm_range_t
         tryClass = tryObject->isa;
 #endif
         // If the class pointer matches one in our set of class pointers from the runtime, then we should have an object.
-        if (CFSetContainsValue(registeredClasses, (__bridge const void *)(tryClass))) {
+        if (CFSetContainsValue(classesLoadedInRuntime, (__bridge const void *)(tryClass))) {
             // Also check if we can record this object
             const char *name = object_getClassName((__bridge id)tryObject);
             if (canRecordObject(name)) {
@@ -101,15 +101,15 @@ static inline bool canRecordObject(const char* className)
 
 + (void)updateRegisteredClasses
 {
-    if (!registeredClasses) {
-        registeredClasses = CFSetCreateMutable(NULL, 0, NULL);
+    if (!classesLoadedInRuntime) {
+        classesLoadedInRuntime = CFSetCreateMutable(NULL, 0, NULL);
     } else {
-        CFSetRemoveAllValues(registeredClasses);
+        CFSetRemoveAllValues(classesLoadedInRuntime);
     }
     unsigned int count = 0;
     Class *classes = objc_copyClassList(&count);
     for (unsigned int i = 0; i < count; i++) {
-        CFSetAddValue(registeredClasses, (__bridge const void *)(classes[i]));
+        CFSetAddValue(classesLoadedInRuntime, (__bridge const void *)(classes[i]));
     }
     free(classes);
 }
@@ -123,13 +123,13 @@ static inline bool canRecordObject(const char* className)
 
 + (void)performHeapShot
 {
-    heapShotLiveObjects = [[self class] heapStack];
+    heapShotOfLivingObjects = [[self class] heapStack];
 }
 
 + (NSSet *)recordedHeapStack
 {
     NSMutableSet *endLiveObjects = [[[self class] heapStack] mutableCopy];
-    [endLiveObjects minusSet:heapShotLiveObjects];
+    [endLiveObjects minusSet:heapShotOfLivingObjects];
     NSSet *recordedObjects = [NSSet setWithSet:endLiveObjects];
     
     return recordedObjects;
