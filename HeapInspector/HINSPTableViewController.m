@@ -17,6 +17,7 @@
 {
     NSArray *_originalDataSource;
     UIActivityIndicatorView *_loadingSpinner;
+    BOOL _isSearching;
 }
 
 - (instancetype)init
@@ -117,22 +118,26 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    [searchBar setShowsCancelButton:YES animated:YES];
-     _dataSourceUnfiltered = self.dataSource;
+    if (!_isSearching) {
+        _isSearching = YES;
+        [searchBar setShowsCancelButton:YES animated:YES];
+        _dataSourceUnfiltered = self.dataSource;
+    }
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     [searchBar setShowsCancelButton:NO animated:YES];
-    
-    self.dataSource = _dataSourceUnfiltered;
-    [self.tableView reloadData];
+    _isSearching = NO;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
     [searchBar resignFirstResponder];
     searchBar.text = nil;
+    
+    self.dataSource = _dataSourceUnfiltered;
+    [self.tableView reloadData];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
