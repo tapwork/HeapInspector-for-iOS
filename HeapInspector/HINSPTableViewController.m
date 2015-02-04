@@ -69,6 +69,15 @@
     [self.tableView registerClass:[HINSPTableViewCell class] forCellReuseIdentifier:kTableViewCellIdent];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (_isSearching) {
+        [self.tableView.tableHeaderView becomeFirstResponder];
+    }
+}
+
 - (void)setupSearchBar
 {
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
@@ -118,26 +127,27 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    if (!_isSearching) {
-        _isSearching = YES;
+    if ([searchBar.text length] == 0 && !_isSearching) {
         [searchBar setShowsCancelButton:YES animated:YES];
         _dataSourceUnfiltered = self.dataSource;
+        _isSearching = YES;
     }
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-    [searchBar setShowsCancelButton:NO animated:YES];
-    _isSearching = NO;
+    if ([searchBar.text length] == 0) {
+        [searchBar setShowsCancelButton:NO animated:YES];
+        self.dataSource = _dataSourceUnfiltered;
+        [self.tableView reloadData];
+        _isSearching = NO;
+    }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
-    [searchBar resignFirstResponder];
     searchBar.text = nil;
-    
-    self.dataSource = _dataSourceUnfiltered;
-    [self.tableView reloadData];
+    [searchBar resignFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
