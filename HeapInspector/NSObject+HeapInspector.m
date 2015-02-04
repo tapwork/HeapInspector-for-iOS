@@ -16,7 +16,6 @@ static bool kRecordBacktrace = false;
 static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
 static bool isRecording;
-static bool swizzleActive;
 static const char *recordClassPrefix;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
 static inline bool canRecordObject(id obj);
@@ -252,9 +251,8 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 @implementation NSObject (HeapInspector)
 
-+ (void)swizzle
++ (void)load
 {
-    swizzleActive = true;
     SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
     SwizzleInstanceMethod([self class], NSSelectorFromString(@"dealloc"), @selector(tw_dealloc));
     SwizzleInstanceMethod([self class], NSSelectorFromString(@"retain"), @selector(tw_retain));
@@ -333,10 +331,6 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     
     if (prefix) {
         recordClassPrefix = [prefix UTF8String];
-    }
-    
-    if (!swizzleActive) {
-        [[self class] swizzle];
     }
 }
 
