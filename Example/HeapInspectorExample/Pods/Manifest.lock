@@ -1,7 +1,7 @@
 PODS:
-  - HeapInspector (0.0.4):
-    - HeapInspector/no-arc (= 0.0.4)
-  - HeapInspector/no-arc (0.0.4)
+  - HeapInspector (0.0.5):
+    - HeapInspector/no-arc (= 0.0.5)
+  - HeapInspector/no-arc (0.0.5)
 
 DEPENDENCIES:
   - HeapInspector (from `../../HeapInspector.podspec`)
@@ -11,6 +11,6 @@ EXTERNAL SOURCES:
     :path: ../../HeapInspector.podspec
 
 SPEC CHECKSUMS:
-  HeapInspector: f2ea7474ab8bdd5acfbf50646a21589bc084edf1
+  HeapInspector: a8b1e24fcef7db4b6371651b9b7287d1ca45587e
 
 COCOAPODS: 0.35.0
