@@ -68,7 +68,7 @@ Just run the following to start HeapInspector in a separated debug window. The w
 [HINSPDebug startWithClassPrefix:@"RM"];
 ```
 The prefix can be `nil`. We recommend to use a specific class prefix or even better a real class like `UIImageView`.
-Or just run to record all NSObject subclasses
+Or just run `start` to record all NSObject subclasses.
 ```objc
 [HINSPDebug start];
 ```
