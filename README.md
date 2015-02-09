@@ -94,5 +94,13 @@ HeapInspector comes with an example project. There you will see a lot of mistake
 # Todo
 - Test with Swift
 
+# References, Inspirations & Thanks
+* [FLEX](https://github.com/flipboard/flex) by Flipboard's iOS developers
+* [Mike Ash](https://www.mikeash.com/pyblog/friday-qa-2011-09-30-automatic-reference-counting.html) Friday Q&A Automatic Reference Counting
+* [Clang](http://clang.llvm.org/docs/AutomaticReferenceCounting.html) Objective-C Automatic Reference Counting (ARC)
+
+# Author
+* [Christian Menschel](http://github.com/tapwork) ([@cmenschel](https://twitter.com/cmenschel))
+
 # License
 [MIT](LICENSE.md)
