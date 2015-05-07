@@ -34,50 +34,54 @@ static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
     method_exchangeImplementations(origMethod, newMethod);
 }
 
-static CFStringRef getCFString(char *charValue)
+static CFStringRef createCFString(char *charValue)
 {
     return CFStringCreateWithCString(NULL, charValue, kCFStringEncodingUTF8);
 }
 
-static CFStringRef cleanStackValue(char *stack)
+static CFStringRef createCleanStackValue(char *stack)
 {
-    CFStringRef cString = getCFString(stack);
-  
-    CFStringRef sep = getCFString("+[");
+    CFStringRef cString = createCFString(stack);
+    CFMutableStringRef returnValue = NULL;
+    
+    CFStringRef sep = CFSTR("+[");
     CFArrayRef parts = CFStringCreateArrayBySeparatingStrings(NULL, cString, sep);
     if (CFArrayGetCount(parts) <= 1) {
         // If "+" class method didnt work. try "-" instance method
-        sep = getCFString("-[");
+        sep = CFSTR("-[");
+        CFRelease(parts);
         parts = CFStringCreateArrayBySeparatingStrings(NULL, cString, sep);
     }
     
     if (CFArrayGetCount(parts) > 1) {
         CFStringRef preVal = (CFStringRef)CFArrayGetValueAtIndex(parts, 1);
         // Removes the line number (which does not fit to the source file
-        CFArrayRef parts2 = CFStringCreateArrayBySeparatingStrings(NULL, preVal, getCFString(" + "));
+        CFArrayRef parts2 = CFStringCreateArrayBySeparatingStrings(NULL, preVal, CFSTR(" + "));
         if (CFArrayGetCount(parts2) > 0) {
             CFStringRef stackVal = (CFStringRef)CFArrayGetValueAtIndex(parts2, 0);
-            CFMutableStringRef val = CFStringCreateMutableCopy(NULL, 255, sep);
-            CFStringAppend(val, stackVal);
-            CFStringFindAndReplace(val,
-                                   getCFString("tw_alloc"),
-                                   getCFString("alloc"),
-                                   CFRangeMake(0, CFStringGetLength(val)),
+            returnValue = CFStringCreateMutableCopy(NULL, 255, sep);
+            CFStringAppend(returnValue, stackVal);
+            CFStringFindAndReplace(returnValue,
+                                   CFSTR("tw_alloc"),
+                                   CFSTR("alloc"),
+                                   CFRangeMake(0, CFStringGetLength(returnValue)),
                                    kCFCompareNonliteral);
-            
-            return val;
         }
+        CFRelease(parts2);
     }
+    CFRelease(parts);
+    CFRelease(cString);
     
-    return NULL;
+    return returnValue;
 }
 
 static bool canRegisterBacktrace(char *stack)
 {
-    CFStringRef cString = getCFString(stack);
+    CFStringRef cString = createCFString(stack);
     
     // Exclude the HINSP Class Prefix (that's ourself)
-    CFRange range = CFStringFind(cString, getCFString("HINSP"), kCFCompareCaseInsensitive);
+    CFRange range = CFStringFind(cString, CFSTR("HINSP"), kCFCompareCaseInsensitive);
+    CFRelease(cString);
     if (range.location != kCFNotFound) {
         return false;
     }
@@ -98,8 +102,7 @@ static CFArrayRef getBacktrace()
     bt_size = backtrace(bt, 1024);
     bt_syms = backtrace_symbols(bt, bt_size);
     for (int i = 0; i < bt_size; i++) {
-        // TODO: would be cool to have the line number here
-        CFStringRef cString = cleanStackValue(bt_syms[i]);
+        CFStringRef cString = createCleanStackValue(bt_syms[i]);
         if (cString) {
             if (canRegisterBacktrace(bt_syms[i]) == true) {
                 CFArrayAppendValue(stack, cString);
@@ -107,10 +110,11 @@ static CFArrayRef getBacktrace()
                 stack = NULL;
                 break;
             }
+            CFRelease(cString);
         }
     }
-
     free(bt_syms);
+    CFRelease(stack);
     
     return stack;
 }
@@ -124,7 +128,8 @@ static bool registerBacktraceForObject(void *obj, char *type)
     
     char key[255];
     sprintf(key,"%p",obj);
-    CFStringRef cfKey = getCFString(key);
+    CFStringRef cfKey = createCFString(key);
+    CFStringRef cfType = createCFString(type);
     if (cfKey) {
         if (!backtraceDict) {
             backtraceDict = CFDictionaryCreateMutable(NULL,
@@ -132,24 +137,31 @@ static bool registerBacktraceForObject(void *obj, char *type)
                                                       &kCFTypeDictionaryKeyCallBacks,
                                                       &kCFTypeDictionaryValueCallBacks);
         }
-        CFMutableArrayRef history = (CFMutableArrayRef)CFDictionaryGetValue(backtraceDict, cfKey);
+        CFMutableArrayRef storedHistory = (CFMutableArrayRef)CFDictionaryGetValue(backtraceDict, cfKey);
+        CFMutableArrayRef history = NULL;
         if (!history) {
             history = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
+        } else {
+            history = CFArrayCreateMutableCopy(NULL, CFArrayGetCount(storedHistory), storedHistory);
         }
         CFMutableDictionaryRef item = CFDictionaryCreateMutable(NULL,
                                                                 0,
                                                                 &kCFTypeDictionaryKeyCallBacks,
                                                                 &kCFTypeDictionaryValueCallBacks);
-        CFDictionarySetValue(item, getCFString("type"), getCFString(type));
+        CFDictionarySetValue(item, CFSTR("type"), cfType);
         if (backtrace && CFArrayGetCount(backtrace) > 0) {
-            CFDictionarySetValue(item, getCFString("last_trace"), CFArrayGetValueAtIndex(backtrace, 0));
-            CFDictionarySetValue(item, getCFString("all_traces"), backtrace);
+            CFDictionarySetValue(item, CFSTR("last_trace"), CFArrayGetValueAtIndex(backtrace, 0));
+            CFDictionarySetValue(item, CFSTR("all_traces"), backtrace);
         }
         CFArrayAppendValue(history, item);
+        CFRelease(item);
         CFDictionarySetValue(backtraceDict, cfKey, history);
+        CFRelease(history);
         success = true;
     }
     OSSpinLockUnlock(&backtraceDictLock);
+    CFRelease(cfKey);
+    CFRelease(cfType);
     
     return success;
 }
@@ -355,9 +367,10 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     if (obj && backtraceDict) {
         char key[255];
         sprintf(key,"%p",(void *)obj);
-        CFStringRef cfKey = getCFString(key);
+        CFStringRef cfKey = createCFString(key);
         CFArrayRef cfHistory = CFDictionaryGetValue(backtraceDict, cfKey);
         history = [(NSArray *)cfHistory copy];
+        CFRelease(cfKey);
     }
     
     return history;
