@@ -89,7 +89,7 @@ static bool canRegisterBacktrace(char *stack)
     return true;
 }
 
-static CFArrayRef getBacktrace()
+static CFArrayRef createBacktrace()
 {
     if (!kRecordBacktrace) {
         return NULL;
@@ -114,7 +114,6 @@ static CFArrayRef getBacktrace()
         }
     }
     free(bt_syms);
-    CFRelease(stack);
     
     return stack;
 }
@@ -123,7 +122,7 @@ static bool registerBacktraceForObject(void *obj, char *type)
 {
     OSSpinLockLock(&backtraceDictLock);
     
-    CFArrayRef backtrace = getBacktrace();
+    CFArrayRef backtrace = createBacktrace();
     bool success = false;
     
     char key[255];
@@ -162,6 +161,7 @@ static bool registerBacktraceForObject(void *obj, char *type)
     OSSpinLockUnlock(&backtraceDictLock);
     CFRelease(cfKey);
     CFRelease(cfType);
+    CFRelease(backtrace);
     
     return success;
 }
