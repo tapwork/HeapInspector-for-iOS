@@ -41,11 +41,20 @@ And that's why we introduced HeapInspector to find those issues.
 
 # Installation
 ### CocoaPods
-
+HeapInspector runs with Objective C and Swift via CocoaPods
 Just add the HeapInspector to your `Podfile`.
-```objc
+```
 pod 'HeapInspector'
 ```
+
+For Swift:
+```
+use_frameworks!
+platform :ios, '8.0'
+
+pod "HeapInspector"
+```
+
 and run `pod install` afterwards.
 
 ### Without CocoaPods
@@ -56,37 +65,60 @@ Disable ARC for `NSObject+HeapInspector.m` by adding `-fno-objc-arc` to XCode's 
 
 # How to use it
 
-Make sure to import the header file
+Make sure to import the header file<br />
+Objective C
 ```objc
 #import "HINSPDebug.h"
 ```
-
+Swift
+```swift
+import HeapInspector
+```
 
 ### Start
-Just run the following to start HeapInspector in a separated debug window. The window can be moved on your screen in order to reach all your UI elements. The left circle button starts / stops the memory heap snapshot. See demo above.
+Just run the following to start HeapInspector in a separated debug window. The window can be moved on your screen in order to reach all your UI elements. The left circle button starts / stops the memory heap snapshot. See demo above.<br />
+Objective C
 ```objc
 [HINSPDebug startWithClassPrefix:@"RM"];
 ```
+Swift
+```swift
+HINSPDebug.startWithClassPrefix("RM")
+```
+
 The prefix can be `nil`. We recommend to use a specific class prefix or even better a real class like `UIImageView`.
-Or just run `start` to record all NSObject subclasses.
+Or just run `start` to record all NSObject subclasses.<br />
+Objective C
 ```objc
 [HINSPDebug start];
 ```
-
+Swift
+```swift
+HINSPDebug.start()
+```
 ### Stop
-Stopping and removing the inspector's window goes with
+Stopping and removing the inspector's window goes with<br />
+Objective C
 ```objc
 [HINSPDebug stop];
 ```
-
+Swift
+```swift
+HINSPDebug.stop()
+```
 Just call the start/stop methods at app launch or via your custom button.
 
 ### Backtrace record
 HeapInspector can also record the backtrace for each object that received an alloc, retain, release or dealloc.
 **Notice**: This has a large performance impact. Use this only with very specific recorded classes or small apps.
-Start the backtrace with
+Start the backtrace with<br />
+Objective C
 ```objc
 [HINSPDebug recordBacktraces:YES]; 
+```
+Swift
+```swift
+HINSPDebug.recordBacktraces(true)
 ```
 
 # Example project
@@ -94,9 +126,6 @@ HeapInspector comes with an example project. There you will see a lot of mistake
 * `strong` delegate properties
 * `NSTimer` that is not being invalidated properly
 *  Holding objects longer than needed. `strong` property for the `UIViewController` that is pushed onto the `UINavigationController` stack
-
-# Todo
-- Test with Swift
 
 # References, Inspirations & Thanks
 * [FLEX](https://github.com/flipboard/flex) by Flipboard's iOS developers
