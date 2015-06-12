@@ -106,11 +106,11 @@ static CFArrayRef createBacktrace()
         if (cString) {
             if (canRegisterBacktrace(bt_syms[i]) == true) {
                 CFArrayAppendValue(stack, cString);
+                CFRelease(cString);
             } else {
                 stack = NULL;
                 break;
             }
-            CFRelease(cString);
         }
     }
     free(bt_syms);
@@ -129,7 +129,7 @@ static bool registerBacktraceForObject(void *obj, char *type)
     sprintf(key,"%p",obj);
     CFStringRef cfKey = createCFString(key);
     CFStringRef cfType = createCFString(type);
-    if (cfKey) {
+    if (cfKey && cfType) {
         if (!backtraceDict) {
             backtraceDict = CFDictionaryCreateMutable(NULL,
                                                       0,
@@ -153,15 +153,20 @@ static bool registerBacktraceForObject(void *obj, char *type)
             CFDictionarySetValue(item, CFSTR("all_traces"), backtrace);
         }
         CFArrayAppendValue(history, item);
+        success = true;
+        
         CFRelease(item);
         CFDictionarySetValue(backtraceDict, cfKey, history);
         CFRelease(history);
-        success = true;
+        CFRelease(cfKey);
+        CFRelease(cfType);
     }
     OSSpinLockUnlock(&backtraceDictLock);
-    CFRelease(cfKey);
-    CFRelease(cfType);
-    CFRelease(backtrace);
+    
+    if (backtrace) {
+        CFRelease(backtrace);
+    }
+    
     
     return success;
 }
