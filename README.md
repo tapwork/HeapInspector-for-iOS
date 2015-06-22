@@ -133,7 +133,7 @@ HeapInspector comes with an example project. There you will see a lot of mistake
 * [Clang](http://clang.llvm.org/docs/AutomaticReferenceCounting.html) Objective-C Automatic Reference Counting (ARC)
 
 # Author
-* [Christian Menschel](http://github.com/tapwork) ([@cmenschel](https://twitter.com/cmenschel))
+* [Christian Menschel](http://github.com/tapwork) ([@cmenschel](https://twitter.com/cmenschel))  ([@xing](https://twitter.com/xingdevs))
 
 # License
 [MIT](LICENSE.md)
