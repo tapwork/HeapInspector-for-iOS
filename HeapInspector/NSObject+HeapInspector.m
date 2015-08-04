@@ -138,7 +138,7 @@ static bool registerBacktraceForObject(void *obj, char *type)
         }
         CFMutableArrayRef storedHistory = (CFMutableArrayRef)CFDictionaryGetValue(backtraceDict, cfKey);
         CFMutableArrayRef history = NULL;
-        if (!history) {
+        if (!storedHistory) {
             history = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
         } else {
             history = CFArrayCreateMutableCopy(NULL, CFArrayGetCount(storedHistory), storedHistory);
