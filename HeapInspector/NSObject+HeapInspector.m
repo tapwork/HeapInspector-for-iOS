@@ -20,18 +20,28 @@ static const char *recordClassPrefix;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
 static inline bool canRecordObject(id obj);
 
-static inline void SwizzleInstanceMethod(Class c, SEL orig, SEL new)
+static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
 {
-    Method origMethod = class_getInstanceMethod(c, orig);
-    Method newMethod = class_getInstanceMethod(c, new);
-    method_exchangeImplementations(origMethod, newMethod);
+    Method origMethod = class_getInstanceMethod(c, origSEL);
+    Method newMethod = class_getInstanceMethod(c, newSEL);
+    
+    if (class_addMethod(c, origSEL, method_getImplementation(newMethod), method_getTypeEncoding(origMethod))) {
+        class_replaceMethod(c, newSEL, method_getImplementation(origMethod), method_getTypeEncoding(newMethod));
+    } else {
+        method_exchangeImplementations(origMethod, newMethod);
+    }
 }
 
-static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
+static inline void SwizzleClassMethod(Class c, SEL origSEL, SEL newSEL)
 {
-    Method origMethod = class_getClassMethod(c, orig);
-    Method newMethod = class_getClassMethod(c, new);
-    method_exchangeImplementations(origMethod, newMethod);
+    Method origMethod = class_getClassMethod(c, origSEL);
+    Method newMethod = class_getClassMethod(c, newSEL);
+    
+    if (class_addMethod(c, origSEL, method_getImplementation(newMethod), method_getTypeEncoding(origMethod))) {
+        class_replaceMethod(c, newSEL, method_getImplementation(origMethod), method_getTypeEncoding(newMethod));
+    } else {
+        method_exchangeImplementations(origMethod, newMethod);
+    }
 }
 
 static inline CFStringRef createCFString(char *charValue)
