@@ -14,10 +14,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [HINSPDebug startWithClassPrefix:@"RM"];
-    [HINSPDebug recordBacktraces:YES];
-    
-     RMRootViewController *rootViewController = [[RMRootViewController alloc] init];
+    if (![[self class] isRunningTests]) {
+        [HINSPDebug startWithClassPrefix:@"RM"];
+        [HINSPDebug recordBacktraces:YES];
+    }
+
+    RMRootViewController *rootViewController = [[RMRootViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:rootViewController];
     
@@ -57,6 +59,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+        
++ (BOOL)isRunningTests
+{
+    return ([NSProcessInfo processInfo].environment[@"XCInjectBundle"]);
 }
 
 @end
