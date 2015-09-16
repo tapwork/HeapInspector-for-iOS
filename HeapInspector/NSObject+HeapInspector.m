@@ -270,19 +270,6 @@ id objc_retainAutorelease(id value)
 
 @implementation NSObject (HeapInspector)
 
-+ (void)load
-{
-    SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
-    SwizzleInstanceMethod([self class], NSSelectorFromString(@"dealloc"), @selector(tw_dealloc));
-    SwizzleInstanceMethod([self class], NSSelectorFromString(@"retain"), @selector(tw_retain));
-    SwizzleInstanceMethod([self class], NSSelectorFromString(@"release"), @selector(tw_release));
-    
-    SwizzleInstanceMethod([UIView class], NSSelectorFromString(@"retain"), @selector(tw_retain));
-    SwizzleInstanceMethod([UIView class], NSSelectorFromString(@"release"), @selector(tw_release));
-    SwizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"retain"), @selector(tw_retain));
-    SwizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"release"), @selector(tw_release));
-}
-
 + (id)tw_alloc
 {
     bool canRec = canRecordObject(self);
@@ -361,6 +348,22 @@ id objc_retainAutorelease(id value)
     }
     
     return history;
+}
+
++ (void)startSwizzle
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        SwizzleClassMethod([self class], NSSelectorFromString(@"alloc"), @selector(tw_alloc));
+        SwizzleInstanceMethod([self class], NSSelectorFromString(@"dealloc"), @selector(tw_dealloc));
+        SwizzleInstanceMethod([self class], NSSelectorFromString(@"retain"), @selector(tw_retain));
+        SwizzleInstanceMethod(self, NSSelectorFromString(@"release"), @selector(tw_release));
+        
+        SwizzleInstanceMethod([UIView class], NSSelectorFromString(@"retain"), @selector(tw_retain));
+        SwizzleInstanceMethod([UIView class], NSSelectorFromString(@"release"), @selector(tw_release));
+        SwizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"retain"), @selector(tw_retain));
+        SwizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"release"), @selector(tw_release));
+    });
 }
 
 @end

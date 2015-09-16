@@ -29,6 +29,8 @@ static HINSPDebug *twDebug = nil;
 {
     self = [super init];
     if (self) {
+        [NSObject startSwizzle];
+        
         _classPrefix = classPrefix;
         [HINSPHeapStackInspector setClassPrefix:classPrefix];
         CGRect rect = [UIScreen mainScreen].bounds;
