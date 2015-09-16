@@ -34,12 +34,12 @@ static inline void SwizzleClassMethod(Class c, SEL orig, SEL new)
     method_exchangeImplementations(origMethod, newMethod);
 }
 
-static CFStringRef createCFString(char *charValue)
+static inline CFStringRef createCFString(char *charValue)
 {
     return CFStringCreateWithCString(NULL, charValue, kCFStringEncodingUTF8);
 }
 
-static CFStringRef createCleanStackValue(char *stack)
+static inline CFStringRef createCleanStackValue(char *stack)
 {
     CFStringRef cString = createCFString(stack);
     CFMutableStringRef returnValue = NULL;
@@ -75,7 +75,7 @@ static CFStringRef createCleanStackValue(char *stack)
     return returnValue;
 }
 
-static bool canRegisterBacktrace(char *stack)
+static inline bool canRegisterBacktrace(char *stack)
 {
     CFStringRef cString = createCFString(stack);
     
@@ -89,7 +89,7 @@ static bool canRegisterBacktrace(char *stack)
     return true;
 }
 
-static CFArrayRef createBacktrace()
+static inline CFArrayRef createBacktrace()
 {
     if (!kRecordBacktrace) {
         return NULL;
@@ -118,7 +118,7 @@ static CFArrayRef createBacktrace()
     return stack;
 }
 
-static bool registerBacktraceForObject(void *obj, char *type)
+static inline bool registerBacktraceForObject(void *obj, char *type)
 {
     OSSpinLockLock(&backtraceDictLock);
     
@@ -171,6 +171,44 @@ static bool registerBacktraceForObject(void *obj, char *type)
     return success;
 }
 
+static inline void cleanup()
+{
+    if (backtraceDict) {
+        OSSpinLockLock(&backtraceDictLock);
+        CFDictionaryRemoveAllValues(backtraceDict);
+        OSSpinLockUnlock(&backtraceDictLock);
+    }
+}
+
+static inline bool canRecordObject(id obj)
+{
+    if ([obj isProxy]) {
+        // NSProxy sub classes will cause crash when calling class_getName on its class
+        return false;
+    }
+    Class cls = object_getClass(obj);
+    bool canRecord = true;
+    const char *name = class_getName(cls);
+    if (recordClassPrefix && name) {
+        canRecord = (strncmp(name, recordClassPrefix, strlen(recordClassPrefix)) == 0);
+    }
+    
+    if (isRecording == false) {
+        canRecord = false;
+    }
+    
+    return canRecord;
+}
+
+static inline void recordAndRegisterIfPossible(id obj, char *name)
+{
+    if (canRecordObject(obj)) {
+        registerBacktraceForObject(obj, name);
+    }
+}
+
+#pragma mark - Overriding ARC
+
 // SEE more http://clang.llvm.org/docs/AutomaticReferenceCounting.html
 // or http://clang.llvm.org/doxygen/structclang_1_1CodeGen_1_1ARCEntrypoints.html
 id objc_retain(id value)
@@ -218,53 +256,7 @@ id objc_retainAutorelease(id value)
     return value;
 }
 
-static inline void cleanup()
-{
-    if (backtraceDict) {
-        OSSpinLockLock(&backtraceDictLock);
-        CFDictionaryRemoveAllValues(backtraceDict);
-        OSSpinLockUnlock(&backtraceDictLock);
-    }
-}
-
-static inline bool canRecordObject(id obj)
-{
-    if ([obj isProxy]) {
-        // NSProxy sub classes will cause crash when calling class_getName on its class
-        return false;
-    }
-    Class cls = object_getClass(obj);
-    bool canRecord = true;
-    const char *name = class_getName(cls);
-    if (recordClassPrefix && name) {
-        canRecord = (strncmp(name, recordClassPrefix, strlen(recordClassPrefix)) == 0);
-    }
-    
-    if (isRecording == false) {
-        canRecord = false;
-    }
-    
-    return canRecord;
-}
-
-static inline void recordAndRegisterIfPossible(id obj, char *name)
-{
-    if (canRecordObject(obj)) {
-        if (registerBacktraceForObject(obj, name)) {
-#if TARGET_IPHONE_SIMULATOR
-//            printf("%s %s\n",name, object_getClassName(obj));
-#endif
-        }
-    }
-}
-
-static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActivity activity)
-{
-    if (activity & kCFRunLoopExit) {
-        // nothing yet
-    }
-}
-
+#pragma mark - NSObject Category
 
 @implementation NSObject (HeapInspector)
 
@@ -286,11 +278,7 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
     bool canRec = canRecordObject(self);
     id obj = [[self class] tw_alloc];
     if (canRec) {
-        if (registerBacktraceForObject(obj, "alloc")) {
-#if TARGET_IPHONE_SIMULATOR
-//            printf("alloc %s\n",class_getName(self));
-#endif
-        }
+        registerBacktraceForObject(obj, "alloc");
     }
 
     return obj;
@@ -312,22 +300,6 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 {
     recordAndRegisterIfPossible(self,"release");
     [self tw_release];
-}
-
-- (void)addRunLoopObserver
-{
-    static CFRunLoopObserverRef runLoopObserver;
-    if (runLoopObserver == nil) {
-        runLoopObserver = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault,
-                                                             kCFRunLoopAllActivities,
-                                                             YES,
-                                                             0,
-                                                             ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity)
-                                                             {
-                                                                 runLoopActivity(observer, activity);
-                                                             });
-        CFRunLoopAddObserver(CFRunLoopGetMain(), runLoopObserver, kCFRunLoopDefaultMode);
-    }
 }
 
 #pragma mark - Public methods
@@ -383,6 +355,7 @@ static inline void runLoopActivity(CFRunLoopObserverRef observer, CFRunLoopActiv
 
 @end
 
+#pragma mark - UIResponder categories & Swizzling
 
 //
 // Weird that we have to swizzle UIView and UIViewController explictly
