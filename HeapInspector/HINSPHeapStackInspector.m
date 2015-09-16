@@ -25,13 +25,13 @@ typedef struct {
 
 @implementation HINSPHeapStackInspector
 
-static kern_return_t memory_reader(task_t task, vm_address_t remote_address, vm_size_t size, void **local_memory)
+static inline kern_return_t memory_reader(task_t task, vm_address_t remote_address, vm_size_t size, void **local_memory)
 {
     *local_memory = (void *)remote_address;
     return KERN_SUCCESS;
 }
 
-static void range_callback(task_t task, void *context, unsigned type, vm_range_t *ranges, unsigned rangeCount)
+static inline void range_callback(task_t task, void *context, unsigned type, vm_range_t *ranges, unsigned rangeCount)
 {
     RMHeapEnumeratorBlock block = (__bridge RMHeapEnumeratorBlock)context;
     if (!block) {
