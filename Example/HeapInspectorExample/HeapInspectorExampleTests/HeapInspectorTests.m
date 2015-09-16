@@ -21,18 +21,18 @@
 
 - (void)testRecordAll
 {
-    [HINSPDebug startWithClassPrefix:nil];
+ //   [HINSPDebug startWithClassPrefix:nil];
     self.controller = [[UIViewController alloc] init];
-    [HINSPDebug stop];
+ //   [HINSPDebug stop];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
     XCTAssertTrue(([recordedObjects count] > 1), @"Recorded objects must be greater than one");
 }
 
 - (void)testRecordSpecificClass
 {
-    [HINSPDebug startWithClassPrefix:@"RM"];
+//    [HINSPDebug startWithClassPrefix:@"RM"];
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
-    [HINSPDebug stop];
+ //   [HINSPDebug stop];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
     XCTAssertTrue(([recordedObjects count] == 3), @"Recorded objects must be three");   
 }
