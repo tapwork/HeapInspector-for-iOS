@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49B05C92B7DD464DD412CDA0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662C0BFB6FF0D7CCC3DD9D95 /* libPods.a */; };
+		523ED8911BA97B17000CAE26 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523ED8901BA97B17000CAE26 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		C62C416F72161099453A558A /* libPods-HeapInspectorExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED040B03846BEAE81315B85 /* libPods-HeapInspectorExampleTests.a */; };
 		DA29C53E19A530C400FFF7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C53D19A530C400FFF7D5 /* Foundation.framework */; };
 		DA29C54019A530C400FFF7D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C53F19A530C400FFF7D5 /* CoreGraphics.framework */; };
@@ -45,6 +46,7 @@
 		00538C031D7428B9E98DA19B /* Pods-HeapInspectorExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeapInspectorExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HeapInspectorExampleTests/Pods-HeapInspectorExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		29D8BB4C940DC7D0AB9D9905 /* Pods-HeapInspectorExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeapInspectorExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HeapInspectorExampleTests/Pods-HeapInspectorExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38B99C81BE8184DC6B3B3023 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		523ED8901BA97B17000CAE26 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5DAA2ADDCD80A2F9F99E2676 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5ED040B03846BEAE81315B85 /* libPods-HeapInspectorExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HeapInspectorExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		662C0BFB6FF0D7CCC3DD9D95 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,7 @@
 				DA29C54619A530C400FFF7D5 /* InfoPlist.strings */,
 				DA29C54919A530C400FFF7D5 /* main.m */,
 				DA29C54B19A530C400FFF7D5 /* HeapInspectorExample-Prefix.pch */,
+				523ED8901BA97B17000CAE26 /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				DA9FCA5E1A13D0A4009E8326 /* IMG_0635.JPG in Resources */,
 				DA9FCA5D1A13D0A4009E8326 /* IMG_0601.JPG in Resources */,
 				DA29C55019A530C400FFF7D5 /* Images.xcassets in Resources */,
+				523ED8911BA97B17000CAE26 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
