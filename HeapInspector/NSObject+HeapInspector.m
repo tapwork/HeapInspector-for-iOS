@@ -273,7 +273,7 @@ id objc_retainAutorelease(id value)
 + (id)tw_alloc
 {
     bool canRec = canRecordObject(self);
-    id obj = [[self class] tw_alloc];
+    id obj = [self tw_alloc];
     if (canRec) {
         registerBacktraceForObject(obj, "alloc");
     }
@@ -302,7 +302,7 @@ id objc_retainAutorelease(id value)
 #pragma mark - Public methods
 + (void)beginSnapshot
 {
-    [[self class] beginSnapshotWithClassPrefix:nil];
+    [self beginSnapshotWithClassPrefix:nil];
 }
 
 + (void)setRecordBacktrace:(BOOL)recordBacktrace
