@@ -61,7 +61,7 @@ and run `pod install` afterwards.
 Download the repository into your project via git or just as zip.
 Drag it the `HeapInspector` folder into your Xcode project. See following image.
 
-Disable ARC for `NSObject+HeapInspector.m` by adding `-fno-objc-arc` to XCode's Build Phases -> Compile Source. See example images here: [Drag](README_Xtras/drag.png) and [disable ARC](README_Xtras/no_arc.png)
+Disable ARC for `NSObject+HeapInspector.m` by adding `-fno-objc-arc` to Xcode's Build Phases -> Compile Source. See example images here: [Drag](README_Xtras/drag.png) and [disable ARC](README_Xtras/no_arc.png)
 
 # How to use it
 
