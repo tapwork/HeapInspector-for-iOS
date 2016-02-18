@@ -343,7 +343,7 @@ id objc_retainAutorelease(id value)
         sprintf(key,"%p",(void *)obj);
         CFStringRef cfKey = createCFString(key);
         CFArrayRef cfHistory = CFDictionaryGetValue(backtraceDict, cfKey);
-        history = [(NSArray *)cfHistory copy];
+        history = CFBridgingRelease(cfHistory);
         CFRelease(cfKey);
     }
     
