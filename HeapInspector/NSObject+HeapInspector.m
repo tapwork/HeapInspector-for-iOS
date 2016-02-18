@@ -183,11 +183,11 @@ static inline bool registerBacktraceForObject(void *obj, char *type)
 
 static inline void cleanup()
 {
+    OSSpinLockLock(&backtraceDictLock);
     if (backtraceDict) {
-        OSSpinLockLock(&backtraceDictLock);
         CFDictionaryRemoveAllValues(backtraceDict);
-        OSSpinLockUnlock(&backtraceDictLock);
     }
+    OSSpinLockUnlock(&backtraceDictLock);
 }
 
 static inline bool canRecordObject(id obj)
