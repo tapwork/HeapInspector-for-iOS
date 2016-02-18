@@ -344,7 +344,7 @@ id objc_retainAutorelease(id value)
         sprintf(key,"%p",(void *)obj);
         CFStringRef cfKey = createCFString(key);
         CFArrayRef cfHistory = CFDictionaryGetValue(backtraceDict, cfKey);
-        history = CFBridgingRelease(cfHistory);
+        history = (__bridge NSArray*)cfHistory;
         CFRelease(cfKey);
     }
     OSSpinLockUnlock(&backtraceDictLock);
