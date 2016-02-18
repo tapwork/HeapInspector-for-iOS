@@ -192,6 +192,10 @@ static inline void cleanup()
 
 static inline bool canRecordObject(id obj)
 {
+    if (!isRecording) {
+        return false;
+    }
+
     if ([obj isProxy]) {
         // NSProxy sub classes will cause crash when calling class_getName on its class
         return false;
@@ -202,11 +206,7 @@ static inline bool canRecordObject(id obj)
     if (recordClassPrefix && name) {
         canRecord = (strncmp(name, recordClassPrefix, strlen(recordClassPrefix)) == 0);
     }
-    
-    if (isRecording == false) {
-        canRecord = false;
-    }
-    
+
     return canRecord;
 }
 
