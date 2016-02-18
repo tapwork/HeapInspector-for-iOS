@@ -338,6 +338,7 @@ id objc_retainAutorelease(id value)
 + (NSArray *)referenceHistoryForObject:(id)obj
 {
     NSArray *history = nil;
+    OSSpinLockLock(&backtraceDictLock);
     if (obj && backtraceDict) {
         char key[255];
         sprintf(key,"%p",(void *)obj);
@@ -346,7 +347,8 @@ id objc_retainAutorelease(id value)
         history = CFBridgingRelease(cfHistory);
         CFRelease(cfKey);
     }
-    
+    OSSpinLockUnlock(&backtraceDictLock);
+
     return history;
 }
 
