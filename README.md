@@ -121,6 +121,9 @@ Swift
 HINSPDebug.recordBacktraces(true)
 ```
 
+#TODO
+* Performance improvements for the backtrace record (coming soon) - to get symbols costs a lot
+
 # Example project
 HeapInspector comes with an example project. There you will see a lot of mistakes made with the memory design.  
 * `strong` delegate properties
