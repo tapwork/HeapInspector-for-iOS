@@ -48,27 +48,13 @@ static const CGFloat kHeaderViewHeight = 70;
     headerView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
-    NSPredicate *predicate0 = [NSPredicate predicateWithFormat:@"SELF == 'alloc'"];
-    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == 'retain'"];
-    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF == 'storeStrong'"];
-    NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"SELF == 'release'"];
-    NSArray *allocs = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate0];
-    NSArray *retains = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate1];
-    NSArray *strongs = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate2];
-    NSArray *releases = [[self.dataSource valueForKey:@"type"] filteredArrayUsingPredicate:predicate3];
-    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,8,headerView.bounds.size.width,20.0)];
     label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     label.font = [UIFont systemFontOfSize:10];
     label.numberOfLines = 1;
     label.textAlignment = NSTextAlignmentCenter;
-    NSInteger count = [allocs count] + [retains count] + [strongs count] - [releases count];
-    label.text = [NSString stringWithFormat:@"Retain Count: %ld   Alloc: %lu  Retain: %lu  Strong: %lu  Release: %lu",
-                  (long)count,
-                  (unsigned long)[allocs count],
-                  (unsigned long)[retains count],
-                  (unsigned long)[strongs count],
-                  (unsigned long)[releases count]];
+    NSInteger retainCount = CFGetRetainCount((__bridge CFTypeRef)self.inspectingObject);
+    label.text = [NSString stringWithFormat:@"Retain Count: %ld ", (long)retainCount];
     [headerView addSubview:label];
     
     UIView *superTableHeaderView = self.tableView.tableHeaderView;
