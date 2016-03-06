@@ -71,53 +71,46 @@ static inline void* createBacktrace()
     return stack;
 }
 
-static inline bool registerBacktraceForObject(void *obj, char *type)
+static inline void registerBacktraceForObject(void *obj, char *type)
 {
     OSSpinLockLock(&backtraceDictLock);
-    
-    bool success = false;
-    
+
     char key[255];
     sprintf(key,"%p",obj);
     CFStringRef cfKey = createCFString(key);
     CFStringRef cfType = createCFString(type);
-    if (cfKey && cfType) {
-        if (!backtraceDict) {
-            backtraceDict = CFDictionaryCreateMutable(NULL,
-                                                      0,
-                                                      &kCFTypeDictionaryKeyCallBacks,
-                                                      &kCFTypeDictionaryValueCallBacks);
-        }
-        CFMutableArrayRef storedHistory = (CFMutableArrayRef)CFDictionaryGetValue(backtraceDict, cfKey);
-        CFMutableArrayRef history = NULL;
-        if (!storedHistory) {
-            history = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
-        } else {
-            history = CFArrayCreateMutableCopy(NULL, CFArrayGetCount(storedHistory), storedHistory);
-        }
-        CFMutableDictionaryRef item = CFDictionaryCreateMutable(NULL,
-                                                                0,
-                                                                &kCFTypeDictionaryKeyCallBacks,
-                                                                &kCFTypeDictionaryValueCallBacks);
-        CFDictionarySetValue(item, CFSTR("type"), cfType);
-        CFArrayRef backtraceStack = createBacktrace();
-        if (CFArrayGetCount(backtraceStack) > 0) {
-            CFDictionarySetValue(item, CFSTR("last_frame"), CFArrayGetValueAtIndex(backtraceStack, 0));
-            CFDictionarySetValue(item, CFSTR("all_frames"), backtraceStack);
-        }
-        CFRelease(backtraceStack);
-        CFArrayAppendValue(history, item);
-        success = true;
-        
-        CFRelease(item);
-        CFDictionarySetValue(backtraceDict, cfKey, history);
-        CFRelease(history);
-        CFRelease(cfKey);
-        CFRelease(cfType);
+    if (!backtraceDict) {
+        backtraceDict = CFDictionaryCreateMutable(NULL,
+                                                  0,
+                                                  &kCFTypeDictionaryKeyCallBacks,
+                                                  &kCFTypeDictionaryValueCallBacks);
     }
-    OSSpinLockUnlock(&backtraceDictLock);
+    CFMutableArrayRef storedHistory = (CFMutableArrayRef)CFDictionaryGetValue(backtraceDict, cfKey);
+    CFMutableArrayRef history = NULL;
+    if (!storedHistory) {
+        history = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
+    } else {
+        history = CFArrayCreateMutableCopy(NULL, CFArrayGetCount(storedHistory), storedHistory);
+    }
+    CFMutableDictionaryRef item = CFDictionaryCreateMutable(NULL,
+                                                            0,
+                                                            &kCFTypeDictionaryKeyCallBacks,
+                                                            &kCFTypeDictionaryValueCallBacks);
+    CFDictionarySetValue(item, CFSTR("type"), cfType);
+    CFArrayRef backtraceStack = createBacktrace();
+    if (CFArrayGetCount(backtraceStack) > 0) {
+        CFDictionarySetValue(item, CFSTR("last_frame"), CFArrayGetValueAtIndex(backtraceStack, 0));
+        CFDictionarySetValue(item, CFSTR("all_frames"), backtraceStack);
+    }
+    CFRelease(backtraceStack);
+    CFArrayAppendValue(history, item);
 
-    return success;
+    CFRelease(item);
+    CFDictionarySetValue(backtraceDict, cfKey, history);
+    CFRelease(history);
+    CFRelease(cfKey);
+    CFRelease(cfType);
+    OSSpinLockUnlock(&backtraceDictLock);
 }
 
 static inline void cleanup()
