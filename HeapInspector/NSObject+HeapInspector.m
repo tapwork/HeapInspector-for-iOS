@@ -11,7 +11,10 @@
 #import "NSObject+HeapInspector.h"
 #import <objc/runtime.h>
 #include <execinfo.h>
+#include <dlfcn.h>
+#include <unistd.h>
 
+static NSCache *kPointerSymbolCache = nil;
 static bool kRecordBacktrace = false;
 static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
@@ -49,82 +52,22 @@ static inline CFStringRef createCFString(char *charValue)
     return CFStringCreateWithCString(NULL, charValue, kCFStringEncodingUTF8);
 }
 
-static inline CFStringRef createCleanStackValue(char *stack)
+static inline void* createBacktrace()
 {
-    CFStringRef cString = createCFString(stack);
-    CFMutableStringRef returnValue = NULL;
-    
-    CFStringRef sep = CFSTR("+[");
-    CFArrayRef parts = CFStringCreateArrayBySeparatingStrings(NULL, cString, sep);
-    if (CFArrayGetCount(parts) <= 1) {
-        // If "+" class method didnt work. try "-" instance method
-        sep = CFSTR("-[");
-        CFRelease(parts);
-        parts = CFStringCreateArrayBySeparatingStrings(NULL, cString, sep);
-    }
-    
-    if (CFArrayGetCount(parts) > 1) {
-        CFStringRef preVal = (CFStringRef)CFArrayGetValueAtIndex(parts, 1);
-        // Removes the line number (which does not fit to the source file
-        CFArrayRef parts2 = CFStringCreateArrayBySeparatingStrings(NULL, preVal, CFSTR(" + "));
-        if (CFArrayGetCount(parts2) > 0) {
-            CFStringRef stackVal = (CFStringRef)CFArrayGetValueAtIndex(parts2, 0);
-            returnValue = CFStringCreateMutableCopy(NULL, 255, sep);
-            CFStringAppend(returnValue, stackVal);
-            CFStringFindAndReplace(returnValue,
-                                   CFSTR("tw_alloc"),
-                                   CFSTR("alloc"),
-                                   CFRangeMake(0, CFStringGetLength(returnValue)),
-                                   kCFCompareNonliteral);
-        }
-        CFRelease(parts2);
-    }
-    CFRelease(parts);
-    CFRelease(cString);
-    
-    return returnValue;
-}
-
-static inline bool canRegisterBacktrace(char *stack)
-{
-    CFStringRef cString = createCFString(stack);
-    
-    // Exclude the HINSP Class Prefix (that's ourself)
-    CFRange range = CFStringFind(cString, CFSTR("HINSP"), kCFCompareCaseInsensitive);
-    CFRelease(cString);
-    if (range.location != kCFNotFound) {
-        return false;
-    }
-    
-    return true;
-}
-
-static inline CFArrayRef createBacktrace()
-{
-    if (!kRecordBacktrace) {
-        return NULL;
-    }
-
     CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
-    void *bt[1024];
-    int bt_size;
-    char **bt_syms;
-    bt_size = backtrace(bt, 1024);
-    bt_syms = backtrace_symbols(bt, bt_size);
-    for (int i = 0; i < bt_size; i++) {
-        CFStringRef cString = createCleanStackValue(bt_syms[i]);
-        if (cString) {
-            if (canRegisterBacktrace(bt_syms[i]) == true) {
-                CFArrayAppendValue(stack, cString);
-                CFRelease(cString);
-            } else {
-                stack = NULL;
-                break;
+    if (kRecordBacktrace) {
+        void *frames[1024];
+        int bt_size;
+        bt_size = backtrace(frames, sizeof(frames));
+        for (int i = 4; i < bt_size; i++) {
+            void *pointer = frames[i];
+            if (pointer) {
+                NSValue *bytes = [NSValue valueWithPointer:pointer];
+                CFArrayAppendValue(stack, bytes);
             }
         }
     }
-    free(bt_syms);
-    
+
     return stack;
 }
 
@@ -132,7 +75,6 @@ static inline bool registerBacktraceForObject(void *obj, char *type)
 {
     OSSpinLockLock(&backtraceDictLock);
     
-    CFArrayRef backtrace = createBacktrace();
     bool success = false;
     
     char key[255];
@@ -158,10 +100,12 @@ static inline bool registerBacktraceForObject(void *obj, char *type)
                                                                 &kCFTypeDictionaryKeyCallBacks,
                                                                 &kCFTypeDictionaryValueCallBacks);
         CFDictionarySetValue(item, CFSTR("type"), cfType);
-        if (backtrace && CFArrayGetCount(backtrace) > 0) {
-            CFDictionarySetValue(item, CFSTR("last_trace"), CFArrayGetValueAtIndex(backtrace, 0));
-            CFDictionarySetValue(item, CFSTR("all_traces"), backtrace);
+        CFArrayRef backtraceStack = createBacktrace();
+        if (CFArrayGetCount(backtraceStack) > 0) {
+            CFDictionarySetValue(item, CFSTR("last_frame"), CFArrayGetValueAtIndex(backtraceStack, 0));
+            CFDictionarySetValue(item, CFSTR("all_frames"), backtraceStack);
         }
+        CFRelease(backtraceStack);
         CFArrayAppendValue(history, item);
         success = true;
         
@@ -172,12 +116,7 @@ static inline bool registerBacktraceForObject(void *obj, char *type)
         CFRelease(cfType);
     }
     OSSpinLockUnlock(&backtraceDictLock);
-    
-    if (backtrace) {
-        CFRelease(backtrace);
-    }
-    
-    
+
     return success;
 }
 
@@ -187,6 +126,7 @@ static inline void cleanup()
     if (backtraceDict) {
         CFDictionaryRemoveAllValues(backtraceDict);
     }
+    [kPointerSymbolCache removeAllObjects];
     OSSpinLockUnlock(&backtraceDictLock);
 }
 
@@ -350,6 +290,29 @@ id objc_retainAutorelease(id value)
     OSSpinLockUnlock(&backtraceDictLock);
 
     return history;
+}
+
++ (NSString *)symbolForPointerValue:(NSValue *)pointerValue
+{
+    if (pointerValue == NULL) {
+        return nil;
+    }
+    void *pointer = [pointerValue pointerValue];
+    if ([kPointerSymbolCache objectForKey:pointerValue]) {
+        return [kPointerSymbolCache objectForKey:pointerValue];
+    }
+    if (!kPointerSymbolCache) {
+        kPointerSymbolCache = [[NSCache alloc] init];
+    }
+    Dl_info sub_info;
+    dladdr(pointer, &sub_info);
+    NSString *symbol = [NSString stringWithUTF8String:sub_info.dli_sname];
+
+    if (symbol) {
+        [kPointerSymbolCache setObject:symbol forKey:pointerValue];
+    }
+
+    return symbol;
 }
 
 + (void)startSwizzle

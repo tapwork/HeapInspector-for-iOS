@@ -15,6 +15,7 @@
 + (BOOL)isSnapshotRecording;
 + (void)resumeSnapshot;
 + (NSArray *)referenceHistoryForObject:(id)obj;
++ (NSString *)symbolForPointerValue:(NSValue *)pointerValue;
 + (void)startSwizzle;
 
 // Default is NO, because it is a large performance impact recording the backtrace for each retain/release

@@ -90,9 +90,10 @@ static const CGFloat kHeaderViewHeight = 70;
     
     NSDictionary *item = self.dataSource[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%ld %@",(long)indexPath.row, item[@"type"]];
-    cell.detailTextLabel.text = item[@"last_trace"];
+    NSString *symbol = [NSObject symbolForPointerValue:item[@"last_frame"]];
+    cell.detailTextLabel.text = symbol;
     
-    NSArray *backtrace = item[@"all_traces"];
+    NSArray *backtrace = item[@"all_frames"];
     if ([backtrace count] > 0) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.userInteractionEnabled = YES;
@@ -107,9 +108,9 @@ static const CGFloat kHeaderViewHeight = 70;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *item = self.dataSource[indexPath.row];
-    NSArray *backtrace = item[@"all_traces"];
-    if ([backtrace count] > 0) {
-        HINSPTableViewController *detailVC = [[HINSPTableViewController alloc] initWithDataSource:backtrace];
+    NSArray *backtraceSymbols = [self symbolsFromPointers:item[@"all_frames"]];
+    if ([backtraceSymbols count] > 0) {
+        HINSPTableViewController *detailVC = [[HINSPTableViewController alloc] initWithDataSource:backtraceSymbols];
         detailVC.title = [NSString stringWithFormat:@"%@'s backtrace",item[@"type"]];
         [self.navigationController pushViewController:detailVC animated:YES];
     }
@@ -123,7 +124,7 @@ static const CGFloat kHeaderViewHeight = 70;
 {
     NSMutableArray *dataSource = [self.dataSourceUnfiltered mutableCopy];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type contains[cd] %@ OR last_trace contains[cd] %@",
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type contains[cd] %@ OR last_frame contains[cd] %@",
                                   searchText,searchText];
         [dataSource filterUsingPredicate:predicate];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -131,6 +132,18 @@ static const CGFloat kHeaderViewHeight = 70;
             [self.tableView reloadData];
         });
     });
+}
+
+#pragma mark - Helper
+
+- (NSArray *)symbolsFromPointers:(NSArray *)pointers
+{
+    NSMutableArray *symbols = [NSMutableArray array];
+    for (NSValue *pointerValue in pointers) {
+        NSString *symbol = [NSObject symbolForPointerValue:pointerValue];
+        [symbols addObject:symbol];
+    }
+    return symbols;
 }
 
 @end
