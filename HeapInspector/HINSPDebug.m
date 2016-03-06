@@ -101,8 +101,7 @@ static HINSPDebug *twDebug = nil;
 
 - (HINSPHeapStackTableViewController *)heapStackControllerWithHeapStack:(NSArray *)stack
 {
-    HINSPHeapStackTableViewController *tv = [[HINSPHeapStackTableViewController alloc] init];
-    tv.dataSource = stack;
+    HINSPHeapStackTableViewController *tv = [[HINSPHeapStackTableViewController alloc] initWithDataSource:stack];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tv];
     [_rootViewController presentViewController:navController animated:YES completion:nil];
     
