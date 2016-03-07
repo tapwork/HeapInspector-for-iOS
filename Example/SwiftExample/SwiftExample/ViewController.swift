@@ -10,15 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let detailViewController = DetailViewController();
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.redColor()
-        self.addChildViewController(self.detailViewController)
-        self.view.addSubview(self.detailViewController.view)
-        self.detailViewController.didMoveToParentViewController(self)
+        let button = UIButton();
+        button.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+        button.frame = CGRectMake(100, 300, 100, 50)
+        button.setTitle("Details", forState: .Normal)
+        button.backgroundColor = UIColor.blackColor()
+        self.view.addSubview(button)
+    }
+
+    func pressed(sender: UIButton!) {
+        let detailVC = DetailViewController()
+        self.addChildViewController(detailVC)
+        self.view.addSubview(detailVC.view)
+        detailVC.didMoveToParentViewController(self)
     }
 }
 

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        HINSPDebug.start()
+        HINSPDebug.startWithClassPrefix("<SwiftExample.")
         HINSPDebug.recordBacktraces(true)
 
         return true
