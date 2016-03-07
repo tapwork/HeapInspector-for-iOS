@@ -245,16 +245,20 @@ id objc_retainAutorelease(id value)
 
 - (BOOL)ignoreHeapInspectorRecord
 {
-    NSNumber *result = objc_getAssociatedObject(self, @selector(ignoreHeapInspectorRecord));
-
-    return [result boolValue];
+    @synchronized(self) {
+        NSNumber *result = objc_getAssociatedObject(self, @selector(ignoreHeapInspectorRecord));
+        
+        return [result boolValue];
+    }
 }
 
 - (void)setIgnoreHeapInspectorRecord:(BOOL)ignoreHeapInspectorRecord
 {
-    objc_setAssociatedObject(self, @selector(ignoreHeapInspectorRecord),
-                             [NSNumber numberWithBool:ignoreHeapInspectorRecord],
-                             OBJC_ASSOCIATION_RETAIN);
+    @synchronized(self) {
+        objc_setAssociatedObject(self, @selector(ignoreHeapInspectorRecord),
+                                 [NSNumber numberWithBool:ignoreHeapInspectorRecord],
+                                 OBJC_ASSOCIATION_RETAIN);
+    }
 }
 
 #pragma mark - Public methods
