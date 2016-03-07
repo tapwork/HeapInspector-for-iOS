@@ -21,4 +21,6 @@
 // Default is NO, because it is a large performance impact recording the backtrace for each retain/release
 + (void)setRecordBacktrace:(BOOL)recordBacktrace;
 
+@property (atomic) BOOL ignoreHeapInspectorRecord;
+
 @end

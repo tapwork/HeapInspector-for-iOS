@@ -63,6 +63,7 @@ static inline void* createBacktrace()
             void *pointer = frames[i];
             if (pointer) {
                 NSValue *bytes = [NSValue valueWithPointer:pointer];
+                bytes.ignoreHeapInspectorRecord = YES;
                 CFArrayAppendValue(stack, bytes);
             }
         }
@@ -133,7 +134,15 @@ static inline bool canRecordObject(id obj)
         // NSProxy sub classes will cause crash when calling class_getName on its class
         return false;
     }
+
     Class cls = object_getClass(obj);
+    if (class_respondsToSelector(cls, @selector(ignoreHeapInspectorRecord))) {
+        BOOL ignoreRecord = [obj performSelector:@selector(ignoreHeapInspectorRecord)];
+        if (ignoreRecord) {
+            return false;
+        }
+    }
+    
     bool canRecord = true;
     const char *name = class_getName(cls);
     if (recordClassPrefix && name) {
@@ -230,6 +239,22 @@ id objc_retainAutorelease(id value)
 {
     recordAndRegisterIfPossible(self,"release");
     [self tw_release];
+}
+
+#pragma mark - NSObject generated properties
+
+- (BOOL)ignoreHeapInspectorRecord
+{
+    NSNumber *result = objc_getAssociatedObject(self, @selector(ignoreHeapInspectorRecord));
+
+    return [result boolValue];
+}
+
+- (void)setIgnoreHeapInspectorRecord:(BOOL)ignoreHeapInspectorRecord
+{
+    objc_setAssociatedObject(self, @selector(ignoreHeapInspectorRecord),
+                             [NSNumber numberWithBool:ignoreHeapInspectorRecord],
+                             OBJC_ASSOCIATION_RETAIN);
 }
 
 #pragma mark - Public methods
