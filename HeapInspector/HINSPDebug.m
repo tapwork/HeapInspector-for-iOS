@@ -55,7 +55,6 @@ static HINSPDebug *twDebug = nil;
         rootViewController.view.alpha = 0.0;
         _rootViewController = rootViewController;
         _window.rootViewController = rootViewController;
-        
     }
     return self;
 }
@@ -111,13 +110,23 @@ static HINSPDebug *twDebug = nil;
 - (void)recordButtonTapped:(id)sender
 {
     if (!_window.recordButton.isRecording) {
-        [self showInfoLabel];
-        [NSObject endSnapshot];
+        [self stopRecord];
     } else {
-        [self resetInfoLabel];
-        [NSObject beginSnapshotWithClassPrefix:_classPrefix];
-        [HINSPHeapStackInspector performHeapShot];
+        [self beginRecord];
     }
+}
+
+- (void)stopRecord
+{
+    [self showInfoLabel];
+    [NSObject endSnapshot];
+}
+
+- (void)beginRecord
+{
+    [self resetInfoLabel];
+    [NSObject beginSnapshotWithClassPrefix:_classPrefix];
+    [HINSPHeapStackInspector performHeapShot];
 }
 
 + (void)start
@@ -131,6 +140,7 @@ static HINSPDebug *twDebug = nil;
 
 + (void)stop
 {
+    [NSObject endSnapshot];
     twDebug = nil;
 }
 
