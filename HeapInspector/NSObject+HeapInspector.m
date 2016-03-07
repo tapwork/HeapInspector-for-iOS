@@ -14,6 +14,12 @@
 #include <dlfcn.h>
 #include <unistd.h>
 
+@interface NSValue (HeapInspectorOverridden)
+
+@property (atomic) BOOL ignoreHeapInspectorRecord;
+
+@end
+
 static NSCache *kPointerSymbolCache = nil;
 static bool kRecordBacktrace = false;
 static CFMutableDictionaryRef backtraceDict;
@@ -243,23 +249,6 @@ id objc_retainAutorelease(id value)
 
 #pragma mark - NSObject generated properties
 
-- (BOOL)ignoreHeapInspectorRecord
-{
-    @synchronized(self) {
-        NSNumber *result = objc_getAssociatedObject(self, @selector(ignoreHeapInspectorRecord));
-        
-        return [result boolValue];
-    }
-}
-
-- (void)setIgnoreHeapInspectorRecord:(BOOL)ignoreHeapInspectorRecord
-{
-    @synchronized(self) {
-        objc_setAssociatedObject(self, @selector(ignoreHeapInspectorRecord),
-                                 [NSNumber numberWithBool:ignoreHeapInspectorRecord],
-                                 OBJC_ASSOCIATION_RETAIN);
-    }
-}
 
 #pragma mark - Public methods
 + (void)beginSnapshot
@@ -392,3 +381,27 @@ id objc_retainAutorelease(id value)
 }
 
 @end
+
+
+@implementation NSValue (HeapInspectorOverridden)
+
+- (BOOL)ignoreHeapInspectorRecord
+{
+    @synchronized(self) {
+        NSNumber *result = objc_getAssociatedObject(self, @selector(ignoreHeapInspectorRecord));
+        
+        return [result boolValue];
+    }
+}
+
+- (void)setIgnoreHeapInspectorRecord:(BOOL)ignoreHeapInspectorRecord
+{
+    @synchronized(self) {
+        objc_setAssociatedObject(self, @selector(ignoreHeapInspectorRecord),
+                                 [NSNumber numberWithBool:ignoreHeapInspectorRecord],
+                                 OBJC_ASSOCIATION_RETAIN);
+    }
+}
+
+@end
+
