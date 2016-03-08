@@ -294,6 +294,7 @@ id objc_retainAutorelease(id value)
 
 + (void)endSnapshot
 {
+    cleanup();
     isRecording = false;
 }
 
