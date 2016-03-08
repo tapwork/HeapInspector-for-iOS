@@ -107,7 +107,7 @@ static HINSPDebug *twDebug = nil;
 
 - (void)recordButtonTapped:(id)sender
 {
-    if (!_window.recordButton.isRecording) {
+    if ([NSObject isSnapshotRecording]) {
         [self stopRecord];
     } else {
         [self beginRecord];

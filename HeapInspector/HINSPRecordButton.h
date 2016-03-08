@@ -10,7 +10,4 @@
 
 @interface HINSPRecordButton : UIControl
 
-@property (nonatomic, readonly) BOOL isRecording;
-
-
 @end

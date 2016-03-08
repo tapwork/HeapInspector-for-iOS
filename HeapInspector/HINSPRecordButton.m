@@ -12,22 +12,32 @@
 @interface HINSPRecordButton ()
 
 @property (nonatomic) BOOL isRecording;
-
+@property (nonatomic, weak) CAShapeLayer *shapeLayer;
 @end
 
 @implementation HINSPRecordButton
-{
-    CAShapeLayer *__weak _shapeLayer;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-    
+        [self addTarget:self action:@selector(tapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
+}
+
+#pragma mark - Actions
+
+- (void)tapped:(id)sender
+{
+    self.isRecording = !self.isRecording;
+    UIColor *color = nil;
+    if (self.isRecording) {
+        color = [self recordingColor];
+    } else {
+        color = [self defaultColor];
+    }
+    _shapeLayer.fillColor = color.CGColor;
 }
 
 #pragma mark - Setter
@@ -46,31 +56,12 @@
     _shapeLayer = shapeLayer;
 }
 
-- (void)setHighlighted:(BOOL)highlighted
-{
-    [super setHighlighted:highlighted];
-    
-    UIColor *color = nil;
-    if (highlighted) {
-        color = [self pressedColor];
-        self.isRecording = !self.isRecording;
-    } else {
-        color = [self defaultColor];
-    }
-    _shapeLayer.fillColor = color.CGColor;
-}
-
 - (UIColor*)defaultColor
 {
     if (self.isRecording) {
         return [UIColor redColor];
     }
     return [UIColor grayColor];
-}
-
-- (UIColor*)pressedColor
-{
-    return [UIColor darkGrayColor];
 }
 
 - (UIColor*)recordingColor
