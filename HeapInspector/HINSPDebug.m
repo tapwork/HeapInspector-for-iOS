@@ -19,19 +19,17 @@ static HINSPDebug *twDebug = nil;
 @implementation HINSPDebug
 {
     HINSPDebugWindow *_window;
-    NSArray *_classPrefixes;
     UIViewController *_rootViewController;
 }
 
 #pragma mark - View Life Cycle
 
-- (instancetype)initWithClassPrefixes:(NSArray *)classPrefixes
+- (instancetype)init
 {
     self = [super init];
     if (self) {
         [NSObject startSwizzle];
-        
-        _classPrefixes = classPrefixes;
+
         CGRect rect = [UIScreen mainScreen].bounds;
         HINSPDebugWindow *window = [[HINSPDebugWindow alloc] initWithFrame:rect];
         [window setHidden:NO];
@@ -124,17 +122,18 @@ static HINSPDebug *twDebug = nil;
 - (void)beginRecord
 {
     [self resetInfoLabel];
-    [NSObject beginSnapshotWithClassPrefixes:_classPrefixes];
+    [NSObject beginSnapshot];
     [HINSPHeapStackInspector performHeapShot];
 }
 
 + (void)start
 {
-    [[self class] startWithClassPrefix:nil];
+    [[self class] startWithClassPrefixes:nil];
 }
 
-+ (void)startWithClassPrefix:(NSString*)classPrefix {
-    twDebug = [[HINSPDebug alloc] initWithClassPrefixes:@[classPrefix]];
++ (void)startWithClassPrefixes:(NSArray *)classPrefixes {
+    [NSObject setClassPrefixesToRecord:classPrefixes];
+    twDebug = [[HINSPDebug alloc] init];
 }
 
 + (void)stop

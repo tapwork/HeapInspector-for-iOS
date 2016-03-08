@@ -52,9 +52,8 @@ static inline void range_callback(task_t task, void *context, unsigned type, vm_
         // If the class pointer matches one in our set of class pointers from the runtime, then we should have an object.
         if (CFSetContainsValue(classesLoadedInRuntime, (__bridge const void *)(tryClass))) {
             // Also check if we can record this object
-            id object = (__bridge id)tryObject;
-            if (canRecordObject(object)) {
-                 block(object, tryClass);
+            if (canRecordObject((__bridge id)tryObject)) {
+                 block((__bridge id)tryObject, tryClass);
             }
         }
     }

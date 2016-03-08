@@ -22,10 +22,10 @@
 
 static NSCache *kPointerSymbolCache = nil;
 static bool kRecordBacktrace = false;
-static CFMutableDictionaryRef backtraceDict;
+static CFMutableDictionaryRef backtraceDict = NULL;
 static OSSpinLock backtraceDictLock;
 static bool isRecording;
-static CFArrayRef recordClassPrefixes;
+static CFArrayRef recordClassPrefixes = NULL;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
 
 static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
@@ -131,10 +131,6 @@ static inline void cleanup()
 
 bool canRecordObject(id obj)
 {
-    if (!isRecording) {
-        return false;
-    }
-
     if ([obj isProxy]) {
         // NSProxy sub classes will cause crash when calling class_getName on its class
         return false;
@@ -154,25 +150,26 @@ bool canRecordObject(id obj)
         return false;
     }
     
-    if (CFStringCompare(className, CFSTR("NSAutoreleasePool"), kCFCompareBackwards)) {
+    if (CFStringCompare(className, CFSTR("NSAutoreleasePool"), kCFCompareBackwards) == kCFCompareEqualTo) {
         return false;
     }
-    
-    for (int i = 0; i < CFArrayGetCount(recordClassPrefixes); i++) {
-        CFStringRef prefix = CFArrayGetValueAtIndex(recordClassPrefixes, i);
-        canRecord = CFStringHasPrefix(className, prefix);
-        if (canRecord) {
-            break;
+
+    if (recordClassPrefixes) {
+        for (int i = 0; i < CFArrayGetCount(recordClassPrefixes); i++) {
+            CFStringRef prefix = CFArrayGetValueAtIndex(recordClassPrefixes, i);
+            canRecord = CFStringHasPrefix(className, prefix);
+            if (canRecord) {
+                break;
+            }
         }
     }
-    
 
     return canRecord;
 }
 
 static inline void recordAndRegisterIfPossible(id obj, char *name)
 {
-    if (canRecordObject(obj)) {
+    if (isRecording && canRecordObject(obj)) {
         registerBacktraceForObject(obj, name);
     }
 }
@@ -232,7 +229,7 @@ id objc_retainAutorelease(id value)
 
 + (id)tw_alloc
 {
-    bool canRec = canRecordObject(self);
+    bool canRec = (isRecording && canRecordObject(self));
     id obj = [self tw_alloc];
     if (canRec) {
         registerBacktraceForObject(obj, "alloc");
@@ -263,9 +260,12 @@ id objc_retainAutorelease(id value)
 
 
 #pragma mark - Public methods
-+ (void)beginSnapshot
+
++ (void)setClassPrefixesToRecord:(NSArray *)prefixes
 {
-    [self beginSnapshotWithClassPrefixes:nil];
+    if ([prefixes count] > 0) {
+        recordClassPrefixes = (__bridge CFArrayRef)[prefixes copy];
+    }
 }
 
 + (void)setRecordBacktrace:(BOOL)recordBacktrace
@@ -273,14 +273,10 @@ id objc_retainAutorelease(id value)
     kRecordBacktrace = recordBacktrace;
 }
 
-+ (void)beginSnapshotWithClassPrefixes:(NSArray *)prefixes
++ (void)beginSnapshot
 {
     isRecording = true;
     cleanup();
-    
-    if ([prefixes count] > 0) {
-        recordClassPrefixes = (__bridge CFArrayRef)[prefixes copy];
-    }
 }
 
 + (void)endSnapshot

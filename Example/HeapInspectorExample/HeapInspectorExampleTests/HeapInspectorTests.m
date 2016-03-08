@@ -24,7 +24,7 @@
 
 - (void)testRecordAll
 {
-    [HINSPDebug startWithClassPrefix:@"UI"];
+    [HINSPDebug startWithClassPrefixes:@[@"UI"]];
     self.tableView = [[UITableView alloc] init];
     [HINSPDebug stop];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
@@ -33,9 +33,10 @@
 
 - (void)testRecordBacktrace
 {
-    [HINSPDebug startWithClassPrefix:@"UITableView"];
+    [HINSPDebug startWithClassPrefixes:@[@"UITableView"]];
     [HINSPDebug recordBacktraces:YES];
-    [NSObject beginSnapshotWithClassPrefixes:@[@"UITableView"]];
+    [NSObject setClassPrefixesToRecord:@[@"UITableView"]];
+    [NSObject beginSnapshot];
     self.tableView = [[UITableView alloc] init];
     [HINSPDebug stop];
     
@@ -45,7 +46,7 @@
 
 - (void)testRecordSpecificClass
 {
-    [HINSPDebug startWithClassPrefix:@"RM"];
+    [HINSPDebug startWithClassPrefixes:@[@"RM"]];
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
     [HINSPDebug stop];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
