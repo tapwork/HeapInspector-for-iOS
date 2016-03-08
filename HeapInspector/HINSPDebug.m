@@ -145,7 +145,7 @@ static HINSPDebug *twDebug = nil;
 {
     NSMutableArray *modulesWithPrefix = [NSMutableArray array];
     for (NSString *swiftModule in swiftModules) {
-        NSString *prefixed = [NSString stringWithFormat:@"<%@.",swiftModule];
+        NSString *prefixed = [NSString stringWithFormat:@"%@.",swiftModule];
         [modulesWithPrefix addObject:prefixed];
     }
     [NSObject addClassPrefixesToRecord:[modulesWithPrefix copy]];
