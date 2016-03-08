@@ -16,6 +16,7 @@
 		525334F71C8E19BC00DEBEB6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525334F61C8E19BC00DEBEB6 /* DetailViewController.swift */; };
 		D31E16CF27F2CD367C901391 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EC17FA3530D56273B88C5E /* Pods.framework */; };
 		D9A96A1583A839089465CF57 /* Pods_SwiftExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE2B6C443E095C59491A8CA /* Pods_SwiftExampleTests.framework */; };
+		DAC3C23C1C8F622F00A726A5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525334F61C8E19BC00DEBEB6 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -342,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5224830D1C8E186E009A9A6C /* SwiftExampleTests.swift in Sources */,
+				DAC3C23C1C8F622F00A726A5 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
