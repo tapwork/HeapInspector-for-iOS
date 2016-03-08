@@ -283,7 +283,11 @@ id objc_retainAutorelease(id value)
 
 + (void)setRecordBacktrace:(BOOL)recordBacktrace
 {
-    kRecordBacktrace = recordBacktrace;
+    if (recordBacktrace) {
+        kRecordBacktrace = true;
+    } else {
+        kRecordBacktrace = false;
+    }
 }
 
 + (void)beginSnapshot
