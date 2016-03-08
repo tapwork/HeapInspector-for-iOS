@@ -263,8 +263,16 @@ id objc_retainAutorelease(id value)
 
 + (void)addClassPrefixesToRecord:(NSArray *)prefixes
 {
-    if ([prefixes count] > 0) {
-        recordClassPrefixes = (__bridge CFArrayRef)[prefixes copy];
+    @synchronized(self) {
+        if ([prefixes count] > 0) {
+            if (recordClassPrefixes) {
+                NSMutableArray *existing = [NSMutableArray arrayWithArray:(__bridge NSArray*)recordClassPrefixes];
+                [existing addObjectsFromArray:prefixes];
+                recordClassPrefixes = (__bridge CFArrayRef)[existing copy];
+            } else {
+                recordClassPrefixes = (__bridge CFArrayRef)[prefixes copy];
+            }
+        }
     }
 }
 
