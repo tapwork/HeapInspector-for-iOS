@@ -14,19 +14,17 @@
 #include <dlfcn.h>
 #include <unistd.h>
 
-@interface NSValue (HeapInspectorOverridden)
-
-@property (atomic) BOOL ignoreHeapInspectorRecord;
-
-@end
-
 static NSCache *kPointerSymbolCache = nil;
 static bool kRecordBacktrace = false;
 static CFMutableDictionaryRef backtraceDict = NULL;
+static CFMutableSetRef ignoreObjectsForRecord = NULL;
 static OSSpinLock backtraceDictLock;
+static OSSpinLock ignoreObjectRecordingDictLock;
 static bool isRecording;
 static CFArrayRef recordClassPrefixes = NULL;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
+static inline void setObjectIgnoringRecord(id obj);
+static inline bool isObjectIgnoringRecord(id obj);
 
 static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
 {
@@ -68,7 +66,7 @@ static inline void* createBacktrace()
             void *pointer = frames[i];
             if (pointer) {
                 NSValue *bytes = [NSValue valueWithPointer:pointer];
-                bytes.ignoreHeapInspectorRecord = YES;
+                setObjectIgnoringRecord(bytes);
                 CFArrayAppendValue(stack, bytes);
             }
         }
@@ -137,11 +135,9 @@ bool canRecordObject(id obj)
     }
 
     Class cls = object_getClass(obj);
-    if (class_respondsToSelector(cls, @selector(ignoreHeapInspectorRecord))) {
-        BOOL ignoreRecord = [obj performSelector:@selector(ignoreHeapInspectorRecord)];
-        if (ignoreRecord) {
-            return false;
-        }
+    bool ignoreRecord = isObjectIgnoringRecord(obj);
+    if (ignoreRecord) {
+        return false;
     }
     
     bool canRecord = true;
@@ -172,6 +168,31 @@ static inline void recordAndRegisterIfPossible(id obj, char *name)
     if (isRecording && canRecordObject(obj)) {
         registerBacktraceForObject(obj, name);
     }
+}
+
+static inline bool isObjectIgnoringRecord(id obj)
+{
+    OSSpinLockLock(&ignoreObjectRecordingDictLock);
+    bool ignore = false;
+    if (obj && ignoreObjectsForRecord) {
+        ignore = CFSetContainsValue(ignoreObjectsForRecord, obj);
+    }
+    
+    OSSpinLockUnlock(&ignoreObjectRecordingDictLock);
+
+    return ignore;
+}
+
+static inline void setObjectIgnoringRecord(id obj)
+{
+    OSSpinLockLock(&ignoreObjectRecordingDictLock);
+
+    if (!ignoreObjectsForRecord) {
+        ignoreObjectsForRecord = CFSetCreateMutable(NULL, 0, NULL);
+    }
+    CFSetAddValue(ignoreObjectsForRecord, obj);
+    
+    OSSpinLockUnlock(&ignoreObjectRecordingDictLock);
 }
 
 #pragma mark - Overriding ARC
@@ -298,6 +319,7 @@ id objc_retainAutorelease(id value)
 
 + (void)endSnapshot
 {
+    ignoreObjectsForRecord = nil;
     isRecording = false;
 }
 
@@ -406,27 +428,3 @@ id objc_retainAutorelease(id value)
 }
 
 @end
-
-
-@implementation NSValue (HeapInspectorOverridden)
-
-- (BOOL)ignoreHeapInspectorRecord
-{
-    @synchronized(self) {
-        NSNumber *result = objc_getAssociatedObject(self, @selector(ignoreHeapInspectorRecord));
-        
-        return [result boolValue];
-    }
-}
-
-- (void)setIgnoreHeapInspectorRecord:(BOOL)ignoreHeapInspectorRecord
-{
-    @synchronized(self) {
-        objc_setAssociatedObject(self, @selector(ignoreHeapInspectorRecord),
-                                 [NSNumber numberWithBool:ignoreHeapInspectorRecord],
-                                 OBJC_ASSOCIATION_RETAIN);
-    }
-}
-
-@end
-
