@@ -25,7 +25,7 @@ static bool kRecordBacktrace = false;
 static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
 static bool isRecording;
-static const char *recordClassPrefix;
+static CFStringRef recordClassPrefix;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
 static inline bool canRecordObject(id obj);
 
@@ -53,9 +53,9 @@ static inline void SwizzleClassMethod(Class c, SEL origSEL, SEL newSEL)
     }
 }
 
-static inline CFStringRef createCFString(char *charValue)
+static inline CFStringRef createCFString(const char *cStr)
 {
-    return CFStringCreateWithCString(NULL, charValue, kCFStringEncodingUTF8);
+    return CFStringCreateWithCString(NULL, cStr, kCFStringEncodingUTF8);
 }
 
 static inline void* createBacktrace()
@@ -150,9 +150,9 @@ static inline bool canRecordObject(id obj)
     }
     
     bool canRecord = true;
-    const char *name = class_getName(cls);
-    if (recordClassPrefix && name) {
-        canRecord = (strncmp(name, recordClassPrefix, strlen(recordClassPrefix)) == 0);
+    CFStringRef className = createCFString(class_getName(cls));
+    if (recordClassPrefix && className) {
+        canRecord = CFStringHasPrefix(className, recordClassPrefix);
     }
 
     return canRecord;
@@ -267,7 +267,7 @@ id objc_retainAutorelease(id value)
     cleanup();
     
     if (prefix) {
-        recordClassPrefix = [prefix UTF8String];
+        recordClassPrefix = (__bridge CFStringRef)[prefix copy];
     }
 }
 
