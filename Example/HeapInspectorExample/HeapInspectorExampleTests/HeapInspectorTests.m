@@ -22,37 +22,50 @@
 
 @implementation HeapInspectorTests
 
+- (void)setUp {
+    [super setUp];
+    [HINSPDebug start];
+}
+
+- (void)tearDown
+{
+    [HINSPDebug stop];
+    [super tearDown];
+}
+
 - (void)testRecordAll
 {
-    [HINSPDebug start];
     [HINSPDebug addClassPrefixesToRecord:@[@"UI"]];
     self.tableView = [[UITableView alloc] init];
-    [HINSPDebug stop];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
     XCTAssertTrue(([recordedObjects count] > 1), @"Recorded objects must be greater than one");
 }
 
 - (void)testRecordBacktrace
 {
-    [HINSPDebug start];
     [HINSPDebug addClassPrefixesToRecord:@[@"UITableView"]];
     [HINSPDebug recordBacktraces:YES];
     [NSObject beginSnapshot];
     self.tableView = [[UITableView alloc] init];
-    [HINSPDebug stop];
-    
     NSArray *refHistory = [NSObject referenceHistoryForObject:self.tableView];
     XCTAssertTrue(([refHistory count] > 1), @"Backtrace objects must be greater than one");
 }
 
 - (void)testRecordSpecificClass
 {
-    [HINSPDebug start];
     [HINSPDebug addClassPrefixesToRecord:@[@"RM"]];
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
-    [HINSPDebug stop];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
-    XCTAssertTrue(([recordedObjects count] == 3), @"Recorded objects must be three");   
+    XCTAssertTrue(([recordedObjects count] == 1), @"Recorded objects must be one");
+}
+
+- (void)testRecordMultiplePrefixes
+{
+    [HINSPDebug addClassPrefixesToRecord:@[@"UITableViewWrapperView", @"RM"]];
+    self.controller = [[RMGalleryWrongViewCotroller alloc] init];
+    self.tableView = [[UITableView alloc] init];
+    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
+    XCTAssertTrue(([recordedObjects count] == 2), @"Recorded objects must be 4");
 }
 
 @end
