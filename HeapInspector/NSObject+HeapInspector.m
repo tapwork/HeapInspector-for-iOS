@@ -276,6 +276,11 @@ id objc_retainAutorelease(id value)
     }
 }
 
++ (void)removeAllClassPrefixesToRecord
+{
+    recordClassPrefixes = NULL;
+}
+
 + (void)setRecordBacktrace:(BOOL)recordBacktrace
 {
     kRecordBacktrace = recordBacktrace;

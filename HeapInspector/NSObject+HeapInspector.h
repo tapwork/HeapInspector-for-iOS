@@ -12,6 +12,8 @@ extern bool canRecordObject(id obj);
 @interface NSObject (HeapInspector)
 
 + (void)addClassPrefixesToRecord:(NSArray *)prefixes;
++ (void)removeAllClassPrefixesToRecord;
+
 + (void)beginSnapshot;
 + (void)endSnapshot;
 + (BOOL)isSnapshotRecording;

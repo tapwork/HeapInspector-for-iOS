@@ -153,6 +153,7 @@ static HINSPDebug *twDebug = nil;
 + (void)stop
 {
     [NSObject endSnapshot];
+    [NSObject removeAllClassPrefixesToRecord];
     twDebug = nil;
 }
 
