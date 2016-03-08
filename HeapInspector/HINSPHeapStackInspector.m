@@ -13,10 +13,10 @@
 #import <malloc/malloc.h>
 #import <mach/mach.h>
 #import <objc/runtime.h>
+#import <NSObject+HeapInspector.h>
 
 static CFMutableSetRef classesLoadedInRuntime;
 static NSSet *heapShotOfLivingObjects;
-const char *recordClassPrefix;
 
 // Mimics the objective-c object stucture for checking if a range of memory is an object.
 typedef struct {
@@ -52,26 +52,12 @@ static inline void range_callback(task_t task, void *context, unsigned type, vm_
         // If the class pointer matches one in our set of class pointers from the runtime, then we should have an object.
         if (CFSetContainsValue(classesLoadedInRuntime, (__bridge const void *)(tryClass))) {
             // Also check if we can record this object
-            const char *name = object_getClassName((__bridge id)tryObject);
-            if (canRecordObject(name)) {
-                 block((__bridge id)tryObject, tryClass);
+            id object = (__bridge id)tryObject;
+            if (canRecordObject(object)) {
+                 block(object, tryClass);
             }
         }
     }
-}
-
-static inline bool canRecordObject(const char* className)
-{
-    bool canRecord = true;
-    if (recordClassPrefix && className) {
-        canRecord = (strncmp(className, recordClassPrefix, strlen(recordClassPrefix)) == 0);
-    }
-    
-    if (strcasecmp(className, "NSAutoreleasePool") == 0) {
-        canRecord = NO;
-    }
-    
-    return canRecord;
 }
 
 + (void)enumerateLiveObjectsUsingBlock:(RMHeapEnumeratorBlock)block
@@ -116,11 +102,6 @@ static inline bool canRecordObject(const char* className)
 
 #pragma mark - Public
 
-+ (void)setClassPrefix:(NSString *)classPrefix
-{
-    recordClassPrefix = [classPrefix UTF8String];
-}
-
 + (void)performHeapShot
 {
     heapShotOfLivingObjects = [[self class] heapStack];
@@ -149,11 +130,6 @@ static inline bool canRecordObject(const char* className)
     }];
     
     return objects;
-}
-
-+ (NSString *)classPrefix
-{
-    return [NSString stringWithUTF8String:recordClassPrefix];
 }
 
 + (id)objectForPointer:(NSString *)pointer

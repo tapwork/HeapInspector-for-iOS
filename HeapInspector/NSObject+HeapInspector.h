@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern bool canRecordObject(id obj);
+
 @interface NSObject (HeapInspector)
 
 + (void)beginSnapshot;

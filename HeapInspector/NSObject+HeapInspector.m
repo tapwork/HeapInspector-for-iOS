@@ -27,7 +27,6 @@ static OSSpinLock backtraceDictLock;
 static bool isRecording;
 static CFStringRef recordClassPrefix;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
-static inline bool canRecordObject(id obj);
 
 static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
 {
@@ -130,7 +129,7 @@ static inline void cleanup()
     OSSpinLockUnlock(&backtraceDictLock);
 }
 
-static inline bool canRecordObject(id obj)
+bool canRecordObject(id obj)
 {
     if (!isRecording) {
         return false;
@@ -151,9 +150,22 @@ static inline bool canRecordObject(id obj)
     
     bool canRecord = true;
     CFStringRef className = createCFString(class_getName(cls));
-    if (recordClassPrefix && className) {
-        canRecord = CFStringHasPrefix(className, recordClassPrefix);
+    if (!className) {
+        return false;
     }
+    
+    if (CFStringCompare(className, CFSTR("NSAutoreleasePool"), kCFCompareBackwards)) {
+        return false;
+    }
+    
+    for (int i = 0; i < CFArrayGetCount(recordClassPrefixes); i++) {
+        CFStringRef prefix = CFArrayGetValueAtIndex(recordClassPrefixes, i);
+        canRecord = CFStringHasPrefix(className, prefix);
+        if (canRecord) {
+            break;
+        }
+    }
+    
 
     return canRecord;
 }
