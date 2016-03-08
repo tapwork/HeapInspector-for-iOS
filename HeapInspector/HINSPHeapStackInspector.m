@@ -15,8 +15,8 @@
 #import <objc/runtime.h>
 #import <NSObject+HeapInspector.h>
 
-static CFMutableSetRef classesLoadedInRuntime;
-static NSSet *heapShotOfLivingObjects;
+static CFMutableSetRef classesLoadedInRuntime = NULL;
+static NSSet *heapShotOfLivingObjects = nil;
 
 // Mimics the objective-c object stucture for checking if a range of memory is an object.
 typedef struct {
