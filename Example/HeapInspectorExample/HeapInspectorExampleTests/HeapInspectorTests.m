@@ -35,7 +35,7 @@
 {
     [HINSPDebug startWithClassPrefix:@"UITableView"];
     [HINSPDebug recordBacktraces:YES];
-    [NSObject beginSnapshotWithClassPrefix:@"UITableView"];
+    [NSObject beginSnapshotWithClassPrefixes:@[@"UITableView"]];
     self.tableView = [[UITableView alloc] init];
     [HINSPDebug stop];
     
