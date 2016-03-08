@@ -261,7 +261,7 @@ id objc_retainAutorelease(id value)
 
 #pragma mark - Public methods
 
-+ (void)setClassPrefixesToRecord:(NSArray *)prefixes
++ (void)addClassPrefixesToRecord:(NSArray *)prefixes
 {
     if ([prefixes count] > 0) {
         recordClassPrefixes = (__bridge CFArrayRef)[prefixes copy];

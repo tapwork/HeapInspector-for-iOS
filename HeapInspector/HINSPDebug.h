@@ -10,15 +10,20 @@
 
 @interface HINSPDebug : NSObject
 
+/// Shows the HeapInspector
 + (void)start;
 
-/// Start the HeapInspector with a bunch of class prefixes. Nil records all classes and not just yours.
-+ (void)startWithClassPrefixes:(NSArray *)classPrefixes;
-
-// Stops the HeapInspector and removes the inspector's view
+/// Stops the HeapInspector and removes the inspector's view
 + (void)stop;
 
-// Default is NO, because recording the backtrace for each retain/strong/release has a large performance impact
+/// Add some (or only one) class prefix like `UI` OR `MK` to record classes that match the prefix only.
+/// This improves performance and readibility
++ (void)addClassPrefixesToRecord:(NSArray *)classPrefixes;
+
+/// You can also record classes that are owned by specific Swift modules
++ (void)addSwiftModulesToRecord:(NSArray *)swiftModules;
+
+// Default is NO
 + (void)recordBacktraces:(BOOL)recordBacktraces;
 
 @end

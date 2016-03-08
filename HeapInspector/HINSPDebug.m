@@ -132,8 +132,22 @@ static HINSPDebug *twDebug = nil;
 }
 
 + (void)startWithClassPrefixes:(NSArray *)classPrefixes {
-    [NSObject setClassPrefixesToRecord:classPrefixes];
     twDebug = [[HINSPDebug alloc] init];
+}
+
++ (void)addClassPrefixesToRecord:(NSArray *)classPrefixes
+{
+     [NSObject addClassPrefixesToRecord:classPrefixes];
+}
+
++ (void)addSwiftModulesToRecord:(NSArray *)swiftModules
+{
+    NSMutableArray *modulesWithPrefix = [NSMutableArray array];
+    for (NSString *swiftModule in swiftModules) {
+        NSString *modulewithPreifx = [NSString stringWithFormat:@"<%@.",swiftModule];
+        [modulesWithPrefix addObject:modulesWithPrefix];
+    }
+    [NSObject addClassPrefixesToRecord:[modulesWithPrefix copy]];
 }
 
 + (void)stop
