@@ -15,7 +15,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     if (![[self class] isRunningTests]) {
-        [HINSPDebug startWithClassPrefixes:@[@"RM"]];
+        [HINSPDebug start];
+        [HINSPDebug addClassPrefixesToRecord:@[@"RM"]];
         [HINSPDebug recordBacktraces:YES];
     }
 
