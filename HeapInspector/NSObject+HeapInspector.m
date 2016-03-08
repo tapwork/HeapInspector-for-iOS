@@ -25,7 +25,7 @@ static bool kRecordBacktrace = false;
 static CFMutableDictionaryRef backtraceDict;
 static OSSpinLock backtraceDictLock;
 static bool isRecording;
-static CFStringRef recordClassPrefix;
+static CFArrayRef recordClassPrefixes;
 static inline void recordAndRegisterIfPossible(id obj, char *name);
 
 static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
@@ -265,7 +265,7 @@ id objc_retainAutorelease(id value)
 #pragma mark - Public methods
 + (void)beginSnapshot
 {
-    [self beginSnapshotWithClassPrefix:nil];
+    [self beginSnapshotWithClassPrefixes:nil];
 }
 
 + (void)setRecordBacktrace:(BOOL)recordBacktrace
@@ -273,13 +273,13 @@ id objc_retainAutorelease(id value)
     kRecordBacktrace = recordBacktrace;
 }
 
-+ (void)beginSnapshotWithClassPrefix:(NSString*)prefix
++ (void)beginSnapshotWithClassPrefixes:(NSArray *)prefixes
 {
     isRecording = true;
     cleanup();
     
-    if (prefix) {
-        recordClassPrefix = (__bridge CFStringRef)[prefix copy];
+    if ([prefixes count] > 0) {
+        recordClassPrefixes = (__bridge CFArrayRef)[prefixes copy];
     }
 }
 

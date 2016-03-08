@@ -12,7 +12,7 @@ extern bool canRecordObject(id obj);
 @interface NSObject (HeapInspector)
 
 + (void)beginSnapshot;
-+ (void)beginSnapshotWithClassPrefix:(NSString*)prefix;
++ (void)beginSnapshotWithClassPrefixes:(NSArray *)prefixes;
 + (void)endSnapshot;
 + (BOOL)isSnapshotRecording;
 + (void)resumeSnapshot;
