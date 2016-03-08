@@ -25,6 +25,7 @@
 - (void)setUp {
     [super setUp];
     [HINSPDebug start];
+    [HINSPDebug recordBacktraces:NO];
 }
 
 - (void)tearDown
@@ -62,6 +63,16 @@
 - (void)testRecordMultiplePrefixes
 {
     [HINSPDebug addClassPrefixesToRecord:@[@"UITableViewWrapperView", @"RM"]];
+    self.controller = [[RMGalleryWrongViewCotroller alloc] init];
+    self.tableView = [[UITableView alloc] init];
+    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
+    XCTAssertTrue(([recordedObjects count] == 2), @"Recorded objects must be 4");
+}
+
+- (void)testAddRecordMultiplePrefixesAfter
+{
+    [HINSPDebug addClassPrefixesToRecord:@[@"RM"]];
+    [HINSPDebug addClassPrefixesToRecord:@[@"UITableViewWrapperView"]];
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
     self.tableView = [[UITableView alloc] init];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
