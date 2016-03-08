@@ -266,9 +266,9 @@ id objc_retainAutorelease(id value)
     @synchronized(self) {
         if ([prefixes count] > 0) {
             if (recordClassPrefixes) {
-                NSMutableArray *existing = [NSMutableArray arrayWithArray:(__bridge NSArray*)recordClassPrefixes];
+                NSMutableSet *existing = [NSMutableSet setWithArray:(__bridge NSArray*)recordClassPrefixes];
                 [existing addObjectsFromArray:prefixes];
-                recordClassPrefixes = (__bridge CFArrayRef)[existing copy];
+                recordClassPrefixes = (__bridge CFArrayRef)[[existing allObjects] copy];
             } else {
                 recordClassPrefixes = (__bridge CFArrayRef)[prefixes copy];
             }
