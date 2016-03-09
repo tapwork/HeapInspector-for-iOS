@@ -14,7 +14,7 @@ class SwiftExampleTests: XCTestCase {
     override func setUp() {
         super.setUp()
         HINSPDebug.start()
-        HINSPDebug.addSwiftModulesToRecord(["SwiftExample", "SwiftExampleTests"])
+        HINSPDebug.addSwiftModulesToRecord(["SwiftExampleTests"])
     }
     
     override func tearDown() {
@@ -23,9 +23,11 @@ class SwiftExampleTests: XCTestCase {
     }
     
     func testDetailViewController() {
+        let debug = HINSPDebug()
+        debug.performSelector(NSSelectorFromString("beginRecord"))
         let detailViewController = DetailViewController()
-        let recordedObjects = HINSPHeapStackInspector.recordedHeapStack()
-        XCTAssertTrue((recordedObjects.count == 2), "Recorded objects must be two")
+        let recordedObjects = HINSPHeapStackInspector.recordedHeapStack() as NSSet
+        XCTAssertTrue((recordedObjects.count == 1), "Recorded objects must be one")
         XCTAssertNotNil(detailViewController, "Just to suppres the warning")
     }
 }
