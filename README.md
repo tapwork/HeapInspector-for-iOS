@@ -30,7 +30,7 @@ HeapInspector gives you detailed information for the living objects:
 
 
 # Why
-Since ARC has been introduced we don't need to manage the `retain` & `release` anymore. ARC is very powerful and makes Objective C more stable. ARC decreased the number of crashes and improves the memory footprint.<br> ARC is technically doing a powerful job. It knows when to `retain`, `autorelease` and `release`.
+Since ARC has been introduced we don't need to manage the `retain` & `release` anymore. ARC is very powerful and makes Objective-C more stable. ARC decreased the number of crashes and improves the memory footprint.<br> ARC is technically doing a powerful job. It knows when to `retain`, `autorelease` and `release`.
 <br>But ARC doesn't think about the overall architecture how to design for low memory usage. You should be aware that you can still do a lot of things wrong with your memory (even with ARC). You can still get memory pressures or peaks with ARC.
 * You can still create Retain Cycles
 * The `strong` property lifetime qualifier can be misused (i.e. holding an object twice and longer than needed.)
@@ -41,7 +41,7 @@ And that's why we introduced HeapInspector to find those issues.
 
 # Installation
 ### CocoaPods
-HeapInspector runs with Objective C and Swift via CocoaPods
+HeapInspector runs with Objective-C and Swift via CocoaPods
 Just add the HeapInspector to your `Podfile`.
 ```
 pod 'HeapInspector'
@@ -66,43 +66,44 @@ Disable ARC for `NSObject+HeapInspector.m` by adding `-fno-objc-arc` to Xcode's 
 # How to use it
 
 Make sure to import the header file<br />
-Objective C
+**Objective-C**
 ```objc
 #import "HINSPDebug.h"
 ```
-Swift
+**Swift**
 ```swift
 import HeapInspector
 ```
 
 ### Start
 Just run the following to start HeapInspector in a separated debug window. The window can be moved on your screen in order to reach all your UI elements. The left circle button starts / stops the memory heap snapshot. See demo above.<br />
-Objective C
+**Objective-C**
 ```objc
 [HINSPDebug start];
 ```
-Swift
+**Swift**
 ```swift
 HINSPDebug.start()
 ```
 
 We recommend to use a specific class prefixes, Swift modules or even a real classes like `UIImageView`.
 Or just run `start` to record all NSObject subclasses.<br />
-Objective C
+**Objective-C**
 ```objc
 [HINSPDebug addClassPrefixesToRecord:@[@"RM", @"UITableView"];
 ```
-Swift
+**Swift**
+You can register modules for the heap snapshot and recordings.
 ```swift
 HINSPDebug.addSwiftModulesToRecord(["MyModule", "AnotherFrameworkModule"])
 ```
 ### Stop
 Stopping and removing the inspector's window goes with<br />
-Objective C
+**Objective-C**
 ```objc
 [HINSPDebug stop];
 ```
-Swift
+**Swift**
 ```swift
 HINSPDebug.stop()
 ```
@@ -112,11 +113,11 @@ Just call the start/stop methods at app launch or via your custom button.
 HeapInspector can also record the backtrace for each object that received an alloc, retain, release or dealloc.
 Use this only with very specific recorded classes or in smaller apps.
 Start the backtrace with<br />
-Objective C
+**Objective-C**
 ```objc
 [HINSPDebug recordBacktraces:YES]; 
 ```
-Swift
+**Swift**
 ```swift
 HINSPDebug.recordBacktraces(true)
 ```
