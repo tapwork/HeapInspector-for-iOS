@@ -5,9 +5,9 @@
 [![](http://img.shields.io/cocoapods/l/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector-for-iOS/blob/master/LICENSE.md)
 [![CocoaPods Platform](http://img.shields.io/cocoapods/p/HeapInspector.svg?style=flat)]()
 
-HeapInspector is an iOS debug tool that **monitors the memory heap** in your app. You can discover memory leaks, no longer needed living objects and more issues directly on your device without ever starting Instruments.
+HeapInspector is a debug tool that **monitors the memory heap** with backtrace recording in your iOS app. You can discover memory leaks, no longer used objects, abandoned memory and more issues directly on your device without ever starting Instruments.
 
-#### Memory heap snapshots
+#### Memory heap snapshots with backtrace record
 Basically you can inspect the entire heap and see all living objects of your iOS app. <br>
 To be more precise you can record the heap for a specific part of the app. For instance when navigating through the menu. Like in Apple's Instruments the snapshot compares the heap before you started recording. For instance you can start the snapshot before you push a new `UIViewController` onto your `UINavigationController` stack and stop after popping the `UIViewController`.
 With HeapInspector and heap snapshots you can identify:
