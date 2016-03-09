@@ -20,6 +20,7 @@ static HINSPDebug *twDebug = nil;
 {
     HINSPDebugWindow *_window;
     UIViewController *_rootViewController;
+    NSSet *_recordedHeap;
 }
 
 #pragma mark - View Life Cycle
@@ -38,11 +39,11 @@ static HINSPDebug *twDebug = nil;
                                 action:@selector(recordButtonTapped:)
                       forControlEvents:UIControlEventTouchUpInside];
         [window.recordedButton addTarget:self
-                              action:@selector(tappedRecordedHeapButton:)
+                              action:@selector(recordedHeapButtonTapped:)
                     forControlEvents:UIControlEventTouchUpInside];
         
         [window.activeButton addTarget:self
-                                action:@selector(tappedActiveHeapButton:)
+                                action:@selector(currentHeapButtonTapped:)
                       forControlEvents:UIControlEventTouchUpInside];
         
         _window = window;
@@ -58,7 +59,7 @@ static HINSPDebug *twDebug = nil;
 
 - (void)showInfoLabel
 {
-    NSUInteger count = [[HINSPHeapStackInspector recordedHeapStack] count];
+    NSUInteger count = [_recordedHeap count];
     NSString *text = [NSString stringWithFormat:@"Objects alive: %lu",
                       (unsigned long)count];
     _window.infoLabel.text = text;
@@ -73,10 +74,9 @@ static HINSPDebug *twDebug = nil;
     _window.recordedButton.hidden = YES;
 }
 
-
 #pragma mark - Actions
 
-- (void)tappedActiveHeapButton:(id)sender
+- (void)currentHeapButtonTapped:(id)sender
 {
     if ([[HINSPHeapStackInspector heapStack] count] > 0) {
         NSArray *stack = [[HINSPHeapStackInspector heapStack] allObjects];
@@ -85,23 +85,14 @@ static HINSPDebug *twDebug = nil;
     }
 }
 
-- (void)tappedRecordedHeapButton:(id)sender
+- (void)recordedHeapButtonTapped:(id)sender
 {
-    if ([[HINSPHeapStackInspector recordedHeapStack] count] > 0) {
+    if ([_recordedHeap count] > 0) {
         [NSObject endSnapshot];
-        NSArray *stack = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
+        NSArray *stack = [_recordedHeap allObjects];
         HINSPHeapStackTableViewController *controller = [self heapStackControllerWithHeapStack:stack];
         controller.title = @"Recorded Heap";
     }
-}
-
-- (HINSPHeapStackTableViewController *)heapStackControllerWithHeapStack:(NSArray *)stack
-{
-    HINSPHeapStackTableViewController *tv = [[HINSPHeapStackTableViewController alloc] initWithDataSource:stack];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tv];
-    [_rootViewController presentViewController:navController animated:YES completion:nil];
-    
-    return tv;
 }
 
 - (void)recordButtonTapped:(id)sender
@@ -113,26 +104,45 @@ static HINSPDebug *twDebug = nil;
     }
 }
 
+#pragma mark - Private methods
+
+- (HINSPHeapStackTableViewController *)heapStackControllerWithHeapStack:(NSArray *)stack
+{
+    HINSPHeapStackTableViewController *tv = [[HINSPHeapStackTableViewController alloc] initWithDataSource:stack];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tv];
+    [_rootViewController presentViewController:navController animated:YES completion:nil];
+    
+    return tv;
+}
+
 - (void)stopRecord
 {
+    _recordedHeap = [HINSPHeapStackInspector recordedHeapStack];
     [self showInfoLabel];
     [NSObject endSnapshot];
 }
 
 - (void)beginRecord
 {
+    _recordedHeap = nil;
     [self resetInfoLabel];
     [NSObject beginSnapshot];
     [HINSPHeapStackInspector performHeapShot];
 }
 
+#pragma mark - Public methods
+
 + (void)start
 {
-    [[self class] startWithClassPrefixes:nil];
+    twDebug = [[HINSPDebug alloc] init];
 }
 
-+ (void)startWithClassPrefixes:(NSArray *)classPrefixes {
-    twDebug = [[HINSPDebug alloc] init];
++ (void)stop
+{
+    [NSObject endSnapshot];
+    [NSObject removeAllClassPrefixesToRecord];
+    [HINSPHeapStackInspector reset];
+    twDebug = nil;
 }
 
 + (void)addClassPrefixesToRecord:(NSArray *)classPrefixes
@@ -148,14 +158,6 @@ static HINSPDebug *twDebug = nil;
         [modulesWithPrefix addObject:prefixed];
     }
     [NSObject addClassPrefixesToRecord:[modulesWithPrefix copy]];
-}
-
-+ (void)stop
-{
-    [NSObject endSnapshot];
-    [NSObject removeAllClassPrefixesToRecord];
-    [HINSPHeapStackInspector reset];
-    twDebug = nil;
 }
 
 + (void)recordBacktraces:(BOOL)recordBacktraces
