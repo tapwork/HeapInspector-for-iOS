@@ -29,7 +29,6 @@ static HINSPDebug *twDebug = nil;
     self = [super init];
     if (self) {
         [NSObject startSwizzle];
-        [HINSPHeapStackInspector performHeapShot];
 
         CGRect rect = [UIScreen mainScreen].bounds;
         HINSPDebugWindow *window = [[HINSPDebugWindow alloc] initWithFrame:rect];

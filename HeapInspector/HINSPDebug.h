@@ -17,6 +17,8 @@
 + (void)stop;
 
 /// Add some (or only one) class prefix like `UI` OR `MK` to record classes that match the prefix only.
+/// It's highly recommended to record a specific class or prefix -
+/// otherwise all Cocoa classes will be recorded, which slows down the performance.
 /// This improves performance and readibility
 + (void)addClassPrefixesToRecord:(NSArray *)classPrefixes;
 
