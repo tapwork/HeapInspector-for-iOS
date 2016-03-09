@@ -79,22 +79,22 @@ import HeapInspector
 Just run the following to start HeapInspector in a separated debug window. The window can be moved on your screen in order to reach all your UI elements. The left circle button starts / stops the memory heap snapshot. See demo above.<br />
 Objective C
 ```objc
-[HINSPDebug startWithClassPrefix:@"RM"];
-```
-Swift
-```swift
-HINSPDebug.startWithClassPrefix("RM")
-```
-
-The prefix can be `nil`. We recommend to use a specific class prefix or even better a real class like `UIImageView`.
-Or just run `start` to record all NSObject subclasses.<br />
-Objective C
-```objc
 [HINSPDebug start];
 ```
 Swift
 ```swift
 HINSPDebug.start()
+```
+
+We recommend to use a specific class prefixes, Swift modules or even a real classes like `UIImageView`.
+Or just run `start` to record all NSObject subclasses.<br />
+Objective C
+```objc
+[HINSPDebug addClassPrefixesToRecord:@[@"RM", @"UITableView"];
+```
+Swift
+```swift
+HINSPDebug.addSwiftModulesToRecord(["MyModule", "AnotherFrameworkModule"])
 ```
 ### Stop
 Stopping and removing the inspector's window goes with<br />
@@ -110,7 +110,7 @@ Just call the start/stop methods at app launch or via your custom button.
 
 ### Backtrace record
 HeapInspector can also record the backtrace for each object that received an alloc, retain, release or dealloc.
-**Notice**: This has a large performance impact. Use this only with very specific recorded classes or small apps.
+Use this only with very specific recorded classes or in smaller apps.
 Start the backtrace with<br />
 Objective C
 ```objc
@@ -120,9 +120,6 @@ Swift
 ```swift
 HINSPDebug.recordBacktraces(true)
 ```
-
-#TODO
-* Performance improvements for the backtrace record (coming soon) - to get symbols costs a lot
 
 # Example project
 HeapInspector comes with an example project. There you will see a lot of mistakes made with the memory design.  
