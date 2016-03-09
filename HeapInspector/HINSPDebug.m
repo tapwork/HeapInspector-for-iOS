@@ -145,19 +145,23 @@ static HINSPDebug *twDebug = nil;
     twDebug = nil;
 }
 
-+ (void)addClassPrefixesToRecord:(NSArray *)classPrefixes
++ (void)addClassPrefixesToRecord:(NSArray <NSString *> *)classPrefixes
 {
-     [NSObject addClassPrefixesToRecord:classPrefixes];
+    if (classPrefixes) {
+        [NSObject addClassPrefixesToRecord:classPrefixes];
+    }
 }
 
-+ (void)addSwiftModulesToRecord:(NSArray *)swiftModules
++ (void)addSwiftModulesToRecord:(NSArray <NSString *> *)swiftModules
 {
-    NSMutableArray *modulesWithPrefix = [NSMutableArray array];
-    for (NSString *swiftModule in swiftModules) {
-        NSString *prefixed = [NSString stringWithFormat:@"%@.",swiftModule];
-        [modulesWithPrefix addObject:prefixed];
+    if (swiftModules) {
+        NSMutableArray *modulesWithPrefix = [NSMutableArray array];
+        for (NSString *swiftModule in swiftModules) {
+            NSString *prefixed = [NSString stringWithFormat:@"%@.",swiftModule];
+            [modulesWithPrefix addObject:prefixed];
+        }
+        [NSObject addClassPrefixesToRecord:[modulesWithPrefix copy]];
     }
-    [NSObject addClassPrefixesToRecord:[modulesWithPrefix copy]];
 }
 
 + (void)recordBacktraces:(BOOL)recordBacktraces

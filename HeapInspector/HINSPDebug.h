@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface HINSPDebug : NSObject
 
@@ -20,12 +21,14 @@
 /// It's highly recommended to record a specific class or prefix -
 /// otherwise all Cocoa classes will be recorded, which slows down the performance.
 /// This improves performance and readibility
-+ (void)addClassPrefixesToRecord:(NSArray *)classPrefixes;
++ (void)addClassPrefixesToRecord:(NSArray <NSString *> *)classPrefixes;
 
 /// You can also record classes that are owned by specific Swift modules
-+ (void)addSwiftModulesToRecord:(NSArray *)swiftModules;
++ (void)addSwiftModulesToRecord:(NSArray <NSString *> *)swiftModules;
 
 // Default is NO
 + (void)recordBacktraces:(BOOL)recordBacktraces;
 
 @end
+
+NS_ASSUME_NONNULL_END
