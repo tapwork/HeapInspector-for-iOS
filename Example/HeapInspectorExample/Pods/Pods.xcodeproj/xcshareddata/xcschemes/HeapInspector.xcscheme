@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81A3A3EEE2003115FA8B5800D4AE004B"
+               BlueprintIdentifier = "30AA37C67AF071B75D127E4B7F9033AA"
                BuildableName = "HeapInspector.framework"
                BlueprintName = "HeapInspector"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "81A3A3EEE2003115FA8B5800D4AE004B"
+            BlueprintIdentifier = "30AA37C67AF071B75D127E4B7F9033AA"
             BuildableName = "HeapInspector.framework"
             BlueprintName = "HeapInspector"
             ReferencedContainer = "container:Pods.xcodeproj">
