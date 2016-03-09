@@ -106,6 +106,12 @@ static inline void range_callback(task_t task, void *context, unsigned type, vm_
     heapShotOfLivingObjects = [[self class] heapStack];
 }
 
++ (void)reset
+{
+    heapShotOfLivingObjects = nil;
+    classesLoadedInRuntime = NULL;
+}
+
 + (NSSet *)recordedHeapStack
 {
     NSMutableSet *endLiveObjects = [[[self class] heapStack] mutableCopy];

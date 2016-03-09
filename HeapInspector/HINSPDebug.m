@@ -155,6 +155,7 @@ static HINSPDebug *twDebug = nil;
 {
     [NSObject endSnapshot];
     [NSObject removeAllClassPrefixesToRecord];
+    [HINSPHeapStackInspector reset];
     twDebug = nil;
 }
 

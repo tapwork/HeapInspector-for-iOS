@@ -19,5 +19,5 @@ typedef void (^RMHeapEnumeratorBlock)(__unsafe_unretained id object, __unsafe_un
 + (NSSet *)heapStack;
 + (NSSet *)recordedHeapStack;
 + (id)objectForPointer:(NSString *)pointer;
-
++ (void)reset;
 @end
