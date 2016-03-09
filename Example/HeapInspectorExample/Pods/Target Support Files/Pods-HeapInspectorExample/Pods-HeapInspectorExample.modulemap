@@ -1,0 +1,6 @@
+framework module Pods_HeapInspectorExample {
+  umbrella header "Pods-HeapInspectorExample-umbrella.h"
+
+  export *
+  module * { export * }
+}

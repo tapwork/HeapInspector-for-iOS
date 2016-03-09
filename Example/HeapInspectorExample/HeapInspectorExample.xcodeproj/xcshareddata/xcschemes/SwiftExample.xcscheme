@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E9510FB408B893B21CB92A386BF43583"
-               BuildableName = "HeapInspector.framework"
-               BlueprintName = "HeapInspector"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "DA9909161C9000B200F70573"
+               BuildableName = "SwiftExample.framework"
+               BlueprintName = "SwiftExample"
+               ReferencedContainer = "container:HeapInspectorExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E9510FB408B893B21CB92A386BF43583"
-            BuildableName = "HeapInspector.framework"
-            BlueprintName = "HeapInspector"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "DA9909161C9000B200F70573"
+            BuildableName = "SwiftExample.framework"
+            BlueprintName = "SwiftExample"
+            ReferencedContainer = "container:HeapInspectorExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E9510FB408B893B21CB92A386BF43583"
-            BuildableName = "HeapInspector.framework"
-            BlueprintName = "HeapInspector"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "DA9909161C9000B200F70573"
+            BuildableName = "SwiftExample.framework"
+            BlueprintName = "SwiftExample"
+            ReferencedContainer = "container:HeapInspectorExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -1,5 +1,23 @@
-pod "HeapInspector", :path => "../../HeapInspector.podspec"
+platform :ios, '8.0'
+use_frameworks!
 
-target "HeapInspectorExampleTests" do
-  pod 'HeapInspector', :path => "../../HeapInspector.podspec"
+def testing_pods
+   pod "HeapInspector", :path => "../../HeapInspector.podspec"
 end
+ 
+target 'HeapInspectorExample' do
+    testing_pods
+end
+ 
+target 'HeapInspectorExampleTests' do
+    testing_pods
+end
+
+target 'SwiftExample' do
+    testing_pods
+end
+ 
+target 'SwiftExampleTests' do
+    testing_pods
+end
+
