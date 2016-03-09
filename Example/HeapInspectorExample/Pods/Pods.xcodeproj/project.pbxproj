@@ -7,160 +7,160 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		023B153707D8F78D4298034860C52937 /* HINSPHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B5073394F61F55D486CE149ACADD46 /* HINSPHeapStackDetailTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		0913E07CE485962A0AB25AD841279DEC /* HINSPDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E89EAAD74B10F8C83B8674A90D878EC0 /* HINSPDebugWindow.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1692745CADFAE0E9619E884CAE8E40CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DBD6EC75AD10365F1F17298C4095F5 /* Foundation.framework */; };
+		0387C4A6B63EAF78CB814DA3050FFE47 /* HINSPShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E986D5ED3761AD0BBF2F8FB1FD41035 /* HINSPShowViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		132BCC2D22110FBB285D6DA015308EDE /* HINSPHeapStackDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB411A3CE5137D6A2304AC9F780F1850 /* HINSPHeapStackDetailTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1692745CADFAE0E9619E884CAE8E40CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E691A028305BC281AA3FD9313FA653B7 /* Foundation.framework */; };
+		1A719B4BD37C3B75A58666D246223520 /* HINSPRefHistoryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D762160E2D4B9BEC7BE29E3D3D6C2C6C /* HINSPRefHistoryTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E13F928A8CEC7BE2A7CAB8D61745C97 /* Pods-SwiftExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C17BCDC053AA70F8DE1B0F98A831D7F3 /* Pods-SwiftExample-dummy.m */; };
-		272E7013D8C3C93EB528BEDF4237D6D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DBD6EC75AD10365F1F17298C4095F5 /* Foundation.framework */; };
-		2BE0D88A534CA65980A88B49FF87B484 /* HINSPDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D00205083705B3C440EAA6DAAA9192 /* HINSPDebug.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		30BD29FE5FF65A46DACBF171F238FCAD /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D21236205C752A5215D2C2B49FD7E8 /* NSObject+HeapInspector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		31FE498A093A9644F6EF621944DED31B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DBD6EC75AD10365F1F17298C4095F5 /* Foundation.framework */; };
-		47DFFBA096C2AD5E89C80D1068642A10 /* HINSPResponderChainViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E55D0661C26DB1B920064FA15246C7A /* HINSPResponderChainViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1F4522623C4B1C0AFBB7CE30364C09D1 /* HINSPShowViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0524D992821E9FFD294E8ECFA73D67B1 /* HINSPShowViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		272E7013D8C3C93EB528BEDF4237D6D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E691A028305BC281AA3FD9313FA653B7 /* Foundation.framework */; };
+		2D7CA80CE4C40BE7F4AC899837B44EFF /* HINSPDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 935000CDE9BE8E48237E88A40B5861B6 /* HINSPDebug.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		361FF42307D361BA1400550D2580C542 /* HINSPHeapStackInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BA1DA49D55AFB90F70D42DC23E2867C /* HINSPHeapStackInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3ED489EC41BE38193C7E3FAEC33261F8 /* HeapInspector-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC42238712F774EF8817990BD04B62F /* HeapInspector-dummy.m */; };
 		48BE72D152F225A1EA605C129ECFB0B4 /* Pods-SwiftExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E92C55249D85496E8580DA32BA92E60D /* Pods-SwiftExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4BD1BF9B333A238F2197D46CDBC8DCAE /* HINSPClassDumpTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FA21992B910F4745A906D135AD1812AD /* HINSPClassDumpTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C76A13E4CA579B9E70A148E28C8C1CD /* Pods-SwiftExampleTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E93F3BA9FCEF65D58DA8FE55806AA94 /* Pods-SwiftExampleTests-dummy.m */; };
-		5F0E61863121FFA6CBD6F56A889BEC92 /* HINSPHeapStackInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 0241DAB69CBCFD04832F24DCAAA8B590 /* HINSPHeapStackInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		60003EB030F3699A482FFB2CFC7659AA /* HeapInspector-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5553EF95B01EEF51181DFC9538CA8F /* HeapInspector-dummy.m */; };
-		60435FFA08D13C46C9DE02C8CA34A1AF /* HINSPShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FAD1B20D074B0F0AB0E1C8F5969D74 /* HINSPShowViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		58118ED32C2A2BE1F2828EA7B2598348 /* HINSPClassDumpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82672CAB080894B56DED122BEFF88EA5 /* HINSPClassDumpTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		590884879AE738F80BFF47EBB3DB2D8F /* HINSPHeapStackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 602AF72615BB79D5AB2A2A63DDD4948C /* HINSPHeapStackTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		64262747560F893CBCC604E425954881 /* Pods-SwiftExampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 67924C7FD13649CF54D408B37AE561EC /* Pods-SwiftExampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64BA0BB8DCA615E94170476BE2FAF57B /* HINSPHeapStackTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CC56D205993CDB38ECE7553E2D5784C2 /* HINSPHeapStackTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66CEC232B4B6A92083C514F8969ED129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DBD6EC75AD10365F1F17298C4095F5 /* Foundation.framework */; };
+		66CEC232B4B6A92083C514F8969ED129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E691A028305BC281AA3FD9313FA653B7 /* Foundation.framework */; };
 		67FBB2267744C474123BDAB861B943BC /* Pods-HeapInspectorExampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E381CC66139A6177383E75AEDF8174D /* Pods-HeapInspectorExampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F8DDF87DCBFB813E8947AF851FE3558 /* NSObject+HeapInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BD54AC959B9021938B2A1AD564495E4 /* NSObject+HeapInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		701E901D78E10E768B6EA9BA2F0AC15D /* HINSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E46522BBC061D1933982332842D60 /* HINSPTableViewCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		757224A7B9CF0BF21604D97E5B18A188 /* HINSPHeapStackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1043550A08875822BA051CAAE16023F4 /* HINSPHeapStackTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		7B7297F574342E609761535628EBD519 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DBD6EC75AD10365F1F17298C4095F5 /* Foundation.framework */; };
+		69D1552236324F634A5A78A1A43044B6 /* HINSPRefHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F96955AEC99F64B775DB5974C12FDC1 /* HINSPRefHistoryTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		74120D564662B245FA18A9A19CD79CB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E691A028305BC281AA3FD9313FA653B7 /* Foundation.framework */; };
+		741C05B53411237617E980228363780F /* HINSPResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6113B5D837D43144724E2E92254D8146 /* HINSPResponderChainViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		754650B57D07082F5B8DC125AB7C9D98 /* HINSPRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A10FB491BCE4A4C0A9C36277F820785 /* HINSPRecordButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7627FDEAF55E0F0B92AFB9318B2A7625 /* HINSPTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = D617AEFE9E796EB7DE07EEFD1C0B7E0D /* HINSPTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B7297F574342E609761535628EBD519 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E691A028305BC281AA3FD9313FA653B7 /* Foundation.framework */; };
 		7C21BE636195A6F5045D0A302FDD7752 /* Pods-HeapInspectorExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C0E71E44A2222D172BA29B304032C9 /* Pods-HeapInspectorExample-dummy.m */; };
-		8192F78B63415A8A28844F8E9AA7CC2B /* HINSPRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA5B17BD61E302292369A1B4C99EF3C /* HINSPRecordButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		82F3BDDDF35B699BECB16912B3C01ED1 /* HINSPHeapStackInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = DC066DD4ADCFFE1D94D7C2B4DDDEFBEC /* HINSPHeapStackInspector.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8B7678CD1BC3A37C8F122121AE320BF7 /* HINSPRefHistoryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07449B7714F8D6BFA039BF14EB06D05C /* HINSPRefHistoryTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94BB0EE4273041FCB5C0A9B8904C2C11 /* HINSPHeapStackDetailTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E40CD801FE6A2EA86A46C19E30BF5F15 /* HINSPHeapStackDetailTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A394151259585ADAA90C7909E4EF37C0 /* HINSPShowViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EAE7148296CB183CFA282F06C3FE05F2 /* HINSPShowViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B25569368CCEE2F83788BB9850B47BB8 /* HINSPRefHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200C3BF1CE4E4F5123C5E7FCA4CAD55 /* HINSPRefHistoryTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		BD69F5E087B3C5B83C150D30041C3A39 /* HINSPDebugWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 48BDBB11E75A13F232DE9C7D402588B0 /* HINSPDebugWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE98992A5F2927F277E9CED8322C983C /* HINSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FADD08916FA18232CB6BB70DA820E65 /* HINSPTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D13B186119B4745D99CD5C4FD3C81798 /* HINSPClassDumpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E57B9BC78BA15CC8FCF04B6C672EB56 /* HINSPClassDumpTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		DE4F2736747DDCE11E93276BBB9506FE /* HINSPResponderChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FC5B0A7EC1B0378572BF6139D99E8C /* HINSPResponderChainViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E453B5426CC4EA87A26A7FC5871AB98D /* HINSPRecordButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 60994EA9078C4A12D91E0E173697D17B /* HINSPRecordButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		883BBED001B8EF523FC4FBCA4C0EE6EA /* HINSPHeapStackDetailTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BBE33C7A61B56C2E1EDB3F5B6643148B /* HINSPHeapStackDetailTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4C79BA654B42B00F51D30957DCC9431 /* HINSPDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F443387774FE6F9D5BB4826A7077FAF /* HINSPDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD1F8DE3F94F5DBE092356378549FA7B /* HINSPRecordButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 85043BB88DD4A84AF8AEF21C1A7576F2 /* HINSPRecordButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B54719F73FE43EDC0CAA1C00717716D2 /* HINSPResponderChainViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B5A954A96DC93F2796283ACB26F5823A /* HINSPResponderChainViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE1332BE83BDBA05D77CF7351D4DD8BF /* NSObject+HeapInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E85952595BB999603CBC729BE3E9A29 /* NSObject+HeapInspector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C74F5B160CF13E31A6E81E9AB37DE1DA /* HINSPDebugWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8DEE1FE6B6BF4B6DA72C9E37BE3093 /* HINSPDebugWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CAF91C487CD4EAA201F50D0A1451688A /* HINSPHeapStackTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F464910E20A5A69C7128828ABCA28CE /* HINSPHeapStackTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CF7887159F956A86DE9072BD0A92EC80 /* HINSPTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D8F4C2AB2E7138B6DDBD1013D8F2FD86 /* HINSPTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D56BC2DF08F2B4CBC3E5F22CCF62617C /* HeapInspector-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A3C4E49FB181A999BCC81D69DF5DCC /* HeapInspector-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC3187B5A6D04A179BDAE7F7CEEF53E8 /* NSObject+HeapInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 807590870647BDAE9193107EC659152F /* NSObject+HeapInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF77FCB7B8C60686F6AB96D85707DBD3 /* HINSPDebugWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A17FCF53623489682C65C78A08DD45 /* HINSPDebugWindow.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E2A63BC554DDFB7DA68534B1C46C46B9 /* HINSPHeapStackInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A3B626FDCABB30BCE10961011CFFCA /* HINSPHeapStackInspector.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E69D64D1AE367B719FE7A30A32D86AFA /* HINSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EC895B7E94FCF5F1BA3C75003D4849 /* HINSPTableViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E77C550FDCDA7AF9545799C54C24CE26 /* Pods-HeapInspectorExampleTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA157AA1814802209C7C73D977FC2CE5 /* Pods-HeapInspectorExampleTests-dummy.m */; };
-		ED07E0C34A73E96596508F2EBAF4EDAE /* HINSPDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 4543F660FDAF1B32EF3B568CC18CF12E /* HINSPDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE3A3B0F662177AD6576325A4920DB0A /* Pods-HeapInspectorExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 585D764CA630D7E7ED2236B800813C7F /* Pods-HeapInspectorExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F219571B68E7D3BAAEFC27EE9BC705E8 /* HINSPClassDumpTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 57CDDDC5FD3BD73670B880F245C75170 /* HINSPClassDumpTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F90732F08CC2C8B1EFDB77210DB15B31 /* HINSPTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C6E0CCAD482394F37624F3B15F16F821 /* HINSPTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FC788EF224D25EC318FDB948858E9172 /* HeapInspector-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A414EAF0A920170E4E806503C992399 /* HeapInspector-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FF1DABE40DDD978D70E9EB5C9101ACE2 /* HINSPTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CBC5EF1873F516F4C8DDA46FD037B92C /* HINSPTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F0E078E5B186B409AA79AF2D89119D2C /* HINSPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF06F8EACDBD5BEC6F692DEDFDA6E2BA /* HINSPTableViewCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4ADDEA9B578C1F8CF96D01623EB71C24 /* PBXContainerItemProxy */ = {
+		01AC758F6509E8470BA331FF66CC458A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E9510FB408B893B21CB92A386BF43583;
+			remoteGlobalIDString = 263D603AE6FE2ECC9FD0529D0E96244D;
 			remoteInfo = HeapInspector;
 		};
-		5EA6A9CE14AEE9844921CC39CC8BD95D /* PBXContainerItemProxy */ = {
+		25A9FC49A80D423D7777A2A353EC430E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E9510FB408B893B21CB92A386BF43583;
+			remoteGlobalIDString = 263D603AE6FE2ECC9FD0529D0E96244D;
 			remoteInfo = HeapInspector;
 		};
-		67320B9A03E2742C0EAC232F2E6C6702 /* PBXContainerItemProxy */ = {
+		27A4A11E65829805ECCCC250E7F9FDF4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E9510FB408B893B21CB92A386BF43583;
+			remoteGlobalIDString = 263D603AE6FE2ECC9FD0529D0E96244D;
 			remoteInfo = HeapInspector;
 		};
-		6D43A2636C72D90E6A8ED7F9D6808F56 /* PBXContainerItemProxy */ = {
+		7F70E7F332C185A531081C31B9E61182 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E9510FB408B893B21CB92A386BF43583;
+			remoteGlobalIDString = 263D603AE6FE2ECC9FD0529D0E96244D;
 			remoteInfo = HeapInspector;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0241DAB69CBCFD04832F24DCAAA8B590 /* HINSPHeapStackInspector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackInspector.h; sourceTree = "<group>"; };
-		07449B7714F8D6BFA039BF14EB06D05C /* HINSPRefHistoryTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPRefHistoryTableViewController.h; sourceTree = "<group>"; };
-		091E46522BBC061D1933982332842D60 /* HINSPTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewCell.m; sourceTree = "<group>"; };
+		0524D992821E9FFD294E8ECFA73D67B1 /* HINSPShowViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPShowViewController.h; sourceTree = "<group>"; };
 		0C44C5625BB8EC2716B1D1A69C9A64F8 /* Pods-HeapInspectorExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-HeapInspectorExample.modulemap"; sourceTree = "<group>"; };
 		0D8B4FA4EFC3E77B0FC6900DC21B3811 /* Pods-HeapInspectorExampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HeapInspectorExampleTests-resources.sh"; sourceTree = "<group>"; };
-		1043550A08875822BA051CAAE16023F4 /* HINSPHeapStackTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackTableViewController.m; sourceTree = "<group>"; };
+		0F96955AEC99F64B775DB5974C12FDC1 /* HINSPRefHistoryTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPRefHistoryTableViewController.m; sourceTree = "<group>"; };
+		104F913952B0A3459D210C23700394C9 /* HeapInspector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HeapInspector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12B38C73B41E403CE723C0EAB844045C /* Pods-SwiftExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftExample.release.xcconfig"; sourceTree = "<group>"; };
-		12B5073394F61F55D486CE149ACADD46 /* HINSPHeapStackDetailTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackDetailTableViewController.m; sourceTree = "<group>"; };
 		1624D36AE75EA6C914521717EF4218C6 /* Pods-HeapInspectorExampleTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-HeapInspectorExampleTests.modulemap"; sourceTree = "<group>"; };
 		1887ECC9AB9F684F7A63A5E8AA23003D /* Pods-HeapInspectorExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HeapInspectorExample.release.xcconfig"; sourceTree = "<group>"; };
 		195DE49B56390852A0EE9624968F3AD6 /* Pods-SwiftExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftExample-acknowledgements.plist"; sourceTree = "<group>"; };
+		1A10FB491BCE4A4C0A9C36277F820785 /* HINSPRecordButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPRecordButton.m; sourceTree = "<group>"; };
 		1A17917B7E336B1FD26997D98E6CFB37 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D022226210DD49FD575911578ABA902 /* Pods-HeapInspectorExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HeapInspectorExampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		20D00205083705B3C440EAA6DAAA9192 /* HINSPDebug.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPDebug.m; sourceTree = "<group>"; };
+		1F464910E20A5A69C7128828ABCA28CE /* HINSPHeapStackTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackTableViewController.h; sourceTree = "<group>"; };
 		2180F3AF323141EA70FB656887B2A1FE /* Pods_SwiftExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23DD161B8A510091B4EDB03E3BD61FDD /* Pods-SwiftExampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftExampleTests-frameworks.sh"; sourceTree = "<group>"; };
 		24D8C2224B1E42116B2AF99D9F670D7D /* Pods-HeapInspectorExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HeapInspectorExample-resources.sh"; sourceTree = "<group>"; };
+		25A3C4E49FB181A999BCC81D69DF5DCC /* HeapInspector-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HeapInspector-umbrella.h"; sourceTree = "<group>"; };
 		2E0DF6D86FF56FBC4BC552474D3C2C9F /* Pods-HeapInspectorExampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HeapInspectorExampleTests-frameworks.sh"; sourceTree = "<group>"; };
-		2E55D0661C26DB1B920064FA15246C7A /* HINSPResponderChainViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPResponderChainViewController.h; sourceTree = "<group>"; };
 		3002C05E16743182779D1DEA96E93E68 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F3731F7FC8D6CF7F9372CB278E4FC2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		411BD74B2C23DE69C078FB8793778CDC /* HeapInspector-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HeapInspector-prefix.pch"; sourceTree = "<group>"; };
-		4543F660FDAF1B32EF3B568CC18CF12E /* HINSPDebug.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPDebug.h; sourceTree = "<group>"; };
 		4695FD11919C3B6400D1844DD589CEDC /* Pods-SwiftExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		47CD615E2D7443CD37E16DC981718319 /* Pods-SwiftExampleTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SwiftExampleTests.modulemap"; sourceTree = "<group>"; };
-		47D21236205C752A5215D2C2B49FD7E8 /* NSObject+HeapInspector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HeapInspector.m"; sourceTree = "<group>"; };
-		48BDBB11E75A13F232DE9C7D402588B0 /* HINSPDebugWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPDebugWindow.h; sourceTree = "<group>"; };
 		491D94FC8E4D5B182459E8240B1E6B47 /* Pods-HeapInspectorExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HeapInspectorExample-acknowledgements.markdown"; sourceTree = "<group>"; };
 		49BF20CBA73DC72E86EF09D86ABFF75C /* Pods-HeapInspectorExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HeapInspectorExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4BD54AC959B9021938B2A1AD564495E4 /* NSObject+HeapInspector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+HeapInspector.h"; sourceTree = "<group>"; };
+		4BA1DA49D55AFB90F70D42DC23E2867C /* HINSPHeapStackInspector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackInspector.h; sourceTree = "<group>"; };
 		4E93F3BA9FCEF65D58DA8FE55806AA94 /* Pods-SwiftExampleTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftExampleTests-dummy.m"; sourceTree = "<group>"; };
-		4FADD08916FA18232CB6BB70DA820E65 /* HINSPTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewController.m; sourceTree = "<group>"; };
-		50FAD1B20D074B0F0AB0E1C8F5969D74 /* HINSPShowViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPShowViewController.m; sourceTree = "<group>"; };
 		51858E6CBBFD820880357736E5575F4B /* Pods-SwiftExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftExample-frameworks.sh"; sourceTree = "<group>"; };
-		57CDDDC5FD3BD73670B880F245C75170 /* HINSPClassDumpTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPClassDumpTableViewController.h; sourceTree = "<group>"; };
+		53C8B285E3053125FF8BD3CD0FD6C763 /* HeapInspector-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "HeapInspector-Private.xcconfig"; sourceTree = "<group>"; };
 		585D764CA630D7E7ED2236B800813C7F /* Pods-HeapInspectorExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HeapInspectorExample-umbrella.h"; sourceTree = "<group>"; };
-		60994EA9078C4A12D91E0E173697D17B /* HINSPRecordButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPRecordButton.h; sourceTree = "<group>"; };
-		6200C3BF1CE4E4F5123C5E7FCA4CAD55 /* HINSPRefHistoryTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPRefHistoryTableViewController.m; sourceTree = "<group>"; };
+		602AF72615BB79D5AB2A2A63DDD4948C /* HINSPHeapStackTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackTableViewController.m; sourceTree = "<group>"; };
+		6113B5D837D43144724E2E92254D8146 /* HINSPResponderChainViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPResponderChainViewController.m; sourceTree = "<group>"; };
 		652C486D7F193E3F06363745040FF4C4 /* Pods_SwiftExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6604EBAB0F546DE3A7357751A025E8ED /* HeapInspector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HeapInspector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67924C7FD13649CF54D408B37AE561EC /* Pods-SwiftExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftExampleTests-umbrella.h"; sourceTree = "<group>"; };
 		68EB2C83F5D3BDA6ED63C2B3D31DE3E1 /* Pods-SwiftExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		74FC5B0A7EC1B0378572BF6139D99E8C /* HINSPResponderChainViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPResponderChainViewController.m; sourceTree = "<group>"; };
-		7A414EAF0A920170E4E806503C992399 /* HeapInspector-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HeapInspector-umbrella.h"; sourceTree = "<group>"; };
+		6AC42238712F774EF8817990BD04B62F /* HeapInspector-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HeapInspector-dummy.m"; sourceTree = "<group>"; };
 		7E381CC66139A6177383E75AEDF8174D /* Pods-HeapInspectorExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HeapInspectorExampleTests-umbrella.h"; sourceTree = "<group>"; };
+		7E85952595BB999603CBC729BE3E9A29 /* NSObject+HeapInspector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HeapInspector.m"; sourceTree = "<group>"; };
+		7F443387774FE6F9D5BB4826A7077FAF /* HINSPDebug.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPDebug.h; sourceTree = "<group>"; };
 		7FDF5E8DE434CACABBF6C940B7A981D4 /* Pods-SwiftExampleTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftExampleTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		807590870647BDAE9193107EC659152F /* NSObject+HeapInspector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+HeapInspector.h"; sourceTree = "<group>"; };
 		80C0E71E44A2222D172BA29B304032C9 /* Pods-HeapInspectorExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HeapInspectorExample-dummy.m"; sourceTree = "<group>"; };
-		83372A41F3DE6A36ABAD7A66BD0F088C /* HeapInspector-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "HeapInspector-Private.xcconfig"; sourceTree = "<group>"; };
-		8E57B9BC78BA15CC8FCF04B6C672EB56 /* HINSPClassDumpTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPClassDumpTableViewController.m; sourceTree = "<group>"; };
+		82672CAB080894B56DED122BEFF88EA5 /* HINSPClassDumpTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPClassDumpTableViewController.m; sourceTree = "<group>"; };
+		85043BB88DD4A84AF8AEF21C1A7576F2 /* HINSPRecordButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPRecordButton.h; sourceTree = "<group>"; };
+		8E986D5ED3761AD0BBF2F8FB1FD41035 /* HINSPShowViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPShowViewController.m; sourceTree = "<group>"; };
+		935000CDE9BE8E48237E88A40B5861B6 /* HINSPDebug.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPDebug.m; sourceTree = "<group>"; };
 		986D7F82BE3AF033BB6F44FE84DB4A02 /* Pods-SwiftExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftExample-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9D7CD0D74C742F511BA00503860F2C9D /* Pods-SwiftExampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftExampleTests-resources.sh"; sourceTree = "<group>"; };
 		9DE52522782B70CF1392B7CD996A9BAE /* HeapInspector.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HeapInspector.xcconfig; sourceTree = "<group>"; };
 		A08C1820EFA71367D07B3596DE23631E /* Pods-HeapInspectorExampleTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HeapInspectorExampleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A0ABB40B5345381DDC7C999451DA3188 /* Pods_HeapInspectorExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeapInspectorExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9DBD6EC75AD10365F1F17298C4095F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A2A3B626FDCABB30BCE10961011CFFCA /* HINSPHeapStackInspector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackInspector.m; sourceTree = "<group>"; };
 		AA31ED6F6333366CBD9171A2ECB75FFC /* Pods-HeapInspectorExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HeapInspectorExample.debug.xcconfig"; sourceTree = "<group>"; };
+		AB411A3CE5137D6A2304AC9F780F1850 /* HINSPHeapStackDetailTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackDetailTableViewController.m; sourceTree = "<group>"; };
+		B5A954A96DC93F2796283ACB26F5823A /* HINSPResponderChainViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPResponderChainViewController.h; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BBE33C7A61B56C2E1EDB3F5B6643148B /* HINSPHeapStackDetailTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackDetailTableViewController.h; sourceTree = "<group>"; };
+		BF06F8EACDBD5BEC6F692DEDFDA6E2BA /* HINSPTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewCell.m; sourceTree = "<group>"; };
 		C17BCDC053AA70F8DE1B0F98A831D7F3 /* Pods-SwiftExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftExample-dummy.m"; sourceTree = "<group>"; };
 		C2B451EDD55F949D20090B3983E6609D /* Pods_HeapInspectorExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeapInspectorExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6E0CCAD482394F37624F3B15F16F821 /* HINSPTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPTableViewCell.h; sourceTree = "<group>"; };
 		C733C6A95F507F6500A38C9B0DEA0FB0 /* Pods-HeapInspectorExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HeapInspectorExample-acknowledgements.plist"; sourceTree = "<group>"; };
-		CBC5EF1873F516F4C8DDA46FD037B92C /* HINSPTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPTableViewController.h; sourceTree = "<group>"; };
-		CC56D205993CDB38ECE7553E2D5784C2 /* HINSPHeapStackTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackTableViewController.h; sourceTree = "<group>"; };
-		CEA5B17BD61E302292369A1B4C99EF3C /* HINSPRecordButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPRecordButton.m; sourceTree = "<group>"; };
+		CF8DEE1FE6B6BF4B6DA72C9E37BE3093 /* HINSPDebugWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPDebugWindow.h; sourceTree = "<group>"; };
 		D22D30290A25A0697C99C3E78A0876AD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D617AEFE9E796EB7DE07EEFD1C0B7E0D /* HINSPTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPTableViewCell.h; sourceTree = "<group>"; };
+		D762160E2D4B9BEC7BE29E3D3D6C2C6C /* HINSPRefHistoryTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPRefHistoryTableViewController.h; sourceTree = "<group>"; };
 		D88B40FCC43B46A9F25CC035C3D28641 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8F4C2AB2E7138B6DDBD1013D8F2FD86 /* HINSPTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPTableViewController.h; sourceTree = "<group>"; };
 		D91F07EB87AD6FA6E3C9D234B1E0B889 /* Pods-HeapInspectorExampleTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HeapInspectorExampleTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		DC066DD4ADCFFE1D94D7C2B4DDDEFBEC /* HINSPHeapStackInspector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPHeapStackInspector.m; sourceTree = "<group>"; };
 		E38E47D0E0F6F5B833ECDC8BB02FFF6C /* Pods-HeapInspectorExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HeapInspectorExample-frameworks.sh"; sourceTree = "<group>"; };
-		E40CD801FE6A2EA86A46C19E30BF5F15 /* HINSPHeapStackDetailTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPHeapStackDetailTableViewController.h; sourceTree = "<group>"; };
 		E513B75072B1D73F1886AF4C201B0C13 /* Pods-SwiftExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SwiftExample.modulemap"; sourceTree = "<group>"; };
 		E5E0FD7894703889046B8E9FC5EA5AB8 /* HeapInspector.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = HeapInspector.modulemap; sourceTree = "<group>"; };
-		E89EAAD74B10F8C83B8674A90D878EC0 /* HINSPDebugWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPDebugWindow.m; sourceTree = "<group>"; };
+		E691A028305BC281AA3FD9313FA653B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E92C55249D85496E8580DA32BA92E60D /* Pods-SwiftExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftExample-umbrella.h"; sourceTree = "<group>"; };
-		EAE7148296CB183CFA282F06C3FE05F2 /* HINSPShowViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPShowViewController.h; sourceTree = "<group>"; };
 		F1D4EE80F2F036BBAE80FD059F40938B /* Pods-SwiftExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftExample-resources.sh"; sourceTree = "<group>"; };
 		F266EA7ACACDA4942F017DF70B8F3C59 /* Pods-SwiftExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftExample.debug.xcconfig"; sourceTree = "<group>"; };
+		F3A17FCF53623489682C65C78A08DD45 /* HINSPDebugWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPDebugWindow.m; sourceTree = "<group>"; };
+		F7EC895B7E94FCF5F1BA3C75003D4849 /* HINSPTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HINSPTableViewController.m; sourceTree = "<group>"; };
 		FA157AA1814802209C7C73D977FC2CE5 /* Pods-HeapInspectorExampleTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HeapInspectorExampleTests-dummy.m"; sourceTree = "<group>"; };
-		FB5553EF95B01EEF51181DFC9538CA8F /* HeapInspector-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HeapInspector-dummy.m"; sourceTree = "<group>"; };
+		FA21992B910F4745A906D135AD1812AD /* HINSPClassDumpTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HINSPClassDumpTableViewController.h; sourceTree = "<group>"; };
 		FD31B69AD471578D87351DCA55F7AA28 /* Pods-SwiftExampleTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftExampleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,11 +197,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DB2A958D7C9832963A4833E7F84A841 /* Frameworks */ = {
+		FFF70EB0AEEA927ADD12945EBCD78682 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31FE498A093A9644F6EF621944DED31B /* Foundation.framework in Frameworks */,
+				74120D564662B245FA18A9A19CD79CB6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,10 +213,10 @@
 			children = (
 				E5E0FD7894703889046B8E9FC5EA5AB8 /* HeapInspector.modulemap */,
 				9DE52522782B70CF1392B7CD996A9BAE /* HeapInspector.xcconfig */,
-				83372A41F3DE6A36ABAD7A66BD0F088C /* HeapInspector-Private.xcconfig */,
-				FB5553EF95B01EEF51181DFC9538CA8F /* HeapInspector-dummy.m */,
+				53C8B285E3053125FF8BD3CD0FD6C763 /* HeapInspector-Private.xcconfig */,
+				6AC42238712F774EF8817990BD04B62F /* HeapInspector-dummy.m */,
 				411BD74B2C23DE69C078FB8793778CDC /* HeapInspector-prefix.pch */,
-				7A414EAF0A920170E4E806503C992399 /* HeapInspector-umbrella.h */,
+				25A3C4E49FB181A999BCC81D69DF5DCC /* HeapInspector-umbrella.h */,
 				D22D30290A25A0697C99C3E78A0876AD /* Info.plist */,
 			);
 			name = "Support Files";
@@ -234,7 +234,7 @@
 		53F661C0CA7190D2CF05023FB33D61E4 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				A9DBD6EC75AD10365F1F17298C4095F5 /* Foundation.framework */,
+				E691A028305BC281AA3FD9313FA653B7 /* Foundation.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -271,30 +271,30 @@
 		7DE0772DC18F913F711E08778D0BAEE0 /* HeapInspector */ = {
 			isa = PBXGroup;
 			children = (
-				57CDDDC5FD3BD73670B880F245C75170 /* HINSPClassDumpTableViewController.h */,
-				8E57B9BC78BA15CC8FCF04B6C672EB56 /* HINSPClassDumpTableViewController.m */,
-				4543F660FDAF1B32EF3B568CC18CF12E /* HINSPDebug.h */,
-				20D00205083705B3C440EAA6DAAA9192 /* HINSPDebug.m */,
-				48BDBB11E75A13F232DE9C7D402588B0 /* HINSPDebugWindow.h */,
-				E89EAAD74B10F8C83B8674A90D878EC0 /* HINSPDebugWindow.m */,
-				E40CD801FE6A2EA86A46C19E30BF5F15 /* HINSPHeapStackDetailTableViewController.h */,
-				12B5073394F61F55D486CE149ACADD46 /* HINSPHeapStackDetailTableViewController.m */,
-				0241DAB69CBCFD04832F24DCAAA8B590 /* HINSPHeapStackInspector.h */,
-				DC066DD4ADCFFE1D94D7C2B4DDDEFBEC /* HINSPHeapStackInspector.m */,
-				CC56D205993CDB38ECE7553E2D5784C2 /* HINSPHeapStackTableViewController.h */,
-				1043550A08875822BA051CAAE16023F4 /* HINSPHeapStackTableViewController.m */,
-				60994EA9078C4A12D91E0E173697D17B /* HINSPRecordButton.h */,
-				CEA5B17BD61E302292369A1B4C99EF3C /* HINSPRecordButton.m */,
-				07449B7714F8D6BFA039BF14EB06D05C /* HINSPRefHistoryTableViewController.h */,
-				6200C3BF1CE4E4F5123C5E7FCA4CAD55 /* HINSPRefHistoryTableViewController.m */,
-				2E55D0661C26DB1B920064FA15246C7A /* HINSPResponderChainViewController.h */,
-				74FC5B0A7EC1B0378572BF6139D99E8C /* HINSPResponderChainViewController.m */,
-				EAE7148296CB183CFA282F06C3FE05F2 /* HINSPShowViewController.h */,
-				50FAD1B20D074B0F0AB0E1C8F5969D74 /* HINSPShowViewController.m */,
-				C6E0CCAD482394F37624F3B15F16F821 /* HINSPTableViewCell.h */,
-				091E46522BBC061D1933982332842D60 /* HINSPTableViewCell.m */,
-				CBC5EF1873F516F4C8DDA46FD037B92C /* HINSPTableViewController.h */,
-				4FADD08916FA18232CB6BB70DA820E65 /* HINSPTableViewController.m */,
+				FA21992B910F4745A906D135AD1812AD /* HINSPClassDumpTableViewController.h */,
+				82672CAB080894B56DED122BEFF88EA5 /* HINSPClassDumpTableViewController.m */,
+				7F443387774FE6F9D5BB4826A7077FAF /* HINSPDebug.h */,
+				935000CDE9BE8E48237E88A40B5861B6 /* HINSPDebug.m */,
+				CF8DEE1FE6B6BF4B6DA72C9E37BE3093 /* HINSPDebugWindow.h */,
+				F3A17FCF53623489682C65C78A08DD45 /* HINSPDebugWindow.m */,
+				BBE33C7A61B56C2E1EDB3F5B6643148B /* HINSPHeapStackDetailTableViewController.h */,
+				AB411A3CE5137D6A2304AC9F780F1850 /* HINSPHeapStackDetailTableViewController.m */,
+				4BA1DA49D55AFB90F70D42DC23E2867C /* HINSPHeapStackInspector.h */,
+				A2A3B626FDCABB30BCE10961011CFFCA /* HINSPHeapStackInspector.m */,
+				1F464910E20A5A69C7128828ABCA28CE /* HINSPHeapStackTableViewController.h */,
+				602AF72615BB79D5AB2A2A63DDD4948C /* HINSPHeapStackTableViewController.m */,
+				85043BB88DD4A84AF8AEF21C1A7576F2 /* HINSPRecordButton.h */,
+				1A10FB491BCE4A4C0A9C36277F820785 /* HINSPRecordButton.m */,
+				D762160E2D4B9BEC7BE29E3D3D6C2C6C /* HINSPRefHistoryTableViewController.h */,
+				0F96955AEC99F64B775DB5974C12FDC1 /* HINSPRefHistoryTableViewController.m */,
+				B5A954A96DC93F2796283ACB26F5823A /* HINSPResponderChainViewController.h */,
+				6113B5D837D43144724E2E92254D8146 /* HINSPResponderChainViewController.m */,
+				0524D992821E9FFD294E8ECFA73D67B1 /* HINSPShowViewController.h */,
+				8E986D5ED3761AD0BBF2F8FB1FD41035 /* HINSPShowViewController.m */,
+				D617AEFE9E796EB7DE07EEFD1C0B7E0D /* HINSPTableViewCell.h */,
+				BF06F8EACDBD5BEC6F692DEDFDA6E2BA /* HINSPTableViewCell.m */,
+				D8F4C2AB2E7138B6DDBD1013D8F2FD86 /* HINSPTableViewController.h */,
+				F7EC895B7E94FCF5F1BA3C75003D4849 /* HINSPTableViewController.m */,
 			);
 			path = HeapInspector;
 			sourceTree = "<group>";
@@ -332,7 +332,7 @@
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6604EBAB0F546DE3A7357751A025E8ED /* HeapInspector.framework */,
+				104F913952B0A3459D210C23700394C9 /* HeapInspector.framework */,
 				C2B451EDD55F949D20090B3983E6609D /* Pods_HeapInspectorExample.framework */,
 				A0ABB40B5345381DDC7C999451DA3188 /* Pods_HeapInspectorExampleTests.framework */,
 				2180F3AF323141EA70FB656887B2A1FE /* Pods_SwiftExample.framework */,
@@ -344,8 +344,8 @@
 		CE68F0CE2D5C4B1F05072C89BE5068AE /* HeapInspector */ = {
 			isa = PBXGroup;
 			children = (
-				4BD54AC959B9021938B2A1AD564495E4 /* NSObject+HeapInspector.h */,
-				47D21236205C752A5215D2C2B49FD7E8 /* NSObject+HeapInspector.m */,
+				807590870647BDAE9193107EC659152F /* NSObject+HeapInspector.h */,
+				7E85952595BB999603CBC729BE3E9A29 /* NSObject+HeapInspector.m */,
 			);
 			path = HeapInspector;
 			sourceTree = "<group>";
@@ -415,27 +415,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		589156E72D2E7F5F4DF4466B225E88E5 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F219571B68E7D3BAAEFC27EE9BC705E8 /* HINSPClassDumpTableViewController.h in Headers */,
-				ED07E0C34A73E96596508F2EBAF4EDAE /* HINSPDebug.h in Headers */,
-				BD69F5E087B3C5B83C150D30041C3A39 /* HINSPDebugWindow.h in Headers */,
-				94BB0EE4273041FCB5C0A9B8904C2C11 /* HINSPHeapStackDetailTableViewController.h in Headers */,
-				5F0E61863121FFA6CBD6F56A889BEC92 /* HINSPHeapStackInspector.h in Headers */,
-				64BA0BB8DCA615E94170476BE2FAF57B /* HINSPHeapStackTableViewController.h in Headers */,
-				E453B5426CC4EA87A26A7FC5871AB98D /* HINSPRecordButton.h in Headers */,
-				8B7678CD1BC3A37C8F122121AE320BF7 /* HINSPRefHistoryTableViewController.h in Headers */,
-				47DFFBA096C2AD5E89C80D1068642A10 /* HINSPResponderChainViewController.h in Headers */,
-				A394151259585ADAA90C7909E4EF37C0 /* HINSPShowViewController.h in Headers */,
-				F90732F08CC2C8B1EFDB77210DB15B31 /* HINSPTableViewCell.h in Headers */,
-				FF1DABE40DDD978D70E9EB5C9101ACE2 /* HINSPTableViewController.h in Headers */,
-				FC788EF224D25EC318FDB948858E9172 /* HeapInspector-umbrella.h in Headers */,
-				6F8DDF87DCBFB813E8947AF851FE3558 /* NSObject+HeapInspector.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8971FCB01A3ADD041E261428AAD1FD55 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -468,9 +447,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFFAA23E71B6F18F8E9F08BC7C3E89DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BD1BF9B333A238F2197D46CDBC8DCAE /* HINSPClassDumpTableViewController.h in Headers */,
+				A4C79BA654B42B00F51D30957DCC9431 /* HINSPDebug.h in Headers */,
+				C74F5B160CF13E31A6E81E9AB37DE1DA /* HINSPDebugWindow.h in Headers */,
+				883BBED001B8EF523FC4FBCA4C0EE6EA /* HINSPHeapStackDetailTableViewController.h in Headers */,
+				361FF42307D361BA1400550D2580C542 /* HINSPHeapStackInspector.h in Headers */,
+				CAF91C487CD4EAA201F50D0A1451688A /* HINSPHeapStackTableViewController.h in Headers */,
+				AD1F8DE3F94F5DBE092356378549FA7B /* HINSPRecordButton.h in Headers */,
+				1A719B4BD37C3B75A58666D246223520 /* HINSPRefHistoryTableViewController.h in Headers */,
+				B54719F73FE43EDC0CAA1C00717716D2 /* HINSPResponderChainViewController.h in Headers */,
+				1F4522623C4B1C0AFBB7CE30364C09D1 /* HINSPShowViewController.h in Headers */,
+				7627FDEAF55E0F0B92AFB9318B2A7625 /* HINSPTableViewCell.h in Headers */,
+				CF7887159F956A86DE9072BD0A92EC80 /* HINSPTableViewController.h in Headers */,
+				D56BC2DF08F2B4CBC3E5F22CCF62617C /* HeapInspector-umbrella.h in Headers */,
+				DC3187B5A6D04A179BDAE7F7CEEF53E8 /* NSObject+HeapInspector.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		263D603AE6FE2ECC9FD0529D0E96244D /* HeapInspector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12B9B5B950A7412BEC25CC8B739963D7 /* Build configuration list for PBXNativeTarget "HeapInspector" */;
+			buildPhases = (
+				3B22B8ABC2CAF83BF06F4EA739F33065 /* Sources */,
+				FFF70EB0AEEA927ADD12945EBCD78682 /* Frameworks */,
+				EFFAA23E71B6F18F8E9F08BC7C3E89DA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeapInspector;
+			productName = HeapInspector;
+			productReference = 104F913952B0A3459D210C23700394C9 /* HeapInspector.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		4510DE7E01BCB419BA23D1772B91A918 /* Pods-HeapInspectorExampleTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B0EFF9298E6B73C071FEEA451970657 /* Build configuration list for PBXNativeTarget "Pods-HeapInspectorExampleTests" */;
@@ -482,7 +499,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9400948E4A90B0703548DDBA6B0471D9 /* PBXTargetDependency */,
+				AFBAAA8502E7E29A3B281A4A28C5A6B5 /* PBXTargetDependency */,
 			);
 			name = "Pods-HeapInspectorExampleTests";
 			productName = "Pods-HeapInspectorExampleTests";
@@ -500,7 +517,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0F151799C95372D79DE97DB0C414DDB2 /* PBXTargetDependency */,
+				1B4B6303EFC9E33053769079E1FB388F /* PBXTargetDependency */,
 			);
 			name = "Pods-SwiftExampleTests";
 			productName = "Pods-SwiftExampleTests";
@@ -518,28 +535,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				B16A76E7C690539FD8F6BF4066D6C54D /* PBXTargetDependency */,
+				AA3759C5B61A58756B89238B6FB61B8F /* PBXTargetDependency */,
 			);
 			name = "Pods-HeapInspectorExample";
 			productName = "Pods-HeapInspectorExample";
 			productReference = C2B451EDD55F949D20090B3983E6609D /* Pods_HeapInspectorExample.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		E9510FB408B893B21CB92A386BF43583 /* HeapInspector */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 07987CE2775757121D96AD05032A9CB7 /* Build configuration list for PBXNativeTarget "HeapInspector" */;
-			buildPhases = (
-				435C9B14FC82DD1FDCA209CB0AF75E39 /* Sources */,
-				8DB2A958D7C9832963A4833E7F84A841 /* Frameworks */,
-				589156E72D2E7F5F4DF4466B225E88E5 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HeapInspector;
-			productName = HeapInspector;
-			productReference = 6604EBAB0F546DE3A7357751A025E8ED /* HeapInspector.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		FB4F1B85BECAD0C5FDAE827E96A2D2D0 /* Pods-SwiftExample */ = {
@@ -553,7 +553,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D10F05BA506105FB4905B02F9FC3C21C /* PBXTargetDependency */,
+				3F683A6B26D5AAEE47EA08D5C04C2604 /* PBXTargetDependency */,
 			);
 			name = "Pods-SwiftExample";
 			productName = "Pods-SwiftExample";
@@ -581,7 +581,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E9510FB408B893B21CB92A386BF43583 /* HeapInspector */,
+				263D603AE6FE2ECC9FD0529D0E96244D /* HeapInspector */,
 				80CB716232C282508B2CC03DE4A948F5 /* Pods-HeapInspectorExample */,
 				4510DE7E01BCB419BA23D1772B91A918 /* Pods-HeapInspectorExampleTests */,
 				FB4F1B85BECAD0C5FDAE827E96A2D2D0 /* Pods-SwiftExample */,
@@ -599,32 +599,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3B22B8ABC2CAF83BF06F4EA739F33065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58118ED32C2A2BE1F2828EA7B2598348 /* HINSPClassDumpTableViewController.m in Sources */,
+				2D7CA80CE4C40BE7F4AC899837B44EFF /* HINSPDebug.m in Sources */,
+				DF77FCB7B8C60686F6AB96D85707DBD3 /* HINSPDebugWindow.m in Sources */,
+				132BCC2D22110FBB285D6DA015308EDE /* HINSPHeapStackDetailTableViewController.m in Sources */,
+				E2A63BC554DDFB7DA68534B1C46C46B9 /* HINSPHeapStackInspector.m in Sources */,
+				590884879AE738F80BFF47EBB3DB2D8F /* HINSPHeapStackTableViewController.m in Sources */,
+				754650B57D07082F5B8DC125AB7C9D98 /* HINSPRecordButton.m in Sources */,
+				69D1552236324F634A5A78A1A43044B6 /* HINSPRefHistoryTableViewController.m in Sources */,
+				741C05B53411237617E980228363780F /* HINSPResponderChainViewController.m in Sources */,
+				0387C4A6B63EAF78CB814DA3050FFE47 /* HINSPShowViewController.m in Sources */,
+				F0E078E5B186B409AA79AF2D89119D2C /* HINSPTableViewCell.m in Sources */,
+				E69D64D1AE367B719FE7A30A32D86AFA /* HINSPTableViewController.m in Sources */,
+				3ED489EC41BE38193C7E3FAEC33261F8 /* HeapInspector-dummy.m in Sources */,
+				BE1332BE83BDBA05D77CF7351D4DD8BF /* NSObject+HeapInspector.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40BCA5B9244F04640528DFE324DAA112 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4C76A13E4CA579B9E70A148E28C8C1CD /* Pods-SwiftExampleTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		435C9B14FC82DD1FDCA209CB0AF75E39 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D13B186119B4745D99CD5C4FD3C81798 /* HINSPClassDumpTableViewController.m in Sources */,
-				2BE0D88A534CA65980A88B49FF87B484 /* HINSPDebug.m in Sources */,
-				0913E07CE485962A0AB25AD841279DEC /* HINSPDebugWindow.m in Sources */,
-				023B153707D8F78D4298034860C52937 /* HINSPHeapStackDetailTableViewController.m in Sources */,
-				82F3BDDDF35B699BECB16912B3C01ED1 /* HINSPHeapStackInspector.m in Sources */,
-				757224A7B9CF0BF21604D97E5B18A188 /* HINSPHeapStackTableViewController.m in Sources */,
-				8192F78B63415A8A28844F8E9AA7CC2B /* HINSPRecordButton.m in Sources */,
-				B25569368CCEE2F83788BB9850B47BB8 /* HINSPRefHistoryTableViewController.m in Sources */,
-				DE4F2736747DDCE11E93276BBB9506FE /* HINSPResponderChainViewController.m in Sources */,
-				60435FFA08D13C46C9DE02C8CA34A1AF /* HINSPShowViewController.m in Sources */,
-				701E901D78E10E768B6EA9BA2F0AC15D /* HINSPTableViewCell.m in Sources */,
-				CE98992A5F2927F277E9CED8322C983C /* HINSPTableViewController.m in Sources */,
-				60003EB030F3699A482FFB2CFC7659AA /* HeapInspector-dummy.m in Sources */,
-				30BD29FE5FF65A46DACBF171F238FCAD /* NSObject+HeapInspector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,29 +647,29 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0F151799C95372D79DE97DB0C414DDB2 /* PBXTargetDependency */ = {
+		1B4B6303EFC9E33053769079E1FB388F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HeapInspector;
-			target = E9510FB408B893B21CB92A386BF43583 /* HeapInspector */;
-			targetProxy = 4ADDEA9B578C1F8CF96D01623EB71C24 /* PBXContainerItemProxy */;
+			target = 263D603AE6FE2ECC9FD0529D0E96244D /* HeapInspector */;
+			targetProxy = 27A4A11E65829805ECCCC250E7F9FDF4 /* PBXContainerItemProxy */;
 		};
-		9400948E4A90B0703548DDBA6B0471D9 /* PBXTargetDependency */ = {
+		3F683A6B26D5AAEE47EA08D5C04C2604 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HeapInspector;
-			target = E9510FB408B893B21CB92A386BF43583 /* HeapInspector */;
-			targetProxy = 6D43A2636C72D90E6A8ED7F9D6808F56 /* PBXContainerItemProxy */;
+			target = 263D603AE6FE2ECC9FD0529D0E96244D /* HeapInspector */;
+			targetProxy = 7F70E7F332C185A531081C31B9E61182 /* PBXContainerItemProxy */;
 		};
-		B16A76E7C690539FD8F6BF4066D6C54D /* PBXTargetDependency */ = {
+		AA3759C5B61A58756B89238B6FB61B8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HeapInspector;
-			target = E9510FB408B893B21CB92A386BF43583 /* HeapInspector */;
-			targetProxy = 5EA6A9CE14AEE9844921CC39CC8BD95D /* PBXContainerItemProxy */;
+			target = 263D603AE6FE2ECC9FD0529D0E96244D /* HeapInspector */;
+			targetProxy = 25A9FC49A80D423D7777A2A353EC430E /* PBXContainerItemProxy */;
 		};
-		D10F05BA506105FB4905B02F9FC3C21C /* PBXTargetDependency */ = {
+		AFBAAA8502E7E29A3B281A4A28C5A6B5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HeapInspector;
-			target = E9510FB408B893B21CB92A386BF43583 /* HeapInspector */;
-			targetProxy = 67320B9A03E2742C0EAC232F2E6C6702 /* PBXContainerItemProxy */;
+			target = 263D603AE6FE2ECC9FD0529D0E96244D /* HeapInspector */;
+			targetProxy = 01AC758F6509E8470BA331FF66CC458A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -695,33 +695,6 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods_HeapInspectorExampleTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		39172CF58544B9FB6BEDA0508094462C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83372A41F3DE6A36ABAD7A66BD0F088C /* HeapInspector-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.0.11;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 0.0.11;
-				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/HeapInspector/HeapInspector-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HeapInspector/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HeapInspector/HeapInspector.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = HeapInspector;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -817,6 +790,33 @@
 			};
 			name = Release;
 		};
+		96A5AB1F03FCBD48E5A20598894BB3F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53C8B285E3053125FF8BD3CD0FD6C763 /* HeapInspector-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 0.0.11;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 0.0.11;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/HeapInspector/HeapInspector-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HeapInspector/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HeapInspector/HeapInspector.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = HeapInspector;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		97B5A053D7A4C3E9BDC3856A7EFD40B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4695FD11919C3B6400D1844DD589CEDC /* Pods-SwiftExampleTests.release.xcconfig */;
@@ -838,33 +838,6 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods_SwiftExampleTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		9B4965185FEFD5A7094C191E5CEBD42C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83372A41F3DE6A36ABAD7A66BD0F088C /* HeapInspector-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.0.11;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 0.0.11;
-				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/HeapInspector/HeapInspector-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HeapInspector/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HeapInspector/HeapInspector.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = HeapInspector;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -933,6 +906,33 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods_HeapInspectorExample;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E976465E52B4FD1EAC1B16A53B12E7D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53C8B285E3053125FF8BD3CD0FD6C763 /* HeapInspector-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 0.0.11;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 0.0.11;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/HeapInspector/HeapInspector-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HeapInspector/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HeapInspector/HeapInspector.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = HeapInspector;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1036,11 +1036,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07987CE2775757121D96AD05032A9CB7 /* Build configuration list for PBXNativeTarget "HeapInspector" */ = {
+		12B9B5B950A7412BEC25CC8B739963D7 /* Build configuration list for PBXNativeTarget "HeapInspector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				39172CF58544B9FB6BEDA0508094462C /* Debug */,
-				9B4965185FEFD5A7094C191E5CEBD42C /* Release */,
+				96A5AB1F03FCBD48E5A20598894BB3F2 /* Debug */,
+				E976465E52B4FD1EAC1B16A53B12E7D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
