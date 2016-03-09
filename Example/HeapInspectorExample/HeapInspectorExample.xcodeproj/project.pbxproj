@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45C4D96304CFA6B6A3456033 /* Pods_HeapInspectorExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4119A9D748B490C0BB2712 /* Pods_HeapInspectorExampleTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		65C85B3F39AD7EC0E0F252E7 /* Pods_SwiftExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D263EE08EF875FB7A0D31BDD /* Pods_SwiftExample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		BDF861FEE402FADAFC79B92A /* Pods_HeapInspectorExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D187BC5E4D6EFDBECD758BF2 /* Pods_HeapInspectorExample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		D6AA58F92918F927D492EA80 /* Pods_SwiftExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292A7554E4CDDEC47D202692 /* Pods_SwiftExampleTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		45C4D96304CFA6B6A3456033 /* Pods_HeapInspectorExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4119A9D748B490C0BB2712 /* Pods_HeapInspectorExampleTests.framework */; };
+		65C85B3F39AD7EC0E0F252E7 /* Pods_SwiftExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D263EE08EF875FB7A0D31BDD /* Pods_SwiftExample.framework */; };
+		BDF861FEE402FADAFC79B92A /* Pods_HeapInspectorExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D187BC5E4D6EFDBECD758BF2 /* Pods_HeapInspectorExample.framework */; };
+		D6AA58F92918F927D492EA80 /* Pods_SwiftExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292A7554E4CDDEC47D202692 /* Pods_SwiftExampleTests.framework */; };
 		DA0008621BA99ACD00475D2B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0008611BA99ACD00475D2B /* LaunchScreen.xib */; };
 		DA2200271C900A1C00D1931A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9909351C9000C100F70573 /* ViewController.swift */; };
 		DA29C53E19A530C400FFF7D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA29C53D19A530C400FFF7D5 /* Foundation.framework */; };
