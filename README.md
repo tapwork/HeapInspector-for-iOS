@@ -19,7 +19,7 @@ With HeapInspector and heap snapshots you can identify:
 
 HeapInspector gives you detailed information for the living objects:
 
-* Reference history (see who called retain, strong, release) for NSObject subclasses
+* Reference history (backtrace support) See who called retain, strong, release
 * Responder chain for recorded objects
 * Screenshots of the inspected UIView, UIViewController, UIImage
 * Detailed information about the object (Description, frame, properties, iVars, methods)
