@@ -31,30 +31,31 @@ static inline kern_return_t memory_reader(task_t task, vm_address_t remote_addre
     return KERN_SUCCESS;
 }
 
-static inline void range_callback(task_t task, void *context, unsigned type, vm_range_t *ranges, unsigned rangeCount)
+static inline void range_callback(task_t task,
+                                  void *context,
+                                  unsigned type,
+                                  vm_range_t *ranges,
+                                  unsigned rangeCount)
 {
     RMHeapEnumeratorBlock block = (__bridge RMHeapEnumeratorBlock)context;
     if (!block) {
         return;
     }
-    
     for (unsigned int i = 0; i < rangeCount; i++) {
         vm_range_t range = ranges[i];
-        rm_maybe_object_t *tryObject = (rm_maybe_object_t *)range.address;
+        rm_maybe_object_t *object = (rm_maybe_object_t *)range.address;
         Class tryClass = NULL;
 #ifdef __arm64__
         // See http://www.sealiesoftware.com/blog/archive/2013/09/24/objc_explain_Non-pointer_isa.html
         extern uint64_t objc_debug_isa_class_mask WEAK_IMPORT_ATTRIBUTE;
-        tryClass = (__bridge Class)((void *)((uint64_t)tryObject->isa & objc_debug_isa_class_mask));
+        tryClass = (__bridge Class)((void *)((uint64_t)object->isa & objc_debug_isa_class_mask));
 #else
-        tryClass = tryObject->isa;
+        tryClass = object->isa;
 #endif
-        // If the class pointer matches one in our set of class pointers from the runtime, then we should have an object.
-        if (CFSetContainsValue(classesLoadedInRuntime, (__bridge const void *)(tryClass))) {
-            // Also check if we can record this object
-            if (canRecordObject((__bridge id)tryObject)) {
-                 block((__bridge id)tryObject, tryClass);
-            }
+        if (tryClass &&
+            CFSetContainsValue(classesLoadedInRuntime, (__bridge const void *)(tryClass)) &&
+            canRecordObject((__bridge id)object)) {
+            block((__bridge id)object);
         }
     }
 }
@@ -71,14 +72,19 @@ static inline void range_callback(task_t task, void *context, unsigned type, vm_
     // For another exmple of enumerating through malloc ranges (which helped my understanding of the api) see:
     // http://llvm.org/svn/llvm-project/lldb/tags/RELEASE_34/final/examples/darwin/heap_find/heap/heap_find.cpp
     // Also https://gist.github.com/samdmarshall/17f4e66b5e2e579fd396
-    vm_address_t *zones = NULL;
-    unsigned int zoneCount = 0;
-    kern_return_t result = malloc_get_all_zones(mach_task_self(), &memory_reader, &zones, &zoneCount);
-    if (result == KERN_SUCCESS) {
-        for (unsigned int i = 0; i < zoneCount; i++) {
+    vm_address_t *zones;
+    unsigned int zoneCount;
+    kern_return_t error = malloc_get_all_zones(mach_task_self(), &memory_reader, &zones, &zoneCount);
+    if (error == KERN_SUCCESS) {
+        for (unsigned i = 0; i < zoneCount; i++) {
             malloc_zone_t *zone = (malloc_zone_t *)zones[i];
-            if (zone->introspect && zone->introspect->enumerator) {
-                zone->introspect->enumerator(mach_task_self(), (__bridge void *)(block), MALLOC_PTR_IN_USE_RANGE_TYPE, zones[i], &memory_reader, &range_callback);
+            if (zone != NULL && zone->introspect != NULL) {
+                zone->introspect->enumerator(mach_task_self(),
+                                             (__bridge void *)(block),
+                                             MALLOC_PTR_IN_USE_RANGE_TYPE,
+                                             (vm_address_t)zone,
+                                             &memory_reader,
+                                             &range_callback);
             }
         }
     }
@@ -124,8 +130,7 @@ static inline void range_callback(task_t task, void *context, unsigned type, vm_
 + (NSSet *)heapStack
 {
     NSMutableSet *objects = [NSMutableSet set];
-    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object,
-                                                           __unsafe_unretained Class actualClass) {
+    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object) {
         // We cannot store the object itself -  We want to avoid any retain calls.
         // We store the class name + pointer
         NSString *string = [NSString stringWithFormat:@"%s: %p",
@@ -140,9 +145,8 @@ static inline void range_callback(task_t task, void *context, unsigned type, vm_
 + (id)objectForPointer:(NSString *)pointer
 {
     id __block foundObject = nil;
-    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object,
-                                                           __unsafe_unretained Class actualClass) {
-       
+    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object) {
+        
         if ([pointer isEqualToString:[NSString stringWithFormat:@"%p",object]]) {
             foundObject = object;
         }

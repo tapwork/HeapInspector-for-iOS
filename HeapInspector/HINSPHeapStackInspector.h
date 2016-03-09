@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
-
-typedef void (^RMHeapEnumeratorBlock)(__unsafe_unretained id object, __unsafe_unretained Class actualClass);
+typedef void (^RMHeapEnumeratorBlock)(__unsafe_unretained id object);
 
 @interface HINSPHeapStackInspector : NSObject
 
