@@ -111,7 +111,7 @@ static inline void range_callback(task_t task,
 
 + (void)performHeapShot
 {
-    heapShotOfLivingObjects = [[self class] heapStack];
+    heapShotOfLivingObjects = [[self class] heap];
 }
 
 + (void)reset
@@ -120,16 +120,16 @@ static inline void range_callback(task_t task,
     classesLoadedInRuntime = NULL;
 }
 
-+ (NSSet *)recordedHeapStack
++ (NSSet *)recordedHeap
 {
-    NSMutableSet *endLiveObjects = [[[self class] heapStack] mutableCopy];
+    NSMutableSet *endLiveObjects = [[[self class] heap] mutableCopy];
     [endLiveObjects minusSet:heapShotOfLivingObjects];
     NSSet *recordedObjects = [NSSet setWithSet:endLiveObjects];
-    
+    heapShotOfLivingObjects = recordedObjects;
     return recordedObjects;
 }
 
-+ (NSSet *)heapStack
++ (NSSet *)heap
 {
     NSMutableSet *objects = [NSMutableSet set];
     [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object) {
@@ -146,15 +146,13 @@ static inline void range_callback(task_t task,
 
 + (id)objectForPointer:(NSString *)pointer
 {
-    id __block foundObject = nil;
-    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object) {
-        
+    for (id object in heapShotOfLivingObjects) {
         if ([pointer isEqualToString:[NSString stringWithFormat:@"%p",object]]) {
-            foundObject = object;
+            return object;
         }
-    }];
+    }
     
-    return foundObject;
+    return nil;
 }
 
 @end

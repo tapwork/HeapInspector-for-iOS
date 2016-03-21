@@ -78,8 +78,8 @@ static HINSPDebug *twDebug = nil;
 
 - (void)currentHeapButtonTapped:(id)sender
 {
-    if ([[HINSPHeapStackInspector heapStack] count] > 0) {
-        NSArray *stack = [[HINSPHeapStackInspector heapStack] allObjects];
+    if ([[HINSPHeapStackInspector heap] count] > 0) {
+        NSArray *stack = [[HINSPHeapStackInspector heap] allObjects];
         HINSPHeapStackTableViewController *controller = [self heapStackControllerWithHeapStack:stack];
         controller.title = @"Heap";
     }
@@ -117,7 +117,7 @@ static HINSPDebug *twDebug = nil;
 
 - (void)stopRecord
 {
-    _recordedHeap = [HINSPHeapStackInspector recordedHeapStack];
+    _recordedHeap = [HINSPHeapStackInspector recordedHeap];
     [self showInfoLabel];
     [NSObject endSnapshot];
 }
