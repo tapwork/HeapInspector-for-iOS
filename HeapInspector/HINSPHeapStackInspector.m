@@ -125,7 +125,7 @@ static inline void range_callback(task_t task,
     NSMutableSet *endLiveObjects = [[[self class] heap] mutableCopy];
     [endLiveObjects minusSet:heapShotOfLivingObjects];
     NSSet *recordedObjects = [NSSet setWithSet:endLiveObjects];
-    heapShotOfLivingObjects = recordedObjects;
+
     return recordedObjects;
 }
 
@@ -146,13 +146,14 @@ static inline void range_callback(task_t task,
 
 + (id)objectForPointer:(NSString *)pointer
 {
-    for (id object in heapShotOfLivingObjects) {
+    id __block foundObject = nil;
+    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object) {
         if ([pointer isEqualToString:[NSString stringWithFormat:@"%p",object]]) {
-            return object;
+            foundObject = object;
         }
-    }
-    
-    return nil;
+    }];
+
+    return foundObject;
 }
 
 @end
