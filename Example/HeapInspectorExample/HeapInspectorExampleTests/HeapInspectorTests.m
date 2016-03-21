@@ -44,7 +44,7 @@
     [HINSPDebug addClassPrefixesToRecord:@[@"UI"]];
     [[HINSPDebug new] beginRecord];
     self.tableView = [[UITableView alloc] init];
-    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
+    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeap] allObjects];
     XCTAssertTrue(([recordedObjects count] > 1), @"Recorded objects must be greater than one");
 }
 
@@ -63,7 +63,7 @@
     [HINSPDebug addClassPrefixesToRecord:@[@"RM"]];
     [[HINSPDebug new] beginRecord];
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
-    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
+    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeap] allObjects];
     XCTAssertTrue(([recordedObjects count] == 1), @"Recorded objects must be one");
 }
 
@@ -73,7 +73,7 @@
     [[HINSPDebug new] beginRecord];
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
     self.tableView = [[UITableView alloc] init];
-    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
+    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeap] allObjects];
     XCTAssertTrue(([recordedObjects count] == 2), @"Recorded objects must be 4");
 }
 
@@ -84,7 +84,7 @@
     [HINSPDebug addClassPrefixesToRecord:@[@"UITableViewWrapperView"]];
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
     self.tableView = [[UITableView alloc] init];
-    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeapStack] allObjects];
+    NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeap] allObjects];
     XCTAssertTrue(([recordedObjects count] == 2), @"Recorded objects must be 4");
 }
 

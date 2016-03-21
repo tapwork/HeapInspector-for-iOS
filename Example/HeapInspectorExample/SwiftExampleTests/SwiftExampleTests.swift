@@ -26,7 +26,7 @@ class SwiftExampleTests: XCTestCase {
         let debug = HINSPDebug()
         debug.performSelector(NSSelectorFromString("beginRecord"))
         let detailViewController = ViewController()
-        let recordedObjects = HINSPHeapStackInspector.recordedHeapStack() as NSSet
+        let recordedObjects = HINSPHeapStackInspector.recordedHeap() as NSSet
         XCTAssertTrue((recordedObjects.count == 1), "Recorded objects must be one")
         XCTAssertNotNil(detailViewController, "Just to suppres the warning")
     }
