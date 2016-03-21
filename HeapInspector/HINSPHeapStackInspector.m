@@ -72,11 +72,12 @@ static inline void range_callback(task_t task,
     // For another exmple of enumerating through malloc ranges (which helped my understanding of the api) see:
     // http://llvm.org/svn/llvm-project/lldb/tags/RELEASE_34/final/examples/darwin/heap_find/heap/heap_find.cpp
     // Also https://gist.github.com/samdmarshall/17f4e66b5e2e579fd396
+    // or http://www.opensource.apple.com/source/Libc/Libc-167/gen.subproj/malloc.c
     vm_address_t *zones = NULL;
-    unsigned int zoneCount = 0;
     mach_port_t task = mach_task_self();
-    kern_return_t error = malloc_get_all_zones(task, &memory_reader, &zones, &zoneCount);
-    if (error == KERN_SUCCESS) {
+    unsigned int zoneCount = 0;
+    kern_return_t result = malloc_get_all_zones(task, memory_reader, &zones, &zoneCount);
+    if (result == KERN_SUCCESS) {
         for (unsigned i = 0; i < zoneCount; i++) {
             malloc_zone_t *zone = (malloc_zone_t *)zones[i];
             if (zone != NULL && zone->introspect != NULL) {
@@ -84,8 +85,8 @@ static inline void range_callback(task_t task,
                                              (__bridge void *)(block),
                                              MALLOC_PTR_IN_USE_RANGE_TYPE,
                                              (vm_address_t)zone,
-                                             &memory_reader,
-                                             &range_callback);
+                                             memory_reader,
+                                             range_callback);
             }
         }
     }
