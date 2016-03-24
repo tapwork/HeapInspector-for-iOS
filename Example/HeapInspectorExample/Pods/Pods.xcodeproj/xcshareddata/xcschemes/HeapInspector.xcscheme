@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6987A41B187A74F570504175"
+               BlueprintIdentifier = "368A411752E35CA00642A7B4"
                BuildableName = "HeapInspector.framework"
                BlueprintName = "HeapInspector"
                ReferencedContainer = "container:Pods.xcodeproj">
