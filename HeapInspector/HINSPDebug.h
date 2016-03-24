@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// You can also record classes that are owned by specific Swift modules
 + (void)addSwiftModulesToRecord:(NSArray <NSString *> *)swiftModules;
 
-// Default is NO
+// Default is YES
 + (void)recordBacktraces:(BOOL)recordBacktraces;
 
 @end

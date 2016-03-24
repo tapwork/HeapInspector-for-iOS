@@ -17,7 +17,6 @@
     if (![[self class] isRunningTests]) {
         [HINSPDebug start];
         [HINSPDebug addClassPrefixesToRecord:@[@"RM"]];
-        [HINSPDebug recordBacktraces:YES];
     }
 
     RMRootViewController *rootViewController = [[RMRootViewController alloc] init];
