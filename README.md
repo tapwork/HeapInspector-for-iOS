@@ -129,7 +129,7 @@ HeapInspector comes with an example project. There you will see a lot of mistake
 *  Holding objects longer than needed. `strong` property for the `UIViewController` that is pushed onto the `UINavigationController` stack
 
 # References, Inspirations & Thanks
-* [FLEX](https://github.com/flipboard/flex) by Flipboard's iOS developers
+* [FLEX](https://github.com/flipboard/flex) by [Ryan Olson](https://twitter.com/ryanolsonk)
 * [Mike Ash](https://www.mikeash.com/pyblog/friday-qa-2011-09-30-automatic-reference-counting.html) Friday Q&A Automatic Reference Counting
 * [Clang](http://clang.llvm.org/docs/AutomaticReferenceCounting.html) Objective-C Automatic Reference Counting (ARC)
 
