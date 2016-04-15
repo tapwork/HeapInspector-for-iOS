@@ -37,10 +37,11 @@ static inline void range_callback(task_t task,
                                   vm_range_t *ranges,
                                   unsigned rangeCount)
 {
-    RMHeapEnumeratorBlock block = (__bridge RMHeapEnumeratorBlock)context;
-    if (!block) {
+    RMHeapEnumeratorBlock enumeratorBlock = (__bridge RMHeapEnumeratorBlock)context;
+    if (!enumeratorBlock) {
         return;
     }
+    BOOL stop = NO;
     for (unsigned int i = 0; i < rangeCount; i++) {
         vm_range_t range = ranges[i];
         rm_maybe_object_t *object = (rm_maybe_object_t *)range.address;
@@ -55,20 +56,23 @@ static inline void range_callback(task_t task,
         if (tryClass &&
             CFSetContainsValue(classesLoadedInRuntime, (__bridge const void *)(tryClass)) &&
             canRecordObject((__bridge id)object)) {
-            block((__bridge id)object);
+            enumeratorBlock((__bridge id)object, &stop);
+            if (stop) {
+                break;
+            }
         }
     }
 }
 
-+ (void)enumerateLiveObjectsUsingBlock:(RMHeapEnumeratorBlock)block
++ (void)enumerateLiveObjectsUsingBlock:(RMHeapEnumeratorBlock)completionBlock
 {
-    if (!block) {
+    if (!completionBlock) {
         return;
     }
     
     // Refresh the class list on every call in case classes are added to the runtime.
     [self updateRegisteredClasses];
-    
+
     // For another exmple of enumerating through malloc ranges (which helped my understanding of the api) see:
     // http://llvm.org/svn/llvm-project/lldb/tags/RELEASE_34/final/examples/darwin/heap_find/heap/heap_find.cpp
     // Also https://gist.github.com/samdmarshall/17f4e66b5e2e579fd396
@@ -77,16 +81,27 @@ static inline void range_callback(task_t task,
     mach_port_t task = mach_task_self();
     unsigned int zoneCount = 0;
     kern_return_t result = malloc_get_all_zones(task, memory_reader, &zones, &zoneCount);
+    BOOL __block stopEnumerator = NO;
     if (result == KERN_SUCCESS) {
         for (unsigned i = 0; i < zoneCount; i++) {
             malloc_zone_t *zone = (malloc_zone_t *)zones[i];
             if (zone != NULL && zone->introspect != NULL) {
-                zone->introspect->enumerator(task,
-                                             (__bridge void *)(block),
-                                             MALLOC_PTR_IN_USE_RANGE_TYPE,
-                                             (vm_address_t)zone,
-                                             memory_reader,
-                                             range_callback);
+                RMHeapEnumeratorBlock enumeratorBlock = ^(__unsafe_unretained id object, BOOL *stop) {
+                    completionBlock(object, &stopEnumerator);
+                    if (stopEnumerator) {
+                        *stop = YES;
+                    }
+                };
+                if (!stopEnumerator) {
+                    zone->introspect->enumerator(task,
+                                                 (__bridge void *)(enumeratorBlock),
+                                                 MALLOC_PTR_IN_USE_RANGE_TYPE,
+                                                 (vm_address_t)zone,
+                                                 memory_reader,
+                                                 range_callback);
+                } else {
+                    break;
+                }
             }
         }
     }
@@ -132,7 +147,7 @@ static inline void range_callback(task_t task,
 + (NSSet *)heap
 {
     NSMutableSet *objects = [NSMutableSet set];
-    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object) {
+    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, BOOL *stop) {
         // We cannot store the object itself -  We want to avoid any retain calls.
         // We store the class name + pointer
         NSString *string = [NSString stringWithFormat:@"%s: %p",
@@ -147,12 +162,13 @@ static inline void range_callback(task_t task,
 + (id)objectForPointer:(NSString *)pointer
 {
     id __block foundObject = nil;
-    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object) {
+    [HINSPHeapStackInspector enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, BOOL *stop) {
         if ([pointer isEqualToString:[NSString stringWithFormat:@"%p",object]]) {
+            
             foundObject = object;
+            *stop = YES;
         }
     }];
-
     return foundObject;
 }
 
