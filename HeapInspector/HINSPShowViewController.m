@@ -29,7 +29,7 @@
     self = [super init];
     if (self) {
         self.title = @"Showing View";
-        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = YES;
         _objectToInspect = object;
         self.shouldShowEditButton = YES;
     }
