@@ -68,7 +68,7 @@ Disable ARC for `NSObject+HeapInspector.m` by adding `-fno-objc-arc` to Xcode's 
 Make sure to import the header file<br />
 **Objective-C**
 ```objc
-#import "HINSPDebug.h"
+@import HeapInspector;
 ```
 **Swift**
 ```swift
