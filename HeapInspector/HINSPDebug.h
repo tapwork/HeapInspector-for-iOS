@@ -17,6 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// Stops the HeapInspector and removes the inspector's view
 + (void)stop;
 
+// Shows HeapInspector (if not visible yet) and starts the record immediately
++ (void)startRecord;
+
+// Stops record - but does not hide the HeapInspector
++ (void)stopRecord;
+
 /// Add some (or only one) class prefix like `UI` OR `MK` to record classes that match the prefix only.
 /// It's highly recommended to record a specific class or prefix -
 /// otherwise all Cocoa classes will be recorded, which slows down the performance.

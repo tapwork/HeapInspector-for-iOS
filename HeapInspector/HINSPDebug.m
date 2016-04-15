@@ -118,6 +118,7 @@ static HINSPDebug *twDebug = nil;
 
 - (void)stopRecord
 {
+    _window.recordButton.isRecording = NO;
     _recordedHeap = [HINSPHeapStackInspector recordedHeap];
     [self showInfoLabel];
     [NSObject endSnapshot];
@@ -128,6 +129,7 @@ static HINSPDebug *twDebug = nil;
     _recordedHeap = nil;
     [self resetInfoLabel];
     [NSObject beginSnapshot];
+    _window.recordButton.isRecording = YES;
     [HINSPHeapStackInspector performHeapShot];
 }
 
@@ -138,12 +140,24 @@ static HINSPDebug *twDebug = nil;
     twDebug = [[HINSPDebug alloc] init];
 }
 
++ (void)startRecord
+{
+    if (!twDebug) {
+        [self start];
+    }
+    [twDebug beginRecord];
+}
+
 + (void)stop
 {
     [NSObject endSnapshot];
     [NSObject removeAllClassPrefixesToRecord];
     [HINSPHeapStackInspector reset];
     twDebug = nil;
+}
+
++ (void)stopRecord {
+    [twDebug stopRecord];
 }
 
 + (void)addClassPrefixesToRecord:(NSArray <NSString *> *)classPrefixes

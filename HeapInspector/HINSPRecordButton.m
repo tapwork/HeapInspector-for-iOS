@@ -10,8 +10,6 @@
 
 
 @interface HINSPRecordButton ()
-
-@property (nonatomic) BOOL isRecording;
 @property (nonatomic, weak) CAShapeLayer *shapeLayer;
 @end
 
@@ -31,13 +29,19 @@
 - (void)tapped:(id)sender
 {
     self.isRecording = !self.isRecording;
-    UIColor *color = nil;
-    if (self.isRecording) {
-        color = [self recordingColor];
-    } else {
-        color = [self defaultColor];
+}
+
+- (void)setIsRecording:(BOOL)isRecording {
+    if (_isRecording != isRecording) {
+        _isRecording = isRecording;
+        UIColor *color = nil;
+        if (isRecording) {
+            color = [self recordingColor];
+        } else {
+            color = [self defaultColor];
+        }
+        _shapeLayer.fillColor = color.CGColor;
     }
-    _shapeLayer.fillColor = color.CGColor;
 }
 
 #pragma mark - Setter
