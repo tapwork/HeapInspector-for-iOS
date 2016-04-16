@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'HeapInspector'
-  s.version  = '0.2.1'
+  s.version  = '0.3'
   s.license      = { :type => "MIT", :file => "LICENSE.md" }
   s.summary = 'Find memory issues & leaks in your iOS app without instruments'
   s.description  = 'HeapInspector is a debug tool that **monitors the memory heap** with backtrace recording in your iOS app. You can discover memory leaks, no longer used objects, abandoned memory and more issues directly on your device without ever starting Instruments.'

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B8745BCD2D76E4A565AAE963'
+               BlueprintIdentifier = '481EECCC4822CC4904DD6B50C0EB7B0E'
                BlueprintName = 'Pods-HeapInspectorExample'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods_HeapInspectorExample.framework'>
+               BuildableName = 'Pods-HeapInspectorExample.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
