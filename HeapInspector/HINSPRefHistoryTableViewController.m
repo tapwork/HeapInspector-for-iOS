@@ -25,7 +25,7 @@
     self = [super initWithObject:object];
     if (self) {
         
-        self.title = [NSString stringWithFormat:@"Reference History: %s: %p",
+        self.title = [NSString stringWithFormat:@"%s: %p",
                       object_getClassName(self.inspectingObject),
                       self.inspectingObject];
         

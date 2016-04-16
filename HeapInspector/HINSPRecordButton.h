@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HINSPRecordButton : UIControl
-
+@property (nonatomic) BOOL isRecording;
 @end

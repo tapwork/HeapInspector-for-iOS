@@ -104,7 +104,10 @@ static const CGFloat kHeaderViewHeight = 100.0f;
 {
     if ([self.inspectingObject conformsToProtocol:@protocol(NSObject)] &&
          [self.inspectingObject respondsToSelector:@selector(description)]) {
-        _headerTextView.text = [self.inspectingObject description];
+        NSInteger retainCount = CFGetRetainCount((__bridge CFTypeRef)self.inspectingObject);
+        NSString *retainCountString = [NSString stringWithFormat:@"Retain count: %ld\n", (long)retainCount];
+        NSString *infoHeaderText = [retainCountString stringByAppendingString:[self.inspectingObject description]];
+        _headerTextView.text = infoHeaderText;
     }
 }
 
