@@ -74,7 +74,7 @@
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
     self.tableView = [[UITableView alloc] init];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeap] allObjects];
-    XCTAssertTrue(([recordedObjects count] == 2), @"Recorded objects must be 4");
+    XCTAssertTrue(([recordedObjects count] == 2), @"Recorded objects must be 2");
 }
 
 - (void)testAddRecordMultiplePrefixesAfter
@@ -85,7 +85,7 @@
     self.controller = [[RMGalleryWrongViewCotroller alloc] init];
     self.tableView = [[UITableView alloc] init];
     NSArray *recordedObjects = [[HINSPHeapStackInspector recordedHeap] allObjects];
-    XCTAssertTrue(([recordedObjects count] == 2), @"Recorded objects must be 4");
+    XCTAssertTrue(([recordedObjects count] == 2), @"Recorded objects must be 2");
 }
 
 @end
