@@ -139,9 +139,8 @@ static inline void range_callback(task_t task,
 {
     NSMutableSet *endLiveObjects = [[[self class] heap] mutableCopy];
     [endLiveObjects minusSet:heapShotOfLivingObjects];
-    NSSet *recordedObjects = [NSSet setWithSet:endLiveObjects];
 
-    return recordedObjects;
+    return [endLiveObjects copy];
 }
 
 + (NSSet *)heap
