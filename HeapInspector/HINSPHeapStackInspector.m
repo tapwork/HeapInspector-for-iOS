@@ -85,7 +85,7 @@ static inline void range_callback(task_t task,
     if (result == KERN_SUCCESS) {
         for (unsigned i = 0; i < zoneCount; i++) {
             malloc_zone_t *zone = (malloc_zone_t *)zones[i];
-            if (zone != NULL && zone->introspect != NULL) {
+            if (zone != NULL && zone->introspect != NULL && zone->introspect->enumerator != NULL) {
                 RMHeapEnumeratorBlock enumeratorBlock = ^(__unsafe_unretained id object, BOOL *stop) {
                     completionBlock(object, &stopEnumerator);
                     if (stopEnumerator) {
