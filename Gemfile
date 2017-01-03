@@ -1,5 +1,5 @@
 source 'http://www.rubygems.org'
 
-gem "cocoapods", '~> 0.38.0'
+gem "cocoapods", '~> 1.0'
 gem "xcpretty"
 gem 'rake'
