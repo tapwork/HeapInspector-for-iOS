@@ -8,11 +8,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   HeapInspector:
-    :path: ../../HeapInspector.podspec
+    :path: "../../HeapInspector.podspec"
 
 SPEC CHECKSUMS:
   HeapInspector: cad61d46d85a2fa08e7f9ee9a37c139ff1664a93
 
 PODFILE CHECKSUM: c006ee0ab3fccf26d4afd814a15d15ce0680ec06
 
-COCOAPODS: 1.0.0.beta.6
+COCOAPODS: 1.1.1
