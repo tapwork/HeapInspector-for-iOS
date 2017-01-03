@@ -14,7 +14,7 @@ class SwiftExampleTests: XCTestCase {
     override func setUp() {
         super.setUp()
         HINSPDebug.start()
-        HINSPDebug.addSwiftModulesToRecord(["SwiftExampleTests"])
+        HINSPDebug.addSwiftModules(toRecord: ["SwiftExampleTests"])
     }
     
     override func tearDown() {
@@ -24,7 +24,7 @@ class SwiftExampleTests: XCTestCase {
     
     func testDetailViewController() {
         let debug = HINSPDebug()
-        debug.performSelector(NSSelectorFromString("beginRecord"))
+        debug.perform(NSSelectorFromString("beginRecord"))
         let detailViewController = ViewController()
         let recordedObjects = HINSPHeapStackInspector.recordedHeap() as NSSet
         XCTAssertTrue((recordedObjects.count == 1), "Recorded objects must be one")
