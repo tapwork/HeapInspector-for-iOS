@@ -106,7 +106,7 @@
     free(superList);
     free(selflist);
     
-    return dataSource;
+    return [dataSource copy];
 }
 
 - (NSArray *)retrieveIvars
@@ -145,7 +145,7 @@
     free(superlist);
     free(selflist);
     
-    return dataSource;
+    return [dataSource copy];
 }
 
 - (NSArray *)retrieveProperties
@@ -185,7 +185,7 @@
     free(superlist);
     free(selflist);
     
-    return dataSource;
+    return [dataSource copy];
 }
 
 #pragma mark - UITableView dataSource & delegate

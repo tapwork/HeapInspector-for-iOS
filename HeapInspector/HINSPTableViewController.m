@@ -165,7 +165,7 @@
                                   searchText];
         [serps filterUsingPredicate:predicate];
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.dataSource = serps;
+            self.dataSource = [serps copy];
             [self.tableView reloadData];
             [_loadingSpinner stopAnimating];
         });

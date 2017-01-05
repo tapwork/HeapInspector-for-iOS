@@ -146,7 +146,7 @@ static const CGFloat kHeaderViewHeight = 100.0f;
     [dataSource addObject:kCellTitleProperties];
     [dataSource addObject:kCellTitleIvars];
     
-    self.dataSource = dataSource;
+    self.dataSource = [dataSource copy];
     [self.tableView reloadData];
 }
 
