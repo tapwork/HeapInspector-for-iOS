@@ -1,6 +1,6 @@
 {
   "name": "HeapInspector",
-  "version": "0.4",
+  "version": "0.5",
   "license": {
     "type": "MIT",
     "file": "LICENSE.md"
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/tapwork/HeapInspector.git",
-    "tag": "0.4"
+    "tag": "0.5"
   },
   "platforms": {
     "ios": "8.0"
