@@ -329,13 +329,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA29C56619A530C400FFF7D5 /* Build configuration list for PBXNativeTarget "HeapInspectorExample" */;
 			buildPhases = (
-				707CF2D8E2BEA34650A96A14 /* 📦 Check Pods Manifest.lock */,
+				707CF2D8E2BEA34650A96A14 /* [CP] Check Pods Manifest.lock */,
 				DA29C53619A530C400FFF7D5 /* Sources */,
 				DA29C53719A530C400FFF7D5 /* Frameworks */,
 				DA29C53819A530C400FFF7D5 /* Resources */,
 				DA9909331C9000B200F70573 /* Embed Frameworks */,
-				BD819B57956DFA17CF112F0A /* 📦 Embed Pods Frameworks */,
-				344357C330D483C6A5A460B3 /* 📦 Copy Pods Resources */,
+				BD819B57956DFA17CF112F0A /* [CP] Embed Pods Frameworks */,
+				344357C330D483C6A5A460B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -351,12 +351,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA29C56919A530C400FFF7D5 /* Build configuration list for PBXNativeTarget "HeapInspectorExampleTests" */;
 			buildPhases = (
-				4C1B8165F9FAF79564C92B4F /* 📦 Check Pods Manifest.lock */,
+				4C1B8165F9FAF79564C92B4F /* [CP] Check Pods Manifest.lock */,
 				DA29C55119A530C400FFF7D5 /* Sources */,
 				DA29C55219A530C400FFF7D5 /* Frameworks */,
 				DA29C55319A530C400FFF7D5 /* Resources */,
-				60835B1208FEE4EE0BD4A561 /* 📦 Embed Pods Frameworks */,
-				A92C9615D94C947F64F915F7 /* 📦 Copy Pods Resources */,
+				60835B1208FEE4EE0BD4A561 /* [CP] Embed Pods Frameworks */,
+				A92C9615D94C947F64F915F7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -372,12 +372,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA9909321C9000B200F70573 /* Build configuration list for PBXNativeTarget "SwiftExample" */;
 			buildPhases = (
-				2004686089B047D994166E3F /* 📦 Check Pods Manifest.lock */,
+				2004686089B047D994166E3F /* [CP] Check Pods Manifest.lock */,
 				DA9909121C9000B200F70573 /* Sources */,
 				DA9909131C9000B200F70573 /* Frameworks */,
 				DA9909141C9000B200F70573 /* Headers */,
 				DA9909151C9000B200F70573 /* Resources */,
-				E7F603A86B0D3D08DD197FFB /* 📦 Copy Pods Resources */,
+				E7F603A86B0D3D08DD197FFB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -392,12 +392,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA9909341C9000B200F70573 /* Build configuration list for PBXNativeTarget "SwiftExampleTests" */;
 			buildPhases = (
-				AAAE1570430B5D2E9F2C8401 /* 📦 Check Pods Manifest.lock */,
+				AAAE1570430B5D2E9F2C8401 /* [CP] Check Pods Manifest.lock */,
 				DA99091C1C9000B200F70573 /* Sources */,
 				DA99091D1C9000B200F70573 /* Frameworks */,
 				DA99091E1C9000B200F70573 /* Resources */,
-				762F44664C362DDF292C5E9C /* 📦 Embed Pods Frameworks */,
-				6BDB9247F72196C955D8759A /* 📦 Copy Pods Resources */,
+				762F44664C362DDF292C5E9C /* [CP] Embed Pods Frameworks */,
+				6BDB9247F72196C955D8759A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -418,7 +418,7 @@
 			attributes = {
 				CLASSPREFIX = RM;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = tapwork;
 				TargetAttributes = {
 					DA29C55419A530C400FFF7D5 = {
@@ -426,9 +426,11 @@
 					};
 					DA9909161C9000B200F70573 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0810;
 					};
 					DA99091F1C9000B200F70573 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = DA29C53919A530C400FFF7D5;
 					};
 				};
@@ -493,29 +495,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2004686089B047D994166E3F /* 📦 Check Pods Manifest.lock */ = {
+		2004686089B047D994166E3F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		344357C330D483C6A5A460B3 /* 📦 Copy Pods Resources */ = {
+		344357C330D483C6A5A460B3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,29 +525,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HeapInspectorExample/Pods-HeapInspectorExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4C1B8165F9FAF79564C92B4F /* 📦 Check Pods Manifest.lock */ = {
+		4C1B8165F9FAF79564C92B4F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		60835B1208FEE4EE0BD4A561 /* 📦 Embed Pods Frameworks */ = {
+		60835B1208FEE4EE0BD4A561 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,14 +555,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HeapInspectorExampleTests/Pods-HeapInspectorExampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6BDB9247F72196C955D8759A /* 📦 Copy Pods Resources */ = {
+		6BDB9247F72196C955D8759A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,29 +570,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		707CF2D8E2BEA34650A96A14 /* 📦 Check Pods Manifest.lock */ = {
+		707CF2D8E2BEA34650A96A14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		762F44664C362DDF292C5E9C /* 📦 Embed Pods Frameworks */ = {
+		762F44664C362DDF292C5E9C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,14 +600,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A92C9615D94C947F64F915F7 /* 📦 Copy Pods Resources */ = {
+		A92C9615D94C947F64F915F7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,29 +615,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HeapInspectorExampleTests/Pods-HeapInspectorExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AAAE1570430B5D2E9F2C8401 /* 📦 Check Pods Manifest.lock */ = {
+		AAAE1570430B5D2E9F2C8401 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BD819B57956DFA17CF112F0A /* 📦 Embed Pods Frameworks */ = {
+		BD819B57956DFA17CF112F0A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,14 +645,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HeapInspectorExample/Pods-HeapInspectorExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E7F603A86B0D3D08DD197FFB /* 📦 Copy Pods Resources */ = {
+		E7F603A86B0D3D08DD197FFB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -747,6 +749,7 @@
 		DA29C56419A530C400FFF7D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -757,15 +760,20 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -781,6 +789,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -788,6 +797,7 @@
 		DA29C56519A530C400FFF7D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -798,14 +808,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -814,6 +829,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -823,13 +840,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F4E3D1F1D6D0A53E4723C80D /* Pods-HeapInspectorExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HeapInspectorExample/HeapInspectorExample-Prefix.pch";
 				INFOPLIST_FILE = "HeapInspectorExample/HeapInspectorExample-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.enterprise.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -840,13 +858,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 917BE58982E5C319A74BF84E /* Pods-HeapInspectorExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HeapInspectorExample/HeapInspectorExample-Prefix.pch";
 				INFOPLIST_FILE = "HeapInspectorExample/HeapInspectorExample-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.enterprise.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -857,6 +876,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 32651E258CBC275093836D38 /* Pods-HeapInspectorExampleTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HeapInspectorExample.app/HeapInspectorExample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -870,6 +890,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "HeapInspectorExampleTests/HeapInspectorExampleTests-Info.plist";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.enterprise.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -881,6 +902,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EB344B8B7409E1D6BE7AC1C /* Pods-HeapInspectorExampleTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HeapInspectorExample.app/HeapInspectorExample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -890,6 +912,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HeapInspectorExample/HeapInspectorExample-Prefix.pch";
 				INFOPLIST_FILE = "HeapInspectorExampleTests/HeapInspectorExampleTests-Info.plist";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.enterprise.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -901,8 +924,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF4F4D85D18EA0690E9C2128 /* Pods-SwiftExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -917,10 +942,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = TW.SwiftExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0.1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -930,8 +957,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 362EAE44AB0DC9D4ED16E077 /* Pods-SwiftExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -946,9 +975,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = TW.SwiftExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0.1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -958,6 +989,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A3CE25D83F6A95B5ECBC724 /* Pods-SwiftExampleTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -967,9 +999,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = TW.SwiftExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0.1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeapInspectorExample.app/HeapInspectorExample";
 			};
 			name = Debug;
@@ -978,6 +1012,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E6B339048E977DAC844CEC4 /* Pods-SwiftExampleTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -987,8 +1022,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = TW.SwiftExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0.1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeapInspectorExample.app/HeapInspectorExample";
 			};
 			name = Release;
