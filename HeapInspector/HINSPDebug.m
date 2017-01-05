@@ -119,9 +119,9 @@ static HINSPDebug *twDebug = nil;
 - (void)stopRecord
 {
     _window.recordButton.isRecording = NO;
-    [NSObject endSnapshot];
     _recordedHeap = [HINSPHeapStackInspector recordedHeap];
     [self showInfoLabel];
+    [NSObject endSnapshot];
 }
 
 - (void)beginRecord
