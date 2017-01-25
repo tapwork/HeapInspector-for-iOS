@@ -1,6 +1,6 @@
 {
   "name": "HeapInspector",
-  "version": "0.5",
+  "version": "1.0",
   "license": {
     "type": "MIT",
     "file": "LICENSE.md"
@@ -14,19 +14,19 @@
   },
   "source": {
     "git": "https://github.com/tapwork/HeapInspector.git",
-    "tag": "0.5"
+    "tag": "1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "HeapInspector/**.{h,m}",
-  "exclude_files": "HeapInspector/NSObject+HeapInspector.{h,m}",
+  "source_files": "src/**.{h,m}",
+  "exclude_files": "src/NSObject+HeapInspector.{h,m}",
   "requires_arc": true,
   "subspecs": [
     {
       "name": "no-arc",
       "requires_arc": false,
-      "source_files": "HeapInspector/NSObject+HeapInspector.{h,m}"
+      "source_files": "src/NSObject+HeapInspector.{h,m}"
     }
   ]
 }
