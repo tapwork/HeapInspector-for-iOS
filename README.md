@@ -4,6 +4,8 @@
 [![CocoaPods Version](http://img.shields.io/cocoapods/v/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector-for-iOS/blob/master/HeapInspector.podspec)
 [![](http://img.shields.io/cocoapods/l/HeapInspector.svg?style=flat)](https://github.com/tapwork/HeapInspector-for-iOS/blob/master/LICENSE.md)
 [![CocoaPods Platform](http://img.shields.io/cocoapods/p/HeapInspector.svg?style=flat)]()
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Twitter](https://img.shields.io/badge/twitter-@cmenschel-blue.svg?style=flat)](http://twitter.com/cmenschel)
 
 HeapInspector is a debug tool that **monitors the memory heap** with backtrace recording in your iOS app. You can discover memory leaks, no longer used objects, abandoned memory and more issues directly on your device without ever starting Instruments.
 
@@ -44,20 +46,19 @@ And that's why we introduced HeapInspector to find those issues.
 HeapInspector runs with Objective-C and Swift via CocoaPods
 Just add the HeapInspector to your `Podfile`.
 ```
-pod 'HeapInspector'
-```
-
-For Swift:
-```
-use_frameworks!
-platform :ios, '8.0'
-
 pod "HeapInspector"
 ```
-
 and run `pod install` afterwards.
 
-### Without CocoaPods
+### Carthage 
+You can use [Carthage](https://github.com/Carthage/Carthage). 
+Specify in Cartfile:
+
+```ruby
+github "tapwork/HeapInspector-for-iOS"
+```
+
+### Manual 
 Download the repository into your project via git or just as zip.
 Drag it the `HeapInspector` folder into your Xcode project. See following image.
 
