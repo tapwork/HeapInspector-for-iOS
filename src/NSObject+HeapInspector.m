@@ -58,17 +58,15 @@ static inline CFStringRef createCFString(const char *cStr)
 static inline void* createBacktrace()
 {
     CFMutableArrayRef stack = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
-    if (kRecordBacktrace) {
-        void *frames[1024];
-        int bt_size;
-        bt_size = backtrace(frames, sizeof(frames));
-        for (int i = 4; i < bt_size; i++) {
-            void *pointer = frames[i];
-            if (pointer) {
-                NSValue *bytes = [NSValue valueWithPointer:pointer];
-                setObjectIgnoringRecord(bytes);
-                CFArrayAppendValue(stack, bytes);
-            }
+    void *frames[1024];
+    int bt_size;
+    bt_size = backtrace(frames, sizeof(frames));
+    for (int i = 4; i < bt_size; i++) {
+        void *pointer = frames[i];
+        if (pointer) {
+            NSValue *bytes = [NSValue valueWithPointer:pointer];
+            setObjectIgnoringRecord(bytes);
+            CFArrayAppendValue(stack, bytes);
         }
     }
 
@@ -77,6 +75,10 @@ static inline void* createBacktrace()
 
 static inline void registerBacktraceForObject(void *obj, char *type)
 {
+    if (!kRecordBacktrace) {
+        return;
+    }
+
     OSSpinLockLock(&backtraceDictLock);
 
     char key[255];
